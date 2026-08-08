@@ -1,65 +1,97 @@
-import Image from "next/image";
+
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            DotSkills Projects
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+    <main className="min-h-screen bg-slate-950 text-white">
+      <div className="mx-auto flex min-h-screen max-w-6xl flex-col px-6 py-8 lg:px-8">
+        {/* Header */}
+        <header className="flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-600 font-bold text-lg shadow-lg shadow-blue-600/20">
+              D
+            </div>
+
+            <div>
+              <h1 className="text-lg font-semibold tracking-tight">
+                DotSkills
+              </h1>
+              <p className="text-xs text-slate-400">SaaS Platform</p>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3 py-1.5 text-xs font-medium text-emerald-400">
+            <span className="h-2 w-2 rounded-full bg-emerald-400" />
+            System Online
+          </div>
+        </header>
+
+        {/* Main */}
+        <section className="flex flex-1 items-center justify-center py-20">
+          <div className="w-full max-w-3xl text-center">
+            {/* Badge */}
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-slate-700 bg-slate-900 px-4 py-2 text-sm text-slate-300">
+              Business Management Platform
+            </div>
+
+            {/* Heading */}
+            <h2 className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
+              Welcome to{" "}
+              <span className="text-blue-500">DotSkills</span>
+            </h2>
+
+            <p className="mx-auto mt-6 max-w-2xl text-base leading-7 text-slate-400 sm:text-lg">
+              A powerful multi-company SaaS platform designed to manage
+              businesses, teams, operations, subscriptions, and business
+              workflows from one secure system.
+            </p>
+
+            {/* Cards */}
+            <div className="mt-10 grid gap-4 sm:grid-cols-3">
+              <div className="rounded-2xl border border-slate-800 bg-slate-900/70 p-5 text-left transition hover:border-slate-700">
+
+                <h3 className="font-semibold">Multi-Company</h3>
+
+                <p className="mt-2 text-sm leading-6 text-slate-400">
+                  Manage multiple business workspaces from a single account.
+                </p>
+              </div>
+
+              <div className="rounded-2xl border border-slate-800 bg-slate-900/70 p-5 text-left transition hover:border-slate-700">
+
+                <h3 className="font-semibold">Secure Access</h3>
+
+                <p className="mt-2 text-sm leading-6 text-slate-400">
+                  Role-based access and permission management for your team.
+                </p>
+              </div>
+
+              <div className="rounded-2xl border border-slate-800 bg-slate-900/70 p-5 text-left transition hover:border-slate-700">
+
+                <h3 className="font-semibold">Scalable</h3>
+
+                <p className="mt-2 text-sm leading-6 text-slate-400">
+                  Built with a scalable architecture for growing businesses.
+                </p>
+              </div>
+            </div>
+
+            {/* Action */}
+            <div className="mt-10">
+              <button
+                type="button"
+                className="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-6 py-3 font-medium transition hover:bg-blue-500"
+              >
+                Access Platform
+              </button>
+            </div>
+          </div>
+        </section>
+
+        {/* Footer */}
+        <footer className="border-t border-slate-800 pt-6 text-center text-sm text-slate-500">
+          © {new Date().getFullYear()} DotSkills. All rights reserved.
+        </footer>
+      </div>
+    </main>
   );
 }
