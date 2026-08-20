@@ -1,0 +1,68 @@
+{
+  "platformRoles": {
+    "title": "Platform roles",
+    "description": "Manage platform-level roles and their permissions.",
+    "empty": "No roles yet.",
+    "system": "System",
+    "custom": "Custom",
+    "columns": {
+      "role": "Role",
+      "members": "Staff",
+      "permissions": "Permissions",
+      "type": "Type",
+      "status": "Status"
+    },
+    "actions": {
+      "edit": "Edit",
+      "managePermissions": "Manage permissions",
+      "changeStatus": "Change status",
+      "changeStatusTitle": "Change role status",
+      "changeStatusDescription": "Set a new status for \"{name}\".",
+      "changeStatusSuccess": "Role status updated.",
+      "statusFieldLabel": "New status",
+      "statusRequired": "Please select a status."
+    },
+    "permissions": {
+      "title": "Permissions",
+      "description": "Choose which permissions \"{name}\" grants.",
+      "saveButton": "Save permissions",
+      "updateSuccess": "Role permissions updated."
+    },
+    "form": {
+      "createTitle": "Create role",
+      "createDescription": "Add a new platform role.",
+      "createSuccess": "Role created.",
+      "editTitle": "Edit role",
+      "editDescription": "Update details for \"{name}\".",
+      "editSuccess": "Role updated.",
+      "code": "Code",
+      "codePlaceholder": "e.g. SUPPORT_LEAD",
+      "codeRequired": "Code is required.",
+      "codeLength": "Code must be 2–60 characters.",
+      "name": "Name",
+      "namePlaceholder": "e.g. Support Lead",
+      "nameRequired": "Name is required.",
+      "nameLength": "Name must be 2–120 characters.",
+      "description": "Description",
+      "descriptionPlaceholder": "Optional description",
+      "descriptionLength": "Description must be at most 1000 characters.",
+      "permissions": "Permissions",
+      "permissionsRequired": "Select at least one permission."
+    },
+    "details": {
+      "backToList": "Back to roles",
+      "overview": "Overview",
+      "notFound": "Role not found.",
+      "code": "Code"
+    },
+    "permissionsPage": {
+      "title": "Platform permissions",
+      "description": "Read-only catalog of all platform permissions, grouped by module. Assign permissions to a role from the role's details page.",
+      "empty": "No permissions found."
+    },
+    "syncCatalog": {
+      "trigger": "Sync permission catalog",
+      "success": "Synced {count} permissions. Re-mapped: {roles}."
+    }
+  }
+}

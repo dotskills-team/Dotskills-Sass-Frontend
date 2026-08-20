@@ -1,0 +1,44 @@
+{
+  "tenants": {
+    "title": "টেন্যান্ট",
+    "description": "প্ল্যাটফর্ম টেন্যান্ট — প্রতিটি কোম্পানি যে top-level অ্যাকাউন্টের অন্তর্গত।",
+    "actions": {
+      "edit": "এডিট করুন",
+      "changeStatus": "স্ট্যাটাস পরিবর্তন করুন",
+      "changeStatusTitle": "টেন্যান্টের স্ট্যাটাস পরিবর্তন করুন",
+      "changeStatusDescription": "\"{name}\"-এর জন্য নতুন স্ট্যাটাস নির্বাচন করুন।",
+      "changeStatusSuccess": "টেন্যান্টের স্ট্যাটাস আপডেট হয়েছে।",
+      "statusFieldLabel": "নতুন স্ট্যাটাস",
+      "statusRequired": "একটি স্ট্যাটাস নির্বাচন করুন।",
+      "cancel": "টেন্যান্ট বাতিল করুন",
+      "cancelTitle": "টেন্যান্ট বাতিল করুন",
+      "cancelDescription": "\"{name}\" বাতিল করবেন? এটি টেন্যান্ট ডিলিট করে না, status CANCELLED সেট করে এবং status change দিয়ে ফেরানো যাবে না।",
+      "cancelSuccess": "টেন্যান্ট বাতিল করা হয়েছে।"
+    },
+    "form": {
+      "createTitle": "টেন্যান্ট তৈরি করুন",
+      "createDescription": "একটি নতুন প্ল্যাটফর্ম টেন্যান্ট যোগ করুন।",
+      "createSuccess": "টেন্যান্ট তৈরি হয়েছে।",
+      "editTitle": "টেন্যান্ট এডিট করুন",
+      "editDescription": "\"{name}\"-এর details আপডেট করুন।",
+      "editSuccess": "টেন্যান্ট আপডেট হয়েছে।",
+      "code": "কোড",
+      "codePlaceholder": "যেমন ACME_CORP",
+      "codeDescription": "শুধু uppercase letter, number, underscore এবং hyphen ব্যবহার করা যাবে।",
+      "codeImmutable": "তৈরির পর কোড পরিবর্তন করা যাবে না।",
+      "codeRequired": "কোড আবশ্যক।",
+      "codeLength": "কোড ২–৪০ অক্ষরের হতে হবে।",
+      "codePattern": "কোডে শুধু uppercase letter, number, underscore এবং hyphen থাকতে পারবে।",
+      "name": "নাম",
+      "namePlaceholder": "যেমন Acme Corporation",
+      "nameRequired": "নাম আবশ্যক।",
+      "nameLength": "নাম ২–১৬০ অক্ষরের হতে হবে।",
+      "slug": "স্লাগ",
+      "slugPlaceholder": "যেমন acme-corporation",
+      "slugDescription": "শুধু lowercase letter, number এবং hyphen ব্যবহার করা যাবে।",
+      "slugRequired": "স্লাগ আবশ্যক।",
+      "slugLength": "স্লাগ ২–১২০ অক্ষরের হতে হবে।",
+      "slugPattern": "স্লাগে শুধু lowercase letter, number এবং hyphen থাকতে পারবে।"
+    }
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "industries": {
+    "title": "Industries",
+    "description": "Business industry types available on the platform.",
+    "actions": {
+      "activate": "Activate",
+      "deactivate": "Deactivate",
+      "changeStatus": "Change status",
+      "archive": "Archive",
+      "activateTitle": "Activate industry",
+      "activateDescription": "Activate \"{name}\"? It will become available for company assignment again.",
+      "activateSuccess": "Industry activated.",
+      "deactivateTitle": "Deactivate industry",
+      "deactivateDescription": "Deactivate \"{name}\"? It will no longer be available for new company assignment.",
+      "deactivateSuccess": "Industry deactivated.",
+      "archiveTitle": "Archive industry",
+      "archiveDescription": "Archive \"{name}\"? This soft-deletes the industry from active use.",
+      "archiveSuccess": "Industry archived.",
+      "changeStatusTitle": "Change industry status",
+      "changeStatusDescription": "Set a new status for \"{name}\".",
+      "changeStatusSuccess": "Industry status updated.",
+      "statusFieldLabel": "New status",
+      "statusRequired": "Please select a status.",
+      "edit": "Edit"
+    },
+    "form": {
+      "createTitle": "Create industry",
+      "createDescription": "Add a new business industry type available for company assignment.",
+      "createSuccess": "Industry created.",
+      "editTitle": "Edit industry",
+      "editDescription": "Update details for \"{name}\".",
+      "editSuccess": "Industry updated.",
+      "code": "Code",
+      "codePlaceholder": "e.g. RESTAURANT",
+      "codeDescription": "Uppercase letters, numbers, underscore and hyphen only.",
+      "codeRequired": "Code is required.",
+      "codeLength": "Code must be 2–50 characters.",
+      "codePattern": "Code must contain only uppercase letters, numbers, underscore, and hyphen.",
+      "name": "Name",
+      "namePlaceholder": "e.g. Restaurant",
+      "nameRequired": "Name is required.",
+      "nameLength": "Name must be 2–120 characters.",
+      "description": "Description",
+      "descriptionPlaceholder": "Optional description (max 2000 characters)",
+      "descriptionLength": "Description must be at most 2000 characters."
+    }
+  }
+}

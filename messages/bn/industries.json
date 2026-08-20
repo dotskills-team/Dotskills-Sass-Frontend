@@ -1,0 +1,48 @@
+{
+  "industries": {
+    "title": "ইন্ডাস্ট্রি",
+    "description": "প্ল্যাটফর্মে উপলব্ধ ব্যবসার ইন্ডাস্ট্রি টাইপ।",
+    "actions": {
+      "activate": "সক্রিয় করুন",
+      "deactivate": "নিষ্ক্রিয় করুন",
+      "changeStatus": "স্ট্যাটাস পরিবর্তন করুন",
+      "archive": "আর্কাইভ করুন",
+      "activateTitle": "ইন্ডাস্ট্রি সক্রিয় করুন",
+      "activateDescription": "\"{name}\" সক্রিয় করবেন? এটি আবার কোম্পানি assignment-এর জন্য উপলব্ধ হবে।",
+      "activateSuccess": "ইন্ডাস্ট্রি সক্রিয় করা হয়েছে।",
+      "deactivateTitle": "ইন্ডাস্ট্রি নিষ্ক্রিয় করুন",
+      "deactivateDescription": "\"{name}\" নিষ্ক্রিয় করবেন? এটি নতুন কোম্পানি assignment-এর জন্য আর উপলব্ধ থাকবে না।",
+      "deactivateSuccess": "ইন্ডাস্ট্রি নিষ্ক্রিয় করা হয়েছে।",
+      "archiveTitle": "ইন্ডাস্ট্রি আর্কাইভ করুন",
+      "archiveDescription": "\"{name}\" আর্কাইভ করবেন? এটি active ব্যবহার থেকে soft-delete হবে।",
+      "archiveSuccess": "ইন্ডাস্ট্রি আর্কাইভ করা হয়েছে।",
+      "changeStatusTitle": "ইন্ডাস্ট্রির স্ট্যাটাস পরিবর্তন করুন",
+      "changeStatusDescription": "\"{name}\"-এর জন্য নতুন স্ট্যাটাস নির্বাচন করুন।",
+      "changeStatusSuccess": "ইন্ডাস্ট্রির স্ট্যাটাস আপডেট হয়েছে।",
+      "statusFieldLabel": "নতুন স্ট্যাটাস",
+      "statusRequired": "একটি স্ট্যাটাস নির্বাচন করুন।",
+      "edit": "এডিট করুন"
+    },
+    "form": {
+      "createTitle": "ইন্ডাস্ট্রি তৈরি করুন",
+      "createDescription": "কোম্পানি assignment-এর জন্য উপলব্ধ একটি নতুন ব্যবসার ইন্ডাস্ট্রি টাইপ যোগ করুন।",
+      "createSuccess": "ইন্ডাস্ট্রি তৈরি হয়েছে।",
+      "editTitle": "ইন্ডাস্ট্রি এডিট করুন",
+      "editDescription": "\"{name}\"-এর details আপডেট করুন।",
+      "editSuccess": "ইন্ডাস্ট্রি আপডেট হয়েছে।",
+      "code": "কোড",
+      "codePlaceholder": "যেমন RESTAURANT",
+      "codeDescription": "শুধু uppercase letter, number, underscore এবং hyphen ব্যবহার করা যাবে।",
+      "codeRequired": "কোড আবশ্যক।",
+      "codeLength": "কোড ২–৫০ অক্ষরের হতে হবে।",
+      "codePattern": "কোডে শুধু uppercase letter, number, underscore এবং hyphen থাকতে পারবে।",
+      "name": "নাম",
+      "namePlaceholder": "যেমন Restaurant",
+      "nameRequired": "নাম আবশ্যক।",
+      "nameLength": "নাম ২–১২০ অক্ষরের হতে হবে।",
+      "description": "বিবরণ",
+      "descriptionPlaceholder": "ঐচ্ছিক বিবরণ (সর্বোচ্চ ২০০০ অক্ষর)",
+      "descriptionLength": "বিবরণ সর্বোচ্চ ২০০০ অক্ষরের হতে পারবে।"
+    }
+  }
+}

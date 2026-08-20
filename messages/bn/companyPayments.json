@@ -1,0 +1,26 @@
+{
+  "companyPayments": {
+    "title": "পেমেন্ট",
+    "description": "আপনার কোম্পানির ইনভয়েসের জন্য করা পেমেন্ট attempt।",
+    "pay": {
+      "trigger": "এখনই পরিশোধ করুন",
+      "title": "ইনভয়েস পরিশোধ করুন",
+      "description": "Invoice {invoiceNumber}-এর {amount} পরিশোধ করতে আপনাকে payment gateway-তে নিয়ে যাওয়া হবে।",
+      "confirm": "পেমেন্টে যান"
+    },
+    "details": {
+      "backToList": "পেমেন্ট তালিকায় ফিরে যান",
+      "overview": "ওভারভিউ",
+      "notFound": "পেমেন্ট পাওয়া যায়নি।",
+      "refresh": "স্ট্যাটাস রিফ্রেশ করুন",
+      "invoice": "ইনভয়েস",
+      "amount": "পরিমাণ",
+      "provider": "প্রোভাইডার",
+      "transactionId": "ট্রানজেকশন আইডি",
+      "initiated": "শুরু হয়েছে",
+      "succeeded": "সফল হয়েছে",
+      "pendingNotice": "এই পেমেন্ট এখনো প্রসেস হচ্ছে। আপনি যদি ইতিমধ্যে gateway-তে পেমেন্ট সম্পন্ন করে থাকেন, একটু পর রিফ্রেশ করে confirmed status দেখুন।",
+      "failedNotice": "এই পেমেন্ট ব্যর্থ হয়েছে।"
+    }
+  }
+}

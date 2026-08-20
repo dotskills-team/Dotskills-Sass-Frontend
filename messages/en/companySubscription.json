@@ -1,0 +1,67 @@
+{
+  "companySubscription": {
+    "title": "Subscription",
+    "description": "Your company's current plan, billing, and subscription history.",
+    "noActiveSubscription": "No active subscription found.",
+    "autoRenewOn": "Auto-renew on",
+    "autoRenewOff": "Auto-renew off",
+    "billingCycle": "Billing cycle",
+    "price": "Price",
+    "currentPeriod": "Current period",
+    "startsAt": "Started",
+    "trialEndsAt": "Trial ends",
+    "graceEndsAt": "Grace ends",
+    "pastDueEndsAt": "Past due ends",
+    "suspendedAt": "Suspended",
+    "cancelledAt": "Cancelled",
+    "actions": {
+      "enableAutoRenew": "Enable auto-renew",
+      "disableAutoRenew": "Disable auto-renew",
+      "enableAutoRenewTitle": "Enable auto-renew",
+      "enableAutoRenewDescription": "Your subscription will automatically renew at the end of each billing period.",
+      "autoRenewEnabledSuccess": "Auto-renew enabled.",
+      "disableAutoRenewTitle": "Disable auto-renew",
+      "disableAutoRenewDescription": "Your subscription will not renew automatically after the current period ends.",
+      "autoRenewDisabledSuccess": "Auto-renew disabled.",
+      "cancel": "Cancel subscription",
+      "cancelTitle": "Cancel subscription",
+      "cancelDescription": "Cancel your subscription? You can reactivate it before the current period ends.",
+      "cancelReasonLabel": "Reason (optional)",
+      "cancelReasonPlaceholder": "Let us know why you're cancelling",
+      "cancelSuccess": "Subscription cancelled.",
+      "reactivate": "Reactivate",
+      "reactivateTitle": "Reactivate subscription",
+      "reactivateDescription": "Reactivate your subscription and resume auto-renew?",
+      "reactivateSuccess": "Subscription reactivated."
+    },
+    "history": {
+      "title": "Subscription history",
+      "description": "All subscription periods for your company.",
+      "empty": "No subscription history yet.",
+      "columns": {
+        "plan": "Plan",
+        "cycle": "Cycle",
+        "price": "Price",
+        "period": "Period",
+        "status": "Status"
+      }
+    },
+    "details": {
+      "backToList": "Back to subscription",
+      "overview": "Overview",
+      "notFound": "Subscription not found.",
+      "eventsTitle": "Status history",
+      "eventsEmpty": "No status changes recorded."
+    },
+    "changePlan": {
+      "trigger": "Change plan",
+      "title": "Change plan",
+      "description": "Choose a new plan and billing cycle. This takes effect immediately.",
+      "empty": "No plans are currently available for your account.",
+      "currentPlan": "Current plan",
+      "currentPrice": "current",
+      "confirm": "Confirm change",
+      "success": "Plan changed."
+    }
+  }
+}

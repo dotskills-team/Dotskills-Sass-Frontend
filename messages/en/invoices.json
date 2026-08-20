@@ -1,0 +1,45 @@
+{
+  "invoices": {
+    "title": "Invoices",
+    "description": "Formal invoices issued for billing periods across the platform.",
+    "actions": {
+      "issue": "Issue",
+      "cancel": "Cancel",
+      "void": "Void",
+      "markPaid": "Mark paid",
+      "issueTitle": "Issue invoice",
+      "issueDescription": "Issue this invoice? It will become payable by the company.",
+      "issueSuccess": "Invoice issued.",
+      "cancelTitle": "Cancel invoice",
+      "cancelDescription": "Cancel this invoice? This cannot be undone.",
+      "cancelSuccess": "Invoice cancelled.",
+      "voidTitle": "Void invoice",
+      "voidDescription": "Void this invoice? This permanently invalidates it.",
+      "voidSuccess": "Invoice voided.",
+      "markPaidTitle": "Mark invoice paid",
+      "markPaidDescription": "Mark this invoice as manually paid?",
+      "markPaidSuccess": "Invoice marked as paid."
+    },
+    "form": {
+      "createTitle": "Create invoice",
+      "createDescription": "Generate an invoice from an existing billing cycle. Amount is derived automatically.",
+      "createSuccess": "Invoice created.",
+      "billing": "Billing",
+      "billingPlaceholder": "Select a billing cycle"
+    },
+    "details": {
+      "backToList": "Back to invoices",
+      "overview": "Overview",
+      "notFound": "Invoice not found.",
+      "plan": "Plan",
+      "subtotal": "Subtotal",
+      "discount": "Discount",
+      "tax": "Tax",
+      "total": "Total",
+      "due": "Due date",
+      "issued": "Issued",
+      "paid": "Paid",
+      "billingPeriod": "Billing period"
+    }
+  }
+}

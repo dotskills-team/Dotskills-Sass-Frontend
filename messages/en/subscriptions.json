@@ -1,0 +1,60 @@
+{
+  "subscriptions": {
+    "title": "Subscriptions",
+    "description": "Company subscriptions across the platform (most recent 100).",
+    "actions": {
+      "suspend": "Suspend",
+      "reactivate": "Reactivate",
+      "cancel": "Cancel",
+      "expire": "Expire",
+      "suspendTitle": "Suspend subscription",
+      "suspendDescription": "Suspend this subscription for \"{plan}\"? A reason is required for the audit trail.",
+      "suspendSuccess": "Subscription suspended.",
+      "reactivateTitle": "Reactivate subscription",
+      "reactivateDescription": "Reactivate this subscription for \"{plan}\"? A reason is required for the audit trail.",
+      "reactivateSuccess": "Subscription reactivated.",
+      "cancelTitle": "Cancel subscription",
+      "cancelDescription": "Cancel this subscription for \"{plan}\"? A reason is required for the audit trail.",
+      "cancelSuccess": "Subscription cancelled.",
+      "expireTitle": "Expire subscription",
+      "expireDescription": "Mark this subscription for \"{plan}\" as expired? A reason is required for the audit trail.",
+      "expireSuccess": "Subscription expired.",
+      "reasonFieldLabel": "Reason",
+      "reasonPlaceholder": "Explain why this action is being taken (3–500 characters)",
+      "reasonRequired": "A reason is required.",
+      "reasonTooShort": "Reason must be at least 3 characters.",
+      "reasonTooLong": "Reason must be at most 500 characters."
+    },
+    "form": {
+      "createTitle": "Create subscription",
+      "createDescription": "Start a new subscription for a company on an active plan.",
+      "createSuccess": "Subscription created.",
+      "company": "Company",
+      "companyPlaceholder": "Select a company",
+      "plan": "Plan",
+      "planPlaceholder": "Select a plan",
+      "billingCycle": "Billing cycle",
+      "noEligiblePrices": "No active price is available for this plan in the company's currency.",
+      "currencyNote": "Prices shown in the company's currency ({currency})."
+    },
+    "details": {
+      "backToList": "Back to subscriptions",
+      "overview": "Overview",
+      "notFound": "Subscription not found.",
+      "company": "Company",
+      "billingCycle": "Billing cycle",
+      "price": "Price",
+      "currentPeriod": "Current period",
+      "startsAt": "Started",
+      "trialEndsAt": "Trial ends",
+      "graceEndsAt": "Grace ends",
+      "pastDueEndsAt": "Past due ends",
+      "suspendedAt": "Suspended",
+      "cancelledAt": "Cancelled",
+      "autoRenewOn": "Auto-renew on",
+      "autoRenewOff": "Auto-renew off",
+      "eventsTitle": "Status history",
+      "eventsEmpty": "No status changes recorded."
+    }
+  }
+}

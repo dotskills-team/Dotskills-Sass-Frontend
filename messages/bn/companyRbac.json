@@ -1,0 +1,111 @@
+{
+  "companyRbac": {
+    "bootstrap": {
+      "trigger": "RBAC Bootstrap করুন",
+      "title": "কোম্পানি RBAC Bootstrap করুন",
+      "description": "এই কোম্পানির জন্য default role (Owner, Admin, Manager, Staff) সেট আপ করুন। আবার চালানো নিরাপদ — existing role duplicate না হয়ে update হবে।",
+      "ownerEmail": "ওনার ইমেইল (ঐচ্ছিক)",
+      "ownerEmailPlaceholder": "owner@example.com",
+      "ownerEmailDescription": "দিলে এবং ইউজার already থাকলে, তাকে সক্রিয় করে Company Owner হিসেবে promote করা হবে।",
+      "confirm": "Bootstrap করুন",
+      "success": "কোম্পানি RBAC bootstrap হয়েছে।"
+    },
+    "roles": {
+      "title": "কোম্পানি রোল",
+      "description": "এই কোম্পানির রোল এবং তাদের permission manage করুন।",
+      "empty": "এখনো কোনো রোল নেই।",
+      "system": "সিস্টেম",
+      "custom": "কাস্টম",
+      "columns": {
+        "role": "রোল",
+        "members": "মেম্বার",
+        "permissions": "পারমিশন",
+        "type": "টাইপ"
+      },
+      "actions": {
+        "edit": "এডিট করুন",
+        "managePermissions": "পারমিশন ম্যানেজ করুন"
+      },
+      "permissions": {
+        "title": "রোল পারমিশন ম্যানেজ করুন",
+        "description": "\"{name}\" কোন পারমিশন পাবে সেটা নির্বাচন করুন।",
+        "updateSuccess": "রোলের পারমিশন আপডেট হয়েছে।"
+      },
+      "form": {
+        "createTitle": "রোল তৈরি করুন",
+        "createDescription": "এই কোম্পানির জন্য একটি নতুন কাস্টম রোল যোগ করুন।",
+        "createSuccess": "রোল তৈরি হয়েছে।",
+        "editTitle": "রোল এডিট করুন",
+        "editDescription": "\"{name}\"-এর details আপডেট করুন।",
+        "editSuccess": "রোল আপডেট হয়েছে।",
+        "code": "কোড",
+        "codePlaceholder": "যেমন SALES_MANAGER",
+        "codeRequired": "কোড আবশ্যক।",
+        "codeLength": "কোড ২–৬০ অক্ষরের হতে হবে।",
+        "name": "নাম",
+        "namePlaceholder": "যেমন Sales Manager",
+        "nameRequired": "নাম আবশ্যক।",
+        "nameLength": "নাম ২–১২০ অক্ষরের হতে হবে।",
+        "description": "বিবরণ",
+        "descriptionPlaceholder": "ঐচ্ছিক বিবরণ",
+        "descriptionLength": "বিবরণ সর্বোচ্চ ১০০০ অক্ষরের হতে পারবে।",
+        "permissions": "পারমিশন",
+        "permissionsRequired": "কমপক্ষে একটি পারমিশন নির্বাচন করুন।"
+      }
+    },
+    "members": {
+      "title": "কোম্পানি মেম্বার",
+      "description": "এই কোম্পানিতে access থাকা ইউজার এবং তাদের assigned রোল।",
+      "empty": "এখনো কোনো মেম্বার নেই।",
+      "columns": {
+        "member": "মেম্বার",
+        "roles": "রোল",
+        "status": "স্ট্যাটাস"
+      },
+      "actions": {
+        "assignRoles": "রোল Assign করুন",
+        "assignRolesTitle": "রোল Assign করুন",
+        "assignRolesDescription": "\"{name}\"-এর জন্য রোল নির্বাচন করুন।",
+        "assignRolesSuccess": "রোল আপডেট হয়েছে।",
+        "assignScopes": "স্কোপ Assign করুন",
+        "assignScopesTitle": "স্কোপ Assign করুন",
+        "assignScopesDescription": "\"{name}\"-এর জন্য access scope নির্বাচন করুন।",
+        "assignScopesSuccess": "স্কোপ আপডেট হয়েছে।",
+        "changeStatus": "স্ট্যাটাস পরিবর্তন করুন",
+        "changeStatusTitle": "মেম্বারের স্ট্যাটাস পরিবর্তন করুন",
+        "changeStatusDescription": "\"{name}\"-এর জন্য নতুন স্ট্যাটাস নির্বাচন করুন।",
+        "changeStatusSuccess": "মেম্বারের স্ট্যাটাস আপডেট হয়েছে।",
+        "statusFieldLabel": "নতুন স্ট্যাটাস",
+        "statusRequired": "একটি স্ট্যাটাস নির্বাচন করুন।"
+      },
+      "form": {
+        "createTitle": "মেম্বার যোগ করুন",
+        "createDescription": "এই কোম্পানির মেম্বার হিসেবে একটি ইউজার তৈরি বা assign করুন।",
+        "createSuccess": "মেম্বার যোগ হয়েছে।",
+        "email": "ইমেইল",
+        "emailPlaceholder": "member@example.com",
+        "emailRequired": "ইমেইল আবশ্যক।",
+        "emailInvalid": "একটি বৈধ ইমেইল ঠিকানা দিন।",
+        "fullName": "পুরো নাম",
+        "fullNamePlaceholder": "যেমন Jane Doe",
+        "fullNameRequired": "পুরো নাম আবশ্যক।",
+        "fullNameLength": "পুরো নাম ২–১৬০ অক্ষরের হতে হবে।",
+        "password": "পাসওয়ার্ড",
+        "passwordPlaceholder": "শুধু নতুন user account-এর জন্য প্রয়োজন",
+        "passwordDescription": "কমপক্ষে ১২ অক্ষর। ইউজারের আগে থেকে account থাকলে খালি রাখুন।",
+        "passwordLength": "পাসওয়ার্ড ১২–১২৮ অক্ষরের হতে হবে।",
+        "employeeCode": "এমপ্লয়ি কোড",
+        "employeeCodePlaceholder": "ঐচ্ছিক",
+        "employeeCodeLength": "এমপ্লয়ি কোড সর্বোচ্চ ৫০ অক্ষরের হতে পারবে।",
+        "designation": "পদবি",
+        "designationPlaceholder": "ঐচ্ছিক",
+        "designationLength": "পদবি সর্বোচ্চ ১২০ অক্ষরের হতে পারবে।",
+        "roles": "রোল",
+        "rolesRequired": "কমপক্ষে একটি রোল নির্বাচন করুন।",
+        "scopesRequired": "কমপক্ষে একটি স্কোপ যোগ করুন।",
+        "scopeKeyPlaceholder": "যেমন branch code, অথবা পুরো কোম্পানির জন্য *",
+        "addScope": "স্কোপ যোগ করুন"
+      }
+    }
+  }
+}

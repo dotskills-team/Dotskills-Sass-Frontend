@@ -1,0 +1,47 @@
+{
+  "platformStaff": {
+    "title": "প্ল্যাটফর্ম স্টাফ",
+    "description": "প্ল্যাটফর্মের internal টিম মেম্বার এবং তাদের রোল।",
+    "actions": {
+      "edit": "এডিট করুন",
+      "assignRoles": "রোল Assign করুন",
+      "assignRolesTitle": "রোল Assign করুন",
+      "assignRolesDescription": "\"{name}\"-এর জন্য রোল কোড সেট করুন।",
+      "assignRolesSuccess": "রোল আপডেট হয়েছে।",
+      "changeStatus": "স্ট্যাটাস পরিবর্তন করুন",
+      "changeStatusTitle": "স্টাফের স্ট্যাটাস পরিবর্তন করুন",
+      "changeStatusDescription": "\"{name}\"-এর জন্য নতুন স্ট্যাটাস নির্বাচন করুন।",
+      "changeStatusSuccess": "স্টাফের স্ট্যাটাস আপডেট হয়েছে।",
+      "statusFieldLabel": "নতুন স্ট্যাটাস",
+      "statusRequired": "একটি স্ট্যাটাস নির্বাচন করুন।"
+    },
+    "form": {
+      "createTitle": "স্টাফ যোগ করুন",
+      "createDescription": "একটি নতুন প্ল্যাটফর্ম স্টাফ account তৈরি করুন।",
+      "createSuccess": "স্টাফ তৈরি হয়েছে।",
+      "editTitle": "স্টাফ এডিট করুন",
+      "editDescription": "\"{name}\"-এর details আপডেট করুন।",
+      "editSuccess": "স্টাফ আপডেট হয়েছে।",
+      "email": "ইমেইল",
+      "emailPlaceholder": "staff@example.com",
+      "emailRequired": "ইমেইল আবশ্যক।",
+      "emailInvalid": "একটি বৈধ ইমেইল ঠিকানা দিন।",
+      "fullName": "পুরো নাম",
+      "fullNamePlaceholder": "যেমন Jane Doe",
+      "fullNameRequired": "পুরো নাম আবশ্যক।",
+      "fullNameLength": "পুরো নাম ২–১৬০ অক্ষরের হতে হবে।",
+      "password": "পাসওয়ার্ড",
+      "passwordPlaceholder": "একটি প্রাথমিক পাসওয়ার্ড সেট করুন",
+      "passwordDescription": "কমপক্ষে ১২ অক্ষর।",
+      "passwordRequired": "পাসওয়ার্ড আবশ্যক।",
+      "passwordLength": "পাসওয়ার্ড ১২–১২৮ অক্ষরের হতে হবে।",
+      "employeeCode": "এমপ্লয়ি কোড",
+      "employeeCodePlaceholder": "ঐচ্ছিক",
+      "employeeCodeLength": "এমপ্লয়ি কোড সর্বোচ্চ ৫০ অক্ষরের হতে পারবে।",
+      "roleCodes": "রোল কোড",
+      "roleCodesPlaceholder": "যেমন PLATFORM_ADMIN, SUPPORT_MANAGER",
+      "roleCodesDescription": "Comma দিয়ে আলাদা করা platform role code।",
+      "roleCodesRequired": "কমপক্ষে একটি রোল কোড দিন।"
+    }
+  }
+}

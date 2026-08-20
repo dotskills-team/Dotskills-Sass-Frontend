@@ -1,0 +1,34 @@
+{
+  "payments": {
+    "title": "Payments",
+    "description": "Gateway payment attempts across the platform.",
+    "actions": {
+      "verify": "Verify",
+      "cancel": "Cancel",
+      "verifyTitle": "Verify payment",
+      "verifyDescription": "Re-verify this payment against the gateway using its Validation ID (val_id).",
+      "verifySuccess": "Payment verification submitted.",
+      "cancelTitle": "Cancel payment",
+      "cancelDescription": "Cancel this payment attempt? This cannot be undone.",
+      "cancelSuccess": "Payment cancelled.",
+      "valIdFieldLabel": "Gateway Validation ID (val_id)",
+      "valIdPlaceholder": "Enter the SSLCommerz val_id",
+      "valIdRequired": "The gateway Validation ID is required."
+    },
+    "details": {
+      "backToList": "Back to payments",
+      "overview": "Overview",
+      "notFound": "Payment not found.",
+      "invoice": "Invoice",
+      "amount": "Amount",
+      "provider": "Provider",
+      "transactionId": "Transaction ID",
+      "gatewayReference": "Gateway reference",
+      "initiated": "Initiated",
+      "succeeded": "Succeeded",
+      "failed": "Failed",
+      "cancelled": "Cancelled",
+      "failureReason": "Failure reason"
+    }
+  }
+}

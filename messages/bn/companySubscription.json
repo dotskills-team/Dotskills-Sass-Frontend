@@ -1,0 +1,67 @@
+{
+  "companySubscription": {
+    "title": "সাবস্ক্রিপশন",
+    "description": "আপনার কোম্পানির বর্তমান প্ল্যান, বিলিং এবং সাবস্ক্রিপশন history।",
+    "noActiveSubscription": "কোনো active সাবস্ক্রিপশন পাওয়া যায়নি।",
+    "autoRenewOn": "Auto-renew চালু",
+    "autoRenewOff": "Auto-renew বন্ধ",
+    "billingCycle": "বিলিং সাইকেল",
+    "price": "মূল্য",
+    "currentPeriod": "বর্তমান পিরিয়ড",
+    "startsAt": "শুরু হয়েছে",
+    "trialEndsAt": "ট্রায়াল শেষ",
+    "graceEndsAt": "গ্রেস পিরিয়ড শেষ",
+    "pastDueEndsAt": "Past due শেষ",
+    "suspendedAt": "সাসপেন্ড হয়েছে",
+    "cancelledAt": "বাতিল হয়েছে",
+    "actions": {
+      "enableAutoRenew": "Auto-renew চালু করুন",
+      "disableAutoRenew": "Auto-renew বন্ধ করুন",
+      "enableAutoRenewTitle": "Auto-renew চালু করুন",
+      "enableAutoRenewDescription": "প্রতিটি বিলিং পিরিয়ড শেষে আপনার সাবস্ক্রিপশন স্বয়ংক্রিয়ভাবে renew হবে।",
+      "autoRenewEnabledSuccess": "Auto-renew চালু হয়েছে।",
+      "disableAutoRenewTitle": "Auto-renew বন্ধ করুন",
+      "disableAutoRenewDescription": "বর্তমান পিরিয়ড শেষ হওয়ার পর আপনার সাবস্ক্রিপশন স্বয়ংক্রিয়ভাবে renew হবে না।",
+      "autoRenewDisabledSuccess": "Auto-renew বন্ধ হয়েছে।",
+      "cancel": "সাবস্ক্রিপশন বাতিল করুন",
+      "cancelTitle": "সাবস্ক্রিপশন বাতিল করুন",
+      "cancelDescription": "আপনার সাবস্ক্রিপশন বাতিল করবেন? বর্তমান পিরিয়ড শেষ হওয়ার আগে আপনি এটা আবার reactivate করতে পারবেন।",
+      "cancelReasonLabel": "কারণ (ঐচ্ছিক)",
+      "cancelReasonPlaceholder": "কেন বাতিল করছেন জানান",
+      "cancelSuccess": "সাবস্ক্রিপশন বাতিল হয়েছে।",
+      "reactivate": "Reactivate করুন",
+      "reactivateTitle": "সাবস্ক্রিপশন Reactivate করুন",
+      "reactivateDescription": "আপনার সাবস্ক্রিপশন reactivate করে auto-renew আবার চালু করবেন?",
+      "reactivateSuccess": "সাবস্ক্রিপশন reactivate হয়েছে।"
+    },
+    "history": {
+      "title": "সাবস্ক্রিপশন History",
+      "description": "আপনার কোম্পানির সব সাবস্ক্রিপশন period।",
+      "empty": "এখনো কোনো সাবস্ক্রিপশন history নেই।",
+      "columns": {
+        "plan": "প্ল্যান",
+        "cycle": "সাইকেল",
+        "price": "মূল্য",
+        "period": "পিরিয়ড",
+        "status": "স্ট্যাটাস"
+      }
+    },
+    "details": {
+      "backToList": "সাবস্ক্রিপশনে ফিরে যান",
+      "overview": "ওভারভিউ",
+      "notFound": "সাবস্ক্রিপশন পাওয়া যায়নি।",
+      "eventsTitle": "স্ট্যাটাস History",
+      "eventsEmpty": "কোনো স্ট্যাটাস পরিবর্তন রেকর্ড করা হয়নি।"
+    },
+    "changePlan": {
+      "trigger": "প্ল্যান পরিবর্তন করুন",
+      "title": "প্ল্যান পরিবর্তন করুন",
+      "description": "নতুন প্ল্যান এবং বিলিং সাইকেল নির্বাচন করুন। এটা সাথে সাথে কার্যকর হবে।",
+      "empty": "আপনার অ্যাকাউন্টের জন্য এখন কোনো প্ল্যান উপলব্ধ নেই।",
+      "currentPlan": "বর্তমান প্ল্যান",
+      "currentPrice": "বর্তমান",
+      "confirm": "পরিবর্তন নিশ্চিত করুন",
+      "success": "প্ল্যান পরিবর্তন হয়েছে।"
+    }
+  }
+}

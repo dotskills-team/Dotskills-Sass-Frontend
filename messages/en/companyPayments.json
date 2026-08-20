@@ -1,0 +1,26 @@
+{
+  "companyPayments": {
+    "title": "Payments",
+    "description": "Payment attempts made toward your company's invoices.",
+    "pay": {
+      "trigger": "Pay Now",
+      "title": "Pay invoice",
+      "description": "You will be redirected to the payment gateway to pay {amount} for invoice {invoiceNumber}.",
+      "confirm": "Proceed to payment"
+    },
+    "details": {
+      "backToList": "Back to payments",
+      "overview": "Overview",
+      "notFound": "Payment not found.",
+      "refresh": "Refresh status",
+      "invoice": "Invoice",
+      "amount": "Amount",
+      "provider": "Provider",
+      "transactionId": "Transaction ID",
+      "initiated": "Initiated",
+      "succeeded": "Succeeded",
+      "pendingNotice": "This payment is still being processed. If you already completed payment on the gateway, refresh in a moment to see the confirmed status.",
+      "failedNotice": "This payment failed."
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "dashboard": {
+    "title": "Dashboard",
+    "description": "Platform overview.",
+    "totalCompanies": "Total Companies",
+    "activeCompanies": "Active Companies (LIVE)",
+    "activeSubscriptions": "Active Subscriptions",
+    "pendingBilling": "Pending Billing",
+    "outstandingInvoices": "Outstanding Invoices",
+    "successfulPayments": "Successful Payments",
+    "activeSubscriptionsCaveat": "Active Subscriptions is computed from the most recent 100 subscriptions (the platform API does not yet support server-side filtering or a true total count for this resource)."
+  }
+}

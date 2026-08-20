@@ -1,0 +1,22 @@
+{
+  "rbac": {
+    "missingPermissionTooltip": "এই কাজটি করার permission আপনার নেই।",
+    "dashboard": "ড্যাশবোর্ড",
+    "tenants": "টেন্যান্ট",
+    "companies": "কোম্পানি",
+    "industries": "ইন্ডাস্ট্রি",
+    "plans": "প্ল্যান",
+    "features": "ফিচার",
+    "subscriptions": "সাবস্ক্রিপশন",
+    "subscription": "সাবস্ক্রিপশন",
+    "billing": "বিলিং",
+    "invoices": "ইনভয়েস",
+    "payments": "পেমেন্ট",
+    "accessControl": "অ্যাক্সেস কন্ট্রোল",
+    "staff": "স্টাফ",
+    "platformRoles": "রোল",
+    "platformPermissions": "পারমিশন",
+    "companyRoles": "রোল",
+    "companyMembers": "মেম্বার"
+  }
+}

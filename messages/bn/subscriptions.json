@@ -1,0 +1,60 @@
+{
+  "subscriptions": {
+    "title": "সাবস্ক্রিপশন",
+    "description": "প্ল্যাটফর্ম জুড়ে কোম্পানি সাবস্ক্রিপশন (সাম্প্রতিক ১০০টা)।",
+    "actions": {
+      "suspend": "সাসপেন্ড করুন",
+      "reactivate": "পুনরায় সক্রিয় করুন",
+      "cancel": "বাতিল করুন",
+      "expire": "মেয়াদোত্তীর্ণ করুন",
+      "suspendTitle": "সাবস্ক্রিপশন সাসপেন্ড করুন",
+      "suspendDescription": "\"{plan}\"-এর জন্য এই সাবস্ক্রিপশন সাসপেন্ড করবেন? Audit trail-এর জন্য একটি কারণ প্রয়োজন।",
+      "suspendSuccess": "সাবস্ক্রিপশন সাসপেন্ড করা হয়েছে।",
+      "reactivateTitle": "সাবস্ক্রিপশন পুনরায় সক্রিয় করুন",
+      "reactivateDescription": "\"{plan}\"-এর জন্য এই সাবস্ক্রিপশন পুনরায় সক্রিয় করবেন? Audit trail-এর জন্য একটি কারণ প্রয়োজন।",
+      "reactivateSuccess": "সাবস্ক্রিপশন পুনরায় সক্রিয় করা হয়েছে।",
+      "cancelTitle": "সাবস্ক্রিপশন বাতিল করুন",
+      "cancelDescription": "\"{plan}\"-এর জন্য এই সাবস্ক্রিপশন বাতিল করবেন? Audit trail-এর জন্য একটি কারণ প্রয়োজন।",
+      "cancelSuccess": "সাবস্ক্রিপশন বাতিল করা হয়েছে।",
+      "expireTitle": "সাবস্ক্রিপশন মেয়াদোত্তীর্ণ করুন",
+      "expireDescription": "\"{plan}\"-এর জন্য এই সাবস্ক্রিপশন মেয়াদোত্তীর্ণ হিসেবে চিহ্নিত করবেন? Audit trail-এর জন্য একটি কারণ প্রয়োজন।",
+      "expireSuccess": "সাবস্ক্রিপশন মেয়াদোত্তীর্ণ করা হয়েছে।",
+      "reasonFieldLabel": "কারণ",
+      "reasonPlaceholder": "এই action-এর কারণ লিখুন (৩–৫০০ অক্ষর)",
+      "reasonRequired": "একটি কারণ প্রয়োজন।",
+      "reasonTooShort": "কারণ কমপক্ষে ৩ অক্ষরের হতে হবে।",
+      "reasonTooLong": "কারণ সর্বোচ্চ ৫০০ অক্ষরের হতে পারবে।"
+    },
+    "form": {
+      "createTitle": "সাবস্ক্রিপশন তৈরি করুন",
+      "createDescription": "একটি active প্ল্যানে কোম্পানির জন্য নতুন সাবস্ক্রিপশন শুরু করুন।",
+      "createSuccess": "সাবস্ক্রিপশন তৈরি হয়েছে।",
+      "company": "কোম্পানি",
+      "companyPlaceholder": "একটি কোম্পানি নির্বাচন করুন",
+      "plan": "প্ল্যান",
+      "planPlaceholder": "একটি প্ল্যান নির্বাচন করুন",
+      "billingCycle": "বিলিং সাইকেল",
+      "noEligiblePrices": "কোম্পানির currency-তে এই প্ল্যানের জন্য কোনো active price উপলব্ধ নেই।",
+      "currencyNote": "কোম্পানির currency-তে ({currency}) price দেখানো হচ্ছে।"
+    },
+    "details": {
+      "backToList": "সাবস্ক্রিপশন তালিকায় ফিরে যান",
+      "overview": "ওভারভিউ",
+      "notFound": "সাবস্ক্রিপশন পাওয়া যায়নি।",
+      "company": "কোম্পানি",
+      "billingCycle": "বিলিং সাইকেল",
+      "price": "মূল্য",
+      "currentPeriod": "বর্তমান পিরিয়ড",
+      "startsAt": "শুরু হয়েছে",
+      "trialEndsAt": "ট্রায়াল শেষ",
+      "graceEndsAt": "গ্রেস পিরিয়ড শেষ",
+      "pastDueEndsAt": "Past due শেষ",
+      "suspendedAt": "সাসপেন্ড হয়েছে",
+      "cancelledAt": "বাতিল হয়েছে",
+      "autoRenewOn": "Auto-renew চালু",
+      "autoRenewOff": "Auto-renew বন্ধ",
+      "eventsTitle": "স্ট্যাটাস History",
+      "eventsEmpty": "কোনো স্ট্যাটাস পরিবর্তন রেকর্ড করা হয়নি।"
+    }
+  }
+}

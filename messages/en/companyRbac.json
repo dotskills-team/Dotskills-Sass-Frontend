@@ -1,0 +1,111 @@
+{
+  "companyRbac": {
+    "bootstrap": {
+      "trigger": "Bootstrap RBAC",
+      "title": "Bootstrap company RBAC",
+      "description": "Set up the default roles (Owner, Admin, Manager, Staff) for this company. Safe to run again — existing roles are updated, not duplicated.",
+      "ownerEmail": "Owner email (optional)",
+      "ownerEmailPlaceholder": "owner@example.com",
+      "ownerEmailDescription": "If provided and the user exists, they will be activated and promoted to Company Owner.",
+      "confirm": "Bootstrap",
+      "success": "Company RBAC bootstrapped."
+    },
+    "roles": {
+      "title": "Company roles",
+      "description": "Manage roles and their permissions for this company.",
+      "empty": "No roles yet.",
+      "system": "System",
+      "custom": "Custom",
+      "columns": {
+        "role": "Role",
+        "members": "Members",
+        "permissions": "Permissions",
+        "type": "Type"
+      },
+      "actions": {
+        "edit": "Edit",
+        "managePermissions": "Manage permissions"
+      },
+      "permissions": {
+        "title": "Manage role permissions",
+        "description": "Choose which permissions \"{name}\" grants.",
+        "updateSuccess": "Role permissions updated."
+      },
+      "form": {
+        "createTitle": "Create role",
+        "createDescription": "Add a new custom role for this company.",
+        "createSuccess": "Role created.",
+        "editTitle": "Edit role",
+        "editDescription": "Update details for \"{name}\".",
+        "editSuccess": "Role updated.",
+        "code": "Code",
+        "codePlaceholder": "e.g. SALES_MANAGER",
+        "codeRequired": "Code is required.",
+        "codeLength": "Code must be 2–60 characters.",
+        "name": "Name",
+        "namePlaceholder": "e.g. Sales Manager",
+        "nameRequired": "Name is required.",
+        "nameLength": "Name must be 2–120 characters.",
+        "description": "Description",
+        "descriptionPlaceholder": "Optional description",
+        "descriptionLength": "Description must be at most 1000 characters.",
+        "permissions": "Permissions",
+        "permissionsRequired": "Select at least one permission."
+      }
+    },
+    "members": {
+      "title": "Company members",
+      "description": "Users with access to this company and their assigned roles.",
+      "empty": "No members yet.",
+      "columns": {
+        "member": "Member",
+        "roles": "Roles",
+        "status": "Status"
+      },
+      "actions": {
+        "assignRoles": "Assign roles",
+        "assignRolesTitle": "Assign roles",
+        "assignRolesDescription": "Choose roles for \"{name}\".",
+        "assignRolesSuccess": "Roles updated.",
+        "assignScopes": "Assign scopes",
+        "assignScopesTitle": "Assign scopes",
+        "assignScopesDescription": "Choose access scopes for \"{name}\".",
+        "assignScopesSuccess": "Scopes updated.",
+        "changeStatus": "Change status",
+        "changeStatusTitle": "Change member status",
+        "changeStatusDescription": "Set a new status for \"{name}\".",
+        "changeStatusSuccess": "Member status updated.",
+        "statusFieldLabel": "New status",
+        "statusRequired": "Please select a status."
+      },
+      "form": {
+        "createTitle": "Add member",
+        "createDescription": "Create or assign a user as a member of this company.",
+        "createSuccess": "Member added.",
+        "email": "Email",
+        "emailPlaceholder": "member@example.com",
+        "emailRequired": "Email is required.",
+        "emailInvalid": "Enter a valid email address.",
+        "fullName": "Full name",
+        "fullNamePlaceholder": "e.g. Jane Doe",
+        "fullNameRequired": "Full name is required.",
+        "fullNameLength": "Full name must be 2–160 characters.",
+        "password": "Password",
+        "passwordPlaceholder": "Only required for a new user account",
+        "passwordDescription": "At least 12 characters. Leave blank if the user already has an account.",
+        "passwordLength": "Password must be 12–128 characters.",
+        "employeeCode": "Employee code",
+        "employeeCodePlaceholder": "Optional",
+        "employeeCodeLength": "Employee code must be at most 50 characters.",
+        "designation": "Designation",
+        "designationPlaceholder": "Optional",
+        "designationLength": "Designation must be at most 120 characters.",
+        "roles": "Roles",
+        "rolesRequired": "Select at least one role.",
+        "scopesRequired": "Add at least one scope.",
+        "scopeKeyPlaceholder": "e.g. branch code, or * for whole company",
+        "addScope": "Add scope"
+      }
+    }
+  }
+}

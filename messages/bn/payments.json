@@ -1,0 +1,34 @@
+{
+  "payments": {
+    "title": "পেমেন্ট",
+    "description": "প্ল্যাটফর্ম জুড়ে গেটওয়ে পেমেন্ট অ্যাটেম্পট।",
+    "actions": {
+      "verify": "ভেরিফাই করুন",
+      "cancel": "বাতিল করুন",
+      "verifyTitle": "পেমেন্ট ভেরিফাই করুন",
+      "verifyDescription": "এই পেমেন্ট এর Validation ID (val_id) ব্যবহার করে gateway-এর বিরুদ্ধে পুনরায় ভেরিফাই করুন।",
+      "verifySuccess": "পেমেন্ট ভেরিফিকেশন জমা দেওয়া হয়েছে।",
+      "cancelTitle": "পেমেন্ট বাতিল করুন",
+      "cancelDescription": "এই পেমেন্ট অ্যাটেম্পট বাতিল করবেন? এটি ফিরিয়ে নেওয়া যাবে না।",
+      "cancelSuccess": "পেমেন্ট বাতিল করা হয়েছে।",
+      "valIdFieldLabel": "গেটওয়ে Validation ID (val_id)",
+      "valIdPlaceholder": "SSLCommerz-এর val_id লিখুন",
+      "valIdRequired": "গেটওয়ে Validation ID প্রয়োজন।"
+    },
+    "details": {
+      "backToList": "পেমেন্ট তালিকায় ফিরে যান",
+      "overview": "ওভারভিউ",
+      "notFound": "পেমেন্ট পাওয়া যায়নি।",
+      "invoice": "ইনভয়েস",
+      "amount": "পরিমাণ",
+      "provider": "প্রোভাইডার",
+      "transactionId": "ট্রানজেকশন আইডি",
+      "gatewayReference": "গেটওয়ে রেফারেন্স",
+      "initiated": "শুরু হয়েছে",
+      "succeeded": "সফল হয়েছে",
+      "failed": "ব্যর্থ হয়েছে",
+      "cancelled": "বাতিল হয়েছে",
+      "failureReason": "ব্যর্থতার কারণ"
+    }
+  }
+}

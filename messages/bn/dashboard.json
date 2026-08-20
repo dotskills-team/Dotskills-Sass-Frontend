@@ -1,0 +1,13 @@
+{
+  "dashboard": {
+    "title": "ড্যাশবোর্ড",
+    "description": "প্ল্যাটফর্ম ওভারভিউ।",
+    "totalCompanies": "মোট কোম্পানি",
+    "activeCompanies": "সক্রিয় কোম্পানি (LIVE)",
+    "activeSubscriptions": "সক্রিয় সাবস্ক্রিপশন",
+    "pendingBilling": "পেন্ডিং বিলিং",
+    "outstandingInvoices": "বকেয়া ইনভয়েস",
+    "successfulPayments": "সফল পেমেন্ট",
+    "activeSubscriptionsCaveat": "সক্রিয় সাবস্ক্রিপশন সাম্প্রতিক ১০০টা সাবস্ক্রিপশন থেকে গণনা করা হয়েছে (এই resource-এর জন্য platform API এখনো server-side filtering বা প্রকৃত মোট সংখ্যা সমর্থন করে না)।"
+  }
+}

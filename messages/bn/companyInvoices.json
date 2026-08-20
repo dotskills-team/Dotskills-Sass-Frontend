@@ -1,0 +1,20 @@
+{
+  "companyInvoices": {
+    "title": "ইনভয়েস",
+    "description": "প্রতিটি billing period-এর জন্য আপনার কোম্পানিকে ইস্যু করা ইনভয়েস।",
+    "details": {
+      "backToList": "ইনভয়েস তালিকায় ফিরে যান",
+      "overview": "ওভারভিউ",
+      "notFound": "ইনভয়েস পাওয়া যায়নি।",
+      "plan": "প্ল্যান",
+      "subtotal": "সাবটোটাল",
+      "discount": "ডিসকাউন্ট",
+      "tax": "ট্যাক্স",
+      "total": "মোট",
+      "due": "Due তারিখ",
+      "issued": "ইস্যু হয়েছে",
+      "paid": "পরিশোধিত",
+      "billingPeriod": "বিলিং পিরিয়ড"
+    }
+  }
+}

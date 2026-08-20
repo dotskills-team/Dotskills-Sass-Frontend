@@ -1,0 +1,56 @@
+{
+  "plans": {
+    "title": "Plans",
+    "description": "Subscription plans offered on the platform.",
+    "actions": {
+      "changeStatus": "Change status",
+      "archive": "Archive",
+      "changeStatusTitle": "Change plan status",
+      "changeStatusDescription": "Set a new status for \"{name}\".",
+      "changeStatusSuccess": "Plan status updated.",
+      "archiveTitle": "Archive plan",
+      "archiveDescription": "Archive \"{name}\"? This soft-deletes the plan from active use.",
+      "archiveSuccess": "Plan archived.",
+      "statusFieldLabel": "New status",
+      "statusRequired": "Please select a status.",
+      "viewDetails": "View details",
+      "edit": "Edit"
+    },
+    "form": {
+      "createTitle": "Create plan",
+      "createDescription": "Add a new subscription plan.",
+      "createSuccess": "Plan created.",
+      "editTitle": "Edit plan",
+      "editDescription": "Update details for \"{name}\".",
+      "editSuccess": "Plan updated.",
+      "code": "Code",
+      "codePlaceholder": "e.g. PROFESSIONAL",
+      "codeRequired": "Code is required.",
+      "codeLength": "Code must be 2–50 characters.",
+      "name": "Name",
+      "namePlaceholder": "e.g. Professional",
+      "nameRequired": "Name is required.",
+      "nameLength": "Name must be 2–120 characters.",
+      "description": "Description",
+      "descriptionPlaceholder": "Optional description (max 2000 characters)",
+      "descriptionLength": "Description must be at most 2000 characters.",
+      "trialDays": "Trial days",
+      "trialDaysPlaceholder": "0",
+      "trialDaysDescription": "Number of free trial days (0–365). 0 means no trial.",
+      "trialDaysRange": "Trial days must be a whole number between 0 and 365.",
+      "isPublic": "Visibility",
+      "isPublicTrue": "Public",
+      "isPublicFalse": "Private",
+      "isPublicDescription": "Public plans can be selected by companies; private plans are platform-managed only."
+    },
+    "details": {
+      "backToList": "Back to plans",
+      "overview": "Overview",
+      "subscriptionsCount": "{count} active subscriptions",
+      "notFound": "Plan not found.",
+      "code": "Code",
+      "trialDays": "Trial days",
+      "visibility": "Visibility"
+    }
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "plans": {
+    "title": "প্ল্যান",
+    "description": "প্ল্যাটফর্মে অফার করা সাবস্ক্রিপশন প্ল্যান।",
+    "actions": {
+      "changeStatus": "স্ট্যাটাস পরিবর্তন করুন",
+      "archive": "আর্কাইভ করুন",
+      "changeStatusTitle": "প্ল্যানের স্ট্যাটাস পরিবর্তন করুন",
+      "changeStatusDescription": "\"{name}\"-এর জন্য নতুন স্ট্যাটাস নির্বাচন করুন।",
+      "changeStatusSuccess": "প্ল্যানের স্ট্যাটাস আপডেট হয়েছে।",
+      "archiveTitle": "প্ল্যান আর্কাইভ করুন",
+      "archiveDescription": "\"{name}\" আর্কাইভ করবেন? এটি active ব্যবহার থেকে soft-delete হবে।",
+      "archiveSuccess": "প্ল্যান আর্কাইভ করা হয়েছে।",
+      "statusFieldLabel": "নতুন স্ট্যাটাস",
+      "statusRequired": "একটি স্ট্যাটাস নির্বাচন করুন।",
+      "viewDetails": "বিস্তারিত দেখুন",
+      "edit": "এডিট করুন"
+    },
+    "form": {
+      "createTitle": "প্ল্যান তৈরি করুন",
+      "createDescription": "একটি নতুন সাবস্ক্রিপশন প্ল্যান যোগ করুন।",
+      "createSuccess": "প্ল্যান তৈরি হয়েছে।",
+      "editTitle": "প্ল্যান এডিট করুন",
+      "editDescription": "\"{name}\"-এর details আপডেট করুন।",
+      "editSuccess": "প্ল্যান আপডেট হয়েছে।",
+      "code": "কোড",
+      "codePlaceholder": "যেমন PROFESSIONAL",
+      "codeRequired": "কোড আবশ্যক।",
+      "codeLength": "কোড ২–৫০ অক্ষরের হতে হবে।",
+      "name": "নাম",
+      "namePlaceholder": "যেমন Professional",
+      "nameRequired": "নাম আবশ্যক।",
+      "nameLength": "নাম ২–১২০ অক্ষরের হতে হবে।",
+      "description": "বিবরণ",
+      "descriptionPlaceholder": "ঐচ্ছিক বিবরণ (সর্বোচ্চ ২০০০ অক্ষর)",
+      "descriptionLength": "বিবরণ সর্বোচ্চ ২০০০ অক্ষরের হতে পারবে।",
+      "trialDays": "ট্রায়াল দিন",
+      "trialDaysPlaceholder": "0",
+      "trialDaysDescription": "ফ্রি ট্রায়ালের দিন সংখ্যা (০–৩৬৫)। ০ মানে কোনো ট্রায়াল নেই।",
+      "trialDaysRange": "ট্রায়াল দিন অবশ্যই ০ থেকে ৩৬৫-এর মধ্যে একটি পূর্ণ সংখ্যা হতে হবে।",
+      "isPublic": "Visibility",
+      "isPublicTrue": "Public",
+      "isPublicFalse": "Private",
+      "isPublicDescription": "Public প্ল্যান কোম্পানি নিজে select করতে পারে; Private প্ল্যান শুধু platform-managed।"
+    },
+    "details": {
+      "backToList": "প্ল্যান তালিকায় ফিরে যান",
+      "overview": "ওভারভিউ",
+      "subscriptionsCount": "{count}টি সক্রিয় সাবস্ক্রিপশন",
+      "notFound": "প্ল্যান পাওয়া যায়নি।",
+      "code": "কোড",
+      "trialDays": "ট্রায়াল দিন",
+      "visibility": "Visibility"
+    }
+  }
+}

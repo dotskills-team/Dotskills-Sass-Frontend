@@ -1,0 +1,265 @@
+"use client";
+
+import { useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
+import type { LucideIcon } from "lucide-react";
+import { ChevronDown, ChevronRight, X } from "lucide-react";
+
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { PlatformPermissionGate, CompanyPermissionGate } from "@/components/shared/permission-gate";
+import { hasAnyPermission } from "@/lib/permissions";
+import { useAppSelector } from "@/store/hooks";
+import { isPlatformStaffUser } from "@/types/auth";
+import type { PlatformPermissionCode, CompanyPermissionCode } from "@/constants/permissions";
+
+export interface NavItem {
+  labelKey: string;
+  /** Group parent-এর নিজের route নেই — শুধু `children` থাকলে href optional। */
+  href?: string;
+  icon: LucideIcon;
+  /** কিছু না দিলে item সবসময় visible (যেমন নিজের Dashboard)। */
+  platformPermission?: PlatformPermissionCode | PlatformPermissionCode[];
+  companyPermission?: CompanyPermissionCode | CompanyPermissionCode[];
+  /** দিলে item একটা non-clickable group header হয়ে যায়, children indented থাকে। */
+  children?: NavItem[];
+}
+
+interface AppSidebarProps {
+  items: NavItem[];
+  /** Mobile drawer state — desktop (md+) ignores these and always shows statically. */
+  mobileOpen?: boolean;
+  onMobileClose?: () => void;
+}
+
+/**
+ * Navigation hide হওয়া কোনো security boundary না (section 14) — শুধু
+ * relevant item দেখানোর UX। একই component platform ও company দুই
+ * sidebar-এই ব্যবহারযোগ্য, `items`-এর মধ্যে সঠিক scope-এর permission key
+ * দিলেই যথাযথ gate wrap হয়ে যায়।
+ *
+ * `mobileOpen`/`onMobileClose` UI-presentational state only (open/close
+ * toggle) — desktop layout/behavior unaffected either way.
+ */
+export function AppSidebar({ items, mobileOpen, onMobileClose }: AppSidebarProps) {
+  const t = useTranslations("rbac");
+  const pathname = usePathname();
+
+  /**
+   * Group header ("Access Control")-এর নিজস্ব permission নেই — কোনো child visible কিনা
+   * সেটা আগে থেকেই জানা লাগে (নাহলে সব child hidden হলেও empty header দেখা যাবে)। এই
+   * imperative check শুধু platform-permission children-এর জন্য (এই মুহূর্তে grouped item-এর
+   * একমাত্র ব্যবহারকারী — Access Control — সবগুলো platform-scoped)। Company-scoped grouped
+   * item ভবিষ্যতে দরকার হলে এখানে `useCurrentCompany()`-ভিত্তিক check যোগ করতে হবে।
+   */
+  const platformUser = useAppSelector((state) => state.auth.user);
+  const platformPermissions =
+    platformUser && isPlatformStaffUser(platformUser) ? platformUser.permissions : [];
+
+  function isPlatformVisible(item: NavItem): boolean {
+    if (!item.platformPermission) return true;
+    const required = Array.isArray(item.platformPermission) ? item.platformPermission : [item.platformPermission];
+    return hasAnyPermission(platformPermissions, required);
+  }
+
+  const navList = (
+    <nav className="flex h-full w-64 shrink-0 flex-col bg-sidebar">
+      <div className="hidden h-16 shrink-0 items-center gap-2.5 px-6 md:flex">
+        <span className="flex size-8 items-center justify-center rounded-md bg-sidebar-primary text-sm font-bold text-sidebar-primary-foreground">
+          D
+        </span>
+        <span className="text-[15px] font-semibold tracking-tight text-sidebar-foreground">DotSkills</span>
+      </div>
+      <div className="flex-1 overflow-y-auto p-4">
+        <div className="mb-2 flex items-center justify-between md:hidden">
+          <span className="text-xs font-medium tracking-wide text-sidebar-foreground uppercase">Menu</span>
+          <Button
+            variant="ghost"
+            size="icon-sm"
+            className="text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
+            onClick={onMobileClose}
+            aria-label="Close menu"
+          >
+            <X className="size-4" aria-hidden="true" />
+          </Button>
+        </div>
+        <div className="flex flex-col gap-1">
+          {items.map((item) => {
+            if (item.children) {
+              const visibleChildren = item.children.filter(isPlatformVisible);
+              if (visibleChildren.length === 0) return null;
+
+              return (
+                <NavGroup
+                  key={item.labelKey}
+                  item={item}
+                  label={t(item.labelKey)}
+                  visibleChildren={visibleChildren}
+                  pathname={pathname}
+                  translate={t}
+                  onNavigate={onMobileClose}
+                />
+              );
+            }
+
+            const link = (
+              <NavLink
+                key={item.href}
+                item={item}
+                label={t(item.labelKey)}
+                active={isActive(pathname, item.href)}
+                onNavigate={onMobileClose}
+              />
+            );
+
+            if (item.platformPermission) {
+              return (
+                <PlatformPermissionGate key={item.href} permission={item.platformPermission}>
+                  {link}
+                </PlatformPermissionGate>
+              );
+            }
+
+            if (item.companyPermission) {
+              return (
+                <CompanyPermissionGate key={item.href} permission={item.companyPermission}>
+                  {link}
+                </CompanyPermissionGate>
+              );
+            }
+
+            return link;
+          })}
+        </div>
+      </div>
+      <div className="shrink-0 border-t border-sidebar-border px-4 py-3">
+        <p className="text-xs text-sidebar-foreground/60">© 2026 DotSkills</p>
+      </div>
+    </nav>
+  );
+
+  return (
+    <>
+      {/* Desktop: static, always visible */}
+      <div className="hidden h-full md:block">{navList}</div>
+
+      {/* Mobile: overlay drawer */}
+      {mobileOpen && (
+        <div className="fixed inset-0 z-50 md:hidden">
+          <div className="absolute inset-0 bg-black/40" onClick={onMobileClose} aria-hidden="true" />
+          <div className="absolute inset-y-0 left-0 shadow-xl">{navList}</div>
+        </div>
+      )}
+    </>
+  );
+}
+
+/**
+ * Collapsible group header — নিজে navigate করে না, click করলে expand/collapse toggle করে।
+ * `manualOpen === null` মানে user এখনো manually toggle করেনি — তখন default state হয়
+ * "current route-এ কোনো child active কিনা" থেকে derive করা (route-driven auto-expand,
+ * browser refresh-এও কাজ করে যেহেতু এটা pathname থেকে সরাসরি বের করা, কোনো persisted
+ * client state না)। Manual toggle-এর পর সেটাই override করে যতক্ষণ component mounted থাকে।
+ */
+function NavGroup({
+  item,
+  label,
+  visibleChildren,
+  pathname,
+  translate,
+  onNavigate,
+}: {
+  item: NavItem;
+  label: string;
+  visibleChildren: NavItem[];
+  pathname: string;
+  translate: (key: string) => string;
+  onNavigate?: () => void;
+}) {
+  const Icon = item.icon;
+  const isRouteActive = visibleChildren.some((child) => isActive(pathname, child.href));
+  const [manualOpen, setManualOpen] = useState<boolean | null>(null);
+  const isOpen = manualOpen ?? isRouteActive;
+
+  return (
+    <div>
+      <button
+        type="button"
+        onClick={() => setManualOpen(!isOpen)}
+        aria-expanded={isOpen}
+        className="flex w-full items-center gap-3 rounded-lg px-3 py-2 text-xs font-medium tracking-wide text-sidebar-foreground/60 uppercase transition-colors hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sidebar-ring focus-visible:ring-offset-2 focus-visible:ring-offset-sidebar"
+      >
+        <Icon className="size-4 shrink-0" aria-hidden="true" />
+        <span className="flex-1 text-left">{label}</span>
+        {isOpen ? (
+          <ChevronDown className="size-3.5 shrink-0" aria-hidden="true" />
+        ) : (
+          <ChevronRight className="size-3.5 shrink-0" aria-hidden="true" />
+        )}
+      </button>
+      <div
+        className={cn(
+          "grid transition-[grid-template-rows] duration-200 ease-in-out",
+          isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]",
+        )}
+      >
+        <div className="flex flex-col gap-1 overflow-hidden">
+          {visibleChildren.map((child) => (
+            <NavLink
+              key={child.href}
+              item={child}
+              label={translate(child.labelKey)}
+              active={isActive(pathname, child.href)}
+              onNavigate={onNavigate}
+              indented
+            />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function isActive(pathname: string, href?: string): boolean {
+  if (!href) return false;
+  return pathname === href || pathname.startsWith(`${href}/`);
+}
+
+function NavLink({
+  item,
+  label,
+  active,
+  onNavigate,
+  indented,
+}: {
+  item: NavItem;
+  label: string;
+  active: boolean;
+  onNavigate?: () => void;
+  indented?: boolean;
+}) {
+  const Icon = item.icon;
+
+  if (!item.href) return null;
+
+  return (
+    <Link
+      href={item.href}
+      onClick={onNavigate}
+      aria-current={active ? "page" : undefined}
+      className={cn(
+        "flex items-center gap-3 rounded-lg py-2.5 text-sm font-medium transition-colors",
+        indented ? "pl-9 pr-3" : "px-3",
+        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sidebar-ring focus-visible:ring-offset-2 focus-visible:ring-offset-sidebar",
+        active
+          ? "bg-sidebar-primary text-sidebar-primary-foreground"
+          : "text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
+      )}
+    >
+      <Icon className={cn("shrink-0", indented ? "size-4" : "size-5")} aria-hidden="true" />
+      {label}
+    </Link>
+  );
+}

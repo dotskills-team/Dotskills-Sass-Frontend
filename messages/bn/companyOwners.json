@@ -1,0 +1,57 @@
+{
+  "companyOwners": {
+    "title": "কোম্পানি ওনার",
+    "description": "এই কোম্পানির ownership access থাকা ইউজাররা।",
+    "empty": "এখনো কোনো owner assign করা হয়নি।",
+    "primary": "প্রাইমারি",
+    "columns": {
+      "name": "ওনার",
+      "designation": "পদবি",
+      "primary": "প্রাইমারি",
+      "status": "স্ট্যাটাস"
+    },
+    "actions": {
+      "edit": "এডিট করুন",
+      "changeStatus": "স্ট্যাটাস পরিবর্তন করুন",
+      "changeStatusTitle": "ওনারের স্ট্যাটাস পরিবর্তন করুন",
+      "changeStatusDescription": "\"{name}\"-এর জন্য নতুন স্ট্যাটাস নির্বাচন করুন।",
+      "changeStatusSuccess": "ওনারের স্ট্যাটাস আপডেট হয়েছে।",
+      "statusFieldLabel": "নতুন স্ট্যাটাস",
+      "statusRequired": "একটি স্ট্যাটাস নির্বাচন করুন।",
+      "makePrimary": "প্রাইমারি ওনার বানান",
+      "makePrimaryTitle": "প্রাইমারি ওনার বানান",
+      "makePrimaryDescription": "\"{name}\"-কে প্রাইমারি ওনার বানাবেন? বর্তমান প্রাইমারি ওনার replace হয়ে যাবে।",
+      "makePrimarySuccess": "প্রাইমারি ওনার পরিবর্তন হয়েছে।"
+    },
+    "form": {
+      "createTitle": "ওনার Assign করুন",
+      "createDescription": "এই কোম্পানির ওনার হিসেবে একটি ইউজার তৈরি অথবা assign করুন।",
+      "createSuccess": "কোম্পানি ওনার assign হয়েছে।",
+      "editTitle": "ওনার এডিট করুন",
+      "editDescription": "\"{name}\"-এর details আপডেট করুন।",
+      "editSuccess": "কোম্পানি ওনার আপডেট হয়েছে।",
+      "credentialsTitle": "ওনার credentials",
+      "credentialsDescription": "এই password শুধু একবারই দেখানো হচ্ছে — এখনই নিরাপদে ওনারের সাথে share করুন।",
+      "email": "ইমেইল",
+      "emailPlaceholder": "owner@example.com",
+      "emailRequired": "ইমেইল আবশ্যক।",
+      "emailInvalid": "একটি বৈধ ইমেইল ঠিকানা দিন।",
+      "fullName": "পুরো নাম",
+      "fullNamePlaceholder": "যেমন Jane Doe",
+      "fullNameRequired": "পুরো নাম আবশ্যক।",
+      "fullNameLength": "পুরো নাম ২–১৬০ অক্ষরের হতে হবে।",
+      "phone": "ফোন",
+      "phonePlaceholder": "যেমন +8801XXXXXXXXX",
+      "phoneLength": "ফোন ৫–৩২ অক্ষরের হতে হবে।",
+      "password": "পাসওয়ার্ড",
+      "passwordPlaceholder": "একটি প্রাথমিক পাসওয়ার্ড সেট করুন",
+      "passwordDescription": "কমপক্ষে ৮ অক্ষর, uppercase, lowercase, number ও special character সহ। শুধু নতুন user account তৈরি হলে ব্যবহৃত হয়।",
+      "passwordRequired": "পাসওয়ার্ড আবশ্যক।",
+      "passwordLength": "পাসওয়ার্ড ৮–১০০ অক্ষরের হতে হবে।",
+      "passwordPattern": "পাসওয়ার্ডে uppercase, lowercase, number এবং special character থাকতে হবে।",
+      "designation": "পদবি",
+      "designationPlaceholder": "যেমন Managing Director",
+      "designationLength": "পদবি সর্বোচ্চ ১২০ অক্ষরের হতে পারবে।"
+    }
+  }
+}

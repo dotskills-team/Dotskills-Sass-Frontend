@@ -1,0 +1,47 @@
+{
+  "platformStaff": {
+    "title": "Platform staff",
+    "description": "Internal platform team members and their roles.",
+    "actions": {
+      "edit": "Edit",
+      "assignRoles": "Assign roles",
+      "assignRolesTitle": "Assign roles",
+      "assignRolesDescription": "Set role codes for \"{name}\".",
+      "assignRolesSuccess": "Roles updated.",
+      "changeStatus": "Change status",
+      "changeStatusTitle": "Change staff status",
+      "changeStatusDescription": "Set a new status for \"{name}\".",
+      "changeStatusSuccess": "Staff status updated.",
+      "statusFieldLabel": "New status",
+      "statusRequired": "Please select a status."
+    },
+    "form": {
+      "createTitle": "Add staff",
+      "createDescription": "Create a new platform staff account.",
+      "createSuccess": "Staff created.",
+      "editTitle": "Edit staff",
+      "editDescription": "Update details for \"{name}\".",
+      "editSuccess": "Staff updated.",
+      "email": "Email",
+      "emailPlaceholder": "staff@example.com",
+      "emailRequired": "Email is required.",
+      "emailInvalid": "Enter a valid email address.",
+      "fullName": "Full name",
+      "fullNamePlaceholder": "e.g. Jane Doe",
+      "fullNameRequired": "Full name is required.",
+      "fullNameLength": "Full name must be 2–160 characters.",
+      "password": "Password",
+      "passwordPlaceholder": "Set an initial password",
+      "passwordDescription": "At least 12 characters.",
+      "passwordRequired": "Password is required.",
+      "passwordLength": "Password must be 12–128 characters.",
+      "employeeCode": "Employee code",
+      "employeeCodePlaceholder": "Optional",
+      "employeeCodeLength": "Employee code must be at most 50 characters.",
+      "roleCodes": "Role codes",
+      "roleCodesPlaceholder": "e.g. PLATFORM_ADMIN, SUPPORT_MANAGER",
+      "roleCodesDescription": "Comma-separated platform role codes.",
+      "roleCodesRequired": "Enter at least one role code."
+    }
+  }
+}

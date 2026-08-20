@@ -1,0 +1,36 @@
+{
+  "planFeatures": {
+    "title": "ফিচার",
+    "description": "এই প্ল্যানে assign করা existing platform feature।",
+    "empty": "এখনো কোনো ফিচার assign করা হয়নি।",
+    "enabled": "সক্রিয়",
+    "disabled": "নিষ্ক্রিয়",
+    "columns": {
+      "feature": "ফিচার",
+      "module": "মডিউল",
+      "enabled": "সক্রিয়",
+      "limits": "Limits"
+    },
+    "actions": {
+      "remove": "সরিয়ে ফেলুন",
+      "removeTitle": "প্ল্যান থেকে ফিচার সরান",
+      "removeDescription": "\"{name}\" এই প্ল্যান থেকে সরাবেন? এটি শুধু unassign করে; ফিচার নিজে delete হয় না।",
+      "removeSuccess": "ফিচার প্ল্যান থেকে সরানো হয়েছে।"
+    },
+    "form": {
+      "assignTitle": "ফিচার assign করুন",
+      "assignDescription": "একটি existing platform feature এই প্ল্যানে assign করুন।",
+      "assignSuccess": "ফিচার প্ল্যানে assign করা হয়েছে।",
+      "editTitle": "Assignment এডিট করুন",
+      "editDescription": "এই প্ল্যানে \"{name}\"-এর configuration আপডেট করুন।",
+      "editSuccess": "Assignment আপডেট হয়েছে।",
+      "featureFieldLabel": "ফিচার",
+      "featureRequired": "একটি ফিচার নির্বাচন করুন।",
+      "enabledFieldLabel": "সক্রিয়",
+      "enabledRequired": "সক্রিয় বা নিষ্ক্রিয় নির্বাচন করুন।",
+      "limitsFieldLabel": "Limits (JSON, ঐচ্ছিক)",
+      "limitsPlaceholder": "যেমন {\"maxUsers\": 5}",
+      "limitsInvalidJson": "Limits অবশ্যই valid JSON হতে হবে, যেমন {\"maxUsers\": 5}।"
+    }
+  }
+}

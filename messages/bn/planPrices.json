@@ -1,0 +1,57 @@
+{
+  "planPrices": {
+    "title": "প্রাইসিং",
+    "description": "এই প্ল্যানের মাসিক ও বার্ষিক প্রাইস। একাধিক historical price রাখা হয়; একটা billing cycle এবং currency-এর জন্য একসময়ে শুধু একটাই active থাকতে পারে।",
+    "empty": "এখনো কোনো price যোগ করা হয়নি।",
+    "active": "সক্রিয়",
+    "inactive": "নিষ্ক্রিয়",
+    "ongoing": "চলমান",
+    "columns": {
+      "billingCycle": "সাইকেল",
+      "amount": "পরিমাণ",
+      "effectivePeriod": "কার্যকরী মেয়াদ",
+      "status": "স্ট্যাটাস"
+    },
+    "actions": {
+      "activate": "সক্রিয় করুন",
+      "deactivate": "নিষ্ক্রিয় করুন",
+      "activateTitle": "প্রাইস সক্রিয় করুন",
+      "activateDescription": "এই price সক্রিয় করবেন? এটি এর billing cycle ও currency-এর জন্য effective price হয়ে যাবে।",
+      "activateSuccess": "প্রাইস সক্রিয় করা হয়েছে।",
+      "deactivateTitle": "প্রাইস নিষ্ক্রিয় করুন",
+      "deactivateDescription": "এই price নিষ্ক্রিয় করবেন? নতুন সাবস্ক্রিপশনে আর এটি চার্জ হবে না।",
+      "deactivateSuccess": "প্রাইস নিষ্ক্রিয় করা হয়েছে।"
+    },
+    "form": {
+      "createTitle": "প্রাইস যোগ করুন",
+      "createDescription": "এই প্ল্যানের জন্য একটি নতুন price যোগ করুন।",
+      "createSuccess": "প্রাইস যোগ করা হয়েছে।",
+      "editTitle": "প্রাইস এডিট করুন",
+      "editDescription": "তৈরি হওয়ার পর billing cycle এবং currency পরিবর্তন করা যায় না।",
+      "editSuccess": "প্রাইস আপডেট হয়েছে।",
+      "billingCycle": "বিলিং সাইকেল",
+      "billingCyclePlaceholder": "একটি বিলিং সাইকেল নির্বাচন করুন",
+      "billingCycleMonthly": "মাসিক",
+      "billingCycleYearly": "বার্ষিক",
+      "billingCycleRequired": "বিলিং সাইকেল আবশ্যক।",
+      "currencyCode": "কারেন্সি কোড",
+      "currencyCodePlaceholder": "যেমন BDT (default BDT)",
+      "currencyCodeDescription": "৩-অক্ষরের uppercase কারেন্সি কোড। খালি রাখলে default BDT হবে।",
+      "currencyCodePattern": "কারেন্সি কোড অবশ্যই ৩টি uppercase অক্ষরের হতে হবে।",
+      "amount": "পরিমাণ",
+      "amountPlaceholder": "যেমন 999.00",
+      "amountDescription": "সর্বোচ্চ ৪ decimal place, ঋণাত্মক হতে পারবে না।",
+      "amountRequired": "পরিমাণ আবশ্যক।",
+      "amountInvalid": "পরিমাণ অবশ্যই একটি non-negative সংখ্যা হতে হবে, সর্বোচ্চ ৪ decimal place সহ।",
+      "effectiveFrom": "কার্যকর হবে (from)",
+      "effectiveFromDescription": "খালি রাখলে আজকের তারিখ default হবে।",
+      "effectiveTo": "কার্যকর থাকবে (to)",
+      "effectiveToDescription": "open-ended price-এর জন্য খালি রাখুন।",
+      "effectiveToBeforeFrom": "Effective-to তারিখ অবশ্যই effective-from তারিখের পরে হতে হবে।",
+      "isActive": "স্ট্যাটাস",
+      "isActiveTrue": "সক্রিয়",
+      "isActiveFalse": "নিষ্ক্রিয়",
+      "isActiveDescription": "একটা billing cycle এবং currency-এর overlapping period-এ শুধু একটাই active price অনুমোদিত।"
+    }
+  }
+}

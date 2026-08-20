@@ -1,0 +1,52 @@
+{
+  "features": {
+    "title": "ফিচার",
+    "description": "যেকোনো প্ল্যানে assign করা যায় এমন reusable platform capability।",
+    "actions": {
+      "edit": "এডিট করুন",
+      "activate": "সক্রিয় করুন",
+      "deactivate": "নিষ্ক্রিয় করুন",
+      "changeStatus": "স্ট্যাটাস পরিবর্তন করুন",
+      "archive": "আর্কাইভ করুন",
+      "activateTitle": "ফিচার সক্রিয় করুন",
+      "activateDescription": "\"{name}\" সক্রিয় করবেন? এটি আবার প্ল্যানে assign করা যাবে।",
+      "activateSuccess": "ফিচার সক্রিয় করা হয়েছে।",
+      "deactivateTitle": "ফিচার নিষ্ক্রিয় করুন",
+      "deactivateDescription": "\"{name}\" নিষ্ক্রিয় করবেন? এটি আর প্ল্যানে assign করা যাবে না।",
+      "deactivateSuccess": "ফিচার নিষ্ক্রিয় করা হয়েছে।",
+      "archiveTitle": "ফিচার আর্কাইভ করুন",
+      "archiveDescription": "\"{name}\" আর্কাইভ করবেন? এটি active ব্যবহার থেকে soft-delete হবে।",
+      "archiveSuccess": "ফিচার আর্কাইভ করা হয়েছে।",
+      "changeStatusTitle": "ফিচারের স্ট্যাটাস পরিবর্তন করুন",
+      "changeStatusDescription": "\"{name}\"-এর জন্য নতুন স্ট্যাটাস নির্বাচন করুন।",
+      "changeStatusSuccess": "ফিচারের স্ট্যাটাস আপডেট হয়েছে।",
+      "statusFieldLabel": "নতুন স্ট্যাটাস",
+      "statusRequired": "একটি স্ট্যাটাস নির্বাচন করুন।"
+    },
+    "form": {
+      "createTitle": "ফিচার তৈরি করুন",
+      "createDescription": "যেকোনো প্ল্যানে assign করা যায় এমন একটি নতুন reusable capability যোগ করুন।",
+      "createSuccess": "ফিচার তৈরি হয়েছে।",
+      "editTitle": "ফিচার এডিট করুন",
+      "editDescription": "\"{name}\"-এর details আপডেট করুন।",
+      "editSuccess": "ফিচার আপডেট হয়েছে।",
+      "name": "নাম",
+      "namePlaceholder": "যেমন Point of Sale",
+      "nameRequired": "নাম আবশ্যক।",
+      "nameLength": "নাম ২–১২০ অক্ষরের হতে হবে।",
+      "code": "কোড",
+      "codePlaceholder": "যেমন POS",
+      "codeDescription": "স্বয়ংক্রিয়ভাবে uppercase হবে; স্পেস underscore-এ পরিণত হবে।",
+      "codeRequired": "কোড আবশ্যক।",
+      "codeLength": "কোড ২–৮০ অক্ষরের হতে হবে।",
+      "module": "মডিউল",
+      "modulePlaceholder": "যেমন SALES",
+      "moduleDescription": "সম্পর্কিত ফিচারগুলোকে একসাথে গ্রুপ করে।",
+      "moduleRequired": "মডিউল আবশ্যক।",
+      "moduleLength": "মডিউল ২–৮০ অক্ষরের হতে হবে।",
+      "description": "বিবরণ",
+      "descriptionPlaceholder": "ঐচ্ছিক বিবরণ (সর্বোচ্চ ৫০০০ অক্ষর)",
+      "descriptionLength": "বিবরণ সর্বোচ্চ ৫০০০ অক্ষরের হতে পারবে।"
+    }
+  }
+}

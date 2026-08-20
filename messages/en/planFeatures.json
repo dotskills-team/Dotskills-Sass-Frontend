@@ -1,0 +1,36 @@
+{
+  "planFeatures": {
+    "title": "Features",
+    "description": "Existing platform features assigned to this plan.",
+    "empty": "No features assigned yet.",
+    "enabled": "Enabled",
+    "disabled": "Disabled",
+    "columns": {
+      "feature": "Feature",
+      "module": "Module",
+      "enabled": "Enabled",
+      "limits": "Limits"
+    },
+    "actions": {
+      "remove": "Remove",
+      "removeTitle": "Remove feature from plan",
+      "removeDescription": "Remove \"{name}\" from this plan? This unassigns it; the feature itself is not deleted.",
+      "removeSuccess": "Feature removed from plan."
+    },
+    "form": {
+      "assignTitle": "Assign feature",
+      "assignDescription": "Assign an existing platform feature to this plan.",
+      "assignSuccess": "Feature assigned to plan.",
+      "editTitle": "Edit assignment",
+      "editDescription": "Update the configuration for \"{name}\" on this plan.",
+      "editSuccess": "Assignment updated.",
+      "featureFieldLabel": "Feature",
+      "featureRequired": "Please select a feature.",
+      "enabledFieldLabel": "Enabled",
+      "enabledRequired": "Please select enabled or disabled.",
+      "limitsFieldLabel": "Limits (JSON, optional)",
+      "limitsPlaceholder": "e.g. {\"maxUsers\": 5}",
+      "limitsInvalidJson": "Limits must be valid JSON, e.g. {\"maxUsers\": 5}."
+    }
+  }
+}

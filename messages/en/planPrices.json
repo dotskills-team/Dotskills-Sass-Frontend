@@ -1,0 +1,57 @@
+{
+  "planPrices": {
+    "title": "Pricing",
+    "description": "Monthly and yearly prices for this plan. Multiple historical prices are kept; only one can be active per billing cycle and currency at a time.",
+    "empty": "No prices added yet.",
+    "active": "Active",
+    "inactive": "Inactive",
+    "ongoing": "ongoing",
+    "columns": {
+      "billingCycle": "Cycle",
+      "amount": "Amount",
+      "effectivePeriod": "Effective period",
+      "status": "Status"
+    },
+    "actions": {
+      "activate": "Activate",
+      "deactivate": "Deactivate",
+      "activateTitle": "Activate price",
+      "activateDescription": "Activate this price? It will become the effective price for its billing cycle and currency.",
+      "activateSuccess": "Price activated.",
+      "deactivateTitle": "Deactivate price",
+      "deactivateDescription": "Deactivate this price? It will no longer be charged to new subscriptions.",
+      "deactivateSuccess": "Price deactivated."
+    },
+    "form": {
+      "createTitle": "Add price",
+      "createDescription": "Add a new price for this plan.",
+      "createSuccess": "Price added.",
+      "editTitle": "Edit price",
+      "editDescription": "Billing cycle and currency cannot be changed after creation.",
+      "editSuccess": "Price updated.",
+      "billingCycle": "Billing cycle",
+      "billingCyclePlaceholder": "Select a billing cycle",
+      "billingCycleMonthly": "Monthly",
+      "billingCycleYearly": "Yearly",
+      "billingCycleRequired": "Billing cycle is required.",
+      "currencyCode": "Currency code",
+      "currencyCodePlaceholder": "e.g. BDT (defaults to BDT)",
+      "currencyCodeDescription": "3-letter uppercase currency code. Leave blank to default to BDT.",
+      "currencyCodePattern": "Currency code must be exactly 3 uppercase letters.",
+      "amount": "Amount",
+      "amountPlaceholder": "e.g. 999.00",
+      "amountDescription": "Up to 4 decimal places, cannot be negative.",
+      "amountRequired": "Amount is required.",
+      "amountInvalid": "Amount must be a non-negative number with up to 4 decimal places.",
+      "effectiveFrom": "Effective from",
+      "effectiveFromDescription": "Defaults to today if left blank.",
+      "effectiveTo": "Effective to",
+      "effectiveToDescription": "Leave blank for an open-ended price.",
+      "effectiveToBeforeFrom": "Effective-to date must be later than effective-from date.",
+      "isActive": "Status",
+      "isActiveTrue": "Active",
+      "isActiveFalse": "Inactive",
+      "isActiveDescription": "Only one active price is allowed per billing cycle and currency for overlapping periods."
+    }
+  }
+}

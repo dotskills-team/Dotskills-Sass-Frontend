@@ -1,0 +1,20 @@
+{
+  "companyInvoices": {
+    "title": "Invoices",
+    "description": "Invoices issued to your company for each billing period.",
+    "details": {
+      "backToList": "Back to invoices",
+      "overview": "Overview",
+      "notFound": "Invoice not found.",
+      "plan": "Plan",
+      "subtotal": "Subtotal",
+      "discount": "Discount",
+      "tax": "Tax",
+      "total": "Total",
+      "due": "Due date",
+      "issued": "Issued",
+      "paid": "Paid",
+      "billingPeriod": "Billing period"
+    }
+  }
+}

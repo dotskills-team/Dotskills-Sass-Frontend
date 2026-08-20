@@ -1,0 +1,68 @@
+{
+  "platformRoles": {
+    "title": "প্ল্যাটফর্ম রোল",
+    "description": "প্ল্যাটফর্ম-লেভেল রোল এবং তাদের permission manage করুন।",
+    "empty": "এখনো কোনো রোল নেই।",
+    "system": "সিস্টেম",
+    "custom": "কাস্টম",
+    "columns": {
+      "role": "রোল",
+      "members": "স্টাফ",
+      "permissions": "পারমিশন",
+      "type": "টাইপ",
+      "status": "স্ট্যাটাস"
+    },
+    "actions": {
+      "edit": "এডিট করুন",
+      "managePermissions": "পারমিশন ম্যানেজ করুন",
+      "changeStatus": "স্ট্যাটাস পরিবর্তন করুন",
+      "changeStatusTitle": "রোলের স্ট্যাটাস পরিবর্তন করুন",
+      "changeStatusDescription": "\"{name}\"-এর জন্য নতুন স্ট্যাটাস নির্বাচন করুন।",
+      "changeStatusSuccess": "রোলের স্ট্যাটাস আপডেট হয়েছে।",
+      "statusFieldLabel": "নতুন স্ট্যাটাস",
+      "statusRequired": "একটি স্ট্যাটাস নির্বাচন করুন।"
+    },
+    "permissions": {
+      "title": "পারমিশন",
+      "description": "\"{name}\" কোন পারমিশন পাবে সেটা নির্বাচন করুন।",
+      "saveButton": "পারমিশন সংরক্ষণ করুন",
+      "updateSuccess": "রোলের পারমিশন আপডেট হয়েছে।"
+    },
+    "form": {
+      "createTitle": "রোল তৈরি করুন",
+      "createDescription": "একটি নতুন প্ল্যাটফর্ম রোল যোগ করুন।",
+      "createSuccess": "রোল তৈরি হয়েছে।",
+      "editTitle": "রোল এডিট করুন",
+      "editDescription": "\"{name}\"-এর details আপডেট করুন।",
+      "editSuccess": "রোল আপডেট হয়েছে।",
+      "code": "কোড",
+      "codePlaceholder": "যেমন SUPPORT_LEAD",
+      "codeRequired": "কোড আবশ্যক।",
+      "codeLength": "কোড ২–৬০ অক্ষরের হতে হবে।",
+      "name": "নাম",
+      "namePlaceholder": "যেমন Support Lead",
+      "nameRequired": "নাম আবশ্যক।",
+      "nameLength": "নাম ২–১২০ অক্ষরের হতে হবে।",
+      "description": "বিবরণ",
+      "descriptionPlaceholder": "ঐচ্ছিক বিবরণ",
+      "descriptionLength": "বিবরণ সর্বোচ্চ ১০০০ অক্ষরের হতে পারবে।",
+      "permissions": "পারমিশন",
+      "permissionsRequired": "কমপক্ষে একটি পারমিশন নির্বাচন করুন।"
+    },
+    "details": {
+      "backToList": "রোল তালিকায় ফিরে যান",
+      "overview": "ওভারভিউ",
+      "notFound": "রোল পাওয়া যায়নি।",
+      "code": "কোড"
+    },
+    "permissionsPage": {
+      "title": "প্ল্যাটফর্ম পারমিশন",
+      "description": "সব প্ল্যাটফর্ম পারমিশনের read-only catalog, module অনুযায়ী গ্রুপ করা। কোনো রোলকে পারমিশন assign করতে সেই রোলের details page ব্যবহার করুন।",
+      "empty": "কোনো পারমিশন পাওয়া যায়নি।"
+    },
+    "syncCatalog": {
+      "trigger": "পারমিশন ক্যাটালগ Sync করুন",
+      "success": "{count}টি পারমিশন sync হয়েছে। পুনরায় mapped: {roles}।"
+    }
+  }
+}

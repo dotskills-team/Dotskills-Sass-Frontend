@@ -1,0 +1,22 @@
+{
+  "rbac": {
+    "missingPermissionTooltip": "You don't have permission to do this.",
+    "dashboard": "Dashboard",
+    "tenants": "Tenants",
+    "companies": "Companies",
+    "industries": "Industries",
+    "plans": "Plans",
+    "features": "Features",
+    "subscriptions": "Subscriptions",
+    "subscription": "Subscription",
+    "billing": "Billing",
+    "invoices": "Invoices",
+    "payments": "Payments",
+    "accessControl": "Access Control",
+    "staff": "Staff",
+    "platformRoles": "Roles",
+    "platformPermissions": "Permissions",
+    "companyRoles": "Roles",
+    "companyMembers": "Members"
+  }
+}

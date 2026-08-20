@@ -1,0 +1,52 @@
+{
+  "features": {
+    "title": "Features",
+    "description": "Reusable platform capabilities that can be assigned to any plan.",
+    "actions": {
+      "edit": "Edit",
+      "activate": "Activate",
+      "deactivate": "Deactivate",
+      "changeStatus": "Change status",
+      "archive": "Archive",
+      "activateTitle": "Activate feature",
+      "activateDescription": "Activate \"{name}\"? It will become assignable to plans again.",
+      "activateSuccess": "Feature activated.",
+      "deactivateTitle": "Deactivate feature",
+      "deactivateDescription": "Deactivate \"{name}\"? It can no longer be assigned to plans.",
+      "deactivateSuccess": "Feature deactivated.",
+      "archiveTitle": "Archive feature",
+      "archiveDescription": "Archive \"{name}\"? This soft-deletes the feature from active use.",
+      "archiveSuccess": "Feature archived.",
+      "changeStatusTitle": "Change feature status",
+      "changeStatusDescription": "Set a new status for \"{name}\".",
+      "changeStatusSuccess": "Feature status updated.",
+      "statusFieldLabel": "New status",
+      "statusRequired": "Please select a status."
+    },
+    "form": {
+      "createTitle": "Create feature",
+      "createDescription": "Add a new reusable capability that can be assigned to any plan.",
+      "createSuccess": "Feature created.",
+      "editTitle": "Edit feature",
+      "editDescription": "Update details for \"{name}\".",
+      "editSuccess": "Feature updated.",
+      "name": "Name",
+      "namePlaceholder": "e.g. Point of Sale",
+      "nameRequired": "Name is required.",
+      "nameLength": "Name must be 2–120 characters.",
+      "code": "Code",
+      "codePlaceholder": "e.g. POS",
+      "codeDescription": "Automatically uppercased; spaces become underscores.",
+      "codeRequired": "Code is required.",
+      "codeLength": "Code must be 2–80 characters.",
+      "module": "Module",
+      "modulePlaceholder": "e.g. SALES",
+      "moduleDescription": "Groups related features together.",
+      "moduleRequired": "Module is required.",
+      "moduleLength": "Module must be 2–80 characters.",
+      "description": "Description",
+      "descriptionPlaceholder": "Optional description (max 5000 characters)",
+      "descriptionLength": "Description must be at most 5000 characters."
+    }
+  }
+}

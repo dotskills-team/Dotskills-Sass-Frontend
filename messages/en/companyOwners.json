@@ -1,0 +1,57 @@
+{
+  "companyOwners": {
+    "title": "Company owners",
+    "description": "Users with ownership access to this company.",
+    "empty": "No owners assigned yet.",
+    "primary": "Primary",
+    "columns": {
+      "name": "Owner",
+      "designation": "Designation",
+      "primary": "Primary",
+      "status": "Status"
+    },
+    "actions": {
+      "edit": "Edit",
+      "changeStatus": "Change status",
+      "changeStatusTitle": "Change owner status",
+      "changeStatusDescription": "Set a new status for \"{name}\".",
+      "changeStatusSuccess": "Owner status updated.",
+      "statusFieldLabel": "New status",
+      "statusRequired": "Please select a status.",
+      "makePrimary": "Make primary owner",
+      "makePrimaryTitle": "Make primary owner",
+      "makePrimaryDescription": "Make \"{name}\" the primary owner? The current primary owner will be replaced.",
+      "makePrimarySuccess": "Primary owner changed."
+    },
+    "form": {
+      "createTitle": "Assign owner",
+      "createDescription": "Create or assign a user as owner of this company.",
+      "createSuccess": "Company owner assigned.",
+      "editTitle": "Edit owner",
+      "editDescription": "Update details for \"{name}\".",
+      "editSuccess": "Company owner updated.",
+      "credentialsTitle": "Owner credentials",
+      "credentialsDescription": "This password is shown only once — share it securely with the owner now.",
+      "email": "Email",
+      "emailPlaceholder": "owner@example.com",
+      "emailRequired": "Email is required.",
+      "emailInvalid": "Enter a valid email address.",
+      "fullName": "Full name",
+      "fullNamePlaceholder": "e.g. Jane Doe",
+      "fullNameRequired": "Full name is required.",
+      "fullNameLength": "Full name must be 2–160 characters.",
+      "phone": "Phone",
+      "phonePlaceholder": "e.g. +8801XXXXXXXXX",
+      "phoneLength": "Phone must be 5–32 characters.",
+      "password": "Password",
+      "passwordPlaceholder": "Set an initial password",
+      "passwordDescription": "At least 8 characters with uppercase, lowercase, number, and special character. Only used if creating a new user account.",
+      "passwordRequired": "Password is required.",
+      "passwordLength": "Password must be 8–100 characters.",
+      "passwordPattern": "Password must contain uppercase, lowercase, number, and special character.",
+      "designation": "Designation",
+      "designationPlaceholder": "e.g. Managing Director",
+      "designationLength": "Designation must be at most 120 characters."
+    }
+  }
+}

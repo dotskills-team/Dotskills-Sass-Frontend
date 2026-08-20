@@ -1,0 +1,28 @@
+{
+  "app": {
+    "name": "DotSkills"
+  },
+  "common": {
+    "loading": "লোড হচ্ছে...",
+    "retry": "আবার চেষ্টা করুন",
+    "somethingWentWrong": "কিছু একটা সমস্যা হয়েছে।",
+    "noDataFound": "কোনো তথ্য পাওয়া যায়নি।",
+    "save": "সংরক্ষণ করুন",
+    "create": "তৈরি করুন",
+    "update": "আপডেট করুন",
+    "cancel": "বাতিল করুন",
+    "close": "বন্ধ করুন",
+    "confirm": "নিশ্চিত করুন",
+    "back": "ফিরে যান",
+    "next": "পরবর্তী",
+    "pageOf": "পৃষ্ঠা {page} / {totalPages} · মোট {total}",
+    "actions": "অ্যাকশন",
+    "search": "খুঁজুন",
+    "status": "স্ট্যাটাস",
+    "allStatuses": "সব স্ট্যাটাস",
+    "redirecting": "পুনঃনির্দেশ করা হচ্ছে...",
+    "language": "ভাষা",
+    "languageEnglish": "English",
+    "languageBangla": "বাংলা"
+  }
+}

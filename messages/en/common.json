@@ -1,0 +1,28 @@
+{
+  "app": {
+    "name": "DotSkills"
+  },
+  "common": {
+    "loading": "Loading...",
+    "retry": "Retry",
+    "somethingWentWrong": "Something went wrong.",
+    "noDataFound": "No data found.",
+    "save": "Save",
+    "create": "Create",
+    "update": "Update",
+    "cancel": "Cancel",
+    "close": "Close",
+    "confirm": "Confirm",
+    "back": "Back",
+    "next": "Next",
+    "pageOf": "Page {page} of {totalPages} · {total} total",
+    "actions": "Actions",
+    "search": "Search",
+    "status": "Status",
+    "allStatuses": "All statuses",
+    "redirecting": "Redirecting...",
+    "language": "Language",
+    "languageEnglish": "English",
+    "languageBangla": "বাংলা"
+  }
+}

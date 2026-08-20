@@ -1,0 +1,44 @@
+{
+  "tenants": {
+    "title": "Tenants",
+    "description": "Platform tenants — the top-level account each company belongs to.",
+    "actions": {
+      "edit": "Edit",
+      "changeStatus": "Change status",
+      "changeStatusTitle": "Change tenant status",
+      "changeStatusDescription": "Set a new status for \"{name}\".",
+      "changeStatusSuccess": "Tenant status updated.",
+      "statusFieldLabel": "New status",
+      "statusRequired": "Please select a status.",
+      "cancel": "Cancel tenant",
+      "cancelTitle": "Cancel tenant",
+      "cancelDescription": "Cancel \"{name}\"? This does not delete the tenant, it sets status to CANCELLED and cannot be undone through status change.",
+      "cancelSuccess": "Tenant cancelled."
+    },
+    "form": {
+      "createTitle": "Create tenant",
+      "createDescription": "Add a new platform tenant.",
+      "createSuccess": "Tenant created.",
+      "editTitle": "Edit tenant",
+      "editDescription": "Update details for \"{name}\".",
+      "editSuccess": "Tenant updated.",
+      "code": "Code",
+      "codePlaceholder": "e.g. ACME_CORP",
+      "codeDescription": "Uppercase letters, numbers, underscore and hyphen only.",
+      "codeImmutable": "Code cannot be changed after creation.",
+      "codeRequired": "Code is required.",
+      "codeLength": "Code must be 2–40 characters.",
+      "codePattern": "Code must contain only uppercase letters, numbers, underscore, and hyphen.",
+      "name": "Name",
+      "namePlaceholder": "e.g. Acme Corporation",
+      "nameRequired": "Name is required.",
+      "nameLength": "Name must be 2–160 characters.",
+      "slug": "Slug",
+      "slugPlaceholder": "e.g. acme-corporation",
+      "slugDescription": "Lowercase letters, numbers, and hyphens only.",
+      "slugRequired": "Slug is required.",
+      "slugLength": "Slug must be 2–120 characters.",
+      "slugPattern": "Slug must contain lowercase letters, numbers, and hyphens only."
+    }
+  }
+}
