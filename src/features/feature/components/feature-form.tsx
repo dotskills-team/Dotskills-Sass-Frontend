@@ -20,12 +20,16 @@ import {
 } from "@/components/ui/form";
 
 import { createFeatureSchema, type FeatureFormValues } from "@/features/feature/schemas/feature.schema";
+import { FeatureConfigSchemaEditor } from "@/features/feature/components/feature-config-schema-editor";
+import type { FeatureConfigField } from "@/types/platform";
 
 interface FeatureFormProps {
   defaultValues: FeatureFormValues;
   isSubmitting: boolean;
   submitLabel: string;
   cancelLabel: string;
+  configSchema: FeatureConfigField[];
+  onConfigSchemaChange: (fields: FeatureConfigField[]) => void;
   onCancel: () => void;
   onSubmit: (values: FeatureFormValues) => void;
 }
@@ -36,6 +40,8 @@ export function FeatureForm({
   isSubmitting,
   submitLabel,
   cancelLabel,
+  configSchema,
+  onConfigSchemaChange,
   onCancel,
   onSubmit,
 }: FeatureFormProps) {
@@ -122,6 +128,16 @@ export function FeatureForm({
             </FormItem>
           )}
         />
+
+        <div className="space-y-2">
+          <div>
+            <FormLabel>{t("configSchema.title")}</FormLabel>
+            <p className="text-sm text-muted-foreground">{t("configSchema.description")}</p>
+          </div>
+          <div className="max-h-80 overflow-y-auto pr-1">
+            <FeatureConfigSchemaEditor fields={configSchema} onChange={onConfigSchemaChange} />
+          </div>
+        </div>
 
         <DialogFooter>
           <Button type="button" variant="outline" onClick={onCancel} disabled={isSubmitting}>

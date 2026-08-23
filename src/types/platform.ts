@@ -135,6 +135,31 @@ export interface PlatformInvoice {
   createdAt: string;
 }
 
+export type FeatureConfigFieldType = "NUMBER" | "BOOLEAN" | "STRING" | "SELECT" | "MULTI_SELECT";
+
+export interface FeatureConfigFieldOption {
+  value: string;
+  label: string;
+}
+
+/**
+ * Feature-এর নিজস্ব configuration definition (verified: `Feature.configSchema Json?`,
+ * `feature-config-field.dto.ts`) — কোন human-friendly field-গুলো PlanFeature.limits-এ
+ * configure করা যাবে সেটা এখানে define হয়। Nullable — schema না থাকলে (legacy Feature)
+ * Plan Feature assign/edit generic key/value editor-এ fallback করে।
+ */
+export interface FeatureConfigField {
+  key: string;
+  label: string;
+  description?: string;
+  type: FeatureConfigFieldType;
+  required?: boolean;
+  defaultValue?: unknown;
+  min?: number;
+  max?: number;
+  options?: FeatureConfigFieldOption[];
+}
+
 /** Platform-wide reusable master entity — many Plans reference the same Feature via PlanFeature (verified: feature.service.ts `_count.planFeatures`). */
 export interface Feature {
   id: string;
@@ -143,6 +168,7 @@ export interface Feature {
   module: string;
   description: string | null;
   status: FeatureStatus;
+  configSchema: FeatureConfigField[] | null;
   createdAt: string;
   updatedAt: string;
 }
@@ -167,7 +193,9 @@ export interface PlanFeatureAssignment {
   limits: Record<string, unknown> | null;
   createdAt: string;
   updatedAt: string;
-  feature: Pick<Feature, "id" | "code" | "name" | "module" | "status"> & { description?: string | null };
+  feature: Pick<Feature, "id" | "code" | "name" | "module" | "status" | "configSchema"> & {
+    description?: string | null;
+  };
 }
 
 /** `GET /plans/:id` response shape — includes nested features/prices (verified plan.service.ts `findOne`). */

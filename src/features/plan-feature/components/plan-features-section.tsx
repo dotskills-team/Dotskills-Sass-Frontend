@@ -21,16 +21,12 @@ import { PlatformPermissionGate } from "@/components/shared/permission-gate";
 import { ActionConfirmDialog } from "@/components/shared/action-confirm-dialog";
 import {
   useListPlanFeaturesQuery,
-  useAssignPlanFeatureMutation,
-  useUpdatePlanFeatureMutation,
   useRemovePlanFeatureMutation,
 } from "@/features/plan-feature/api/plan-feature.api";
 import { useListFeaturesQuery } from "@/features/feature/api/feature.api";
-import {
-  parseLimitsJson,
-  toAssignPlanFeaturePayload,
-  toUpdatePlanFeaturePayload,
-} from "@/features/plan-feature/lib/plan-feature-form-mapper";
+import { AssignPlanFeatureDialog } from "@/features/plan-feature/components/assign-plan-feature-dialog";
+import { EditPlanFeatureDialog } from "@/features/plan-feature/components/edit-plan-feature-dialog";
+import { formatLimitsSummary } from "@/features/plan-feature/lib/plan-feature-form-mapper";
 import { PLATFORM_PERMISSIONS } from "@/constants/permissions";
 import { normalizeApiError } from "@/lib/api-error";
 import type { PlanFeatureAssignment } from "@/types/platform";
@@ -51,52 +47,10 @@ export function PlanFeaturesSection({ planId }: { planId: string }) {
   const { data: assignments, isLoading, error, refetch } = useListPlanFeaturesQuery(planId);
   const { data: allFeatures } = useListFeaturesQuery({ status: "ACTIVE" });
 
-  const [assign, { isLoading: isAssigning }] = useAssignPlanFeatureMutation();
-  const [update, { isLoading: isUpdating }] = useUpdatePlanFeatureMutation();
   const [remove, { isLoading: isRemoving }] = useRemovePlanFeatureMutation();
 
   const assignedFeatureIds = new Set((assignments ?? []).map((a) => a.featureId));
   const availableFeatures = (allFeatures?.items ?? []).filter((f) => !assignedFeatureIds.has(f.id));
-
-  async function handleAssign(values: Record<string, string>) {
-    const parsedLimits = parseLimitsJson(values.limits ?? "");
-    if (!parsedLimits.ok) {
-      toast.error(t("form.limitsInvalidJson"));
-      return;
-    }
-
-    const result = await assign({ planId, ...toAssignPlanFeaturePayload(values, parsedLimits.value) });
-
-    if ("error" in result) {
-      toast.error(normalizeApiError(result.error).message);
-      return;
-    }
-    toast.success(t("form.assignSuccess"));
-    setActiveAction(null);
-  }
-
-  async function handleEdit(values: Record<string, string>) {
-    if (!activeAction?.assignment) return;
-
-    const parsedLimits = parseLimitsJson(values.limits ?? "");
-    if (!parsedLimits.ok) {
-      toast.error(t("form.limitsInvalidJson"));
-      return;
-    }
-
-    const result = await update({
-      planId,
-      featureId: activeAction.assignment.featureId,
-      ...toUpdatePlanFeaturePayload(values, parsedLimits.value),
-    });
-
-    if ("error" in result) {
-      toast.error(normalizeApiError(result.error).message);
-      return;
-    }
-    toast.success(t("form.editSuccess"));
-    setActiveAction(null);
-  }
 
   async function handleRemove() {
     if (!activeAction?.assignment) return;
@@ -161,8 +115,11 @@ export function PlanFeaturesSection({ planId }: { planId: string }) {
                       {assignment.enabled ? t("enabled") : t("disabled")}
                     </Badge>
                   </TableCell>
-                  <TableCell className="max-w-xs truncate font-mono text-xs text-muted-foreground">
-                    {assignment.limits ? JSON.stringify(assignment.limits) : "—"}
+                  <TableCell className="max-w-xs truncate text-xs text-muted-foreground">
+                    {formatLimitsSummary(assignment.limits, assignment.feature.configSchema, {
+                      yes: t("form.yes"),
+                      no: t("form.no"),
+                    }) ?? "—"}
                   </TableCell>
                   <TableCell className="text-right">
                     <DropdownMenu>
@@ -195,78 +152,19 @@ export function PlanFeaturesSection({ planId }: { planId: string }) {
         )}
       </div>
 
-      <ActionConfirmDialog
+      <AssignPlanFeatureDialog
+        planId={planId}
+        availableFeatures={availableFeatures}
         open={activeAction?.type === "assign"}
         onOpenChange={(open) => !open && setActiveAction(null)}
-        title={t("form.assignTitle")}
-        description={t("form.assignDescription")}
-        confirmLabel={tCommon("create")}
-        cancelLabel={tCommon("cancel")}
-        isLoading={isAssigning}
-        fields={[
-          {
-            name: "featureId",
-            label: t("form.featureFieldLabel"),
-            type: "select",
-            options: availableFeatures.map((f) => ({ value: f.id, label: `${f.name} (${f.code})` })),
-            required: true,
-            requiredMessage: t("form.featureRequired"),
-          },
-          {
-            name: "enabled",
-            label: t("form.enabledFieldLabel"),
-            type: "select",
-            options: [
-              { value: "true", label: t("enabled") },
-              { value: "false", label: t("disabled") },
-            ],
-            required: true,
-            requiredMessage: t("form.enabledRequired"),
-            defaultValue: "true",
-          },
-          {
-            name: "limits",
-            label: t("form.limitsFieldLabel"),
-            type: "textarea",
-            placeholder: t("form.limitsPlaceholder"),
-          },
-        ]}
-        onConfirm={handleAssign}
       />
 
       {activeAction?.type === "edit" && activeAction.assignment && (
-        <ActionConfirmDialog
+        <EditPlanFeatureDialog
+          planId={planId}
+          assignment={activeAction.assignment}
           open
           onOpenChange={(open) => !open && setActiveAction(null)}
-          title={t("form.editTitle")}
-          description={t("form.editDescription", { name: activeAction.assignment.feature.name })}
-          confirmLabel={tCommon("update")}
-          cancelLabel={tCommon("cancel")}
-          isLoading={isUpdating}
-          fields={[
-            {
-              name: "enabled",
-              label: t("form.enabledFieldLabel"),
-              type: "select",
-              options: [
-                { value: "true", label: t("enabled") },
-                { value: "false", label: t("disabled") },
-              ],
-              required: true,
-              requiredMessage: t("form.enabledRequired"),
-              defaultValue: activeAction.assignment.enabled ? "true" : "false",
-            },
-            {
-              name: "limits",
-              label: t("form.limitsFieldLabel"),
-              type: "textarea",
-              placeholder: t("form.limitsPlaceholder"),
-              defaultValue: activeAction.assignment.limits
-                ? JSON.stringify(activeAction.assignment.limits, null, 2)
-                : "",
-            },
-          ]}
-          onConfirm={handleEdit}
         />
       )}
 

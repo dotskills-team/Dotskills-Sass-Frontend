@@ -47,6 +47,34 @@
       "description": "Description",
       "descriptionPlaceholder": "Optional description (max 5000 characters)",
       "descriptionLength": "Description must be at most 5000 characters."
+    },
+    "configSchema": {
+      "title": "Configuration fields",
+      "description": "Define the fields a Super Admin can configure when assigning this feature to a plan.",
+      "addField": "Add configuration field",
+      "removeField": "Remove field",
+      "keyPlaceholder": "Key, e.g. maxUsers",
+      "labelPlaceholder": "Label, e.g. Maximum Users",
+      "descriptionPlaceholder": "Help text (optional)",
+      "type": "Type",
+      "fieldTypes": {
+        "NUMBER": "Number",
+        "BOOLEAN": "Yes / No",
+        "STRING": "Text",
+        "SELECT": "Single choice",
+        "MULTI_SELECT": "Multiple choice"
+      },
+      "required": "Required",
+      "requiredYes": "Required",
+      "requiredNo": "Optional",
+      "defaultValue": "Default value",
+      "noDefault": "No default",
+      "min": "Min",
+      "max": "Max",
+      "optionValuePlaceholder": "Option value",
+      "optionLabelPlaceholder": "Option label",
+      "addOption": "Add option",
+      "removeOption": "Remove option"
     }
   }
 }

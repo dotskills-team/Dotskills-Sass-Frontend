@@ -47,6 +47,34 @@
       "description": "বিবরণ",
       "descriptionPlaceholder": "ঐচ্ছিক বিবরণ (সর্বোচ্চ ৫০০০ অক্ষর)",
       "descriptionLength": "বিবরণ সর্বোচ্চ ৫০০০ অক্ষরের হতে পারবে।"
+    },
+    "configSchema": {
+      "title": "কনফিগারেশন ফিল্ড",
+      "description": "এই ফিচার কোনো প্ল্যানে assign করার সময় Super Admin কোন ফিল্ডগুলো configure করতে পারবে সেটা define করুন।",
+      "addField": "কনফিগারেশন ফিল্ড যোগ করুন",
+      "removeField": "ফিল্ড সরান",
+      "keyPlaceholder": "Key, যেমন maxUsers",
+      "labelPlaceholder": "Label, যেমন Maximum Users",
+      "descriptionPlaceholder": "সাহায্যকারী টেক্সট (ঐচ্ছিক)",
+      "type": "টাইপ",
+      "fieldTypes": {
+        "NUMBER": "সংখ্যা",
+        "BOOLEAN": "হ্যাঁ / না",
+        "STRING": "টেক্সট",
+        "SELECT": "একক নির্বাচন",
+        "MULTI_SELECT": "একাধিক নির্বাচন"
+      },
+      "required": "আবশ্যক",
+      "requiredYes": "আবশ্যক",
+      "requiredNo": "ঐচ্ছিক",
+      "defaultValue": "ডিফল্ট ভ্যালু",
+      "noDefault": "কোনো ডিফল্ট নেই",
+      "min": "সর্বনিম্ন",
+      "max": "সর্বোচ্চ",
+      "optionValuePlaceholder": "অপশন ভ্যালু",
+      "optionLabelPlaceholder": "অপশন লেবেল",
+      "addOption": "অপশন যোগ করুন",
+      "removeOption": "অপশন সরান"
     }
   }
 }

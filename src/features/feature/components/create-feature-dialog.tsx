@@ -21,6 +21,7 @@ import { toFeaturePayload } from "@/features/feature/lib/feature-form-mapper";
 import { PLATFORM_PERMISSIONS } from "@/constants/permissions";
 import { normalizeApiError } from "@/lib/api-error";
 import type { FeatureFormValues } from "@/features/feature/schemas/feature.schema";
+import type { FeatureConfigField } from "@/types/platform";
 
 const EMPTY_VALUES: FeatureFormValues = { name: "", code: "", module: "", description: "" };
 
@@ -28,10 +29,11 @@ export function CreateFeatureDialog() {
   const t = useTranslations("features");
   const tCommon = useTranslations("common");
   const [open, setOpen] = useState(false);
+  const [configSchema, setConfigSchema] = useState<FeatureConfigField[]>([]);
   const [createFeature, { isLoading }] = useCreateFeatureMutation();
 
   async function handleSubmit(values: FeatureFormValues) {
-    const result = await createFeature(toFeaturePayload(values));
+    const result = await createFeature({ ...toFeaturePayload(values), configSchema });
 
     if ("error" in result) {
       toast.error(normalizeApiError(result.error).message);
@@ -39,6 +41,7 @@ export function CreateFeatureDialog() {
     }
 
     toast.success(t("form.createSuccess"));
+    setConfigSchema([]);
     setOpen(false);
   }
 
@@ -63,6 +66,8 @@ export function CreateFeatureDialog() {
           isSubmitting={isLoading}
           submitLabel={tCommon("create")}
           cancelLabel={tCommon("cancel")}
+          configSchema={configSchema}
+          onConfigSchemaChange={setConfigSchema}
           onCancel={() => setOpen(false)}
           onSubmit={handleSubmit}
         />

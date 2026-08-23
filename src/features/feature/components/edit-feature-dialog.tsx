@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 
@@ -15,7 +16,7 @@ import { useUpdateFeatureMutation } from "@/features/feature/api/feature.api";
 import { toFeaturePayload } from "@/features/feature/lib/feature-form-mapper";
 import { normalizeApiError } from "@/lib/api-error";
 import type { FeatureFormValues } from "@/features/feature/schemas/feature.schema";
-import type { Feature } from "@/types/platform";
+import type { Feature, FeatureConfigField } from "@/types/platform";
 
 interface EditFeatureDialogProps {
   feature: Feature;
@@ -27,9 +28,10 @@ export function EditFeatureDialog({ feature, open, onOpenChange }: EditFeatureDi
   const t = useTranslations("features");
   const tCommon = useTranslations("common");
   const [updateFeature, { isLoading }] = useUpdateFeatureMutation();
+  const [configSchema, setConfigSchema] = useState<FeatureConfigField[]>(() => feature.configSchema ?? []);
 
   async function handleSubmit(values: FeatureFormValues) {
-    const result = await updateFeature({ id: feature.id, ...toFeaturePayload(values) });
+    const result = await updateFeature({ id: feature.id, ...toFeaturePayload(values), configSchema });
 
     if ("error" in result) {
       toast.error(normalizeApiError(result.error).message);
@@ -57,6 +59,8 @@ export function EditFeatureDialog({ feature, open, onOpenChange }: EditFeatureDi
           isSubmitting={isLoading}
           submitLabel={tCommon("update")}
           cancelLabel={tCommon("cancel")}
+          configSchema={configSchema}
+          onConfigSchemaChange={setConfigSchema}
           onCancel={() => onOpenChange(false)}
           onSubmit={handleSubmit}
         />

@@ -1,5 +1,5 @@
 import { baseApi } from "@/store/api/base-api";
-import type { Feature, FeatureStatus } from "@/types/platform";
+import type { Feature, FeatureConfigField, FeatureStatus } from "@/types/platform";
 import { normalizeRawArray, type ListResult } from "@/types/list-result";
 
 /**
@@ -27,7 +27,13 @@ export const featureApi = baseApi.injectEndpoints({
 
     createFeature: builder.mutation<
       unknown,
-      { code: string; name: string; module: string; description?: string }
+      {
+        code: string;
+        name: string;
+        module: string;
+        description?: string;
+        configSchema?: FeatureConfigField[];
+      }
     >({
       query: (body) => ({ url: "/platform/features", method: "POST", body }),
       invalidatesTags: ["Feature"],
@@ -35,7 +41,14 @@ export const featureApi = baseApi.injectEndpoints({
 
     updateFeature: builder.mutation<
       unknown,
-      { id: string; code: string; name: string; module: string; description?: string }
+      {
+        id: string;
+        code: string;
+        name: string;
+        module: string;
+        description?: string;
+        configSchema?: FeatureConfigField[];
+      }
     >({
       query: ({ id, ...body }) => ({ url: `/platform/features/${id}`, method: "PATCH", body }),
       invalidatesTags: ["Feature"],
