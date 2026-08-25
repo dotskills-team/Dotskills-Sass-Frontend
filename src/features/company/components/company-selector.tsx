@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect } from "react";
 import { Building2, ChevronDown } from "lucide-react";
 import { useTranslations } from "next-intl";
 
@@ -19,19 +18,16 @@ import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { useGetMyCompaniesQuery } from "@/features/company/api/company.api";
 import { switchCompany } from "@/features/company/actions";
 
+/**
+ * শুধু presentational/manual-switch — একমাত্র company থাকলে auto-select
+ * করার logic এখন `CompanyContextGate`-এ single source of truth হিসেবে
+ * move করা হয়েছে (duplicate effect avoid করতে)।
+ */
 export function CompanySelector() {
   const t = useTranslations("company");
   const dispatch = useAppDispatch();
   const currentCompanyId = useAppSelector((state) => state.company.currentCompanyId);
   const { data: companies, isLoading } = useGetMyCompaniesQuery();
-
-  // ঠিক একটামাত্র company থাকলে auto-select — user-কে অহেতুক একটা
-  // এক-item dropdown-এ ক্লিক করতে হবে না।
-  useEffect(() => {
-    if (!currentCompanyId && companies?.length === 1) {
-      dispatch(switchCompany(companies[0].companyId));
-    }
-  }, [companies, currentCompanyId, dispatch]);
 
   if (isLoading) {
     return <Skeleton className="h-9 w-40" />;

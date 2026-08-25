@@ -25,7 +25,7 @@ import { sessionRestored } from "@/store/slices/auth.slice";
 import { useLoginMutation } from "@/features/auth/api/auth.api";
 import { PasswordField } from "@/features/auth/components/password-field";
 import { createLoginSchema, type LoginFormValues } from "@/features/auth/schemas/login.schema";
-import { dashboardPathForScope, resolveUserScope } from "@/features/auth/lib/scope";
+import { resolveRedirectTarget, resolveUserScope } from "@/features/auth/lib/scope";
 import { normalizeApiError } from "@/lib/api-error";
 
 export function LoginForm() {
@@ -73,8 +73,8 @@ export function LoginForm() {
 
     dispatch(sessionRestored({ accessToken, user }));
 
-    const redirectTo = searchParams.get("redirectTo");
-    router.push(redirectTo || dashboardPathForScope(resolveUserScope(user)));
+    const scope = resolveUserScope(user);
+    router.push(resolveRedirectTarget(scope, searchParams.get("redirectTo")));
   }
 
   return (

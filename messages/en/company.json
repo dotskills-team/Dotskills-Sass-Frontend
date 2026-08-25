@@ -2,6 +2,7 @@
   "company": {
     "selectCompany": "Select company",
     "yourCompanies": "Your companies",
-    "noCompaniesFound": "No companies found for your account."
+    "noCompaniesFound": "No companies found for your account.",
+    "selectCompanyPrompt": "Select a company from the switcher above to continue."
   }
 }

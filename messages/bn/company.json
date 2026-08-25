@@ -2,6 +2,7 @@
   "company": {
     "selectCompany": "কোম্পানি নির্বাচন করুন",
     "yourCompanies": "আপনার কোম্পানি",
-    "noCompaniesFound": "আপনার account-এর জন্য কোনো কোম্পানি পাওয়া যায়নি।"
+    "noCompaniesFound": "আপনার account-এর জন্য কোনো কোম্পানি পাওয়া যায়নি।",
+    "selectCompanyPrompt": "চালিয়ে যেতে উপরের switcher থেকে একটি কোম্পানি নির্বাচন করুন।"
   }
 }

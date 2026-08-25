@@ -9,6 +9,7 @@ import { LogoutButton } from "@/features/auth/components/logout-button";
 import { LanguageSwitcher } from "@/components/layout/language-switcher";
 import { AppSidebar } from "@/components/layout/app-sidebar";
 import { CompanySelector } from "@/features/company/components/company-selector";
+import { CompanyContextGate } from "@/features/company/components/company-context-gate";
 import { Button } from "@/components/ui/button";
 
 import { companyNavItems } from "./nav-items";
@@ -59,7 +60,9 @@ export default function CompanyLayout({ children }: { children: React.ReactNode 
               </div>
             </header>
             <main className="min-w-0 flex-1">
-              <div className="mx-auto w-full max-w-[1400px]">{children}</div>
+              <div className="mx-auto w-full max-w-[1400px]">
+                <CompanyContextGate>{children}</CompanyContextGate>
+              </div>
             </main>
           </div>
         </div>

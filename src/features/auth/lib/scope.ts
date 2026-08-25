@@ -27,3 +27,18 @@ export function resolveUserScope(user: CurrentUser): UserScope {
 export function dashboardPathForScope(scope: UserScope): string {
   return scope === "platform" ? "/platform/dashboard" : "/company/dashboard";
 }
+
+/**
+ * `redirectTo` proxy.ts-এর protected-route bounce থেকে আসে (verified
+ * src/proxy.ts) — এটা এই user-এর scope-এর সাথে সম্পর্ক যাচাই ছাড়াই
+ * ব্যবহার করা ঠিক না। উদাহরণ: একজন Company user যদি আগের কোনো
+ * `/platform/...` bounce-এর leftover `redirectTo` নিয়ে login করে, সরাসরি
+ * platform route-এ চলে যাবে — route group layout URL অনুযায়ী রেন্ডার হয়
+ * (এই login-এর প্রকৃত scope অনুযায়ী না), ফলে platform sidebar/nav দেখা
+ * যাবে। `redirectTo` তাই শুধু তখনই honor করা হয় যখন সেটা resolved
+ * scope-এর নিজের route prefix-এর সাথে মেলে।
+ */
+export function resolveRedirectTarget(scope: UserScope, redirectTo: string | null): string {
+  const scopePrefix = scope === "platform" ? "/platform" : "/company";
+  return redirectTo && redirectTo.startsWith(scopePrefix) ? redirectTo : dashboardPathForScope(scope);
+}
