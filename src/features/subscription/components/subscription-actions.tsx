@@ -21,10 +21,12 @@ import {
   useReactivateSubscriptionMutation,
   useCancelSubscriptionMutation,
   useExpireSubscriptionMutation,
+  useRenewSubscriptionMutation,
+  useUpdatePlatformSubscriptionAutoRenewMutation,
 } from "@/features/subscription/api/subscription.api";
 import type { PlatformSubscription } from "@/types/platform";
 
-type ActiveAction = "suspend" | "reactivate" | "cancel" | "expire" | null;
+type ActiveAction = "suspend" | "reactivate" | "cancel" | "expire" | "renew" | "auto-renew" | null;
 
 /** Industry-এ established reusable action pattern-এর reuse — Subscription module। */
 export function SubscriptionRowActions({ subscription }: { subscription: PlatformSubscription }) {
@@ -36,6 +38,8 @@ export function SubscriptionRowActions({ subscription }: { subscription: Platfor
   const [reactivate, { isLoading: isReactivating }] = useReactivateSubscriptionMutation();
   const [cancel, { isLoading: isCancelling }] = useCancelSubscriptionMutation();
   const [expire, { isLoading: isExpiring }] = useExpireSubscriptionMutation();
+  const [renew, { isLoading: isRenewing }] = useRenewSubscriptionMutation();
+  const [updateAutoRenew, { isLoading: isTogglingAutoRenew }] = useUpdatePlatformSubscriptionAutoRenewMutation();
 
   const reasonField: ActionFieldConfig = {
     name: "reason",
@@ -90,6 +94,27 @@ export function SubscriptionRowActions({ subscription }: { subscription: Platfor
     setActiveAction(null);
   }
 
+  /** Idempotent — safe to confirm again if clicked twice (verified live: re-issues the same, already-created Invoice, never a duplicate). */
+  async function handleRenew() {
+    const result = await renew({ id: subscription.id });
+    if ("error" in result) {
+      toast.error(normalizeApiError(result.error).message);
+      return;
+    }
+    toast.success(t("actions.renewSuccess"));
+    setActiveAction(null);
+  }
+
+  async function handleToggleAutoRenew() {
+    const result = await updateAutoRenew({ id: subscription.id, autoRenew: !subscription.autoRenew });
+    if ("error" in result) {
+      toast.error(normalizeApiError(result.error).message);
+      return;
+    }
+    toast.success(subscription.autoRenew ? t("actions.autoRenewDisabledSuccess") : t("actions.autoRenewEnabledSuccess"));
+    setActiveAction(null);
+  }
+
   const planName = subscription.plan?.name ?? subscription.id;
 
   return (
@@ -101,6 +126,16 @@ export function SubscriptionRowActions({ subscription }: { subscription: Platfor
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
+          <PlatformPermissionGate permission={PLATFORM_PERMISSIONS.SUBSCRIPTION_RENEW}>
+            <DropdownMenuItem onSelect={() => setActiveAction("renew")}>
+              {t("actions.renew")}
+            </DropdownMenuItem>
+          </PlatformPermissionGate>
+          <PlatformPermissionGate permission={PLATFORM_PERMISSIONS.SUBSCRIPTION_AUTO_RENEW}>
+            <DropdownMenuItem onSelect={() => setActiveAction("auto-renew")}>
+              {subscription.autoRenew ? t("actions.disableAutoRenew") : t("actions.enableAutoRenew")}
+            </DropdownMenuItem>
+          </PlatformPermissionGate>
           <PlatformPermissionGate permission={PLATFORM_PERMISSIONS.SUBSCRIPTION_SUSPEND}>
             <DropdownMenuItem variant="destructive" onSelect={() => setActiveAction("suspend")}>
               {t("actions.suspend")}
@@ -123,6 +158,34 @@ export function SubscriptionRowActions({ subscription }: { subscription: Platfor
           </PlatformPermissionGate>
         </DropdownMenuContent>
       </DropdownMenu>
+
+      <ActionConfirmDialog
+        open={activeAction === "renew"}
+        onOpenChange={(open) => !open && setActiveAction(null)}
+        title={t("actions.renewTitle")}
+        description={t("actions.renewDescription", { plan: planName })}
+        confirmLabel={tCommon("confirm")}
+        cancelLabel={tCommon("cancel")}
+        isLoading={isRenewing}
+        fields={[]}
+        onConfirm={handleRenew}
+      />
+
+      <ActionConfirmDialog
+        open={activeAction === "auto-renew"}
+        onOpenChange={(open) => !open && setActiveAction(null)}
+        title={subscription.autoRenew ? t("actions.disableAutoRenewTitle") : t("actions.enableAutoRenewTitle")}
+        description={
+          subscription.autoRenew
+            ? t("actions.disableAutoRenewDescription", { plan: planName })
+            : t("actions.enableAutoRenewDescription", { plan: planName })
+        }
+        confirmLabel={tCommon("confirm")}
+        cancelLabel={tCommon("cancel")}
+        isLoading={isTogglingAutoRenew}
+        fields={[]}
+        onConfirm={handleToggleAutoRenew}
+      />
 
       <ActionConfirmDialog
         open={activeAction === "suspend"}

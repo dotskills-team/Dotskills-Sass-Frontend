@@ -57,6 +57,7 @@ export const PLATFORM_PERMISSIONS = {
 
   SUBSCRIPTION_CREATE: "subscription:create",
   SUBSCRIPTION_READ: "subscription:read",
+  SUBSCRIPTION_AUTO_RENEW: "subscription:auto-renew",
   SUBSCRIPTION_UPDATE: "subscription:update",
   SUBSCRIPTION_CHANGE_PLAN: "subscription:change-plan",
   SUBSCRIPTION_CANCEL: "subscription:cancel",

@@ -86,6 +86,37 @@ export const subscriptionApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["Subscription"],
     }),
+
+    /**
+     * Platform override of a company's own Auto-Renew toggle — distinct
+     * hook name from the company-side `useUpdateSubscriptionAutoRenewMutation`
+     * (different endpoint, different permission: `platform:subscription:
+     * auto-renew` vs `company.subscription.auto-renew`, verified backend).
+     */
+    updatePlatformSubscriptionAutoRenew: builder.mutation<unknown, { id: string; autoRenew: boolean }>({
+      query: ({ id, autoRenew }) => ({
+        url: `/platform/subscriptions/${id}/auto-renew`,
+        method: "PATCH",
+        body: { autoRenew },
+      }),
+      invalidatesTags: ["Subscription"],
+    }),
+
+    /**
+     * "Renew Now" — the manual/exception override sitting alongside the
+     * automatic 10-minute renewal cron (SubscriptionRenewalScheduler,
+     * verified backend). Generates the next Billing→Invoice(ISSUED) for
+     * the subscription's locked snapshot price — idempotent, safe to
+     * click again (verified live: a second call returns the exact same
+     * already-issued Invoice, no duplicate created).
+     */
+    renewSubscription: builder.mutation<unknown, { id: string }>({
+      query: ({ id }) => ({
+        url: `/platform/subscriptions/${id}/renew`,
+        method: "POST",
+      }),
+      invalidatesTags: ["Subscription", "Billing", "Invoice"],
+    }),
   }),
 });
 
@@ -97,4 +128,6 @@ export const {
   useReactivateSubscriptionMutation,
   useCancelSubscriptionMutation,
   useExpireSubscriptionMutation,
+  useRenewSubscriptionMutation,
+  useUpdatePlatformSubscriptionAutoRenewMutation,
 } = subscriptionApi;
