@@ -1,0 +1,47 @@
+{
+  "stockTransfers": {
+    "title": "Stock Transfers",
+    "description": "Move stock between your branches and warehouses.",
+    "empty": "No stock transfers yet. Create your first one to get started.",
+    "createTrigger": "Create transfer",
+    "dispatchAction": "Dispatch",
+    "receiveAction": "Receive",
+    "columns": {
+      "product": "Product",
+      "fromLocation": "From",
+      "toLocation": "To",
+      "quantity": "Quantity",
+      "status": "Status",
+      "createdAt": "Created",
+      "actions": "Actions"
+    },
+    "form": {
+      "createTitle": "Create stock transfer",
+      "createDescription": "Move stock from one location to another.",
+      "createSuccess": "Stock transfer created.",
+      "fromLocation": "From location",
+      "fromLocationPlaceholder": "Select source location",
+      "fromLocationRequired": "Please select a source location.",
+      "toLocation": "To location",
+      "toLocationPlaceholder": "Select destination location",
+      "toLocationRequired": "Please select a destination location.",
+      "sameLocation": "Source and destination location can't be the same.",
+      "product": "Product",
+      "productPlaceholder": "Select a product",
+      "productRequired": "Please select a product.",
+      "quantity": "Quantity",
+      "quantityPlaceholder": "0",
+      "quantityPositive": "Quantity must be greater than 0."
+    },
+    "dispatchDialog": {
+      "title": "Dispatch transfer",
+      "description": "Confirm that these goods have left the source location. Stock will be deducted immediately.",
+      "success": "Transfer dispatched."
+    },
+    "receiveDialog": {
+      "title": "Receive transfer",
+      "description": "Confirm that these goods have arrived at the destination. Stock will be added immediately.",
+      "success": "Transfer received."
+    }
+  }
+}

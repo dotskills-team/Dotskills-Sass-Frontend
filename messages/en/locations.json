@@ -1,0 +1,49 @@
+{
+  "locations": {
+    "title": "Locations",
+    "description": "Branches and warehouses where you sell and store stock.",
+    "empty": "No locations yet. Create your first branch or warehouse to get started.",
+    "columns": {
+      "name": "Name",
+      "type": "Type",
+      "address": "Address",
+      "salesEnabled": "Sales enabled",
+      "status": "Status"
+    },
+    "type": {
+      "BRANCH": "Branch",
+      "WAREHOUSE": "Warehouse"
+    },
+    "actions": {
+      "edit": "Edit",
+      "activate": "Activate",
+      "deactivate": "Deactivate",
+      "activateTitle": "Activate location",
+      "activateDescription": "Activate \"{name}\"? It will become available for use again.",
+      "activateSuccess": "Location activated.",
+      "deactivateTitle": "Deactivate location",
+      "deactivateDescription": "Deactivate \"{name}\"? It will no longer be usable for new sales or stock.",
+      "deactivateSuccess": "Location deactivated."
+    },
+    "form": {
+      "createTitle": "Create location",
+      "createDescription": "Add a new branch or warehouse.",
+      "createSuccess": "Location created.",
+      "editTitle": "Edit location",
+      "editDescription": "Update details for \"{name}\".",
+      "editSuccess": "Location updated.",
+      "name": "Name",
+      "namePlaceholder": "e.g. Dhanmondi Branch",
+      "nameRequired": "Name is required.",
+      "nameLength": "Name must be 2–120 characters.",
+      "locationType": "Type",
+      "locationTypePlaceholder": "Select a type",
+      "locationTypeRequired": "Please select a type.",
+      "locationTypeDescription": "Cannot be changed after the location is created.",
+      "address": "Address",
+      "addressPlaceholder": "Optional address",
+      "isSalesEnabled": "Allow sales at this location",
+      "isSalesEnabledDescription": "Turn off for a warehouse that only stores stock and never sells directly."
+    }
+  }
+}

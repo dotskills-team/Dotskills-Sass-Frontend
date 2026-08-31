@@ -1,0 +1,71 @@
+{
+  "sales": {
+    "title": "বিক্রয়",
+    "description": "আপনার POS-এ রেকর্ড হওয়া প্রতিটা বিক্রয়।",
+    "empty": "এখনো কোনো বিক্রয় রেকর্ড হয়নি।",
+    "newSale": "নতুন বিক্রয়",
+    "locationFilterPlaceholder": "লোকেশন দিয়ে ফিল্টার করুন",
+    "allLocations": "সব লোকেশন",
+    "columns": {
+      "saleNumber": "বিক্রয় #",
+      "location": "লোকেশন",
+      "customer": "কাস্টমার",
+      "total": "সর্বমোট",
+      "status": "স্ট্যাটাস",
+      "date": "তারিখ"
+    },
+    "detail": {
+      "backToList": "বিক্রয় তালিকায় ফিরুন",
+      "receiptAction": "রশিদ দেখুন",
+      "itemsTitle": "লাইন আইটেম",
+      "paymentsTitle": "পেমেন্ট",
+      "returnsTitle": "রিটার্ন",
+      "noReturns": "এই বিক্রয়ে কোনো রিটার্ন রেকর্ড নেই।",
+      "noteLabel": "নোট",
+      "voidedNotice": "এই বিক্রয় {date}-এ Void করা হয়েছে। কারণ: {reason}",
+      "voidAction": "Void করুন",
+      "voidTitle": "বিক্রয় Void করুন",
+      "voidDescription": "\"{saleNumber}\" বিক্রয়টা Void করবেন? স্টক ও বাকি ব্যালেন্স ফেরত যাবে। এটা আর ফেরানো যাবে না।",
+      "voidReasonLabel": "কারণ",
+      "voidReasonPlaceholder": "কেন এই বিক্রয় Void করা হচ্ছে?",
+      "voidReasonRequired": "একটা কারণ লেখা আবশ্যক।",
+      "voidSuccess": "বিক্রয় Void হয়েছে।",
+      "returnAction": "রিটার্ন তৈরি করুন"
+    },
+    "returnDialog": {
+      "title": "রিটার্ন তৈরি করুন",
+      "description": "এই বিক্রয় থেকে আইটেম স্টকে ফেরত দিন।",
+      "reason": "কারণ",
+      "reasonPlaceholder": "কেন ফেরত দেওয়া হচ্ছে?",
+      "reasonRequired": "একটা কারণ লেখা আবশ্যক।",
+      "refundAmount": "রিফান্ড পরিমাণ",
+      "refundAmountPlaceholder": "ঐচ্ছিক — ০.০০",
+      "quantitySold": "বিক্রি হয়েছে",
+      "quantity": "ফেরত পরিমাণ",
+      "quantityPlaceholder": "০",
+      "submit": "রিটার্ন তৈরি করুন",
+      "success": "রিটার্ন তৈরি হয়েছে।"
+    },
+    "receipt": {
+      "confirmedTitle": "বিক্রয় সম্পন্ন হয়েছে",
+      "confirmedDescription": "বিক্রয় #{saleNumber} সফলভাবে রেকর্ড হয়েছে।",
+      "notFoundTitle": "বিক্রয়ের তথ্য পাওয়া যায়নি",
+      "printButton": "রশিদ প্রিন্ট করুন",
+      "newSaleButton": "নতুন বিক্রয়",
+      "backToDetail": "বিক্রয়ের বিস্তারিতে ফিরুন",
+      "date": "তারিখ",
+      "location": "লোকেশন",
+      "item": "পণ্য",
+      "quantity": "পরিমাণ",
+      "unitPrice": "মূল্য",
+      "lineTotal": "মোট",
+      "subtotal": "সাবটোটাল",
+      "itemDiscount": "আইটেম ছাড়",
+      "saleDiscount": "বিলের ছাড়",
+      "tax": "ট্যাক্স",
+      "total": "সর্বমোট",
+      "paymentsTitle": "পেমেন্ট",
+      "thankYou": "কেনাকাটার জন্য ধন্যবাদ।"
+    }
+  }
+}

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 import { UserGreeting } from "@/features/auth/components/user-greeting";
+import { SetupIncompleteBanner } from "@/features/setup-wizard/components/setup-incomplete-banner";
 
 export const metadata: Metadata = {
   title: "Dashboard — DotSkills",
@@ -13,6 +14,7 @@ export const metadata: Metadata = {
 export default function CompanyDashboardPage() {
   return (
     <div className="p-6">
+      <SetupIncompleteBanner />
       <h1 className="text-2xl font-semibold text-foreground">Company Dashboard</h1>
       <UserGreeting />
     </div>

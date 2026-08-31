@@ -1,0 +1,62 @@
+{
+  "pos": {
+    "title": "Point of Sale",
+    "description": "Ring up a new sale.",
+    "location": "Location",
+    "locationPlaceholder": "Select a location",
+    "noSalesLocations": "No location is enabled for sales yet. Enable one from Locations first.",
+    "searchPlaceholder": "Search by name, SKU, or scan a barcode…",
+    "scanNotFound": "No product found for the scanned code \"{code}\".",
+    "cartEmpty": "Cart is empty. Search or scan a product to add it.",
+    "cart": {
+      "product": "Product",
+      "quantity": "Quantity",
+      "unitPrice": "Unit price",
+      "discount": "Discount",
+      "subtotal": "Subtotal",
+      "decrease": "Decrease quantity",
+      "increase": "Increase quantity",
+      "remove": "Remove"
+    },
+    "summary": {
+      "subtotal": "Subtotal",
+      "itemDiscount": "Item discounts",
+      "saleDiscount": "Sale discount",
+      "tax": "Tax (estimated)",
+      "total": "Total"
+    },
+    "saleDiscountPlaceholder": "0.00",
+    "customer": {
+      "label": "Customer",
+      "placeholder": "Select a customer (optional)",
+      "none": "No customer",
+      "dueBalance": "Current due: {balance}"
+    },
+    "paymentMethod": {
+      "CASH": "Cash",
+      "CARD": "Card",
+      "BKASH": "bKash",
+      "NAGAD": "Nagad",
+      "DUE": "Due"
+    },
+    "tender": {
+      "title": "Payment",
+      "addMethod": "Add payment method",
+      "remove": "Remove",
+      "total": "Total",
+      "entered": "Entered",
+      "remaining": "Remaining",
+      "fillRemaining": "Fill remaining"
+    },
+    "dueLimitDialog": {
+      "title": "Due limit will be exceeded",
+      "description": "This sale will push the customer's due balance past the allowed limit. Continue anyway?"
+    },
+    "submit": {
+      "button": "Complete sale",
+      "paymentMismatch": "Payments must add up to exactly the total before you can complete this sale.",
+      "customerRequiredForDue": "Select a customer before using the Due payment method.",
+      "success": "Sale completed."
+    }
+  }
+}

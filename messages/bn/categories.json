@@ -1,0 +1,38 @@
+{
+  "categories": {
+    "title": "ক্যাটাগরি",
+    "description": "সহজে খুঁজে পাওয়া ও রিপোর্টের জন্য পণ্যগুলো দলভুক্ত করুন।",
+    "empty": "এখনো কোনো ক্যাটাগরি নেই। শুরু করতে প্রথমটা তৈরি করুন।",
+    "columns": {
+      "name": "নাম",
+      "parent": "প্যারেন্ট ক্যাটাগরি",
+      "status": "স্ট্যাটাস"
+    },
+    "actions": {
+      "edit": "এডিট",
+      "activate": "সক্রিয় করুন",
+      "deactivate": "নিষ্ক্রিয় করুন",
+      "activateTitle": "ক্যাটাগরি সক্রিয় করুন",
+      "activateDescription": "\"{name}\" সক্রিয় করবেন? এটা আবার বেছে নেওয়া যাবে।",
+      "activateSuccess": "ক্যাটাগরি সক্রিয় হয়েছে।",
+      "deactivateTitle": "ক্যাটাগরি নিষ্ক্রিয় করুন",
+      "deactivateDescription": "\"{name}\" নিষ্ক্রিয় করবেন? পুরনো পণ্যে এটা থেকেই যাবে, কিন্তু নতুনগুলোর জন্য বেছে নেওয়া যাবে না।",
+      "deactivateSuccess": "ক্যাটাগরি নিষ্ক্রিয় হয়েছে।"
+    },
+    "form": {
+      "createTitle": "ক্যাটাগরি তৈরি করুন",
+      "createDescription": "একটা নতুন পণ্য ক্যাটাগরি যোগ করুন।",
+      "createSuccess": "ক্যাটাগরি তৈরি হয়েছে।",
+      "editTitle": "ক্যাটাগরি এডিট করুন",
+      "editDescription": "\"{name}\"-এর তথ্য আপডেট করুন।",
+      "editSuccess": "ক্যাটাগরি আপডেট হয়েছে।",
+      "name": "নাম",
+      "namePlaceholder": "যেমন: পানীয়",
+      "nameRequired": "নাম আবশ্যক।",
+      "nameLength": "নাম ২–১২০ অক্ষরের মধ্যে হতে হবে।",
+      "parentCategory": "প্যারেন্ট ক্যাটাগরি",
+      "parentCategoryPlaceholder": "একটা প্যারেন্ট ক্যাটাগরি বেছে নিন",
+      "parentCategoryNone": "কোনোটা না — টপ-লেভেল ক্যাটাগরি"
+    }
+  }
+}

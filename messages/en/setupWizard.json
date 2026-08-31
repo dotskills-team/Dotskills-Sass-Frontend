@@ -1,0 +1,38 @@
+{
+  "setupWizard": {
+    "title": "Set up your shop",
+    "description": "A few quick steps to get your shop ready to sell.",
+    "bannerTitle": "Finish setting up your shop",
+    "bannerDescription": "You haven't added a branch or warehouse yet. A few quick steps will get you ready to sell.",
+    "bannerCta": "Continue setup",
+    "bannerDismiss": "Dismiss",
+    "stepOf": "Step {step} of {total}",
+    "skip": "Skip for now",
+    "next": "Next",
+    "back": "Back",
+    "finish": "Finish setup",
+    "goToDashboard": "Go to dashboard",
+    "step1": {
+      "title": "Add your first location",
+      "description": "A branch or warehouse where you'll sell and store stock.",
+      "alreadyHaveTitle": "You already have {count} location(s)",
+      "alreadyHaveDescription": "You can add more any time from the Locations page."
+    },
+    "step2": {
+      "title": "Choose how your shop works",
+      "description": "Turn on only what you actually need — you can change these any time."
+    },
+    "step3": {
+      "title": "Add your products",
+      "description": "Add products one at a time, or import many at once from a spreadsheet.",
+      "needUnitTitle": "Add a measurement unit first",
+      "needUnitDescription": "Products need a unit (like Piece or Kg) before you can add them.",
+      "addUnit": "Add a unit",
+      "haveUnitsNotice": "You have {count} unit(s) set up."
+    },
+    "complete": {
+      "title": "You're all set",
+      "description": "Your shop is ready. You can always fine-tune everything later from the sidebar."
+    }
+  }
+}

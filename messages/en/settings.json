@@ -1,0 +1,36 @@
+{
+  "settings": {
+    "title": "Settings",
+    "description": "Turn features on or off to fit how your shop works.",
+    "saveSuccess": "Settings updated.",
+    "save": "Save changes",
+    "toggles": {
+      "enableMultiUnit": "Multi-unit conversion",
+      "enableMultiUnitHelp": "Turn on if you buy or sell in more than one unit, like piece and dozen.",
+      "enableCustomerDue": "Customer due (credit sales)",
+      "enableCustomerDueHelp": "Turn on if you let customers buy now and pay later.",
+      "enableBarcode": "Barcode scanning",
+      "enableBarcodeHelp": "Turn on if you scan barcodes at checkout.",
+      "enableProductVariant": "Product variants",
+      "enableProductVariantHelp": "Turn on if products come in sizes or colors, like clothing or shoes.",
+      "enableComboOffer": "Combo offers",
+      "enableComboOfferHelp": "Turn on if you run bundle deals, like \"buy 2 get 1 free\".",
+      "enableMultiLocation": "Multiple locations",
+      "enableMultiLocationHelp": "Turn on if you have more than one branch or warehouse.",
+      "allowNegativeStock": "Allow selling out-of-stock items",
+      "allowNegativeStockHelp": "Turn on if a sale should go through even when the system shows zero stock (stock will show as negative until corrected).",
+      "enableTax": "Tax / VAT",
+      "enableTaxHelp": "Turn on if you charge VAT or tax on sales."
+    },
+    "fields": {
+      "maxCustomerDueLimit": "Maximum due per customer",
+      "maxCustomerDueLimitPlaceholder": "No limit",
+      "maxCustomerDueLimitHelp": "You'll get a warning when a customer's due balance would go past this amount. Leave blank for no limit.",
+      "maxCustomerDueLimitNonNegative": "Must be zero or a positive number.",
+      "defaultTaxRate": "Default tax rate (%)",
+      "defaultTaxRatePlaceholder": "e.g. 15",
+      "defaultTaxRateHelp": "Applied to sales unless a product has its own rate.",
+      "defaultTaxRateNonNegative": "Must be zero or a positive number."
+    }
+  }
+}

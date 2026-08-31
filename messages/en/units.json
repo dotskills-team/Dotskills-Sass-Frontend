@@ -1,0 +1,50 @@
+{
+  "units": {
+    "title": "Units",
+    "description": "Measurement units your products are bought and sold in (piece, dozen, kg).",
+    "empty": "No units yet. Create your first one to get started.",
+    "columns": {
+      "name": "Name",
+      "code": "Code",
+      "baseUnit": "Base unit",
+      "conversionFactor": "Conversion factor",
+      "status": "Status"
+    },
+    "actions": {
+      "edit": "Edit",
+      "activate": "Activate",
+      "deactivate": "Deactivate",
+      "activateTitle": "Activate unit",
+      "activateDescription": "Activate \"{name}\"? It will become available for selection again.",
+      "activateSuccess": "Unit activated.",
+      "deactivateTitle": "Deactivate unit",
+      "deactivateDescription": "Deactivate \"{name}\"? It will no longer be selectable for new products.",
+      "deactivateSuccess": "Unit deactivated."
+    },
+    "form": {
+      "createTitle": "Create unit",
+      "createDescription": "Add a new measurement unit.",
+      "createSuccess": "Unit created.",
+      "editTitle": "Edit unit",
+      "editDescription": "Update details for \"{name}\".",
+      "editSuccess": "Unit updated.",
+      "name": "Name",
+      "namePlaceholder": "e.g. Dozen",
+      "nameRequired": "Name is required.",
+      "nameLength": "Name must be at most 60 characters.",
+      "code": "Code",
+      "codePlaceholder": "e.g. DZN",
+      "codeRequired": "Code is required.",
+      "codeLength": "Code must be at most 20 characters.",
+      "codeDescription": "Cannot be changed after the unit is created.",
+      "baseUnit": "Base unit",
+      "baseUnitPlaceholder": "Select a base unit",
+      "baseUnitNone": "None — this is a base unit",
+      "baseUnitDescription": "Only set this if this unit converts to another (e.g. Dozen converts to Piece).",
+      "conversionFactor": "Conversion factor",
+      "conversionFactorPlaceholder": "e.g. 12",
+      "conversionFactorDescription": "How many base units one of this unit equals.",
+      "conversionFactorPositive": "Conversion factor must be a positive number."
+    }
+  }
+}

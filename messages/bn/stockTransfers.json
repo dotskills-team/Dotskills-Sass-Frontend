@@ -1,0 +1,47 @@
+{
+  "stockTransfers": {
+    "title": "স্টক ট্রান্সফার",
+    "description": "শাখা ও গুদামের মধ্যে স্টক সরান।",
+    "empty": "এখনো কোনো স্টক ট্রান্সফার নেই। শুরু করতে প্রথমটা তৈরি করুন।",
+    "createTrigger": "ট্রান্সফার তৈরি করুন",
+    "dispatchAction": "ডিসপ্যাচ করুন",
+    "receiveAction": "রিসিভ করুন",
+    "columns": {
+      "product": "পণ্য",
+      "fromLocation": "থেকে",
+      "toLocation": "যেখানে",
+      "quantity": "পরিমাণ",
+      "status": "স্ট্যাটাস",
+      "createdAt": "তৈরি হয়েছে",
+      "actions": "অ্যাকশন"
+    },
+    "form": {
+      "createTitle": "স্টক ট্রান্সফার তৈরি করুন",
+      "createDescription": "এক লোকেশন থেকে আরেক লোকেশনে স্টক সরান।",
+      "createSuccess": "স্টক ট্রান্সফার তৈরি হয়েছে।",
+      "fromLocation": "উৎস লোকেশন",
+      "fromLocationPlaceholder": "উৎস লোকেশন বেছে নিন",
+      "fromLocationRequired": "একটা উৎস লোকেশন বেছে নিন।",
+      "toLocation": "গন্তব্য লোকেশন",
+      "toLocationPlaceholder": "গন্তব্য লোকেশন বেছে নিন",
+      "toLocationRequired": "একটা গন্তব্য লোকেশন বেছে নিন।",
+      "sameLocation": "উৎস ও গন্তব্য লোকেশন একই হতে পারবে না।",
+      "product": "পণ্য",
+      "productPlaceholder": "একটা পণ্য বেছে নিন",
+      "productRequired": "একটা পণ্য বেছে নিন।",
+      "quantity": "পরিমাণ",
+      "quantityPlaceholder": "০",
+      "quantityPositive": "পরিমাণ শূন্যের চেয়ে বেশি হতে হবে।"
+    },
+    "dispatchDialog": {
+      "title": "ট্রান্সফার ডিসপ্যাচ করুন",
+      "description": "নিশ্চিত করুন যে এই মাল উৎস লোকেশন থেকে বের হয়ে গেছে। স্টক সাথে সাথে বিয়োগ হয়ে যাবে।",
+      "success": "ট্রান্সফার ডিসপ্যাচ হয়েছে।"
+    },
+    "receiveDialog": {
+      "title": "ট্রান্সফার রিসিভ করুন",
+      "description": "নিশ্চিত করুন যে এই মাল গন্তব্য লোকেশনে পৌঁছে গেছে। স্টক সাথে সাথে যোগ হয়ে যাবে।",
+      "success": "ট্রান্সফার রিসিভ হয়েছে।"
+    }
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "locations": {
+    "title": "লোকেশন",
+    "description": "শাখা ও গুদাম যেখানে আপনি বিক্রি করেন এবং স্টক রাখেন।",
+    "empty": "এখনো কোনো লোকেশন নেই। শুরু করতে প্রথম শাখা বা গুদাম তৈরি করুন।",
+    "columns": {
+      "name": "নাম",
+      "type": "ধরন",
+      "address": "ঠিকানা",
+      "salesEnabled": "বিক্রি চালু",
+      "status": "স্ট্যাটাস"
+    },
+    "type": {
+      "BRANCH": "শাখা",
+      "WAREHOUSE": "গুদাম"
+    },
+    "actions": {
+      "edit": "এডিট",
+      "activate": "সক্রিয় করুন",
+      "deactivate": "নিষ্ক্রিয় করুন",
+      "activateTitle": "লোকেশন সক্রিয় করুন",
+      "activateDescription": "\"{name}\" সক্রিয় করবেন? এটা আবার ব্যবহার করা যাবে।",
+      "activateSuccess": "লোকেশন সক্রিয় হয়েছে।",
+      "deactivateTitle": "লোকেশন নিষ্ক্রিয় করুন",
+      "deactivateDescription": "\"{name}\" নিষ্ক্রিয় করবেন? নতুন বিক্রি বা স্টকের জন্য এটা আর ব্যবহার করা যাবে না।",
+      "deactivateSuccess": "লোকেশন নিষ্ক্রিয় হয়েছে।"
+    },
+    "form": {
+      "createTitle": "লোকেশন তৈরি করুন",
+      "createDescription": "একটা নতুন শাখা বা গুদাম যোগ করুন।",
+      "createSuccess": "লোকেশন তৈরি হয়েছে।",
+      "editTitle": "লোকেশন এডিট করুন",
+      "editDescription": "\"{name}\"-এর তথ্য আপডেট করুন।",
+      "editSuccess": "লোকেশন আপডেট হয়েছে।",
+      "name": "নাম",
+      "namePlaceholder": "যেমন: ধানমন্ডি শাখা",
+      "nameRequired": "নাম আবশ্যক।",
+      "nameLength": "নাম ২–১২০ অক্ষরের মধ্যে হতে হবে।",
+      "locationType": "ধরন",
+      "locationTypePlaceholder": "একটা ধরন বেছে নিন",
+      "locationTypeRequired": "একটা ধরন বেছে নিন।",
+      "locationTypeDescription": "লোকেশন তৈরির পর এটা পরিবর্তন করা যাবে না।",
+      "address": "ঠিকানা",
+      "addressPlaceholder": "ঐচ্ছিক ঠিকানা",
+      "isSalesEnabled": "এই লোকেশনে বিক্রির অনুমতি দিন",
+      "isSalesEnabledDescription": "যে গুদাম শুধু স্টক রাখে, সরাসরি বিক্রি করে না, তার জন্য এটা বন্ধ রাখুন।"
+    }
+  }
+}

@@ -17,6 +17,16 @@
     "platformRoles": "রোল",
     "platformPermissions": "পারমিশন",
     "companyRoles": "রোল",
-    "companyMembers": "মেম্বার"
+    "companyMembers": "মেম্বার",
+    "locations": "লোকেশন",
+    "categories": "ক্যাটাগরি",
+    "units": "ইউনিট",
+    "products": "পণ্য",
+    "customers": "কাস্টমার",
+    "suppliers": "সাপ্লায়ার",
+    "settings": "সেটিংস",
+    "purchaseOrders": "পার্চেজ অর্ডার",
+    "stockTransfers": "স্টক ট্রান্সফার",
+    "sales": "বিক্রয়"
   }
 }

@@ -36,6 +36,19 @@ const MESSAGE_NAMESPACES = [
   "billing",
   "invoices",
   "payments",
+  "locations",
+  "categories",
+  "units",
+  "products",
+  "customers",
+  "suppliers",
+  "settings",
+  "setupWizard",
+  "purchaseOrders",
+  "stockTransfers",
+  "supplierPayments",
+  "pos",
+  "sales",
 ] as const;
 
 export default getRequestConfig(async () => {

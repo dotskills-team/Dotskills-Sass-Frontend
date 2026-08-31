@@ -17,6 +17,16 @@
     "platformRoles": "Roles",
     "platformPermissions": "Permissions",
     "companyRoles": "Roles",
-    "companyMembers": "Members"
+    "companyMembers": "Members",
+    "locations": "Locations",
+    "categories": "Categories",
+    "units": "Units",
+    "products": "Products",
+    "customers": "Customers",
+    "suppliers": "Suppliers",
+    "settings": "Settings",
+    "purchaseOrders": "Purchase Orders",
+    "stockTransfers": "Stock Transfers",
+    "sales": "Sales"
   }
 }

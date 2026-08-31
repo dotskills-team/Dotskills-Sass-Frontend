@@ -1,0 +1,36 @@
+{
+  "settings": {
+    "title": "সেটিংস",
+    "description": "আপনার দোকানের ধরন অনুযায়ী ফিচার চালু/বন্ধ করুন।",
+    "saveSuccess": "সেটিংস আপডেট হয়েছে।",
+    "save": "পরিবর্তন সংরক্ষণ করুন",
+    "toggles": {
+      "enableMultiUnit": "মাল্টি-ইউনিট কনভার্সন",
+      "enableMultiUnitHelp": "আপনি একাধিক ইউনিটে (যেমন পিস ও ডজন) কেনা-বেচা করলে এটা চালু রাখুন।",
+      "enableCustomerDue": "কাস্টমার বাকি (ক্রেডিট বিক্রি)",
+      "enableCustomerDueHelp": "কাস্টমারকে এখন কিনে পরে টাকা দেওয়ার সুযোগ দিলে এটা চালু রাখুন।",
+      "enableBarcode": "বারকোড স্ক্যানিং",
+      "enableBarcodeHelp": "চেকআউটে বারকোড স্ক্যান করলে এটা চালু রাখুন।",
+      "enableProductVariant": "প্রোডাক্ট ভ্যারিয়েন্ট",
+      "enableProductVariantHelp": "পণ্যে সাইজ বা কালার থাকলে (যেমন কাপড়/জুতা) এটা চালু রাখুন।",
+      "enableComboOffer": "কম্বো অফার",
+      "enableComboOfferHelp": "বান্ডেল অফার (যেমন \"২টা নিলে ১টা ফ্রি\") থাকলে এটা চালু রাখুন।",
+      "enableMultiLocation": "একাধিক লোকেশন",
+      "enableMultiLocationHelp": "আপনার একাধিক শাখা বা গুদাম থাকলে এটা চালু রাখুন।",
+      "allowNegativeStock": "স্টক শেষ হলেও বিক্রির অনুমতি",
+      "allowNegativeStockHelp": "সিস্টেমে স্টক শূন্য দেখালেও বিক্রি সম্পন্ন হতে দিতে চাইলে এটা চালু রাখুন (ঠিক না করা পর্যন্ত স্টক নেগেটিভ দেখাবে)।",
+      "enableTax": "ট্যাক্স / ভ্যাট",
+      "enableTaxHelp": "বিক্রয়ে ভ্যাট বা ট্যাক্স নিলে এটা চালু রাখুন।"
+    },
+    "fields": {
+      "maxCustomerDueLimit": "প্রতি কাস্টমারের সর্বোচ্চ বাকি",
+      "maxCustomerDueLimitPlaceholder": "সীমা নেই",
+      "maxCustomerDueLimitHelp": "কোনো কাস্টমারের বাকি এই পরিমাণ ছাড়িয়ে গেলে আপনি একটা সতর্কতা পাবেন। সীমা না থাকলে খালি রাখুন।",
+      "maxCustomerDueLimitNonNegative": "শূন্য বা একটা ধনাত্মক সংখ্যা হতে হবে।",
+      "defaultTaxRate": "ডিফল্ট ট্যাক্স হার (%)",
+      "defaultTaxRatePlaceholder": "যেমন: ১৫",
+      "defaultTaxRateHelp": "পণ্যের নিজস্ব হার না থাকলে বিক্রয়ে এটা প্রয়োগ হবে।",
+      "defaultTaxRateNonNegative": "শূন্য বা একটা ধনাত্মক সংখ্যা হতে হবে।"
+    }
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "sales": {
+    "title": "Sales",
+    "description": "Every sale recorded at your POS.",
+    "empty": "No sales recorded yet.",
+    "newSale": "New sale",
+    "locationFilterPlaceholder": "Filter by location",
+    "allLocations": "All locations",
+    "columns": {
+      "saleNumber": "Sale #",
+      "location": "Location",
+      "customer": "Customer",
+      "total": "Total",
+      "status": "Status",
+      "date": "Date"
+    },
+    "detail": {
+      "backToList": "Back to sales",
+      "receiptAction": "View receipt",
+      "itemsTitle": "Line items",
+      "paymentsTitle": "Payments",
+      "returnsTitle": "Returns",
+      "noReturns": "No returns recorded for this sale.",
+      "noteLabel": "Note",
+      "voidedNotice": "This sale was voided on {date}. Reason: {reason}",
+      "voidAction": "Void sale",
+      "voidTitle": "Void sale",
+      "voidDescription": "Void sale \"{saleNumber}\"? Stock and any due balance will be reversed. This can't be undone.",
+      "voidReasonLabel": "Reason",
+      "voidReasonPlaceholder": "Why is this sale being voided?",
+      "voidReasonRequired": "A reason is required.",
+      "voidSuccess": "Sale voided.",
+      "returnAction": "Create return"
+    },
+    "returnDialog": {
+      "title": "Create return",
+      "description": "Return items from this sale to stock.",
+      "reason": "Reason",
+      "reasonPlaceholder": "Why is this being returned?",
+      "reasonRequired": "A reason is required.",
+      "refundAmount": "Refund amount",
+      "refundAmountPlaceholder": "Optional — 0.00",
+      "quantitySold": "Sold",
+      "quantity": "Return quantity",
+      "quantityPlaceholder": "0",
+      "submit": "Create return",
+      "success": "Return created."
+    },
+    "receipt": {
+      "confirmedTitle": "Sale completed",
+      "confirmedDescription": "Sale #{saleNumber} was recorded successfully.",
+      "notFoundTitle": "Sale not found",
+      "printButton": "Print receipt",
+      "newSaleButton": "New sale",
+      "backToDetail": "Back to sale details",
+      "date": "Date",
+      "location": "Location",
+      "item": "Item",
+      "quantity": "Qty",
+      "unitPrice": "Price",
+      "lineTotal": "Total",
+      "subtotal": "Subtotal",
+      "itemDiscount": "Item discounts",
+      "saleDiscount": "Sale discount",
+      "tax": "Tax",
+      "total": "Total",
+      "paymentsTitle": "Payments",
+      "thankYou": "Thank you for your purchase."
+    }
+  }
+}

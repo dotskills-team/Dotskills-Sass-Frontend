@@ -1,0 +1,92 @@
+{
+  "products": {
+    "title": "Products",
+    "description": "Your product catalog — SKU, pricing, and stock reorder levels.",
+    "columns": {
+      "product": "Product",
+      "category": "Category",
+      "unit": "Unit",
+      "salePrice": "Sale price",
+      "reorderLevel": "Reorder level",
+      "status": "Status"
+    },
+    "actions": {
+      "edit": "Edit",
+      "activate": "Activate",
+      "deactivate": "Deactivate",
+      "activateTitle": "Activate product",
+      "activateDescription": "Activate \"{name}\"? It will become sellable again.",
+      "activateSuccess": "Product activated.",
+      "deactivateTitle": "Deactivate product",
+      "deactivateDescription": "Deactivate \"{name}\"? It won't be sellable until reactivated.",
+      "deactivateSuccess": "Product deactivated."
+    },
+    "form": {
+      "createTitle": "Create product",
+      "createDescription": "Add a new product to your catalog.",
+      "createSuccess": "Product created.",
+      "editTitle": "Edit product",
+      "editDescription": "Update details for \"{name}\".",
+      "editSuccess": "Product updated.",
+      "sku": "SKU",
+      "skuPlaceholder": "e.g. RICE-5KG",
+      "skuRequired": "SKU is required.",
+      "skuLength": "SKU must be at most 60 characters.",
+      "skuDescription": "Cannot be changed after the product is created.",
+      "name": "Name",
+      "namePlaceholder": "e.g. Fresh Rice 5kg",
+      "nameRequired": "Name is required.",
+      "nameLength": "Name must be 2–200 characters.",
+      "category": "Category",
+      "categoryPlaceholder": "Select a category",
+      "categoryNone": "No category",
+      "baseUnit": "Unit",
+      "baseUnitPlaceholder": "Select a unit",
+      "baseUnitRequired": "Please select a unit.",
+      "barcode": "Barcode",
+      "barcodePlaceholder": "Optional barcode",
+      "costPrice": "Cost price",
+      "costPricePlaceholder": "0.00",
+      "salePrice": "Sale price",
+      "salePricePlaceholder": "0.00",
+      "reorderLevel": "Reorder level",
+      "reorderLevelPlaceholder": "0",
+      "reorderLevelDescription": "You'll be alerted when stock falls below this amount.",
+      "pricePositive": "Must be zero or a positive number.",
+      "sellByWeight": "Sold by weight",
+      "sellByWeightDescription": "Turn on for items sold by weight, like rice or vegetables, instead of by piece."
+    },
+    "bulkImport": {
+      "trigger": "Bulk import",
+      "title": "Bulk import products",
+      "description": "Upload a CSV file to add or update many products at once.",
+      "downloadTemplate": "Download CSV template",
+      "uploadLabel": "Upload CSV file",
+      "uploadHelp": "Use the template above, or any CSV with the same column headers. Existing SKUs will be updated; new SKUs will be created.",
+      "parseError": "Could not read this file. Make sure it's a valid CSV.",
+      "emptyFileError": "This file has no rows to import.",
+      "previewing": "Checking your file...",
+      "previewSummary": "{createCount} to create, {updateCount} to update, {errorCount} with errors",
+      "previewErrorNotice": "Rows with errors will be skipped — the rest will still import.",
+      "columns": {
+        "row": "Row",
+        "sku": "SKU",
+        "name": "Name",
+        "status": "Result",
+        "detail": "Detail"
+      },
+      "status": {
+        "CREATE": "Will create",
+        "UPDATE": "Will update",
+        "ERROR": "Error"
+      },
+      "categoryWillBeCreated": "New category will be created: \"{name}\"",
+      "confirm": "Import {count} products",
+      "confirming": "Importing...",
+      "confirmSuccess": "Import complete: {createdCount} created, {updatedCount} updated.",
+      "confirmPartialErrorNotice": "{errorCount} rows were skipped due to errors.",
+      "startOver": "Choose a different file",
+      "done": "Done"
+    }
+  }
+}

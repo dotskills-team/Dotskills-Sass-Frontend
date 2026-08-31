@@ -1,0 +1,50 @@
+{
+  "customers": {
+    "title": "Customers",
+    "description": "People and businesses you sell to, including any outstanding due balance.",
+    "empty": "No customers yet. Create your first one to get started.",
+    "columns": {
+      "name": "Name",
+      "phone": "Phone",
+      "type": "Type",
+      "dueBalance": "Due balance",
+      "status": "Status"
+    },
+    "type": {
+      "RETAIL": "Retail",
+      "WHOLESALE": "Wholesale"
+    },
+    "actions": {
+      "edit": "Edit",
+      "activate": "Activate",
+      "deactivate": "Deactivate",
+      "activateTitle": "Activate customer",
+      "activateDescription": "Activate \"{name}\"? They will become selectable for new sales again.",
+      "activateSuccess": "Customer activated.",
+      "deactivateTitle": "Deactivate customer",
+      "deactivateDescription": "Deactivate \"{name}\"? They won't be selectable for new sales.",
+      "deactivateSuccess": "Customer deactivated."
+    },
+    "form": {
+      "createTitle": "Create customer",
+      "createDescription": "Add a new customer.",
+      "createSuccess": "Customer created.",
+      "editTitle": "Edit customer",
+      "editDescription": "Update details for \"{name}\".",
+      "editSuccess": "Customer updated.",
+      "name": "Name",
+      "namePlaceholder": "e.g. Karim Traders",
+      "nameRequired": "Name is required.",
+      "nameLength": "Name must be 2–160 characters.",
+      "phone": "Phone",
+      "phonePlaceholder": "Optional phone number",
+      "email": "Email",
+      "emailPlaceholder": "Optional email address",
+      "emailInvalid": "Enter a valid email address.",
+      "address": "Address",
+      "addressPlaceholder": "Optional address",
+      "customerType": "Type",
+      "dueBalanceNote": "Due balance is tracked automatically from sales and payments — it can't be set here."
+    }
+  }
+}

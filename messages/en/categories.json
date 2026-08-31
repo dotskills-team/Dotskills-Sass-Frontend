@@ -1,0 +1,38 @@
+{
+  "categories": {
+    "title": "Categories",
+    "description": "Group your products for easier browsing and reporting.",
+    "empty": "No categories yet. Create your first one to get started.",
+    "columns": {
+      "name": "Name",
+      "parent": "Parent category",
+      "status": "Status"
+    },
+    "actions": {
+      "edit": "Edit",
+      "activate": "Activate",
+      "deactivate": "Deactivate",
+      "activateTitle": "Activate category",
+      "activateDescription": "Activate \"{name}\"? It will become available for selection again.",
+      "activateSuccess": "Category activated.",
+      "deactivateTitle": "Deactivate category",
+      "deactivateDescription": "Deactivate \"{name}\"? Existing products keep it, but it won't be selectable for new ones.",
+      "deactivateSuccess": "Category deactivated."
+    },
+    "form": {
+      "createTitle": "Create category",
+      "createDescription": "Add a new product category.",
+      "createSuccess": "Category created.",
+      "editTitle": "Edit category",
+      "editDescription": "Update details for \"{name}\".",
+      "editSuccess": "Category updated.",
+      "name": "Name",
+      "namePlaceholder": "e.g. Beverages",
+      "nameRequired": "Name is required.",
+      "nameLength": "Name must be 2–120 characters.",
+      "parentCategory": "Parent category",
+      "parentCategoryPlaceholder": "Select a parent category",
+      "parentCategoryNone": "None — top-level category"
+    }
+  }
+}

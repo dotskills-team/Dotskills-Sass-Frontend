@@ -1,0 +1,58 @@
+{
+  "suppliers": {
+    "title": "সাপ্লায়ার",
+    "description": "যাদের কাছ থেকে আপনি কেনেন, বকেয়া পাওনা ব্যালেন্স সহ।",
+    "empty": "এখনো কোনো সাপ্লায়ার নেই। শুরু করতে প্রথমটা তৈরি করুন।",
+    "columns": {
+      "name": "নাম",
+      "phone": "ফোন",
+      "payableBalance": "পাওনা ব্যালেন্স",
+      "status": "স্ট্যাটাস"
+    },
+    "actions": {
+      "edit": "এডিট",
+      "activate": "সক্রিয় করুন",
+      "deactivate": "নিষ্ক্রিয় করুন",
+      "activateTitle": "সাপ্লায়ার সক্রিয় করুন",
+      "activateDescription": "\"{name}\" সক্রিয় করবেন? নতুন ক্রয়ের জন্য আবার বেছে নেওয়া যাবে।",
+      "activateSuccess": "সাপ্লায়ার সক্রিয় হয়েছে।",
+      "deactivateTitle": "সাপ্লায়ার নিষ্ক্রিয় করুন",
+      "deactivateDescription": "\"{name}\" নিষ্ক্রিয় করবেন? নতুন ক্রয়ের জন্য এটা বেছে নেওয়া যাবে না।",
+      "deactivateSuccess": "সাপ্লায়ার নিষ্ক্রিয় হয়েছে।",
+      "recordPayment": "পেমেন্ট রেকর্ড করুন"
+    },
+    "paymentDialog": {
+      "title": "পেমেন্ট রেকর্ড করুন — {name}",
+      "description": "বর্তমান পাওনা ব্যালেন্স: {balance}",
+      "amount": "পরিমাণ",
+      "amountPlaceholder": "০.০০",
+      "amountPositive": "পরিমাণ শূন্যের চেয়ে বেশি হতে হবে।",
+      "note": "নোট",
+      "notePlaceholder": "ঐচ্ছিক নোট",
+      "balanceNote": "এই পেমেন্ট রেকর্ড হওয়ার সাথে সাথে পাওনা ব্যালেন্স স্বয়ংক্রিয়ভাবে আপডেট হবে।",
+      "submit": "পেমেন্ট রেকর্ড করুন",
+      "success": "পেমেন্ট রেকর্ড হয়েছে।"
+    },
+    "viewPaymentLedger": "পেমেন্ট লেজার দেখুন",
+    "form": {
+      "createTitle": "সাপ্লায়ার তৈরি করুন",
+      "createDescription": "একটা নতুন সাপ্লায়ার যোগ করুন।",
+      "createSuccess": "সাপ্লায়ার তৈরি হয়েছে।",
+      "editTitle": "সাপ্লায়ার এডিট করুন",
+      "editDescription": "\"{name}\"-এর তথ্য আপডেট করুন।",
+      "editSuccess": "সাপ্লায়ার আপডেট হয়েছে।",
+      "name": "নাম",
+      "namePlaceholder": "যেমন: রহিম ট্রেডার্স",
+      "nameRequired": "নাম আবশ্যক।",
+      "nameLength": "নাম ২–১৬০ অক্ষরের মধ্যে হতে হবে।",
+      "phone": "ফোন",
+      "phonePlaceholder": "ঐচ্ছিক ফোন নম্বর",
+      "email": "ইমেইল",
+      "emailPlaceholder": "ঐচ্ছিক ইমেইল ঠিকানা",
+      "emailInvalid": "একটা সঠিক ইমেইল ঠিকানা দিন।",
+      "address": "ঠিকানা",
+      "addressPlaceholder": "ঐচ্ছিক ঠিকানা",
+      "payableBalanceNote": "পাওনা ব্যালেন্স ক্রয় ও পেমেন্ট থেকে স্বয়ংক্রিয়ভাবে হিসাব হয় — এখানে সেট করা যাবে না।"
+    }
+  }
+}

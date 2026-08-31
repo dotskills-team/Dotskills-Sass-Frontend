@@ -1,0 +1,58 @@
+{
+  "suppliers": {
+    "title": "Suppliers",
+    "description": "Vendors you buy from, including any outstanding payable balance.",
+    "empty": "No suppliers yet. Create your first one to get started.",
+    "columns": {
+      "name": "Name",
+      "phone": "Phone",
+      "payableBalance": "Payable balance",
+      "status": "Status"
+    },
+    "actions": {
+      "edit": "Edit",
+      "activate": "Activate",
+      "deactivate": "Deactivate",
+      "activateTitle": "Activate supplier",
+      "activateDescription": "Activate \"{name}\"? They will become selectable for new purchases again.",
+      "activateSuccess": "Supplier activated.",
+      "deactivateTitle": "Deactivate supplier",
+      "deactivateDescription": "Deactivate \"{name}\"? They won't be selectable for new purchases.",
+      "deactivateSuccess": "Supplier deactivated.",
+      "recordPayment": "Record payment"
+    },
+    "paymentDialog": {
+      "title": "Record payment — {name}",
+      "description": "Current payable balance: {balance}",
+      "amount": "Amount",
+      "amountPlaceholder": "0.00",
+      "amountPositive": "Amount must be greater than 0.",
+      "note": "Note",
+      "notePlaceholder": "Optional note",
+      "balanceNote": "The payable balance updates automatically once this payment is recorded.",
+      "submit": "Record payment",
+      "success": "Payment recorded."
+    },
+    "viewPaymentLedger": "View payment ledger",
+    "form": {
+      "createTitle": "Create supplier",
+      "createDescription": "Add a new supplier.",
+      "createSuccess": "Supplier created.",
+      "editTitle": "Edit supplier",
+      "editDescription": "Update details for \"{name}\".",
+      "editSuccess": "Supplier updated.",
+      "name": "Name",
+      "namePlaceholder": "e.g. Rahim Traders",
+      "nameRequired": "Name is required.",
+      "nameLength": "Name must be 2–160 characters.",
+      "phone": "Phone",
+      "phonePlaceholder": "Optional phone number",
+      "email": "Email",
+      "emailPlaceholder": "Optional email address",
+      "emailInvalid": "Enter a valid email address.",
+      "address": "Address",
+      "addressPlaceholder": "Optional address",
+      "payableBalanceNote": "Payable balance is tracked automatically from purchases and payments — it can't be set here."
+    }
+  }
+}

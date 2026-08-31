@@ -167,3 +167,25 @@
     @apply font-sans;
   }
 }
+
+/**
+ * "Print just one element" pattern (no existing convention in this
+ * codebase — first use, generically named so it's reusable beyond the
+ * Sale Receipt screen). Wrap the printable content in `.print-area`;
+ * everything else is hidden for the duration of the print, not removed
+ * from the DOM.
+ */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .print-area,
+  .print-area * {
+    visibility: visible;
+  }
+  .print-area {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+  }
+}

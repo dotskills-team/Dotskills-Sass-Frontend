@@ -1,0 +1,92 @@
+{
+  "products": {
+    "title": "পণ্য",
+    "description": "আপনার পণ্যের তালিকা — SKU, দাম এবং reorder level।",
+    "columns": {
+      "product": "পণ্য",
+      "category": "ক্যাটাগরি",
+      "unit": "ইউনিট",
+      "salePrice": "বিক্রয় মূল্য",
+      "reorderLevel": "রিঅর্ডার লেভেল",
+      "status": "স্ট্যাটাস"
+    },
+    "actions": {
+      "edit": "এডিট",
+      "activate": "সক্রিয় করুন",
+      "deactivate": "নিষ্ক্রিয় করুন",
+      "activateTitle": "পণ্য সক্রিয় করুন",
+      "activateDescription": "\"{name}\" সক্রিয় করবেন? এটা আবার বিক্রি করা যাবে।",
+      "activateSuccess": "পণ্য সক্রিয় হয়েছে।",
+      "deactivateTitle": "পণ্য নিষ্ক্রিয় করুন",
+      "deactivateDescription": "\"{name}\" নিষ্ক্রিয় করবেন? আবার সক্রিয় না করা পর্যন্ত এটা বিক্রি করা যাবে না।",
+      "deactivateSuccess": "পণ্য নিষ্ক্রিয় হয়েছে।"
+    },
+    "form": {
+      "createTitle": "পণ্য তৈরি করুন",
+      "createDescription": "আপনার তালিকায় একটা নতুন পণ্য যোগ করুন।",
+      "createSuccess": "পণ্য তৈরি হয়েছে।",
+      "editTitle": "পণ্য এডিট করুন",
+      "editDescription": "\"{name}\"-এর তথ্য আপডেট করুন।",
+      "editSuccess": "পণ্য আপডেট হয়েছে।",
+      "sku": "SKU",
+      "skuPlaceholder": "যেমন: RICE-5KG",
+      "skuRequired": "SKU আবশ্যক।",
+      "skuLength": "SKU সর্বোচ্চ ৬০ অক্ষরের হতে পারবে।",
+      "skuDescription": "পণ্য তৈরির পর এটা পরিবর্তন করা যাবে না।",
+      "name": "নাম",
+      "namePlaceholder": "যেমন: ফ্রেশ চাল ৫ কেজি",
+      "nameRequired": "নাম আবশ্যক।",
+      "nameLength": "নাম ২–২০০ অক্ষরের মধ্যে হতে হবে।",
+      "category": "ক্যাটাগরি",
+      "categoryPlaceholder": "একটা ক্যাটাগরি বেছে নিন",
+      "categoryNone": "কোনো ক্যাটাগরি নেই",
+      "baseUnit": "ইউনিট",
+      "baseUnitPlaceholder": "একটা ইউনিট বেছে নিন",
+      "baseUnitRequired": "একটা ইউনিট বেছে নিন।",
+      "barcode": "বারকোড",
+      "barcodePlaceholder": "ঐচ্ছিক বারকোড",
+      "costPrice": "ক্রয় মূল্য",
+      "costPricePlaceholder": "০.০০",
+      "salePrice": "বিক্রয় মূল্য",
+      "salePricePlaceholder": "০.০০",
+      "reorderLevel": "রিঅর্ডার লেভেল",
+      "reorderLevelPlaceholder": "০",
+      "reorderLevelDescription": "স্টক এই পরিমাণের নিচে নামলে আপনি সতর্কতা পাবেন।",
+      "pricePositive": "শূন্য বা একটা ধনাত্মক সংখ্যা হতে হবে।",
+      "sellByWeight": "ওজন করে বিক্রি হয়",
+      "sellByWeightDescription": "চাল বা সবজির মতো ওজন করে বিক্রি হওয়া পণ্যের জন্য এটা চালু করুন, পিস হিসেবে না।"
+    },
+    "bulkImport": {
+      "trigger": "বাল্ক ইমপোর্ট",
+      "title": "পণ্য বাল্ক ইমপোর্ট করুন",
+      "description": "একসাথে অনেক পণ্য যোগ বা আপডেট করতে একটা CSV ফাইল আপলোড করুন।",
+      "downloadTemplate": "CSV টেমপ্লেট ডাউনলোড করুন",
+      "uploadLabel": "CSV ফাইল আপলোড করুন",
+      "uploadHelp": "উপরের টেমপ্লেট ব্যবহার করুন, অথবা একই কলাম হেডার সহ যেকোনো CSV। পুরনো SKU আপডেট হবে; নতুন SKU তৈরি হবে।",
+      "parseError": "এই ফাইলটা পড়া যায়নি। একটা সঠিক CSV ফাইল নিশ্চিত করুন।",
+      "emptyFileError": "এই ফাইলে ইমপোর্ট করার মতো কোনো row নেই।",
+      "previewing": "আপনার ফাইল যাচাই করা হচ্ছে...",
+      "previewSummary": "{createCount}টা তৈরি হবে, {updateCount}টা আপডেট হবে, {errorCount}টায় সমস্যা আছে",
+      "previewErrorNotice": "সমস্যাযুক্ত row-গুলো বাদ যাবে — বাকিগুলো ঠিকই ইমপোর্ট হবে।",
+      "columns": {
+        "row": "সারি",
+        "sku": "SKU",
+        "name": "নাম",
+        "status": "ফলাফল",
+        "detail": "বিস্তারিত"
+      },
+      "status": {
+        "CREATE": "তৈরি হবে",
+        "UPDATE": "আপডেট হবে",
+        "ERROR": "সমস্যা"
+      },
+      "categoryWillBeCreated": "নতুন ক্যাটাগরি তৈরি হবে: \"{name}\"",
+      "confirm": "{count}টা পণ্য ইমপোর্ট করুন",
+      "confirming": "ইমপোর্ট হচ্ছে...",
+      "confirmSuccess": "ইমপোর্ট সম্পন্ন: {createdCount}টা তৈরি, {updatedCount}টা আপডেট।",
+      "confirmPartialErrorNotice": "সমস্যার কারণে {errorCount}টা row বাদ দেওয়া হয়েছে।",
+      "startOver": "অন্য একটা ফাইল বেছে নিন",
+      "done": "সম্পন্ন"
+    }
+  }
+}

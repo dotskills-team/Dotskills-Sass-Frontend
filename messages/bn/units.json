@@ -1,0 +1,50 @@
+{
+  "units": {
+    "title": "ইউনিট",
+    "description": "যে পরিমাপে আপনার পণ্য কেনা-বেচা হয় (পিস, ডজন, কেজি)।",
+    "empty": "এখনো কোনো ইউনিট নেই। শুরু করতে প্রথমটা তৈরি করুন।",
+    "columns": {
+      "name": "নাম",
+      "code": "কোড",
+      "baseUnit": "বেস ইউনিট",
+      "conversionFactor": "কনভার্সন ফ্যাক্টর",
+      "status": "স্ট্যাটাস"
+    },
+    "actions": {
+      "edit": "এডিট",
+      "activate": "সক্রিয় করুন",
+      "deactivate": "নিষ্ক্রিয় করুন",
+      "activateTitle": "ইউনিট সক্রিয় করুন",
+      "activateDescription": "\"{name}\" সক্রিয় করবেন? এটা আবার বেছে নেওয়া যাবে।",
+      "activateSuccess": "ইউনিট সক্রিয় হয়েছে।",
+      "deactivateTitle": "ইউনিট নিষ্ক্রিয় করুন",
+      "deactivateDescription": "\"{name}\" নিষ্ক্রিয় করবেন? নতুন পণ্যের জন্য এটা আর বেছে নেওয়া যাবে না।",
+      "deactivateSuccess": "ইউনিট নিষ্ক্রিয় হয়েছে।"
+    },
+    "form": {
+      "createTitle": "ইউনিট তৈরি করুন",
+      "createDescription": "একটা নতুন পরিমাপ ইউনিট যোগ করুন।",
+      "createSuccess": "ইউনিট তৈরি হয়েছে।",
+      "editTitle": "ইউনিট এডিট করুন",
+      "editDescription": "\"{name}\"-এর তথ্য আপডেট করুন।",
+      "editSuccess": "ইউনিট আপডেট হয়েছে।",
+      "name": "নাম",
+      "namePlaceholder": "যেমন: ডজন",
+      "nameRequired": "নাম আবশ্যক।",
+      "nameLength": "নাম সর্বোচ্চ ৬০ অক্ষরের হতে পারবে।",
+      "code": "কোড",
+      "codePlaceholder": "যেমন: DZN",
+      "codeRequired": "কোড আবশ্যক।",
+      "codeLength": "কোড সর্বোচ্চ ২০ অক্ষরের হতে পারবে।",
+      "codeDescription": "ইউনিট তৈরির পর এটা পরিবর্তন করা যাবে না।",
+      "baseUnit": "বেস ইউনিট",
+      "baseUnitPlaceholder": "একটা বেস ইউনিট বেছে নিন",
+      "baseUnitNone": "কোনোটা না — এটাই একটা বেস ইউনিট",
+      "baseUnitDescription": "এটা শুধু তখনই সেট করুন যখন এই ইউনিট অন্য একটাতে রূপান্তরিত হয় (যেমন ডজন → পিস)।",
+      "conversionFactor": "কনভার্সন ফ্যাক্টর",
+      "conversionFactorPlaceholder": "যেমন: ১২",
+      "conversionFactorDescription": "এই ইউনিটের একটা কতগুলো বেস ইউনিটের সমান।",
+      "conversionFactorPositive": "কনভার্সন ফ্যাক্টর অবশ্যই একটা ধনাত্মক সংখ্যা হতে হবে।"
+    }
+  }
+}

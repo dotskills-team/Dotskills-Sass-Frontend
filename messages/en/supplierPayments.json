@@ -1,0 +1,20 @@
+{
+  "supplierPayments": {
+    "title": "Supplier Payments",
+    "description": "Payments recorded against what you owe your suppliers.",
+    "empty": "No payment ledger entries yet.",
+    "filterPlaceholder": "Filter by supplier",
+    "allSuppliers": "All suppliers",
+    "columns": {
+      "date": "Date",
+      "supplier": "Supplier",
+      "type": "Type",
+      "amount": "Amount",
+      "note": "Note"
+    },
+    "entryType": {
+      "PAYABLE": "Payable (goods received)",
+      "PAYMENT": "Payment made"
+    }
+  }
+}

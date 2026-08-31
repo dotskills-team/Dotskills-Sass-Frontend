@@ -128,6 +128,61 @@ export const COMPANY_PERMISSIONS = {
 
   PAYMENT_CREATE: "company.payment.create",
   PAYMENT_READ: "company.payment.read",
+
+  LOCATION_READ: "company.location.read",
+  LOCATION_CREATE: "company.location.create",
+  LOCATION_UPDATE: "company.location.update",
+
+  CATEGORY_READ: "company.category.read",
+  CATEGORY_CREATE: "company.category.create",
+  CATEGORY_UPDATE: "company.category.update",
+
+  UNIT_READ: "company.unit.read",
+  UNIT_CREATE: "company.unit.create",
+  UNIT_UPDATE: "company.unit.update",
+
+  PRODUCT_READ: "company.product.read",
+  PRODUCT_CREATE: "company.product.create",
+  PRODUCT_UPDATE: "company.product.update",
+  PRODUCT_BULK_IMPORT: "company.product.bulk-import",
+
+  CUSTOMER_READ: "company.customer.read",
+  CUSTOMER_CREATE: "company.customer.create",
+  CUSTOMER_UPDATE: "company.customer.update",
+
+  SUPPLIER_READ: "company.supplier.read",
+  SUPPLIER_CREATE: "company.supplier.create",
+  SUPPLIER_UPDATE: "company.supplier.update",
+
+  SETTINGS_READ: "company.settings.read",
+  SETTINGS_UPDATE: "company.settings.update",
+
+  PURCHASE_ORDER_READ: "company.purchase-order.read",
+  PURCHASE_ORDER_CREATE: "company.purchase-order.create",
+  PURCHASE_ORDER_UPDATE: "company.purchase-order.update",
+  PURCHASE_ORDER_CANCEL: "company.purchase-order.cancel",
+  PURCHASE_ORDER_RECEIVE: "company.purchase-order.receive",
+
+  PURCHASE_RETURN_READ: "company.purchase-return.read",
+  PURCHASE_RETURN_CREATE: "company.purchase-return.create",
+
+  STOCK_TRANSFER_READ: "company.stock-transfer.read",
+  STOCK_TRANSFER_CREATE: "company.stock-transfer.create",
+  STOCK_TRANSFER_DISPATCH: "company.stock-transfer.dispatch",
+  STOCK_TRANSFER_RECEIVE: "company.stock-transfer.receive",
+
+  SUPPLIER_PAYMENT_READ: "company.supplier-payment.read",
+  SUPPLIER_PAYMENT_CREATE: "company.supplier-payment.create",
+
+  SALE_READ: "company.sale.read",
+  SALE_CREATE: "company.sale.create",
+  SALE_VOID: "company.sale.void",
+
+  SALE_RETURN_READ: "company.sale-return.read",
+  SALE_RETURN_CREATE: "company.sale-return.create",
+
+  CUSTOMER_PAYMENT_READ: "company.customer-payment.read",
+  CUSTOMER_PAYMENT_CREATE: "company.customer-payment.create",
 } as const;
 
 export type PlatformPermissionCode =

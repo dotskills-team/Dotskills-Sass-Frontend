@@ -40,6 +40,14 @@ const STATUS_TONE: Record<string, Tone> = {
   ISSUED: "info",
   PAID: "success",
   VOID: "destructive",
+  // Purchase Order / Stock Transfer
+  PARTIALLY_RECEIVED: "warning",
+  FULLY_RECEIVED: "success",
+  IN_TRANSIT: "info",
+  RECEIVED: "success",
+  // Sale
+  COMPLETED: "success",
+  VOIDED: "destructive",
 };
 
 const TONE_CLASS: Record<Tone, string> = {
