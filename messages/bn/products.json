@@ -2,6 +2,7 @@
   "products": {
     "title": "পণ্য",
     "description": "আপনার পণ্যের তালিকা — SKU, দাম এবং reorder level।",
+    "searchPlaceholder": "নাম, SKU, অথবা বারকোড দিয়ে খুঁজুন…",
     "columns": {
       "product": "পণ্য",
       "category": "ক্যাটাগরি",
@@ -20,6 +21,18 @@
       "deactivateTitle": "পণ্য নিষ্ক্রিয় করুন",
       "deactivateDescription": "\"{name}\" নিষ্ক্রিয় করবেন? আবার সক্রিয় না করা পর্যন্ত এটা বিক্রি করা যাবে না।",
       "deactivateSuccess": "পণ্য নিষ্ক্রিয় হয়েছে।"
+    },
+    "stock": {
+      "action": "স্টক",
+      "title": "লোকেশন-ভিত্তিক স্টক — {name}",
+      "description": "এই পণ্যের এখন প্রতিটা লোকেশনে কত আছে।",
+      "columns": {
+        "location": "লোকেশন",
+        "quantity": "পরিমাণ"
+      },
+      "empty": "এই পণ্যের জন্য এখনো কোনো লোকেশনে স্টক রেকর্ড নেই।",
+      "lowStock": "কম স্টক",
+      "truncatedNotice": "{total}-এর মধ্যে {shown}টা দেখানো হচ্ছে — সম্পূর্ণ তালিকার জন্য পরে আসা Reporting screen ব্যবহার করুন।"
     },
     "form": {
       "createTitle": "পণ্য তৈরি করুন",

@@ -1,0 +1,94 @@
+{
+  "reports": {
+    "dateFrom": "শুরুর তারিখ",
+    "dateTo": "শেষ তারিখ",
+    "locationFilterPlaceholder": "লোকেশন অনুযায়ী ফিল্টার",
+    "allLocations": "সব লোকেশন",
+    "exportButton": "CSV এক্সপোর্ট",
+    "exporting": "এক্সপোর্ট হচ্ছে…",
+    "exportFailed": "এই রিপোর্ট এক্সপোর্ট করা যায়নি। আবার চেষ্টা করুন।",
+    "saleRegister": {
+      "title": "সেল রেজিস্টার",
+      "description": "নির্বাচিত তারিখের মধ্যে সব বিক্রয়, বাতিল হওয়াগুলোসহ।",
+      "summary": {
+        "completedSalesCount": "সম্পন্ন বিক্রয়",
+        "totalRevenue": "মোট আয়",
+        "paymentBreakdown": "পেমেন্ট ভাগ"
+      },
+      "columns": {
+        "saleNumber": "সেল #",
+        "date": "তারিখ",
+        "location": "লোকেশন",
+        "customer": "কাস্টমার",
+        "status": "অবস্থা",
+        "subtotal": "সাবটোটাল",
+        "discount": "ছাড়",
+        "tax": "কর",
+        "total": "মোট"
+      }
+    },
+    "purchaseRegister": {
+      "title": "পার্চেজ রেজিস্টার",
+      "description": "নির্বাচিত তারিখের মধ্যে সব পার্চেজ অর্ডার, সব অবস্থাসহ।",
+      "summary": {
+        "activeOrdersCount": "সক্রিয় অর্ডার",
+        "totalOrderedValue": "মোট অর্ডার মূল্য"
+      },
+      "columns": {
+        "orderNumber": "অর্ডার #",
+        "date": "তারিখ",
+        "location": "লোকেশন",
+        "supplier": "সাপ্লায়ার",
+        "status": "অবস্থা",
+        "total": "মোট",
+        "receipts": "রিসিভ",
+        "returns": "রিটার্ন"
+      }
+    },
+    "profitReport": {
+      "title": "প্রফিট রিপোর্ট",
+      "description": "দিনভিত্তিক আয়, বিক্রীত পণ্যের খরচ (COGS), ও নিট মুনাফা — খরচ সবসময় বিক্রয়ের সময়কার ঐতিহাসিক দাম, আজকের দাম না।",
+      "summary": {
+        "saleCount": "বিক্রয়",
+        "revenue": "আয়",
+        "cogs": "COGS",
+        "grossProfit": "নিট মুনাফা"
+      },
+      "columns": {
+        "date": "তারিখ",
+        "saleCount": "বিক্রয়",
+        "revenue": "আয়",
+        "cogs": "COGS",
+        "grossProfit": "নিট মুনাফা"
+      }
+    },
+    "stockReport": {
+      "title": "স্টক রিপোর্ট",
+      "description": "প্রতিটা লোকেশনে প্রতিটা পণ্যের বর্তমান স্টক।",
+      "belowReorderOnly": "শুধু রিঅর্ডার লেভেলের নিচে",
+      "lowStock": "কম স্টক",
+      "columns": {
+        "product": "পণ্য",
+        "sku": "SKU",
+        "location": "লোকেশন",
+        "quantity": "পরিমাণ"
+      }
+    },
+    "duePayableLedger": {
+      "title": "বাকি / পাওনা লেজার",
+      "description": "যেসব কাস্টমার বা সাপ্লায়ারের এখন বাকি/পাওনা ব্যালেন্স আছে, তাদের তালিকা।",
+      "customerTab": "কাস্টমার বাকি",
+      "supplierTab": "সাপ্লায়ার পাওনা",
+      "customerColumns": {
+        "name": "কাস্টমার",
+        "phone": "ফোন",
+        "dueBalance": "বাকি ব্যালেন্স"
+      },
+      "supplierColumns": {
+        "name": "সাপ্লায়ার",
+        "phone": "ফোন",
+        "payableBalance": "পাওনা ব্যালেন্স"
+      }
+    }
+  }
+}

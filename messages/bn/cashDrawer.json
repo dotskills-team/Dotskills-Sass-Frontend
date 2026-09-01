@@ -1,0 +1,62 @@
+{
+  "cashDrawer": {
+    "title": "ক্যাশ ড্রয়ার",
+    "description": "ক্যাশ ড্রয়ার সেশন খুলুন, বন্ধ করুন, এবং আগের শিফটগুলো দেখুন।",
+    "indicator": {
+      "label": "{location} · {time} থেকে চালু"
+    },
+    "active": {
+      "title": "চলমান সেশন",
+      "openedAt": "যখন খোলা হয়েছে",
+      "closeAction": "সেশন বন্ধ করুন"
+    },
+    "close": {
+      "title": "সেশন বন্ধ করুন",
+      "description": "ড্রয়ার গুনে প্রকৃত পরিমাণ লিখুন। পার্থক্য দেখানো হবে, আটকানো হবে না।",
+      "actualClosingBalance": "প্রকৃত ক্লোজিং ব্যালেন্স",
+      "actualClosingBalancePlaceholder": "০.০০",
+      "actualClosingBalanceRequired": "গোনা প্রকৃত পরিমাণ লিখুন।",
+      "note": "নোট",
+      "notePlaceholder": "ঐচ্ছিক নোট",
+      "submit": "সেশন বন্ধ করুন",
+      "success": "সেশন বন্ধ হয়েছে।",
+      "expected": "প্রত্যাশিত",
+      "actual": "প্রকৃত",
+      "balanced": "মিলে গেছে — প্রত্যাশিত ও প্রকৃত ব্যালেন্স হুবহু এক।",
+      "variance": "প্রত্যাশিত ও প্রকৃত ব্যালেন্সের মধ্যে পার্থক্য: ৳{amount}"
+    },
+    "open": {
+      "title": "সেশন খুলুন",
+      "location": "লোকেশন",
+      "locationPlaceholder": "একটা লোকেশন বেছে নিন",
+      "openingBalance": "শুরুর ব্যালেন্স",
+      "openingBalancePlaceholder": "০.০০",
+      "openingBalanceRequired": "শুরুর ব্যালেন্স লিখুন।",
+      "carriedForward": "আগের সেশন থেকে স্থানান্তরিত: ৳{amount}",
+      "submit": "সেশন খুলুন",
+      "success": "সেশন খোলা হয়েছে।"
+    },
+    "posNudge": {
+      "title": "কোনো ক্যাশ ড্রয়ার সেশন চালু নেই",
+      "description": "বিক্রি ঠিকই হবে, কিন্তু কোনো শিফটের সাথে ট্র্যাক হবে না।",
+      "link": "একটা খুলুন"
+    },
+    "history": {
+      "title": "সেশন ইতিহাস",
+      "locationFilterPlaceholder": "লোকেশন দিয়ে ফিল্টার করুন",
+      "allLocations": "সব লোকেশন",
+      "empty": "এখনো কোনো সেশন রেকর্ড হয়নি।",
+      "columns": {
+        "location": "লোকেশন",
+        "cashier": "ক্যাশিয়ার",
+        "openedAt": "যখন খোলা হয়েছে",
+        "closedAt": "যখন বন্ধ হয়েছে",
+        "opening": "শুরুর ব্যালেন্স",
+        "expected": "প্রত্যাশিত",
+        "actual": "প্রকৃত",
+        "variance": "পার্থক্য",
+        "status": "স্ট্যাটাস"
+      }
+    }
+  }
+}

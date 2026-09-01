@@ -1,0 +1,62 @@
+{
+  "cashDrawer": {
+    "title": "Cash Drawer",
+    "description": "Open and close cash drawer sessions, and review past shifts.",
+    "indicator": {
+      "label": "{location} · since {time}"
+    },
+    "active": {
+      "title": "Active session",
+      "openedAt": "Opened at",
+      "closeAction": "Close session"
+    },
+    "close": {
+      "title": "Close session",
+      "description": "Count the drawer and enter the actual amount. The difference is shown, not blocked.",
+      "actualClosingBalance": "Actual closing balance",
+      "actualClosingBalancePlaceholder": "0.00",
+      "actualClosingBalanceRequired": "Enter the actual amount counted.",
+      "note": "Note",
+      "notePlaceholder": "Optional note",
+      "submit": "Close session",
+      "success": "Session closed.",
+      "expected": "Expected",
+      "actual": "Actual",
+      "balanced": "Balanced — expected and actual match exactly.",
+      "variance": "Difference between expected and actual: ৳{amount}"
+    },
+    "open": {
+      "title": "Open a session",
+      "location": "Location",
+      "locationPlaceholder": "Select a location",
+      "openingBalance": "Opening balance",
+      "openingBalancePlaceholder": "0.00",
+      "openingBalanceRequired": "Enter a starting balance.",
+      "carriedForward": "Carried forward from your previous session: ৳{amount}",
+      "submit": "Open session",
+      "success": "Session opened."
+    },
+    "posNudge": {
+      "title": "No cash drawer session open",
+      "description": "Sales will still work, but won't be tracked to a shift.",
+      "link": "Open one"
+    },
+    "history": {
+      "title": "Session history",
+      "locationFilterPlaceholder": "Filter by location",
+      "allLocations": "All locations",
+      "empty": "No sessions recorded yet.",
+      "columns": {
+        "location": "Location",
+        "cashier": "Cashier",
+        "openedAt": "Opened at",
+        "closedAt": "Closed at",
+        "opening": "Opening",
+        "expected": "Expected",
+        "actual": "Actual",
+        "variance": "Variance",
+        "status": "Status"
+      }
+    }
+  }
+}

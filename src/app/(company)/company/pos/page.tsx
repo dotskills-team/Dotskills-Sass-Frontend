@@ -6,10 +6,12 @@ import { useLocale, useTranslations } from "next-intl";
 import { Loader2 } from "lucide-react";
 import { toast } from "sonner";
 
+import Link from "next/link";
 import { PageHeader } from "@/components/shared/page-header";
 import { PermissionDenied } from "@/components/shared/permission-denied";
 import { CompanyPermissionGate } from "@/components/shared/permission-gate";
 import { ActionConfirmDialog } from "@/components/shared/action-confirm-dialog";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -31,6 +33,7 @@ import { ProductSearchInput } from "@/features/pos/components/product-search-inp
 import { PosCart } from "@/features/pos/components/pos-cart";
 import { TenderSection } from "@/features/pos/components/tender-section";
 import { useCreateSaleMutation } from "@/features/sale/api/sale.api";
+import { useMyOpenSession } from "@/features/cash-drawer/hooks/use-my-open-session";
 import { normalizeApiError } from "@/lib/api-error";
 import { resolveBusinessErrorMessage } from "@/lib/business-error-messages";
 import { COMPANY_PERMISSIONS } from "@/constants/permissions";
@@ -40,10 +43,13 @@ const NO_CUSTOMER = "__none__";
 export default function PosPage() {
   const t = useTranslations("pos");
   const tCommon = useTranslations("common");
+  const tCashDrawer = useTranslations("cashDrawer");
   const locale = useLocale();
   const router = useRouter();
   const { company } = useCurrentCompany();
   const companyId = company?.companyId;
+
+  const { session: openCashDrawerSession } = useMyOpenSession(companyId);
 
   const { data: locations } = useListLocationsQuery(companyId ?? "", { skip: !companyId });
   const salesLocations = (locations ?? []).filter((location) => location.isSalesEnabled);
@@ -134,6 +140,18 @@ export default function PosPage() {
 
       <div className="grid gap-6 p-6 lg:grid-cols-[2fr_1fr]">
         <div className="space-y-4">
+          {!openCashDrawerSession && (
+            <Alert>
+              <AlertTitle>{tCashDrawer("posNudge.title")}</AlertTitle>
+              <AlertDescription>
+                {tCashDrawer("posNudge.description")}{" "}
+                <Link href="/company/cash-drawer" className="font-medium underline">
+                  {tCashDrawer("posNudge.link")}
+                </Link>
+              </AlertDescription>
+            </Alert>
+          )}
+
           <div className="max-w-xs">
             <label className="mb-1 block text-sm font-medium">{t("location")}</label>
             <Select value={locationId} onValueChange={setSelectedLocationId}>

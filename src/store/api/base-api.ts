@@ -138,6 +138,7 @@ export const baseApi = createApi({
     "SupplierPayment",
     "Sale",
     "SaleReturn",
+    "CashDrawerSession",
   ],
   endpoints: () => ({}),
 });

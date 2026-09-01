@@ -12,6 +12,7 @@ import { Button } from "@/components/ui/button";
 import { PlatformPermissionGate, CompanyPermissionGate } from "@/components/shared/permission-gate";
 import { hasAnyPermission } from "@/lib/permissions";
 import { useAppSelector } from "@/store/hooks";
+import { useCurrentCompany } from "@/features/company/hooks/use-current-company";
 import { isPlatformStaffUser } from "@/types/auth";
 import type { PlatformPermissionCode, CompanyPermissionCode } from "@/constants/permissions";
 
@@ -48,20 +49,30 @@ export function AppSidebar({ items, mobileOpen, onMobileClose }: AppSidebarProps
   const pathname = usePathname();
 
   /**
-   * Group header ("Access Control")-এর নিজস্ব permission নেই — কোনো child visible কিনা
-   * সেটা আগে থেকেই জানা লাগে (নাহলে সব child hidden হলেও empty header দেখা যাবে)। এই
-   * imperative check শুধু platform-permission children-এর জন্য (এই মুহূর্তে grouped item-এর
-   * একমাত্র ব্যবহারকারী — Access Control — সবগুলো platform-scoped)। Company-scoped grouped
-   * item ভবিষ্যতে দরকার হলে এখানে `useCurrentCompany()`-ভিত্তিক check যোগ করতে হবে।
+   * Group header ("Access Control", "Reports")-এর নিজস্ব permission নেই — কোনো child
+   * visible কিনা সেটা আগে থেকেই জানা লাগে (নাহলে সব child hidden হলেও empty header
+   * দেখা যাবে)। এই check platform ও company উভয় scope-এর children-এর জন্যই — একই
+   * branching যা top-level item-গুলোর জন্য নিচে ব্যবহার হয় (`item.platformPermission`
+   * থাকলে platform check, `item.companyPermission` থাকলে company check), শুধু grouped
+   * children-এর উপর প্রয়োগ করা (Frontend Phase 5-এ ধরা পড়া গ্যাপের ফিক্স — আগে শুধু
+   * platform-permission children check হতো, company-scoped grouped item-এর প্রতিটা
+   * child unconditionally visible হয়ে যেত)।
    */
   const platformUser = useAppSelector((state) => state.auth.user);
   const platformPermissions =
     platformUser && isPlatformStaffUser(platformUser) ? platformUser.permissions : [];
+  const { permissions: companyPermissions } = useCurrentCompany();
 
-  function isPlatformVisible(item: NavItem): boolean {
-    if (!item.platformPermission) return true;
-    const required = Array.isArray(item.platformPermission) ? item.platformPermission : [item.platformPermission];
-    return hasAnyPermission(platformPermissions, required);
+  function isChildVisible(item: NavItem): boolean {
+    if (item.platformPermission) {
+      const required = Array.isArray(item.platformPermission) ? item.platformPermission : [item.platformPermission];
+      return hasAnyPermission(platformPermissions, required);
+    }
+    if (item.companyPermission) {
+      const required = Array.isArray(item.companyPermission) ? item.companyPermission : [item.companyPermission];
+      return hasAnyPermission(companyPermissions, required);
+    }
+    return true;
   }
 
   const navList = (
@@ -88,7 +99,7 @@ export function AppSidebar({ items, mobileOpen, onMobileClose }: AppSidebarProps
         <div className="flex flex-col gap-1">
           {items.map((item) => {
             if (item.children) {
-              const visibleChildren = item.children.filter(isPlatformVisible);
+              const visibleChildren = item.children.filter(isChildVisible);
               if (visibleChildren.length === 0) return null;
 
               return (

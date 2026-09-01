@@ -10,6 +10,8 @@ import { LanguageSwitcher } from "@/components/layout/language-switcher";
 import { AppSidebar } from "@/components/layout/app-sidebar";
 import { CompanySelector } from "@/features/company/components/company-selector";
 import { CompanyContextGate } from "@/features/company/components/company-context-gate";
+import { CashDrawerStatusIndicator } from "@/features/cash-drawer/components/cash-drawer-status-indicator";
+import { useCurrentCompany } from "@/features/company/hooks/use-current-company";
 import { Button } from "@/components/ui/button";
 
 import { companyNavItems } from "./nav-items";
@@ -24,6 +26,7 @@ import { companyNavItems } from "./nav-items";
  */
 export default function CompanyLayout({ children }: { children: React.ReactNode }) {
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
+  const { company } = useCurrentCompany();
 
   return (
     <AuthGate>
@@ -55,6 +58,7 @@ export default function CompanyLayout({ children }: { children: React.ReactNode 
                 <CompanySelector />
               </div>
               <div className="flex items-center gap-2">
+                <CashDrawerStatusIndicator companyId={company?.companyId} />
                 <LanguageSwitcher />
                 <LogoutButton />
               </div>

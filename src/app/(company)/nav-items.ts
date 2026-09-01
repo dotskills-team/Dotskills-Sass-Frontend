@@ -15,6 +15,13 @@ import {
   ClipboardList,
   ArrowLeftRight,
   ShoppingCart,
+  Banknote,
+  BarChart3,
+  Receipt,
+  FileSpreadsheet,
+  TrendingUp,
+  Boxes,
+  Scale,
 } from "lucide-react";
 
 import type { NavItem } from "@/components/layout/app-sidebar";
@@ -96,6 +103,12 @@ export const companyNavItems: NavItem[] = [
     companyPermission: COMPANY_PERMISSIONS.SALE_READ,
   },
   {
+    labelKey: "cashDrawer",
+    href: "/company/cash-drawer",
+    icon: Banknote,
+    companyPermission: COMPANY_PERMISSIONS.CASH_DRAWER_SESSION_READ,
+  },
+  {
     labelKey: "purchaseOrders",
     href: "/company/purchase-orders",
     icon: ClipboardList,
@@ -112,5 +125,41 @@ export const companyNavItems: NavItem[] = [
     href: "/company/settings",
     icon: Settings,
     companyPermission: COMPANY_PERMISSIONS.SETTINGS_READ,
+  },
+  {
+    labelKey: "reports",
+    icon: BarChart3,
+    children: [
+      {
+        labelKey: "saleRegister",
+        href: "/company/reports/sale-register",
+        icon: Receipt,
+        companyPermission: COMPANY_PERMISSIONS.REPORT_READ,
+      },
+      {
+        labelKey: "purchaseRegister",
+        href: "/company/reports/purchase-register",
+        icon: FileSpreadsheet,
+        companyPermission: COMPANY_PERMISSIONS.REPORT_READ,
+      },
+      {
+        labelKey: "profitReport",
+        href: "/company/reports/profit",
+        icon: TrendingUp,
+        companyPermission: COMPANY_PERMISSIONS.PROFIT_REPORT_READ,
+      },
+      {
+        labelKey: "stockReport",
+        href: "/company/reports/stock",
+        icon: Boxes,
+        companyPermission: COMPANY_PERMISSIONS.REPORT_READ,
+      },
+      {
+        labelKey: "duePayableLedger",
+        href: "/company/reports/due-payable",
+        icon: Scale,
+        companyPermission: COMPANY_PERMISSIONS.REPORT_READ,
+      },
+    ],
   },
 ];

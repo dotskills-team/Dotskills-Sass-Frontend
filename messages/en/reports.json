@@ -1,0 +1,94 @@
+{
+  "reports": {
+    "dateFrom": "From",
+    "dateTo": "To",
+    "locationFilterPlaceholder": "Filter by location",
+    "allLocations": "All locations",
+    "exportButton": "Export CSV",
+    "exporting": "Exporting…",
+    "exportFailed": "Couldn't export this report. Please try again.",
+    "saleRegister": {
+      "title": "Sale Register",
+      "description": "Every sale recorded in the selected date range, including voided ones.",
+      "summary": {
+        "completedSalesCount": "Completed sales",
+        "totalRevenue": "Total revenue",
+        "paymentBreakdown": "Payment breakdown"
+      },
+      "columns": {
+        "saleNumber": "Sale #",
+        "date": "Date",
+        "location": "Location",
+        "customer": "Customer",
+        "status": "Status",
+        "subtotal": "Subtotal",
+        "discount": "Discount",
+        "tax": "Tax",
+        "total": "Total"
+      }
+    },
+    "purchaseRegister": {
+      "title": "Purchase Register",
+      "description": "Every purchase order raised in the selected date range, all statuses shown.",
+      "summary": {
+        "activeOrdersCount": "Active orders",
+        "totalOrderedValue": "Total ordered value"
+      },
+      "columns": {
+        "orderNumber": "Order #",
+        "date": "Date",
+        "location": "Location",
+        "supplier": "Supplier",
+        "status": "Status",
+        "total": "Total",
+        "receipts": "Receipts",
+        "returns": "Returns"
+      }
+    },
+    "profitReport": {
+      "title": "Profit Report",
+      "description": "Day-by-day revenue, cost of goods sold, and gross profit — cost is always the historical price at the time of each sale, never today's price.",
+      "summary": {
+        "saleCount": "Sales",
+        "revenue": "Revenue",
+        "cogs": "COGS",
+        "grossProfit": "Gross profit"
+      },
+      "columns": {
+        "date": "Date",
+        "saleCount": "Sales",
+        "revenue": "Revenue",
+        "cogs": "COGS",
+        "grossProfit": "Gross profit"
+      }
+    },
+    "stockReport": {
+      "title": "Stock Report",
+      "description": "Current stock for every product across every location.",
+      "belowReorderOnly": "Below reorder level only",
+      "lowStock": "Low stock",
+      "columns": {
+        "product": "Product",
+        "sku": "SKU",
+        "location": "Location",
+        "quantity": "Quantity"
+      }
+    },
+    "duePayableLedger": {
+      "title": "Due / Payable Ledger",
+      "description": "Every customer or supplier with a nonzero running balance, right now.",
+      "customerTab": "Customer due",
+      "supplierTab": "Supplier payable",
+      "customerColumns": {
+        "name": "Customer",
+        "phone": "Phone",
+        "dueBalance": "Due balance"
+      },
+      "supplierColumns": {
+        "name": "Supplier",
+        "phone": "Phone",
+        "payableBalance": "Payable balance"
+      }
+    }
+  }
+}

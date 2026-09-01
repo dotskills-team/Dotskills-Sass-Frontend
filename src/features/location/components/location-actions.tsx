@@ -15,12 +15,13 @@ import {
 import { CompanyPermissionGate } from "@/components/shared/permission-gate";
 import { ActionConfirmDialog } from "@/components/shared/action-confirm-dialog";
 import { EditLocationDialog } from "@/features/location/components/edit-location-dialog";
+import { LocationStockDialog } from "@/features/location/components/location-stock-dialog";
 import { useUpdateLocationMutation } from "@/features/location/api/location.api";
 import { COMPANY_PERMISSIONS } from "@/constants/permissions";
 import { normalizeApiError } from "@/lib/api-error";
 import type { Location } from "@/types/location";
 
-type ActiveAction = "edit" | "activate" | "deactivate" | null;
+type ActiveAction = "edit" | "activate" | "deactivate" | "viewStock" | null;
 
 export function LocationRowActions({ companyId, location }: { companyId: string; location: Location }) {
   const t = useTranslations("locations");
@@ -59,6 +60,9 @@ export function LocationRowActions({ companyId, location }: { companyId: string;
               </DropdownMenuItem>
             )}
           </CompanyPermissionGate>
+          <CompanyPermissionGate permission={COMPANY_PERMISSIONS.REPORT_READ}>
+            <DropdownMenuItem onSelect={() => setActiveAction("viewStock")}>{t("stock.action")}</DropdownMenuItem>
+          </CompanyPermissionGate>
         </DropdownMenuContent>
       </DropdownMenu>
 
@@ -88,6 +92,13 @@ export function LocationRowActions({ companyId, location }: { companyId: string;
         companyId={companyId}
         location={location}
         open={activeAction === "edit"}
+        onOpenChange={(open) => !open && setActiveAction(null)}
+      />
+
+      <LocationStockDialog
+        companyId={companyId}
+        location={location}
+        open={activeAction === "viewStock"}
         onOpenChange={(open) => !open && setActiveAction(null)}
       />
     </>

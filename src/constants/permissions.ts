@@ -183,6 +183,14 @@ export const COMPANY_PERMISSIONS = {
 
   CUSTOMER_PAYMENT_READ: "company.customer-payment.read",
   CUSTOMER_PAYMENT_CREATE: "company.customer-payment.create",
+
+  REPORT_READ: "company.report.read",
+  /** Separate from REPORT_READ — gates only the Profit Report (margin/profit is the one figure an Owner may want hidden from a Branch Manager), mirrored from backend `reporting.controller.ts`. */
+  PROFIT_REPORT_READ: "company.profit-report.read",
+
+  CASH_DRAWER_SESSION_READ: "company.cash-drawer-session.read",
+  CASH_DRAWER_SESSION_OPEN: "company.cash-drawer-session.open",
+  CASH_DRAWER_SESSION_CLOSE: "company.cash-drawer-session.close",
 } as const;
 
 export type PlatformPermissionCode =

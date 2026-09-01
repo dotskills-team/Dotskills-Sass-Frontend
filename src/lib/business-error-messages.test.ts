@@ -70,6 +70,31 @@ describe("translateBusinessError", () => {
     );
   });
 
+  it("translates the concurrent-open-session rejection", () => {
+    expect(translateBusinessError("An open cash drawer session already exists for this cashier", "en")).toBe(
+      "You already have a session open — close it before opening a new one.",
+    );
+  });
+
+  it("translates the cash drawer locationId/openingBalance/not-found messages", () => {
+    expect(translateBusinessError("locationId does not belong to this company", "en")).toBe(
+      "This location wasn't found.",
+    );
+    expect(
+      translateBusinessError(
+        "openingBalance is required for this cashier's first session at this location",
+        "en",
+      ),
+    ).toBe("This is your first session at this location — enter a starting balance.");
+    expect(translateBusinessError("Cash drawer session was not found", "en")).toBe("This record wasn't found.");
+  });
+
+  it("extracts the current state from the cash drawer close guard message", () => {
+    expect(translateBusinessError("Cannot close a session with status CLOSED", "en")).toBe(
+      "Can't close a session in CLOSED state.",
+    );
+  });
+
   it("returns null for an unrecognized message", () => {
     expect(translateBusinessError("Some completely new backend error", "en")).toBeNull();
   });

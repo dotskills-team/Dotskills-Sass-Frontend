@@ -8,6 +8,7 @@ import { PermissionDenied } from "@/components/shared/permission-denied";
 import { CompanyPermissionGate } from "@/components/shared/permission-gate";
 import { DataTable } from "@/components/data-table/data-table";
 import { DataTablePagination } from "@/components/data-table/data-table-pagination";
+import { Input } from "@/components/ui/input";
 
 import { useCurrentCompany } from "@/features/company/hooks/use-current-company";
 import { useListProductsQuery } from "@/features/product/api/product.api";
@@ -16,6 +17,7 @@ import { useListUnitsQuery } from "@/features/unit/api/unit.api";
 import { CreateProductDialog } from "@/features/product/components/create-product-dialog";
 import { buildProductsColumns } from "@/features/product/components/products-columns";
 import { BulkImportDialog } from "@/features/bulk-import/components/bulk-import-dialog";
+import { useDebouncedValue } from "@/hooks/use-debounced-value";
 import { COMPANY_PERMISSIONS } from "@/constants/permissions";
 
 /** The one Master Data list that's paginated (backend Phase 6 pagination addition) — mirrors the Industries page's DataTable + DataTablePagination pattern exactly. */
@@ -23,10 +25,22 @@ export default function ProductsPage() {
   const t = useTranslations("products");
   const { company } = useCurrentCompany();
   const companyId = company?.companyId;
+
+  const [search, setSearch] = useState("");
+  const debouncedSearch = useDebouncedValue(search, 400).trim();
+
   const [page, setPage] = useState(1);
+  // Reset to page 1 whenever the search term changes, without a
+  // setState-in-effect (React's "adjust state during render" escape
+  // hatch, same class of fix as the POS location auto-select).
+  const [lastSearch, setLastSearch] = useState(debouncedSearch);
+  if (debouncedSearch !== lastSearch) {
+    setLastSearch(debouncedSearch);
+    setPage(1);
+  }
 
   const { data, isLoading, isFetching, error, refetch } = useListProductsQuery(
-    { companyId: companyId ?? "", page },
+    { companyId: companyId ?? "", page, search: debouncedSearch || undefined },
     { skip: !companyId },
   );
   const { data: categories } = useListCategoriesQuery(companyId ?? "", { skip: !companyId });
@@ -48,12 +62,18 @@ export default function ProductsPage() {
       <PageHeader title={t("title")} description={t("description")} />
 
       <div className="p-6">
-        <div className="mb-4 flex justify-end gap-2">
+        <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
+          <Input
+            value={search}
+            onChange={(event) => setSearch(event.target.value)}
+            placeholder={t("searchPlaceholder")}
+            className="max-w-xs"
+          />
           {companyId && (
-            <>
+            <div className="flex gap-2">
               <BulkImportDialog companyId={companyId} />
               <CreateProductDialog companyId={companyId} categories={categories ?? []} units={units ?? []} />
-            </>
+            </div>
           )}
         </div>
 

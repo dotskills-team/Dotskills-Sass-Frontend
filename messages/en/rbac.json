@@ -27,6 +27,13 @@
     "settings": "Settings",
     "purchaseOrders": "Purchase Orders",
     "stockTransfers": "Stock Transfers",
-    "sales": "Sales"
+    "sales": "Sales",
+    "cashDrawer": "Cash Drawer",
+    "reports": "Reports",
+    "saleRegister": "Sale Register",
+    "purchaseRegister": "Purchase Register",
+    "profitReport": "Profit Report",
+    "stockReport": "Stock Report",
+    "duePayableLedger": "Due / Payable Ledger"
   }
 }

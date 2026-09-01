@@ -15,6 +15,7 @@ import {
 import { CompanyPermissionGate } from "@/components/shared/permission-gate";
 import { ActionConfirmDialog } from "@/components/shared/action-confirm-dialog";
 import { EditProductDialog } from "@/features/product/components/edit-product-dialog";
+import { ProductStockDialog } from "@/features/product/components/product-stock-dialog";
 import { useUpdateProductMutation } from "@/features/product/api/product.api";
 import { COMPANY_PERMISSIONS } from "@/constants/permissions";
 import { normalizeApiError } from "@/lib/api-error";
@@ -22,7 +23,7 @@ import type { Product } from "@/types/product";
 import type { Category } from "@/types/category";
 import type { Unit } from "@/types/unit";
 
-type ActiveAction = "edit" | "activate" | "deactivate" | null;
+type ActiveAction = "edit" | "activate" | "deactivate" | "viewStock" | null;
 
 export function ProductRowActions({
   companyId,
@@ -71,6 +72,9 @@ export function ProductRowActions({
               </DropdownMenuItem>
             )}
           </CompanyPermissionGate>
+          <CompanyPermissionGate permission={COMPANY_PERMISSIONS.REPORT_READ}>
+            <DropdownMenuItem onSelect={() => setActiveAction("viewStock")}>{t("stock.action")}</DropdownMenuItem>
+          </CompanyPermissionGate>
         </DropdownMenuContent>
       </DropdownMenu>
 
@@ -102,6 +106,13 @@ export function ProductRowActions({
         categories={categories}
         units={units}
         open={activeAction === "edit"}
+        onOpenChange={(open) => !open && setActiveAction(null)}
+      />
+
+      <ProductStockDialog
+        companyId={companyId}
+        product={product}
+        open={activeAction === "viewStock"}
         onOpenChange={(open) => !open && setActiveAction(null)}
       />
     </>

@@ -2,6 +2,7 @@
   "products": {
     "title": "Products",
     "description": "Your product catalog — SKU, pricing, and stock reorder levels.",
+    "searchPlaceholder": "Search by name, SKU, or barcode…",
     "columns": {
       "product": "Product",
       "category": "Category",
@@ -20,6 +21,18 @@
       "deactivateTitle": "Deactivate product",
       "deactivateDescription": "Deactivate \"{name}\"? It won't be sellable until reactivated.",
       "deactivateSuccess": "Product deactivated."
+    },
+    "stock": {
+      "action": "Stock",
+      "title": "Stock by location — {name}",
+      "description": "How much of this product is at each of your locations right now.",
+      "columns": {
+        "location": "Location",
+        "quantity": "Quantity"
+      },
+      "empty": "No stock recorded for this product at any location yet.",
+      "lowStock": "Low stock",
+      "truncatedNotice": "Showing {shown} of {total} — see the full Reporting screen (coming soon) for the complete list."
     },
     "form": {
       "createTitle": "Create product",

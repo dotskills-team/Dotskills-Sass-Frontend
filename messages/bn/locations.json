@@ -25,6 +25,19 @@
       "deactivateDescription": "\"{name}\" নিষ্ক্রিয় করবেন? নতুন বিক্রি বা স্টকের জন্য এটা আর ব্যবহার করা যাবে না।",
       "deactivateSuccess": "লোকেশন নিষ্ক্রিয় হয়েছে।"
     },
+    "stock": {
+      "action": "স্টক দেখুন",
+      "title": "{name}-এর স্টক",
+      "description": "এই লোকেশনে এখন যেসব পণ্য মজুত আছে।",
+      "columns": {
+        "product": "পণ্য",
+        "sku": "SKU",
+        "quantity": "পরিমাণ"
+      },
+      "empty": "এই লোকেশনে এখনো কোনো স্টক রেকর্ড নেই।",
+      "lowStock": "কম স্টক",
+      "truncatedNotice": "{total}-এর মধ্যে {shown}টা দেখানো হচ্ছে — সম্পূর্ণ তালিকার জন্য পরে আসা Reporting screen ব্যবহার করুন।"
+    },
     "form": {
       "createTitle": "লোকেশন তৈরি করুন",
       "createDescription": "একটা নতুন শাখা বা গুদাম যোগ করুন।",

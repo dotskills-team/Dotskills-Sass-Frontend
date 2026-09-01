@@ -104,7 +104,27 @@ const RULES: ErrorRule[] = [
     en: () => "Source and destination location can't be the same.",
   },
   {
-    pattern: /^(Purchase order|Stock transfer|Supplier|Sale) was not found/,
+    pattern: /^An open cash drawer session already exists for this cashier/,
+    bn: () => "আপনার ইতিমধ্যে একটা সেশন চলমান আছে — নতুন সেশন খোলার আগে সেটা বন্ধ করুন।",
+    en: () => "You already have a session open — close it before opening a new one.",
+  },
+  {
+    pattern: /^locationId does not belong to this company/,
+    bn: () => "এই লোকেশনটা খুঁজে পাওয়া যায়নি।",
+    en: () => "This location wasn't found.",
+  },
+  {
+    pattern: /^openingBalance is required for this cashier's first session at this location/,
+    bn: () => "এই লোকেশনে আপনার প্রথম সেশন — শুরুর ব্যালেন্স লিখুন।",
+    en: () => "This is your first session at this location — enter a starting balance.",
+  },
+  {
+    pattern: /^Cannot close a session with status (\w+)/,
+    bn: (m) => `এই অবস্থার (${m[1]}) সেশন বন্ধ করা যাবে না।`,
+    en: (m) => `Can't close a session in ${m[1]} state.`,
+  },
+  {
+    pattern: /^(Purchase order|Stock transfer|Supplier|Sale|Cash drawer session) was not found/,
     bn: () => "এই তথ্য খুঁজে পাওয়া যায়নি।",
     en: () => "This record wasn't found.",
   },

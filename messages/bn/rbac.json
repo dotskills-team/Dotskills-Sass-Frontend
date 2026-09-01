@@ -27,6 +27,13 @@
     "settings": "সেটিংস",
     "purchaseOrders": "পার্চেজ অর্ডার",
     "stockTransfers": "স্টক ট্রান্সফার",
-    "sales": "বিক্রয়"
+    "sales": "বিক্রয়",
+    "cashDrawer": "ক্যাশ ড্রয়ার",
+    "reports": "রিপোর্ট",
+    "saleRegister": "সেল রেজিস্টার",
+    "purchaseRegister": "পার্চেজ রেজিস্টার",
+    "profitReport": "প্রফিট রিপোর্ট",
+    "stockReport": "স্টক রিপোর্ট",
+    "duePayableLedger": "বাকি / পাওনা লেজার"
   }
 }

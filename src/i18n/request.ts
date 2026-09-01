@@ -49,6 +49,8 @@ const MESSAGE_NAMESPACES = [
   "supplierPayments",
   "pos",
   "sales",
+  "cashDrawer",
+  "reports",
 ] as const;
 
 export default getRequestConfig(async () => {
