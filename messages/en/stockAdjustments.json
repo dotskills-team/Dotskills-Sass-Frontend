@@ -1,0 +1,81 @@
+{
+  "stockAdjustments": {
+    "title": "Stock Adjustments",
+    "description": "Correct stock for damage, theft, count mismatches, expiry, or opening stock.",
+    "newAdjustment": "New adjustment",
+    "reason": {
+      "DAMAGE": "Damage",
+      "THEFT_SHRINKAGE": "Theft / shrinkage",
+      "COUNT_MISMATCH": "Count mismatch",
+      "EXPIRED": "Expired",
+      "OPENING_STOCK": "Opening stock",
+      "OTHER": "Other"
+    },
+    "mode": {
+      "label": "Quantity mode",
+      "newQuantity": "Set new quantity",
+      "changeQuantity": "Adjust by (+/-)"
+    },
+    "form": {
+      "product": "Product",
+      "productPlaceholder": "Select a product",
+      "location": "Location",
+      "locationPlaceholder": "Select a location",
+      "currentQuantity": "Current: {quantity}",
+      "newQuantity": "New quantity",
+      "newQuantityPlaceholder": "0",
+      "changeQuantity": "Change",
+      "changeQuantityPlaceholder": "e.g. -3 or 10",
+      "reason": "Reason",
+      "reasonPlaceholder": "Select a reason",
+      "note": "Note",
+      "noteRecommended": "Note (recommended)",
+      "noteRequired": "Note (required for \"Other\")",
+      "notePlaceholder": "What happened?",
+      "noteRequiredError": "A note is required when the reason is \"Other\".",
+      "addLine": "Add line",
+      "removeLine": "Remove line",
+      "submit": "Apply adjustment",
+      "submitBulk": "Apply {count} adjustments"
+    },
+    "dialog": {
+      "title": "Adjust stock",
+      "description": "Correct the recorded stock for this product at a location."
+    },
+    "result": {
+      "applied": "Applied",
+      "error": "Error",
+      "summary": "{appliedCount} applied, {errorCount} failed",
+      "beforeAfter": "{before} → {after}",
+      "success": "Adjustment applied.",
+      "partialSuccess": "{appliedCount} of {total} lines applied — see the results below for what failed and why.",
+      "allFailed": "None of the lines could be applied — see the results below."
+    },
+    "history": {
+      "title": "Adjustment history",
+      "totalValueLost": "Total value lost",
+      "locationFilterPlaceholder": "Filter by location",
+      "allLocations": "All locations",
+      "reasonFilterPlaceholder": "Filter by reason",
+      "allReasons": "All reasons",
+      "columns": {
+        "id": "Batch",
+        "createdAt": "Date",
+        "lineCount": "Lines"
+      }
+    },
+    "detail": {
+      "backToList": "Back to adjustments",
+      "batchTitle": "Adjustment batch",
+      "createdAt": "Created",
+      "columns": {
+        "product": "Product",
+        "location": "Location",
+        "change": "Change",
+        "balanceAfter": "Balance after",
+        "reason": "Reason",
+        "note": "Note"
+      }
+    }
+  }
+}

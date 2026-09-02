@@ -24,7 +24,7 @@ import {
 } from "@/components/ui/select";
 
 import { useCurrentCompany } from "@/features/company/hooks/use-current-company";
-import { useListLocationsQuery } from "@/features/location/api/location.api";
+import { useAssignedLocations } from "@/features/location/hooks/use-assigned-locations";
 import { useListCustomersQuery } from "@/features/customer/api/customer.api";
 import { useGetCompanySettingsQuery } from "@/features/company-settings/api/company-settings.api";
 import { useCart } from "@/features/pos/hooks/use-cart";
@@ -51,8 +51,8 @@ export default function PosPage() {
 
   const { session: openCashDrawerSession } = useMyOpenSession(companyId);
 
-  const { data: locations } = useListLocationsQuery(companyId ?? "", { skip: !companyId });
-  const salesLocations = (locations ?? []).filter((location) => location.isSalesEnabled);
+  const { locations } = useAssignedLocations(companyId);
+  const salesLocations = locations.filter((location) => location.isSalesEnabled);
   const [selectedLocationId, setSelectedLocationId] = useState<string | null>(null);
   const locationId = selectedLocationId ?? salesLocations[0]?.id ?? "";
 

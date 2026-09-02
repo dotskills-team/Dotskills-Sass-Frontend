@@ -14,7 +14,7 @@ import { DataTable } from "@/components/data-table/data-table";
 import { DataTablePagination } from "@/components/data-table/data-table-pagination";
 
 import { useCurrentCompany } from "@/features/company/hooks/use-current-company";
-import { useListLocationsQuery } from "@/features/location/api/location.api";
+import { useAssignedLocations } from "@/features/location/hooks/use-assigned-locations";
 import { useListSuppliersQuery } from "@/features/supplier/api/supplier.api";
 import { useGetPurchaseRegisterQuery, useLazyExportPurchaseRegisterQuery } from "@/features/reporting/api/reporting.api";
 import { buildPurchaseRegisterColumns } from "@/features/reporting/components/purchase-register-columns";
@@ -41,12 +41,12 @@ export default function PurchaseRegisterReportPage() {
     },
     { skip: !companyId || !dateFrom || !dateTo },
   );
-  const { data: locations } = useListLocationsQuery(companyId ?? "", { skip: !companyId });
+  const { locations } = useAssignedLocations(companyId);
   const { data: suppliers } = useListSuppliersQuery(companyId ?? "", { skip: !companyId });
 
   const [triggerExport, { isFetching: isExporting }] = useLazyExportPurchaseRegisterQuery();
 
-  const columns = buildPurchaseRegisterColumns(locations ?? [], suppliers ?? [], {
+  const columns = buildPurchaseRegisterColumns(locations, suppliers ?? [], {
     orderNumber: t("purchaseRegister.columns.orderNumber"),
     date: t("purchaseRegister.columns.date"),
     location: t("purchaseRegister.columns.location"),
@@ -96,7 +96,7 @@ export default function PurchaseRegisterReportPage() {
               setLocationId(value);
               setPage(1);
             }}
-            locations={locations ?? []}
+            locations={locations}
             labels={{
               dateFrom: t("dateFrom"),
               dateTo: t("dateTo"),

@@ -22,7 +22,7 @@ import { DataTable } from "@/components/data-table/data-table";
 import { DataTablePagination } from "@/components/data-table/data-table-pagination";
 
 import { useCurrentCompany } from "@/features/company/hooks/use-current-company";
-import { useListLocationsQuery } from "@/features/location/api/location.api";
+import { useAssignedLocations } from "@/features/location/hooks/use-assigned-locations";
 import { useListStockReportQuery, useLazyExportStockReportQuery } from "@/features/stock-report/api/stock-report.api";
 import { buildStockReportColumns } from "@/features/reporting/components/stock-report-columns";
 import { ALL_LOCATIONS } from "@/features/reporting/components/date-range-filter";
@@ -54,7 +54,7 @@ export default function StockReportPage() {
     },
     { skip: !companyId },
   );
-  const { data: locations } = useListLocationsQuery(companyId ?? "", { skip: !companyId });
+  const { locations } = useAssignedLocations(companyId);
 
   const [triggerExport, { isFetching: isExporting }] = useLazyExportStockReportQuery();
 
@@ -101,7 +101,7 @@ export default function StockReportPage() {
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value={ALL_LOCATIONS}>{t("allLocations")}</SelectItem>
-                {(locations ?? []).map((location) => (
+                {locations.map((location) => (
                   <SelectItem key={location.id} value={location.id}>
                     {location.name}
                   </SelectItem>

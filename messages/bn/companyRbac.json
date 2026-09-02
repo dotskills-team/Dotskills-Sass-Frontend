@@ -71,6 +71,10 @@
         "assignScopesTitle": "স্কোপ Assign করুন",
         "assignScopesDescription": "\"{name}\"-এর জন্য access scope নির্বাচন করুন।",
         "assignScopesSuccess": "স্কোপ আপডেট হয়েছে।",
+        "assignLocations": "লোকেশন Assign করুন",
+        "assignLocationsTitle": "লোকেশন Assign করুন",
+        "assignLocationsDescription": "\"{name}\" কোন কোন লোকেশন access করতে পারবে তা নির্বাচন করুন।",
+        "assignLocationsSuccess": "লোকেশন আপডেট হয়েছে।",
         "changeStatus": "স্ট্যাটাস পরিবর্তন করুন",
         "changeStatusTitle": "মেম্বারের স্ট্যাটাস পরিবর্তন করুন",
         "changeStatusDescription": "\"{name}\"-এর জন্য নতুন স্ট্যাটাস নির্বাচন করুন।",
@@ -104,7 +108,8 @@
         "rolesRequired": "কমপক্ষে একটি রোল নির্বাচন করুন।",
         "scopesRequired": "কমপক্ষে একটি স্কোপ যোগ করুন।",
         "scopeKeyPlaceholder": "যেমন branch code, অথবা পুরো কোম্পানির জন্য *",
-        "addScope": "স্কোপ যোগ করুন"
+        "addScope": "স্কোপ যোগ করুন",
+        "noLocations": "এখনো কোনো লোকেশন নেই — আগে একটি তৈরি করুন।"
       }
     }
   }

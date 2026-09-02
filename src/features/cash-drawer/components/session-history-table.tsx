@@ -14,7 +14,7 @@ import {
 import { DataTable } from "@/components/data-table/data-table";
 import { DataTablePagination } from "@/components/data-table/data-table-pagination";
 
-import { useListLocationsQuery } from "@/features/location/api/location.api";
+import { useAssignedLocations } from "@/features/location/hooks/use-assigned-locations";
 import { useListCompanyMembersQuery } from "@/features/company-rbac/api/company-rbac.api";
 import { useListCashDrawerSessionsQuery } from "@/features/cash-drawer/api/cash-drawer.api";
 import { buildCashDrawerSessionsColumns } from "@/features/cash-drawer/components/cash-drawer-sessions-columns";
@@ -35,13 +35,13 @@ export function SessionHistoryTable({ companyId }: { companyId: string }) {
     { companyId, page, locationId: locationId === ALL_LOCATIONS ? undefined : locationId },
     { skip: !companyId },
   );
-  const { data: locations } = useListLocationsQuery(companyId, { skip: !companyId });
+  const { locations } = useAssignedLocations(companyId);
   // Cashier names are a display nicety, not core functionality — a role
   // without MEMBER_READ still sees the full history, just with the raw
   // cashierId column falling back to "—" instead of a name.
   const { data: members } = useListCompanyMembersQuery(companyId, { skip: !companyId || !canReadMembers });
 
-  const columns = buildCashDrawerSessionsColumns(locations ?? [], members ?? [], {
+  const columns = buildCashDrawerSessionsColumns(locations, members ?? [], {
     location: t("history.columns.location"),
     cashier: t("history.columns.cashier"),
     openedAt: t("history.columns.openedAt"),
@@ -69,7 +69,7 @@ export function SessionHistoryTable({ companyId }: { companyId: string }) {
           </SelectTrigger>
           <SelectContent>
             <SelectItem value={ALL_LOCATIONS}>{t("history.allLocations")}</SelectItem>
-            {(locations ?? []).map((location) => (
+            {locations.map((location) => (
               <SelectItem key={location.id} value={location.id}>
                 {location.name}
               </SelectItem>

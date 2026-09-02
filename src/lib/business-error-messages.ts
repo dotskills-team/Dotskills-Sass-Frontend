@@ -29,6 +29,31 @@ const RULES: ErrorRule[] = [
     en: () => "Not enough stock for one or more items in this sale.",
   },
   {
+    pattern: /^INSUFFICIENT_STOCK: not enough stock to apply this adjustment/,
+    bn: () => "এই অ্যাডজাস্টমেন্ট প্রয়োগ করার মতো পর্যাপ্ত স্টক নেই — সম্ভবত অন্য কোনো বিক্রয়/ট্রান্সফার একই সময়ে স্টক বদলে দিয়েছে।",
+    en: () => "Not enough stock to apply this adjustment — another sale or transfer may have changed the stock at the same time.",
+  },
+  {
+    pattern: /^product was not found/,
+    bn: () => "এই পণ্যটি খুঁজে পাওয়া যায়নি।",
+    en: () => "This product wasn't found.",
+  },
+  {
+    pattern: /^location was not found/,
+    bn: () => "এই লোকেশনটি খুঁজে পাওয়া যায়নি।",
+    en: () => "This location wasn't found.",
+  },
+  {
+    pattern: /^no change to apply/,
+    bn: () => "কোনো পরিবর্তন প্রয়োগ করার নেই — নতুন পরিমাণ বর্তমান স্টকের সমান।",
+    en: () => "No change to apply — the new quantity matches the current stock.",
+  },
+  {
+    pattern: /^exactly one of newQuantity or changeQuantity must be provided/,
+    bn: () => "নতুন পরিমাণ বা পরিবর্তনের যেকোনো একটা দিতে হবে, দুটোই না।",
+    en: () => "Provide either a new quantity or a change amount, not both.",
+  },
+  {
     pattern: /^INSUFFICIENT_STOCK:/,
     bn: () => "এই পণ্যের ফেরত দেওয়ার মতো পর্যাপ্ত স্টক নেই।",
     en: () => "Not enough stock of this product to return.",

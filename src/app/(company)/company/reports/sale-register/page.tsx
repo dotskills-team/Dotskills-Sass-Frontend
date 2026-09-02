@@ -15,7 +15,7 @@ import { DataTable } from "@/components/data-table/data-table";
 import { DataTablePagination } from "@/components/data-table/data-table-pagination";
 
 import { useCurrentCompany } from "@/features/company/hooks/use-current-company";
-import { useListLocationsQuery } from "@/features/location/api/location.api";
+import { useAssignedLocations } from "@/features/location/hooks/use-assigned-locations";
 import { useListCustomersQuery } from "@/features/customer/api/customer.api";
 import { useGetSaleRegisterQuery, useLazyExportSaleRegisterQuery } from "@/features/reporting/api/reporting.api";
 import { buildSaleRegisterColumns } from "@/features/reporting/components/sale-register-columns";
@@ -43,12 +43,12 @@ export default function SaleRegisterReportPage() {
     },
     { skip: !companyId || !dateFrom || !dateTo },
   );
-  const { data: locations } = useListLocationsQuery(companyId ?? "", { skip: !companyId });
+  const { locations } = useAssignedLocations(companyId);
   const { data: customers } = useListCustomersQuery(companyId ?? "", { skip: !companyId });
 
   const [triggerExport, { isFetching: isExporting }] = useLazyExportSaleRegisterQuery();
 
-  const columns = buildSaleRegisterColumns(locations ?? [], customers ?? [], {
+  const columns = buildSaleRegisterColumns(locations, customers ?? [], {
     saleNumber: t("saleRegister.columns.saleNumber"),
     date: t("saleRegister.columns.date"),
     location: t("saleRegister.columns.location"),
@@ -99,7 +99,7 @@ export default function SaleRegisterReportPage() {
               setLocationId(value);
               setPage(1);
             }}
-            locations={locations ?? []}
+            locations={locations}
             labels={{
               dateFrom: t("dateFrom"),
               dateTo: t("dateTo"),

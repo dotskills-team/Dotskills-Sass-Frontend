@@ -16,12 +16,13 @@ import { CompanyPermissionGate } from "@/components/shared/permission-gate";
 import { ActionConfirmDialog } from "@/components/shared/action-confirm-dialog";
 import { AssignMemberRolesDialog } from "@/features/company-rbac/components/assign-member-roles-dialog";
 import { AssignMemberScopesDialog } from "@/features/company-rbac/components/assign-member-scopes-dialog";
+import { AssignMemberLocationsDialog } from "@/features/company-rbac/components/assign-member-locations-dialog";
 import { useUpdateCompanyMemberStatusMutation } from "@/features/company-rbac/api/company-rbac.api";
 import { COMPANY_PERMISSIONS } from "@/constants/permissions";
 import { normalizeApiError } from "@/lib/api-error";
 import type { CompanyMember } from "@/types/company-rbac";
 
-type ActiveAction = "roles" | "scopes" | "status" | null;
+type ActiveAction = "roles" | "scopes" | "locations" | "status" | null;
 
 const STATUS_OPTIONS = ["ACTIVE", "SUSPENDED", "REVOKED"] as const;
 
@@ -65,6 +66,11 @@ export function CompanyMemberRowActions({ companyId, member }: { companyId: stri
               {t("members.actions.assignScopes")}
             </DropdownMenuItem>
           </CompanyPermissionGate>
+          <CompanyPermissionGate permission={COMPANY_PERMISSIONS.MEMBER_SCOPE_ASSIGN}>
+            <DropdownMenuItem onSelect={() => setActiveAction("locations")}>
+              {t("members.actions.assignLocations")}
+            </DropdownMenuItem>
+          </CompanyPermissionGate>
           <CompanyPermissionGate permission={COMPANY_PERMISSIONS.MEMBER_UPDATE}>
             <DropdownMenuItem onSelect={() => setActiveAction("status")}>
               {t("members.actions.changeStatus")}
@@ -84,6 +90,15 @@ export function CompanyMemberRowActions({ companyId, member }: { companyId: stri
 
       {activeAction === "scopes" && (
         <AssignMemberScopesDialog
+          companyId={companyId}
+          member={member}
+          open
+          onOpenChange={(open) => !open && setActiveAction(null)}
+        />
+      )}
+
+      {activeAction === "locations" && (
+        <AssignMemberLocationsDialog
           companyId={companyId}
           member={member}
           open

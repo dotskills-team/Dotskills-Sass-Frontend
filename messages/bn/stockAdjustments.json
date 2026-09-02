@@ -1,0 +1,81 @@
+{
+  "stockAdjustments": {
+    "title": "স্টক অ্যাডজাস্টমেন্ট",
+    "description": "ড্যামেজ, চুরি, গণনার গরমিল, মেয়াদোত্তীর্ণ, বা opening stock-এর জন্য স্টক ঠিক করুন।",
+    "newAdjustment": "নতুন অ্যাডজাস্টমেন্ট",
+    "reason": {
+      "DAMAGE": "ড্যামেজ",
+      "THEFT_SHRINKAGE": "চুরি / শ্রিংকেজ",
+      "COUNT_MISMATCH": "গণনার গরমিল",
+      "EXPIRED": "মেয়াদোত্তীর্ণ",
+      "OPENING_STOCK": "শুরুর স্টক",
+      "OTHER": "অন্যান্য"
+    },
+    "mode": {
+      "label": "পরিমাণের ধরন",
+      "newQuantity": "নতুন পরিমাণ সেট করুন",
+      "changeQuantity": "পরিবর্তন করুন (+/-)"
+    },
+    "form": {
+      "product": "পণ্য",
+      "productPlaceholder": "একটা পণ্য বেছে নিন",
+      "location": "লোকেশন",
+      "locationPlaceholder": "একটা লোকেশন বেছে নিন",
+      "currentQuantity": "বর্তমান: {quantity}",
+      "newQuantity": "নতুন পরিমাণ",
+      "newQuantityPlaceholder": "0",
+      "changeQuantity": "পরিবর্তন",
+      "changeQuantityPlaceholder": "যেমন -3 বা 10",
+      "reason": "কারণ",
+      "reasonPlaceholder": "একটা কারণ বেছে নিন",
+      "note": "নোট",
+      "noteRecommended": "নোট (সুপারিশযোগ্য)",
+      "noteRequired": "নোট (\"অন্যান্য\"-এর জন্য বাধ্যতামূলক)",
+      "notePlaceholder": "কী হয়েছিল?",
+      "noteRequiredError": "কারণ \"অন্যান্য\" হলে নোট লেখা বাধ্যতামূলক।",
+      "addLine": "লাইন যোগ করুন",
+      "removeLine": "লাইন মুছুন",
+      "submit": "অ্যাডজাস্টমেন্ট প্রয়োগ করুন",
+      "submitBulk": "{count}টা অ্যাডজাস্টমেন্ট প্রয়োগ করুন"
+    },
+    "dialog": {
+      "title": "স্টক অ্যাডজাস্ট করুন",
+      "description": "একটা লোকেশনে এই পণ্যের রেকর্ড করা স্টক ঠিক করুন।"
+    },
+    "result": {
+      "applied": "প্রয়োগ হয়েছে",
+      "error": "ত্রুটি",
+      "summary": "{appliedCount}টা প্রয়োগ হয়েছে, {errorCount}টা ব্যর্থ",
+      "beforeAfter": "{before} → {after}",
+      "success": "অ্যাডজাস্টমেন্ট প্রয়োগ হয়েছে।",
+      "partialSuccess": "{total}টার মধ্যে {appliedCount}টা লাইন প্রয়োগ হয়েছে — কোনগুলো ব্যর্থ হয়েছে ও কেন, নিচের ফলাফলে দেখুন।",
+      "allFailed": "কোনো লাইনই প্রয়োগ করা যায়নি — নিচের ফলাফল দেখুন।"
+    },
+    "history": {
+      "title": "অ্যাডজাস্টমেন্ট ইতিহাস",
+      "totalValueLost": "মোট ক্ষতির মূল্য",
+      "locationFilterPlaceholder": "লোকেশন অনুযায়ী ফিল্টার",
+      "allLocations": "সব লোকেশন",
+      "reasonFilterPlaceholder": "কারণ অনুযায়ী ফিল্টার",
+      "allReasons": "সব কারণ",
+      "columns": {
+        "id": "ব্যাচ",
+        "createdAt": "তারিখ",
+        "lineCount": "লাইন"
+      }
+    },
+    "detail": {
+      "backToList": "অ্যাডজাস্টমেন্টে ফিরে যান",
+      "batchTitle": "অ্যাডজাস্টমেন্ট ব্যাচ",
+      "createdAt": "তৈরি হয়েছে",
+      "columns": {
+        "product": "পণ্য",
+        "location": "লোকেশন",
+        "change": "পরিবর্তন",
+        "balanceAfter": "পরের ব্যালেন্স",
+        "reason": "কারণ",
+        "note": "নোট"
+      }
+    }
+  }
+}

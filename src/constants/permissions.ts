@@ -191,6 +191,10 @@ export const COMPANY_PERMISSIONS = {
   CASH_DRAWER_SESSION_READ: "company.cash-drawer-session.read",
   CASH_DRAWER_SESSION_OPEN: "company.cash-drawer-session.open",
   CASH_DRAWER_SESSION_CLOSE: "company.cash-drawer-session.close",
+
+  /** Manual Stock Adjustment — damage/theft/count-mismatch/expiry/opening-stock corrections, Owner/Manager tier. */
+  STOCK_ADJUSTMENT_READ: "company.stock-adjustment.read",
+  STOCK_ADJUSTMENT_CREATE: "company.stock-adjustment.create",
 } as const;
 
 export type PlatformPermissionCode =

@@ -71,6 +71,10 @@
         "assignScopesTitle": "Assign scopes",
         "assignScopesDescription": "Choose access scopes for \"{name}\".",
         "assignScopesSuccess": "Scopes updated.",
+        "assignLocations": "Assign locations",
+        "assignLocationsTitle": "Assign locations",
+        "assignLocationsDescription": "Choose which locations \"{name}\" can access.",
+        "assignLocationsSuccess": "Locations updated.",
         "changeStatus": "Change status",
         "changeStatusTitle": "Change member status",
         "changeStatusDescription": "Set a new status for \"{name}\".",
@@ -104,7 +108,8 @@
         "rolesRequired": "Select at least one role.",
         "scopesRequired": "Add at least one scope.",
         "scopeKeyPlaceholder": "e.g. branch code, or * for whole company",
-        "addScope": "Add scope"
+        "addScope": "Add scope",
+        "noLocations": "No locations exist yet — create one first."
       }
     }
   }

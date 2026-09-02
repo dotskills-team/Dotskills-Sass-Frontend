@@ -22,6 +22,12 @@ export interface CreateCompanyMemberBody {
   roleCodes: string[];
 }
 
+/** `GET /companies/:companyId/rbac/my-location-access` — `all:true` for an unrestricted (LOCATION_ACCESS_ALL) actor. */
+export interface MyLocationAccess {
+  all: boolean;
+  locationIds: string[];
+}
+
 /**
  * Company RBAC (`companies/:companyId/rbac/*`) `CompanyContextGuard`-এ guarded — caller-এর
  * সেই company-তে ACTIVE membership থাকা লাগে, `x-company-id` header route param-এর সাথে match
@@ -143,6 +149,31 @@ export const companyRbacApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["CompanyMember"],
     }),
+
+    replaceCompanyMemberLocations: builder.mutation<
+      unknown,
+      { companyId: string; memberId: string; locationIds: string[] }
+    >({
+      query: ({ companyId, memberId, locationIds }) => ({
+        url: `/companies/${companyId}/rbac/members/${memberId}/locations`,
+        method: "PUT",
+        body: { locationIds },
+      }),
+      invalidatesTags: ["CompanyMember"],
+    }),
+
+    /**
+     * No permission gate on the backend route (any active member may know
+     * their own access) — every LBAC-aware Location <Select> calls this to
+     * filter its options. Backend enforcement (LocationAccessService in
+     * each business-ops service) is the real boundary; this is only the
+     * UX-quality companion.
+     */
+    getMyLocationAccess: builder.query<MyLocationAccess, string>({
+      query: (companyId) => `/companies/${companyId}/rbac/my-location-access`,
+      transformResponse: (response: { data: MyLocationAccess }) => response.data,
+      providesTags: ["CompanyScoped"],
+    }),
   }),
 });
 
@@ -158,4 +189,6 @@ export const {
   useReplaceCompanyMemberRolesMutation,
   useUpdateCompanyMemberStatusMutation,
   useReplaceCompanyMemberScopesMutation,
+  useReplaceCompanyMemberLocationsMutation,
+  useGetMyLocationAccessQuery,
 } = companyRbacApi;

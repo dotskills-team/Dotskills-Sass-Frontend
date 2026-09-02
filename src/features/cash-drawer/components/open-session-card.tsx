@@ -17,7 +17,7 @@ import {
 } from "@/components/ui/select";
 
 import { useAppSelector } from "@/store/hooks";
-import { useListLocationsQuery } from "@/features/location/api/location.api";
+import { useAssignedLocations } from "@/features/location/hooks/use-assigned-locations";
 import {
   useListCashDrawerSessionsQuery,
   useOpenCashDrawerSessionMutation,
@@ -37,8 +37,8 @@ export function OpenSessionCard({ companyId }: { companyId: string }) {
   const locale = useLocale();
   const userId = useAppSelector((state) => state.auth.user?.userId);
 
-  const { data: locations } = useListLocationsQuery(companyId, { skip: !companyId });
-  const salesLocations = (locations ?? []).filter((location) => location.isSalesEnabled);
+  const { locations } = useAssignedLocations(companyId);
+  const salesLocations = locations.filter((location) => location.isSalesEnabled);
 
   const [selectedLocationId, setSelectedLocationId] = useState<string | null>(null);
   const locationId = selectedLocationId ?? "";

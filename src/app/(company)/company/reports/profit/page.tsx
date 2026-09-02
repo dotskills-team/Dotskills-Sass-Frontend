@@ -14,7 +14,7 @@ import { DataTable } from "@/components/data-table/data-table";
 import { DataTablePagination } from "@/components/data-table/data-table-pagination";
 
 import { useCurrentCompany } from "@/features/company/hooks/use-current-company";
-import { useListLocationsQuery } from "@/features/location/api/location.api";
+import { useAssignedLocations } from "@/features/location/hooks/use-assigned-locations";
 import { useGetProfitReportQuery, useLazyExportProfitReportQuery } from "@/features/reporting/api/reporting.api";
 import { buildProfitReportColumns } from "@/features/reporting/components/profit-report-columns";
 import { DateRangeFilter, ALL_LOCATIONS, getDefaultDateRange } from "@/features/reporting/components/date-range-filter";
@@ -45,7 +45,7 @@ export default function ProfitReportPage() {
     },
     { skip: !companyId || !dateFrom || !dateTo },
   );
-  const { data: locations } = useListLocationsQuery(companyId ?? "", { skip: !companyId });
+  const { locations } = useAssignedLocations(companyId);
 
   const [triggerExport, { isFetching: isExporting }] = useLazyExportProfitReportQuery();
 
@@ -96,7 +96,7 @@ export default function ProfitReportPage() {
               setLocationId(value);
               setPage(1);
             }}
-            locations={locations ?? []}
+            locations={locations}
             labels={{
               dateFrom: t("dateFrom"),
               dateTo: t("dateTo"),

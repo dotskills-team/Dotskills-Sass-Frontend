@@ -38,4 +38,5 @@ export interface CompanyMember {
   user: { id: string; email: string; fullName: string; status: string };
   roles: { expiresAt: string | null; companyRole: { id: string; code: string; name: string } }[];
   scopes: { id: string; scopeType: CompanyScopeType; scopeKey: string; validUntil: string | null }[];
+  locations: { locationId: string; location: { name: string } }[];
 }
