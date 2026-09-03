@@ -37,58 +37,59 @@ import { COMPANY_PERMISSIONS } from "@/constants/permissions";
 export const companyNavItems: NavItem[] = [
   { labelKey: "dashboard", href: "/company/dashboard", icon: LayoutDashboard },
   {
-    labelKey: "subscriptionBilling",
-    icon: Landmark,
+    labelKey: "configuration",
+    icon: Settings,
     children: [
-      /**
-       * `subscriptions` GET route (`current`/`all`/`:id`)-এ কোনো `@RequireCompanyPermissions`
-       * decorator নেই — `CompanyPermissionsGuard` verified: no-decorator মানে যেকোনো active company
-       * member access পায়। তাই এই child ungated (Dashboard-এর মতোই), backend contract-এর সাথে
-       * exact match — invented restriction নয়।
-       */
-      { labelKey: "subscription", href: "/company/subscription", icon: CreditCard },
       {
-        labelKey: "invoices",
-        href: "/company/invoices",
-        icon: FileText,
-        companyPermission: COMPANY_PERMISSIONS.INVOICE_READ,
+        labelKey: "locations",
+        href: "/company/locations",
+        icon: MapPin,
+        companyPermission: COMPANY_PERMISSIONS.LOCATION_READ,
       },
       {
-        labelKey: "payments",
-        href: "/company/payments",
-        icon: Wallet,
-        companyPermission: COMPANY_PERMISSIONS.PAYMENT_READ,
+        labelKey: "customers",
+        href: "/company/customers",
+        icon: UserRound,
+        companyPermission: COMPANY_PERMISSIONS.CUSTOMER_READ,
       },
+      {
+        labelKey: "suppliers",
+        href: "/company/suppliers",
+        icon: Truck,
+        companyPermission: COMPANY_PERMISSIONS.SUPPLIER_READ,
+      },
+      {
+        labelKey: "companySettings",
+        href: "/company/settings",
+        icon: SlidersHorizontal,
+        companyPermission: COMPANY_PERMISSIONS.SETTINGS_READ,
+      },
+      /** Setup page-এ কোনো `CompanyPermissionGate` নেই (verified directly) — ungated, matches its real, already-shipped access level. */
+      { labelKey: "setupWizard", href: "/company/setup", icon: Wand2 },
     ],
   },
   {
-    labelKey: "sales",
-    icon: ShoppingCart,
+    labelKey: "accessControl",
+    icon: Users,
     children: [
       {
-        labelKey: "pos",
-        href: "/company/pos",
-        icon: ScanLine,
-        companyPermission: COMPANY_PERMISSIONS.SALE_CREATE,
+        labelKey: "companyRoles",
+        href: "/company/rbac/roles",
+        icon: ShieldCheck,
+        companyPermission: COMPANY_PERMISSIONS.RBAC_READ,
       },
       {
-        labelKey: "salesHistory",
-        href: "/company/sales",
-        icon: Receipt,
-        companyPermission: COMPANY_PERMISSIONS.SALE_READ,
-      },
-      {
-        labelKey: "cashDrawer",
-        href: "/company/cash-drawer",
-        icon: Banknote,
-        companyPermission: COMPANY_PERMISSIONS.CASH_DRAWER_SESSION_READ,
+        labelKey: "companyMembers",
+        href: "/company/rbac/members",
+        icon: UserCog,
+        companyPermission: COMPANY_PERMISSIONS.MEMBER_READ,
       },
     ],
   },
-  {
-    labelKey: "purchase",
-    icon: ClipboardList,
-    children: [
+  //  {
+  //   labelKey: "purchase",
+  //   icon: ClipboardList,
+  //   children: [
       {
         labelKey: "purchaseOrders",
         href: "/company/purchase-orders",
@@ -107,12 +108,12 @@ export const companyNavItems: NavItem[] = [
         icon: HandCoins,
         companyPermission: COMPANY_PERMISSIONS.SUPPLIER_PAYMENT_READ,
       },
-    ],
-  },
-  {
-    labelKey: "inventory",
-    icon: Boxes,
-    children: [
+  //   ],
+  // },
+  // {
+  //   labelKey: "inventory",
+  //   icon: Boxes,
+  //   children: [
       {
         labelKey: "products",
         href: "/company/products",
@@ -137,8 +138,34 @@ export const companyNavItems: NavItem[] = [
         icon: ClipboardEdit,
         companyPermission: COMPANY_PERMISSIONS.STOCK_ADJUSTMENT_READ,
       },
-    ],
-  },
+  //   ],
+  // },
+  // {
+  //   labelKey: "sales",
+  //   icon: ShoppingCart,
+  //   children: [
+      {
+        labelKey: "pos",
+        href: "/company/pos",
+        icon: ScanLine,
+        companyPermission: COMPANY_PERMISSIONS.SALE_CREATE,
+      },
+      {
+        labelKey: "salesHistory",
+        href: "/company/sales",
+        icon: Receipt,
+        companyPermission: COMPANY_PERMISSIONS.SALE_READ,
+      },
+      {
+        labelKey: "cashDrawer",
+        href: "/company/cash-drawer",
+        icon: Banknote,
+        companyPermission: COMPANY_PERMISSIONS.CASH_DRAWER_SESSION_READ,
+      },
+  //   ],
+  // },
+ 
+  
   {
     labelKey: "reports",
     icon: BarChart3,
@@ -176,53 +203,30 @@ export const companyNavItems: NavItem[] = [
     ],
   },
   {
-    labelKey: "configuration",
-    icon: Settings,
+    labelKey: "subscriptionBilling",
+    icon: Landmark,
     children: [
+      /**
+       * `subscriptions` GET route (`current`/`all`/`:id`)-এ কোনো `@RequireCompanyPermissions`
+       * decorator নেই — `CompanyPermissionsGuard` verified: no-decorator মানে যেকোনো active company
+       * member access পায়। তাই এই child ungated (Dashboard-এর মতোই), backend contract-এর সাথে
+       * exact match — invented restriction নয়।
+       */
+      { labelKey: "subscription", href: "/company/subscription", icon: CreditCard },
       {
-        labelKey: "locations",
-        href: "/company/locations",
-        icon: MapPin,
-        companyPermission: COMPANY_PERMISSIONS.LOCATION_READ,
+        labelKey: "invoices",
+        href: "/company/invoices",
+        icon: FileText,
+        companyPermission: COMPANY_PERMISSIONS.INVOICE_READ,
       },
       {
-        labelKey: "customers",
-        href: "/company/customers",
-        icon: UserRound,
-        companyPermission: COMPANY_PERMISSIONS.CUSTOMER_READ,
-      },
-      {
-        labelKey: "suppliers",
-        href: "/company/suppliers",
-        icon: Truck,
-        companyPermission: COMPANY_PERMISSIONS.SUPPLIER_READ,
-      },
-      {
-        labelKey: "companySettings",
-        href: "/company/settings",
-        icon: SlidersHorizontal,
-        companyPermission: COMPANY_PERMISSIONS.SETTINGS_READ,
-      },
-      /** Setup page-এ কোনো `CompanyPermissionGate` নেই (verified directly) — ungated, matches its real, already-shipped access level. */
-      { labelKey: "setupWizard", href: "/company/setup", icon: Wand2 },
-    ],
-  },
-  {
-    labelKey: "team",
-    icon: Users,
-    children: [
-      {
-        labelKey: "companyRoles",
-        href: "/company/rbac/roles",
-        icon: ShieldCheck,
-        companyPermission: COMPANY_PERMISSIONS.RBAC_READ,
-      },
-      {
-        labelKey: "companyMembers",
-        href: "/company/rbac/members",
-        icon: UserCog,
-        companyPermission: COMPANY_PERMISSIONS.MEMBER_READ,
+        labelKey: "payments",
+        href: "/company/payments",
+        icon: Wallet,
+        companyPermission: COMPANY_PERMISSIONS.PAYMENT_READ,
       },
     ],
   },
+  
+  
 ];
