@@ -15,12 +15,13 @@ import {
 import { CompanyPermissionGate } from "@/components/shared/permission-gate";
 import { ActionConfirmDialog } from "@/components/shared/action-confirm-dialog";
 import { EditCustomerDialog } from "@/features/customer/components/edit-customer-dialog";
+import { RecordCustomerPaymentDialog } from "@/features/customer-payment/components/record-customer-payment-dialog";
 import { useUpdateCustomerMutation } from "@/features/customer/api/customer.api";
 import { COMPANY_PERMISSIONS } from "@/constants/permissions";
 import { normalizeApiError } from "@/lib/api-error";
 import type { Customer } from "@/types/customer";
 
-type ActiveAction = "edit" | "activate" | "deactivate" | null;
+type ActiveAction = "edit" | "activate" | "deactivate" | "recordPayment" | null;
 
 export function CustomerRowActions({ companyId, customer }: { companyId: string; customer: Customer }) {
   const t = useTranslations("customers");
@@ -59,6 +60,11 @@ export function CustomerRowActions({ companyId, customer }: { companyId: string;
               </DropdownMenuItem>
             )}
           </CompanyPermissionGate>
+          <CompanyPermissionGate permission={COMPANY_PERMISSIONS.CUSTOMER_PAYMENT_CREATE}>
+            <DropdownMenuItem onSelect={() => setActiveAction("recordPayment")}>
+              {t("actions.recordPayment")}
+            </DropdownMenuItem>
+          </CompanyPermissionGate>
         </DropdownMenuContent>
       </DropdownMenu>
 
@@ -88,6 +94,13 @@ export function CustomerRowActions({ companyId, customer }: { companyId: string;
         companyId={companyId}
         customer={customer}
         open={activeAction === "edit"}
+        onOpenChange={(open) => !open && setActiveAction(null)}
+      />
+
+      <RecordCustomerPaymentDialog
+        companyId={companyId}
+        customer={customer}
+        open={activeAction === "recordPayment"}
         onOpenChange={(open) => !open && setActiveAction(null)}
       />
     </>

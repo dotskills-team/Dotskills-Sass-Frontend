@@ -1,0 +1,22 @@
+{
+  "notifications": {
+    "title": "নোটিফিকেশন",
+    "empty": "এখনো কোনো নোটিফিকেশন নেই।",
+    "loadError": "নোটিফিকেশন লোড করা যায়নি।",
+    "types": {
+      "OUT_OF_STOCK": "{locationName}-এ {productName} স্টক শেষ হয়ে গেছে",
+      "LOW_STOCK": "{locationName}-এ {productName}-এর স্টক কমে গেছে ({quantity} বাকি, reorder level {reorderLevel})",
+      "CASH_DRAWER_VARIANCE": "{locationName}-এ ক্যাশ ড্রয়ারে {variance} গরমিল পাওয়া গেছে",
+      "CUSTOMER_DUE_OVERDUE": "{customerName} তার বাকির সীমা পার করেছেন (বাকি {dueBalance}, সীমা {limit})",
+      "SUPPLIER_PAYABLE_OVERDUE": "{supplierName}-এর পাওনা ({payableBalance}) নির্ধারিত সীমা ({limit}) পার করেছে",
+      "SUBSCRIPTION_EXPIRING_SOON": "আপনার সাবস্ক্রিপশন শীঘ্রই শেষ হয়ে যাচ্ছে",
+      "SUBSCRIPTION_PAST_DUE": "আপনার সাবস্ক্রিপশন পেমেন্ট বকেয়া আছে",
+      "STAFF_ACTIVITY": "{memberName}: {action}"
+    },
+    "staffActions": {
+      "MEMBER_CREATED": "নতুন সদস্য হিসেবে যোগ হয়েছেন",
+      "MEMBER_ROLES_UPDATED": "রোল আপডেট হয়েছে",
+      "MEMBER_LOCATIONS_UPDATED": "লোকেশন অ্যাক্সেস আপডেট হয়েছে"
+    }
+  }
+}

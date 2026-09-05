@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useTranslations } from "next-intl";
 
 import { PageHeader } from "@/components/shared/page-header";
@@ -9,6 +10,7 @@ import { ErrorState } from "@/components/shared/error-state";
 import { EmptyState } from "@/components/shared/empty-state";
 import { StatusBadge } from "@/components/shared/status-badge";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 
@@ -32,7 +34,14 @@ export default function CustomersPage() {
       <PageHeader title={t("title")} description={t("description")} />
 
       <div className="p-6">
-        <div className="mb-4 flex justify-end">{companyId && <CreateCustomerDialog companyId={companyId} />}</div>
+        <div className="mb-4 flex justify-end gap-2">
+          <CompanyPermissionGate permission={COMPANY_PERMISSIONS.CUSTOMER_PAYMENT_READ}>
+            <Button variant="outline" asChild>
+              <Link href="/company/customer-payments">{t("viewPaymentLedger")}</Link>
+            </Button>
+          </CompanyPermissionGate>
+          {companyId && <CreateCustomerDialog companyId={companyId} />}
+        </div>
 
         {!companyId || isLoading ? (
           <Skeleton className="h-40 w-full" />

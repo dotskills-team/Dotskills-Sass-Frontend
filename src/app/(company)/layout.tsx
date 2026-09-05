@@ -11,6 +11,7 @@ import { AppSidebar } from "@/components/layout/app-sidebar";
 import { CompanySelector } from "@/features/company/components/company-selector";
 import { CompanyContextGate } from "@/features/company/components/company-context-gate";
 import { CashDrawerStatusIndicator } from "@/features/cash-drawer/components/cash-drawer-status-indicator";
+import { NotificationBell } from "@/features/notification/components/notification-bell";
 import { useCurrentCompany } from "@/features/company/hooks/use-current-company";
 import { Button } from "@/components/ui/button";
 
@@ -58,6 +59,7 @@ export default function CompanyLayout({ children }: { children: React.ReactNode 
                 <CompanySelector />
               </div>
               <div className="flex items-center gap-2">
+                <NotificationBell companyId={company?.companyId} />
                 <CashDrawerStatusIndicator companyId={company?.companyId} />
                 <LanguageSwitcher />
                 <LogoutButton />

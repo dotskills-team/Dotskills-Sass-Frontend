@@ -48,6 +48,7 @@ export function CompanySettingsForm({ defaultValues, isSubmitting, onSubmit }: C
 
   const schema = createCompanySettingsSchema({
     maxCustomerDueLimitNonNegative: t("fields.maxCustomerDueLimitNonNegative"),
+    maxSupplierPayableLimitNonNegative: t("fields.maxSupplierPayableLimitNonNegative"),
     defaultTaxRateNonNegative: t("fields.defaultTaxRateNonNegative"),
   });
 
@@ -102,6 +103,21 @@ export function CompanySettingsForm({ defaultValues, isSubmitting, onSubmit }: C
                 )}
               />
             )}
+
+            <FormField
+              control={form.control}
+              name="maxSupplierPayableLimit"
+              render={({ field }) => (
+                <FormItem className="rounded-lg border border-border p-4">
+                  <FormLabel>{t("fields.maxSupplierPayableLimit")}</FormLabel>
+                  <FormControl>
+                    <Input {...field} type="number" step="0.01" min="0" placeholder={t("fields.maxSupplierPayableLimitPlaceholder")} />
+                  </FormControl>
+                  <FormDescription>{t("fields.maxSupplierPayableLimitHelp")}</FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 
             {enableTax && (
               <FormField

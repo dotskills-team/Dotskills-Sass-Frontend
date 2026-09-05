@@ -1,5 +1,7 @@
 "use client";
 
+import { Suspense, useEffect, useRef } from "react";
+import { useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 
 import { PageHeader } from "@/components/shared/page-header";
@@ -16,16 +18,34 @@ import { useListCompanyMembersQuery } from "@/features/company-rbac/api/company-
 import { CreateCompanyMemberDialog } from "@/features/company-rbac/components/create-company-member-dialog";
 import { CompanyMemberRowActions } from "@/features/company-rbac/components/company-member-actions";
 import { COMPANY_PERMISSIONS } from "@/constants/permissions";
+import { cn } from "@/lib/utils";
 
 /** Backend `GET .../rbac/members` unpaginated (verified) — পুরো list একবারেই আসে। */
 export default function CompanyMembersPage() {
+  return (
+    <Suspense fallback={null}>
+      <CompanyMembersPageContent />
+    </Suspense>
+  );
+}
+
+function CompanyMembersPageContent() {
   const t = useTranslations("companyRbac");
   const { company } = useCurrentCompany();
   const companyId = company?.companyId;
+  const searchParams = useSearchParams();
+  const highlightMemberId = searchParams.get("memberId");
+  const highlightedRowRef = useRef<HTMLTableRowElement | null>(null);
 
   const { data: members, isLoading, error, refetch } = useListCompanyMembersQuery(companyId ?? "", {
     skip: !companyId,
   });
+
+  useEffect(() => {
+    if (highlightMemberId && highlightedRowRef.current) {
+      highlightedRowRef.current.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+  }, [highlightMemberId, members]);
 
   return (
     <CompanyPermissionGate permission={COMPANY_PERMISSIONS.MEMBER_READ} fallback={<PermissionDenied />}>
@@ -56,7 +76,11 @@ export default function CompanyMembersPage() {
               </TableHeader>
               <TableBody>
                 {members.map((member, index) => (
-                  <TableRow key={member.id}>
+                  <TableRow
+                    key={member.id}
+                    ref={member.id === highlightMemberId ? highlightedRowRef : undefined}
+                    className={cn(member.id === highlightMemberId && "bg-accent/50")}
+                  >
                     <TableCell className="text-muted-foreground tabular-nums">{index + 1}</TableCell>
                     <TableCell>
                       <p className="font-medium text-foreground">{member.user.fullName}</p>

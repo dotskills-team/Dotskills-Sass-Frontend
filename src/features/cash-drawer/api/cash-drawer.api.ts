@@ -34,6 +34,13 @@ export const cashDrawerApi = baseApi.injectEndpoints({
       providesTags: ["CashDrawerSession", "CompanyScoped"],
     }),
 
+    /** `GET .../cash-drawer-sessions/:id` — reused by the Cash Drawer Variance notification's redirect target (`/company/cash-drawer/sessions/[id]`); the service's own ownership/location checks already apply. */
+    getCashDrawerSession: builder.query<CashDrawerSession, { companyId: string; id: string }>({
+      query: ({ companyId, id }) => `/companies/${companyId}/cash-drawer-sessions/${id}`,
+      transformResponse: (response: { data: CashDrawerSession }) => response.data,
+      providesTags: ["CashDrawerSession"],
+    }),
+
     openCashDrawerSession: builder.mutation<CashDrawerSession, { companyId: string; body: OpenCashDrawerSessionPayload }>({
       query: ({ companyId, body }) => ({
         url: `/companies/${companyId}/cash-drawer-sessions`,
@@ -61,6 +68,7 @@ export const cashDrawerApi = baseApi.injectEndpoints({
 
 export const {
   useListCashDrawerSessionsQuery,
+  useGetCashDrawerSessionQuery,
   useOpenCashDrawerSessionMutation,
   useCloseCashDrawerSessionMutation,
 } = cashDrawerApi;

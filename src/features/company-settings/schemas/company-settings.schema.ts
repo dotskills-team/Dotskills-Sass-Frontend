@@ -1,8 +1,9 @@
 import { z } from "zod";
 
-/** Backend `UpdateCompanySettingsDto` mirrored exactly (verified company-settings/dto/company-settings.dto.ts): all boolean toggles, maxCustomerDueLimit (>=0, max 4 decimals), defaultTaxRate (>=0, max 3 decimals). */
+/** Backend `UpdateCompanySettingsDto` mirrored exactly (verified company-settings/dto/company-settings.dto.ts): all boolean toggles, maxCustomerDueLimit/maxSupplierPayableLimit (>=0, max 4 decimals), defaultTaxRate (>=0, max 3 decimals). */
 export interface CompanySettingsFormMessages {
   maxCustomerDueLimitNonNegative: string;
+  maxSupplierPayableLimitNonNegative: string;
   defaultTaxRateNonNegative: string;
 }
 
@@ -20,6 +21,11 @@ export function createCompanySettingsSchema(messages: CompanySettingsFormMessage
       .optional()
       .or(z.literal(""))
       .refine((value) => !value || Number(value) >= 0, { error: messages.maxCustomerDueLimitNonNegative }),
+    maxSupplierPayableLimit: z
+      .string()
+      .optional()
+      .or(z.literal(""))
+      .refine((value) => !value || Number(value) >= 0, { error: messages.maxSupplierPayableLimitNonNegative }),
     enableTax: z.boolean(),
     defaultTaxRate: z
       .string()

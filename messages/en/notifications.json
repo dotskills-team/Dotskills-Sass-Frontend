@@ -1,0 +1,22 @@
+{
+  "notifications": {
+    "title": "Notifications",
+    "empty": "No notifications yet.",
+    "loadError": "Could not load notifications.",
+    "types": {
+      "OUT_OF_STOCK": "{productName} is out of stock at {locationName}",
+      "LOW_STOCK": "{productName} is running low ({quantity} left, reorder level {reorderLevel}) at {locationName}",
+      "CASH_DRAWER_VARIANCE": "Cash drawer variance of {variance} at {locationName}",
+      "CUSTOMER_DUE_OVERDUE": "{customerName} has exceeded their due limit (due {dueBalance}, limit {limit})",
+      "SUPPLIER_PAYABLE_OVERDUE": "{supplierName}'s payable balance ({payableBalance}) exceeds the threshold ({limit})",
+      "SUBSCRIPTION_EXPIRING_SOON": "Your subscription is expiring soon",
+      "SUBSCRIPTION_PAST_DUE": "Your subscription payment is past due",
+      "STAFF_ACTIVITY": "{memberName}: {action}"
+    },
+    "staffActions": {
+      "MEMBER_CREATED": "added as a new member",
+      "MEMBER_ROLES_UPDATED": "roles updated",
+      "MEMBER_LOCATIONS_UPDATED": "location access updated"
+    }
+  }
+}

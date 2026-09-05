@@ -36,6 +36,11 @@
       "submit": "Open session",
       "success": "Session opened."
     },
+    "detail": {
+      "title": "Session detail",
+      "description": "Full detail for one cash drawer session.",
+      "back": "Back to Cash Drawer"
+    },
     "posNudge": {
       "title": "No cash drawer session open",
       "description": "Sales will still work, but won't be tracked to a shift.",

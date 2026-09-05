@@ -23,8 +23,22 @@
       "activateSuccess": "কাস্টমার সক্রিয় হয়েছে।",
       "deactivateTitle": "কাস্টমার নিষ্ক্রিয় করুন",
       "deactivateDescription": "\"{name}\" নিষ্ক্রিয় করবেন? নতুন বিক্রির জন্য এটা বেছে নেওয়া যাবে না।",
-      "deactivateSuccess": "কাস্টমার নিষ্ক্রিয় হয়েছে।"
+      "deactivateSuccess": "কাস্টমার নিষ্ক্রিয় হয়েছে।",
+      "recordPayment": "পেমেন্ট রেকর্ড করুন"
     },
+    "paymentDialog": {
+      "title": "পেমেন্ট রেকর্ড করুন — {name}",
+      "description": "বর্তমান বাকি ব্যালেন্স: {balance}",
+      "amount": "পরিমাণ",
+      "amountPlaceholder": "০.০০",
+      "amountPositive": "পরিমাণ শূন্যের চেয়ে বেশি হতে হবে।",
+      "note": "নোট",
+      "notePlaceholder": "ঐচ্ছিক নোট",
+      "balanceNote": "এই পেমেন্ট রেকর্ড হওয়ার সাথে সাথে বাকি ব্যালেন্স স্বয়ংক্রিয়ভাবে আপডেট হবে।",
+      "submit": "পেমেন্ট রেকর্ড করুন",
+      "success": "পেমেন্ট রেকর্ড হয়েছে।"
+    },
+    "viewPaymentLedger": "পেমেন্ট লেজার দেখুন",
     "form": {
       "createTitle": "কাস্টমার তৈরি করুন",
       "createDescription": "একটা নতুন কাস্টমার যোগ করুন।",

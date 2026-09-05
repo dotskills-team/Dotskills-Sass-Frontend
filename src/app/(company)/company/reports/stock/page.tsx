@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { Suspense, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { Loader2 } from "lucide-react";
 import { toast } from "sonner";
@@ -34,19 +35,35 @@ import { COMPANY_PERMISSIONS } from "@/constants/permissions";
  * the Location-wise Stock Visibility micro-chunk built, just without its
  * 200-row quick-view cap. The Product→Locations / Location→Products
  * dialogs from that micro-chunk are untouched — this screen is additive.
+ *
+ * Wrapped in Suspense — Next.js's own requirement for any component using
+ * `useSearchParams()` (the first use of that hook in this codebase, added
+ * so the Out-of-Stock/Low-Stock notification bell can deep-link straight
+ * to the affected product/location: `?productId=&locationId=`).
  */
 export default function StockReportPage() {
+  return (
+    <Suspense fallback={null}>
+      <StockReportPageContent />
+    </Suspense>
+  );
+}
+
+function StockReportPageContent() {
   const t = useTranslations("reports");
   const { company } = useCurrentCompany();
   const companyId = company?.companyId;
+  const searchParams = useSearchParams();
+  const productId = searchParams.get("productId") ?? undefined;
 
   const [page, setPage] = useState(1);
-  const [locationId, setLocationId] = useState(ALL_LOCATIONS);
+  const [locationId, setLocationId] = useState(() => searchParams.get("locationId") ?? ALL_LOCATIONS);
   const [belowReorderOnly, setBelowReorderOnly] = useState(false);
 
   const { data, isLoading, isFetching, error, refetch } = useListStockReportQuery(
     {
       companyId: companyId ?? "",
+      productId,
       locationId: locationId === ALL_LOCATIONS ? undefined : locationId,
       belowReorderOnly: belowReorderOnly || undefined,
       page,
@@ -70,6 +87,7 @@ export default function StockReportPage() {
     if (!companyId) return;
     const result = await triggerExport({
       companyId,
+      productId,
       locationId: locationId === ALL_LOCATIONS ? undefined : locationId,
       belowReorderOnly: belowReorderOnly || undefined,
     });

@@ -1,0 +1,20 @@
+{
+  "customerPayments": {
+    "title": "Customer Payments",
+    "description": "Payments recorded against what your customers owe.",
+    "empty": "No payment ledger entries yet.",
+    "filterPlaceholder": "Filter by customer",
+    "allCustomers": "All customers",
+    "columns": {
+      "date": "Date",
+      "customer": "Customer",
+      "type": "Type",
+      "amount": "Amount",
+      "note": "Note"
+    },
+    "entryType": {
+      "DUE": "Due (sale on credit)",
+      "PAYMENT": "Payment received"
+    }
+  }
+}

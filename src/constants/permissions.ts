@@ -195,6 +195,9 @@ export const COMPANY_PERMISSIONS = {
   /** Manual Stock Adjustment — damage/theft/count-mismatch/expiry/opening-stock corrections, Owner/Manager tier. */
   STOCK_ADJUSTMENT_READ: "company.stock-adjustment.read",
   STOCK_ADJUSTMENT_CREATE: "company.stock-adjustment.create",
+
+  /** Dashboard Notification Bell — Owner/Admin only this phase. */
+  NOTIFICATION_READ: "company.notification.read",
 } as const;
 
 export type PlatformPermissionCode =

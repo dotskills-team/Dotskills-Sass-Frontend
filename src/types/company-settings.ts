@@ -9,6 +9,7 @@ export interface CompanySettings {
   enableMultiLocation: boolean;
   allowNegativeStock: boolean;
   maxCustomerDueLimit: string | null;
+  maxSupplierPayableLimit: string | null;
   enableTax: boolean;
   defaultTaxRate: string;
   createdAt: string;

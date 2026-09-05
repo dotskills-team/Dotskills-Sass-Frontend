@@ -22,48 +22,48 @@ import {
 import { formatDate } from "@/lib/formatters/date";
 
 import { useCurrentCompany } from "@/features/company/hooks/use-current-company";
-import { useListSuppliersQuery } from "@/features/supplier/api/supplier.api";
-import { useListSupplierPaymentsQuery } from "@/features/supplier-payment/api/supplier-payment.api";
+import { useListCustomersQuery } from "@/features/customer/api/customer.api";
+import { useListCustomerPaymentsQuery } from "@/features/customer-payment/api/customer-payment.api";
 import { COMPANY_PERMISSIONS } from "@/constants/permissions";
 
-const ALL_SUPPLIERS = "__all__";
+const ALL_CUSTOMERS = "__all__";
 
-export default function SupplierPaymentsPage() {
+export default function CustomerPaymentsPage() {
   return (
     <Suspense fallback={null}>
-      <SupplierPaymentsPageContent />
+      <CustomerPaymentsPageContent />
     </Suspense>
   );
 }
 
-function SupplierPaymentsPageContent() {
-  const t = useTranslations("supplierPayments");
+function CustomerPaymentsPageContent() {
+  const t = useTranslations("customerPayments");
   const { company } = useCurrentCompany();
   const companyId = company?.companyId;
   const searchParams = useSearchParams();
-  const [supplierId, setSupplierId] = useState<string>(() => searchParams.get("supplierId") ?? ALL_SUPPLIERS);
+  const [customerId, setCustomerId] = useState<string>(() => searchParams.get("customerId") ?? ALL_CUSTOMERS);
 
-  const { data: suppliers } = useListSuppliersQuery(companyId ?? "", { skip: !companyId });
-  const { data: entries, isLoading, error, refetch } = useListSupplierPaymentsQuery(
-    { companyId: companyId ?? "", supplierId: supplierId === ALL_SUPPLIERS ? undefined : supplierId },
+  const { data: customers } = useListCustomersQuery(companyId ?? "", { skip: !companyId });
+  const { data: entries, isLoading, error, refetch } = useListCustomerPaymentsQuery(
+    { companyId: companyId ?? "", customerId: customerId === ALL_CUSTOMERS ? undefined : customerId },
     { skip: !companyId },
   );
 
   return (
-    <CompanyPermissionGate permission={COMPANY_PERMISSIONS.SUPPLIER_PAYMENT_READ} fallback={<PermissionDenied />}>
+    <CompanyPermissionGate permission={COMPANY_PERMISSIONS.CUSTOMER_PAYMENT_READ} fallback={<PermissionDenied />}>
       <PageHeader title={t("title")} description={t("description")} />
 
       <div className="p-6">
         <div className="mb-4 flex justify-end">
-          <Select value={supplierId} onValueChange={setSupplierId}>
+          <Select value={customerId} onValueChange={setCustomerId}>
             <SelectTrigger className="w-64">
               <SelectValue placeholder={t("filterPlaceholder")} />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value={ALL_SUPPLIERS}>{t("allSuppliers")}</SelectItem>
-              {(suppliers ?? []).map((supplier) => (
-                <SelectItem key={supplier.id} value={supplier.id}>
-                  {supplier.name}
+              <SelectItem value={ALL_CUSTOMERS}>{t("allCustomers")}</SelectItem>
+              {(customers ?? []).map((customer) => (
+                <SelectItem key={customer.id} value={customer.id}>
+                  {customer.name}
                 </SelectItem>
               ))}
             </SelectContent>
@@ -82,7 +82,7 @@ function SupplierPaymentsPageContent() {
               <TableHeader>
                 <TableRow>
                   <TableHead>{t("columns.date")}</TableHead>
-                  <TableHead>{t("columns.supplier")}</TableHead>
+                  <TableHead>{t("columns.customer")}</TableHead>
                   <TableHead>{t("columns.type")}</TableHead>
                   <TableHead className="text-right">{t("columns.amount")}</TableHead>
                   <TableHead>{t("columns.note")}</TableHead>
@@ -93,7 +93,7 @@ function SupplierPaymentsPageContent() {
                   <TableRow key={entry.id}>
                     <TableCell>{formatDate(entry.createdAt)}</TableCell>
                     <TableCell className="font-medium text-foreground">
-                      {suppliers?.find((s) => s.id === entry.supplierId)?.name ?? "—"}
+                      {customers?.find((c) => c.id === entry.customerId)?.name ?? "—"}
                     </TableCell>
                     <TableCell>
                       <Badge variant="outline">{t(`entryType.${entry.entryType}`)}</Badge>

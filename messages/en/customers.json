@@ -23,8 +23,22 @@
       "activateSuccess": "Customer activated.",
       "deactivateTitle": "Deactivate customer",
       "deactivateDescription": "Deactivate \"{name}\"? They won't be selectable for new sales.",
-      "deactivateSuccess": "Customer deactivated."
+      "deactivateSuccess": "Customer deactivated.",
+      "recordPayment": "Record payment"
     },
+    "paymentDialog": {
+      "title": "Record payment — {name}",
+      "description": "Current due balance: {balance}",
+      "amount": "Amount",
+      "amountPlaceholder": "0.00",
+      "amountPositive": "Amount must be greater than 0.",
+      "note": "Note",
+      "notePlaceholder": "Optional note",
+      "balanceNote": "The due balance updates automatically once this payment is recorded.",
+      "submit": "Record payment",
+      "success": "Payment recorded."
+    },
+    "viewPaymentLedger": "View payment ledger",
     "form": {
       "createTitle": "Create customer",
       "createDescription": "Add a new customer.",
