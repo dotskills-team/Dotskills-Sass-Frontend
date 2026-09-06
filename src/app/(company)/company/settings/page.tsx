@@ -15,6 +15,7 @@ import {
   useUpdateCompanySettingsMutation,
 } from "@/features/company-settings/api/company-settings.api";
 import { CompanySettingsForm } from "@/features/company-settings/components/company-settings-form";
+import { CompanyLogoUpload } from "@/features/company-settings/components/company-logo-upload";
 import {
   toCompanySettingsFormValues,
   toCompanySettingsPayload,
@@ -50,17 +51,24 @@ export default function CompanySettingsPage() {
     <CompanyPermissionGate permission={COMPANY_PERMISSIONS.SETTINGS_READ} fallback={<PermissionDenied />}>
       <PageHeader title={t("title")} description={t("description")} />
 
-      <div className="max-w-2xl p-6">
+      <div className="max-w-2xl space-y-6 p-6">
         {!companyId || isLoading ? (
           <Skeleton className="h-96 w-full" />
         ) : error ? (
           <ErrorState error={error} onRetry={refetch} />
         ) : settings ? (
-          <CompanySettingsForm
-            defaultValues={toCompanySettingsFormValues(settings)}
-            isSubmitting={isSaving}
-            onSubmit={handleSubmit}
-          />
+          <>
+            <CompanyLogoUpload
+              companyId={companyId}
+              logoUrl={settings.logoUrl}
+              companyName={company?.companyName ?? ""}
+            />
+            <CompanySettingsForm
+              defaultValues={toCompanySettingsFormValues(settings)}
+              isSubmitting={isSaving}
+              onSubmit={handleSubmit}
+            />
+          </>
         ) : null}
       </div>
     </CompanyPermissionGate>

@@ -3,6 +3,17 @@
     "title": "Notifications",
     "empty": "No notifications yet.",
     "loadError": "Could not load notifications.",
+    "markAllRead": "Mark all as read",
+    "titles": {
+      "OUT_OF_STOCK": "Out of Stock",
+      "LOW_STOCK": "Low Stock",
+      "CASH_DRAWER_VARIANCE": "Cash Drawer Variance",
+      "CUSTOMER_DUE_OVERDUE": "Customer Due Overdue",
+      "SUPPLIER_PAYABLE_OVERDUE": "Supplier Payable Overdue",
+      "SUBSCRIPTION_EXPIRING_SOON": "Subscription Expiring Soon",
+      "SUBSCRIPTION_PAST_DUE": "Subscription Past Due",
+      "STAFF_ACTIVITY": "Staff Activity"
+    },
     "types": {
       "OUT_OF_STOCK": "{productName} is out of stock at {locationName}",
       "LOW_STOCK": "{productName} is running low ({quantity} left, reorder level {reorderLevel}) at {locationName}",

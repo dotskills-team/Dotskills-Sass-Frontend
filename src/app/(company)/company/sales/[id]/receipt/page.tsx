@@ -11,6 +11,7 @@ import { CompanyPermissionGate } from "@/components/shared/permission-gate";
 import { ErrorState } from "@/components/shared/error-state";
 import { EmptyState } from "@/components/shared/empty-state";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { formatDateTime } from "@/lib/formatters/date";
@@ -66,6 +67,13 @@ export default function SaleReceiptPage() {
 
             <div className="print-area mx-auto max-w-sm rounded-lg border border-border bg-card p-4 text-sm shadow-sm">
               <div className="mb-3 text-center">
+                <div className="mb-1 flex items-center justify-center gap-2">
+                  <Avatar size="sm">
+                    <AvatarImage src={company?.logoUrl ?? undefined} alt={company?.companyName ?? ""} />
+                    <AvatarFallback>{(company?.companyName?.trim()[0] ?? "?").toUpperCase()}</AvatarFallback>
+                  </Avatar>
+                  <span className="text-sm font-semibold">{company?.companyName}</span>
+                </div>
                 <div className="text-base font-semibold">{location?.name ?? "—"}</div>
                 <div className="text-xs text-muted-foreground">{sale.saleNumber}</div>
                 <div className="text-xs text-muted-foreground">{formatDateTime(sale.saleDate)}</div>

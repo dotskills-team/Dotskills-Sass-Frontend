@@ -8,6 +8,7 @@ export interface CompanyMembership {
   companyMemberId: string;
   tenantId: string;
   companyName: string;
+  logoUrl: string | null;
   companyStatus: string;
   tenantStatus: string;
   roleCodes: string[];

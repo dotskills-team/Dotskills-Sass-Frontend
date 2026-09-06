@@ -4,6 +4,14 @@
     "description": "Turn features on or off to fit how your shop works.",
     "saveSuccess": "Settings updated.",
     "save": "Save changes",
+    "logo": {
+      "title": "Company logo",
+      "uploadLabel": "Upload logo",
+      "help": "PNG or JPG, up to 2MB. Shown in the company switcher and on printed receipts.",
+      "invalidType": "Logo must be a PNG or JPG image.",
+      "tooLarge": "Logo must be 2MB or smaller.",
+      "uploadSuccess": "Logo updated."
+    },
     "toggles": {
       "enableMultiUnit": "Multi-unit conversion",
       "enableMultiUnitHelp": "Turn on if you buy or sell in more than one unit, like piece and dozen.",

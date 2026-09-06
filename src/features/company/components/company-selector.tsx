@@ -1,8 +1,9 @@
 "use client";
 
-import { Building2, ChevronDown } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { useTranslations } from "next-intl";
 
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import {
@@ -44,7 +45,10 @@ export function CompanySelector() {
       <DropdownMenuTrigger asChild>
         <Button variant="outline" size="sm" className="max-w-56 justify-between">
           <span className="flex items-center gap-2 truncate">
-            <Building2 className="size-4 shrink-0" aria-hidden="true" />
+            <Avatar size="sm">
+              <AvatarImage src={current?.logoUrl ?? undefined} alt={current?.companyName ?? ""} />
+              <AvatarFallback>{(current?.companyName?.trim()[0] ?? "?").toUpperCase()}</AvatarFallback>
+            </Avatar>
             <span className="truncate">{current?.companyName ?? t("selectCompany")}</span>
           </span>
           <ChevronDown className="size-4 shrink-0 opacity-50" aria-hidden="true" />

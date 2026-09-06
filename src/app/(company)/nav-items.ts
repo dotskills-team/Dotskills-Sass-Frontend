@@ -86,31 +86,9 @@ export const companyNavItems: NavItem[] = [
       },
     ],
   },
-  //  {
-  //   labelKey: "purchase",
-  //   icon: ClipboardList,
-  //   children: [
-      {
-        labelKey: "purchaseOrders",
-        href: "/company/purchase-orders",
-        icon: FileText,
-        companyPermission: COMPANY_PERMISSIONS.PURCHASE_ORDER_READ,
-      },
-      {
-        labelKey: "stockTransfers",
-        href: "/company/stock-transfers",
-        icon: ArrowLeftRight,
-        companyPermission: COMPANY_PERMISSIONS.STOCK_TRANSFER_READ,
-      },
-      {
-        labelKey: "supplierPayments",
-        href: "/company/supplier-payments",
-        icon: HandCoins,
-        companyPermission: COMPANY_PERMISSIONS.SUPPLIER_PAYMENT_READ,
-      },
-  //   ],
-  // },
-  // {
+
+
+    // {
   //   labelKey: "inventory",
   //   icon: Boxes,
   //   children: [
@@ -140,6 +118,31 @@ export const companyNavItems: NavItem[] = [
       },
   //   ],
   // },
+  //  {
+  //   labelKey: "purchase",
+  //   icon: ClipboardList,
+  //   children: [
+      {
+        labelKey: "purchaseOrders",
+        href: "/company/purchase-orders",
+        icon: FileText,
+        companyPermission: COMPANY_PERMISSIONS.PURCHASE_ORDER_READ,
+      },
+      {
+        labelKey: "stockTransfers",
+        href: "/company/stock-transfers",
+        icon: ArrowLeftRight,
+        companyPermission: COMPANY_PERMISSIONS.STOCK_TRANSFER_READ,
+      },
+      {
+        labelKey: "supplierPayments",
+        href: "/company/supplier-payments",
+        icon: HandCoins,
+        companyPermission: COMPANY_PERMISSIONS.SUPPLIER_PAYMENT_READ,
+      },
+  //   ],
+  // },
+
   // {
   //   labelKey: "sales",
   //   icon: ShoppingCart,

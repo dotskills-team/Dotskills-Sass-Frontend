@@ -12,6 +12,8 @@ export interface CompanySettings {
   maxSupplierPayableLimit: string | null;
   enableTax: boolean;
   defaultTaxRate: string;
+  /** Lives on Company (identity/branding), flattened onto this response by the backend's `flattenSettings()`. */
+  logoUrl: string | null;
   createdAt: string;
   updatedAt: string;
 }

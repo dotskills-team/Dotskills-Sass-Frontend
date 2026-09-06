@@ -16,6 +16,7 @@ const settings: CompanySettings = {
   maxSupplierPayableLimit: "8000",
   enableTax: true,
   defaultTaxRate: "15",
+  logoUrl: null,
   createdAt: "2026-01-01T00:00:00Z",
   updatedAt: "2026-01-01T00:00:00Z",
 };

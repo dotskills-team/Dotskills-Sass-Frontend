@@ -50,7 +50,7 @@ const STATUS_TONE: Record<string, Tone> = {
   VOIDED: "destructive",
 };
 
-const TONE_CLASS: Record<Tone, string> = {
+export const TONE_CLASS: Record<Tone, string> = {
   success: "bg-success/15 text-success border-success/30",
   warning: "bg-warning/15 text-warning border-warning/30",
   destructive: "bg-destructive/10 text-destructive border-destructive/30",

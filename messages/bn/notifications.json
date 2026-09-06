@@ -3,6 +3,17 @@
     "title": "নোটিফিকেশন",
     "empty": "এখনো কোনো নোটিফিকেশন নেই।",
     "loadError": "নোটিফিকেশন লোড করা যায়নি।",
+    "markAllRead": "সব Read করুন",
+    "titles": {
+      "OUT_OF_STOCK": "স্টক শেষ",
+      "LOW_STOCK": "স্টক কম",
+      "CASH_DRAWER_VARIANCE": "ক্যাশ ড্রয়ার গরমিল",
+      "CUSTOMER_DUE_OVERDUE": "কাস্টমারের বাকি বকেয়া",
+      "SUPPLIER_PAYABLE_OVERDUE": "সাপ্লায়ারের পাওনা বকেয়া",
+      "SUBSCRIPTION_EXPIRING_SOON": "সাবস্ক্রিপশন শীঘ্রই শেষ",
+      "SUBSCRIPTION_PAST_DUE": "সাবস্ক্রিপশন বকেয়া",
+      "STAFF_ACTIVITY": "স্টাফ অ্যাক্টিভিটি"
+    },
     "types": {
       "OUT_OF_STOCK": "{locationName}-এ {productName} স্টক শেষ হয়ে গেছে",
       "LOW_STOCK": "{locationName}-এ {productName}-এর স্টক কমে গেছে ({quantity} বাকি, reorder level {reorderLevel})",

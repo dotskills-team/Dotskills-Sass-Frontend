@@ -8,6 +8,7 @@ const companyA: CompanyMembership = {
   companyMemberId: "ma",
   tenantId: "t1",
   companyName: "Company A",
+  logoUrl: null,
   companyStatus: "LIVE",
   tenantStatus: "ACTIVE",
   roleCodes: ["COMPANY_OWNER"],
