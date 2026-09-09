@@ -54,6 +54,7 @@ const MESSAGE_NAMESPACES = [
   "stockAdjustments",
   "notifications",
   "customerPayments",
+  "userProfile",
 ] as const;
 
 export default getRequestConfig(async () => {

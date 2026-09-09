@@ -11,7 +11,7 @@ import { CompanyPermissionGate } from "@/components/shared/permission-gate";
 import { COMPANY_PERMISSIONS } from "@/constants/permissions";
 
 import { useUploadCompanyLogoMutation } from "@/features/company-settings/api/company-settings.api";
-import { validateLogoFile } from "@/features/company-settings/lib/company-logo-validation";
+import { validateImageFile } from "@/lib/validation/image-file";
 import { normalizeApiError } from "@/lib/api-error";
 
 /**
@@ -46,7 +46,7 @@ export function CompanyLogoUpload({
     const file = event.target.files?.[0];
     if (!file) return;
 
-    const validationError = validateLogoFile(file);
+    const validationError = validateImageFile(file);
     if (validationError) {
       toast.error(t(`logo.${validationError}`));
       resetInput();

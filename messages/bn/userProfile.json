@@ -1,0 +1,26 @@
+{
+  "userProfile": {
+    "title": "আমার প্রোফাইল",
+    "description": "আপনার নিজের প্রোফাইল ছবি ও পাসওয়ার্ড পরিচালনা করুন।",
+    "photo": {
+      "title": "প্রোফাইল ছবি",
+      "uploadLabel": "ছবি আপলোড করুন",
+      "help": "PNG অথবা JPG, সর্বোচ্চ 2MB।",
+      "invalidType": "ছবি অবশ্যই PNG অথবা JPG হতে হবে।",
+      "tooLarge": "ছবি 2MB বা তার কম হতে হবে।",
+      "uploadSuccess": "প্রোফাইল ছবি আপডেট হয়েছে।"
+    },
+    "password": {
+      "title": "পাসওয়ার্ড পরিবর্তন",
+      "currentPassword": "বর্তমান পাসওয়ার্ড",
+      "newPassword": "নতুন পাসওয়ার্ড",
+      "confirmNewPassword": "নতুন পাসওয়ার্ড নিশ্চিত করুন",
+      "currentPasswordRequired": "আপনার বর্তমান পাসওয়ার্ড লিখুন।",
+      "newPasswordLength": "নতুন পাসওয়ার্ড অবশ্যই 12–128 অক্ষরের হতে হবে।",
+      "confirmPasswordMismatch": "পাসওয়ার্ড মিলছে না।",
+      "submit": "পাসওয়ার্ড পরিবর্তন করুন",
+      "success": "পাসওয়ার্ড পরিবর্তন হয়েছে। আপনার অন্য ডিভাইসগুলো থেকে লগআউট করা হয়েছে।",
+      "incorrectCurrentPassword": "বর্তমান পাসওয়ার্ড সঠিক নয়।"
+    }
+  }
+}

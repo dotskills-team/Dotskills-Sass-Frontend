@@ -142,6 +142,7 @@ export const baseApi = createApi({
     "StockAdjustment",
     "Notification",
     "CustomerPayment",
+    "UserProfile",
   ],
   endpoints: () => ({}),
 });

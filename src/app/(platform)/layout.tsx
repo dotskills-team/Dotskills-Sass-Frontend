@@ -8,6 +8,7 @@ import { ScopeGuard } from "@/features/auth/components/scope-guard";
 import { LogoutButton } from "@/features/auth/components/logout-button";
 import { LanguageSwitcher } from "@/components/layout/language-switcher";
 import { AppSidebar } from "@/components/layout/app-sidebar";
+import { ProfileAvatarLink } from "@/components/layout/profile-avatar-link";
 import { Button } from "@/components/ui/button";
 
 import { platformNavItems } from "./nav-items";
@@ -64,6 +65,7 @@ export default function PlatformLayout({ children }: { children: React.ReactNode
               </div>
               <div className="flex items-center gap-2">
                 <LanguageSwitcher />
+                <ProfileAvatarLink href="/platform/profile" />
                 <LogoutButton />
               </div>
             </header>

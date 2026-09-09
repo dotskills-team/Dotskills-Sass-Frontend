@@ -8,6 +8,7 @@ import type { LucideIcon } from "lucide-react";
 import { ChevronDown, ChevronRight, X } from "lucide-react";
 
 import { cn } from "@/lib/utils";
+import { CompanyBrandMark } from "@/components/layout/company-brand-mark";
 import { Button } from "@/components/ui/button";
 import { PlatformPermissionGate, CompanyPermissionGate } from "@/components/shared/permission-gate";
 import { hasAnyPermission } from "@/lib/permissions";
@@ -33,6 +34,14 @@ interface AppSidebarProps {
   /** Mobile drawer state — desktop (md+) ignores these and always shows statically. */
   mobileOpen?: boolean;
   onMobileClose?: () => void;
+  /**
+   * Overrides the default "D / DotSkills" platform brand with a
+   * company's own logo/name — only the company layout passes this. Left
+   * undefined (the platform layout never sets it), the original
+   * hardcoded platform mark renders unchanged, so Platform Admin stays
+   * untouched by construction, not by a runtime scope check.
+   */
+  brand?: { logoUrl: string | null; name: string };
 }
 
 /**
@@ -44,7 +53,7 @@ interface AppSidebarProps {
  * `mobileOpen`/`onMobileClose` UI-presentational state only (open/close
  * toggle) — desktop layout/behavior unaffected either way.
  */
-export function AppSidebar({ items, mobileOpen, onMobileClose }: AppSidebarProps) {
+export function AppSidebar({ items, mobileOpen, onMobileClose, brand }: AppSidebarProps) {
   const t = useTranslations("rbac");
   const pathname = usePathname();
 
@@ -78,10 +87,16 @@ export function AppSidebar({ items, mobileOpen, onMobileClose }: AppSidebarProps
   const navList = (
     <nav className="flex h-full w-64 shrink-0 flex-col bg-sidebar">
       <div className="hidden h-16 shrink-0 items-center gap-2.5 px-6 md:flex">
-        <span className="flex size-8 items-center justify-center rounded-md bg-sidebar-primary text-sm font-bold text-sidebar-primary-foreground">
-          D
-        </span>
-        <span className="text-[15px] font-semibold tracking-tight text-sidebar-foreground">DotSkills</span>
+        {brand ? (
+          <CompanyBrandMark logoUrl={brand.logoUrl} name={brand.name} /> 
+        ) : (
+          <>
+            <span className="flex size-8 items-center justify-center rounded-md bg-sidebar-primary text-sm font-bold text-sidebar-primary-foreground">
+              D
+            </span>
+            <span className="text-[15px] font-semibold tracking-tight text-sidebar-foreground">DotSkills</span>
+          </>
+        )}
       </div>
       <div className="flex-1 overflow-y-auto p-4">
         <div className="mb-2 flex items-center justify-between md:hidden">

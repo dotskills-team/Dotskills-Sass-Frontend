@@ -12,7 +12,9 @@ import { CompanySelector } from "@/features/company/components/company-selector"
 import { CompanyContextGate } from "@/features/company/components/company-context-gate";
 import { CashDrawerStatusIndicator } from "@/features/cash-drawer/components/cash-drawer-status-indicator";
 import { NotificationBell } from "@/features/notification/components/notification-bell";
+import { ProfileAvatarLink } from "@/components/layout/profile-avatar-link";
 import { useCurrentCompany } from "@/features/company/hooks/use-current-company";
+import { CompanyBrandMark } from "@/components/layout/company-brand-mark";
 import { Button } from "@/components/ui/button";
 
 import { companyNavItems } from "./nav-items";
@@ -38,6 +40,7 @@ export default function CompanyLayout({ children }: { children: React.ReactNode 
               items={companyNavItems}
               mobileOpen={mobileNavOpen}
               onMobileClose={() => setMobileNavOpen(false)}
+              brand={{ logoUrl: company?.logoUrl ?? null, name: company?.companyName ?? "DotSkills" }}
             />
           </div>
           <div className="flex min-h-screen flex-col md:pl-64">
@@ -52,16 +55,16 @@ export default function CompanyLayout({ children }: { children: React.ReactNode 
                 >
                   <Menu className="size-5" aria-hidden="true" />
                 </Button>
-                <span className="flex size-7 items-center justify-center rounded-md bg-primary text-xs font-bold text-primary-foreground md:hidden">
-                  D
-                </span>
-                <span className="font-semibold tracking-tight text-foreground md:hidden">DotSkills</span>
+                <div className="flex items-center md:hidden">
+                  <CompanyBrandMark logoUrl={company?.logoUrl ?? null} name={company?.companyName ?? "DotSkills"} />
+                </div>
                 <CompanySelector />
               </div>
               <div className="flex items-center gap-2">
                 <NotificationBell companyId={company?.companyId} />
                 <CashDrawerStatusIndicator companyId={company?.companyId} />
                 <LanguageSwitcher />
+                <ProfileAvatarLink href="/company/profile" />
                 <LogoutButton />
               </div>
             </header>

@@ -1,0 +1,26 @@
+{
+  "userProfile": {
+    "title": "My Profile",
+    "description": "Manage your own profile photo and password.",
+    "photo": {
+      "title": "Profile photo",
+      "uploadLabel": "Upload photo",
+      "help": "PNG or JPG, up to 2MB.",
+      "invalidType": "Photo must be a PNG or JPG image.",
+      "tooLarge": "Photo must be 2MB or smaller.",
+      "uploadSuccess": "Profile photo updated."
+    },
+    "password": {
+      "title": "Change password",
+      "currentPassword": "Current password",
+      "newPassword": "New password",
+      "confirmNewPassword": "Confirm new password",
+      "currentPasswordRequired": "Enter your current password.",
+      "newPasswordLength": "New password must be 12–128 characters.",
+      "confirmPasswordMismatch": "Passwords do not match.",
+      "submit": "Change password",
+      "success": "Password changed. You've been signed out on your other devices.",
+      "incorrectCurrentPassword": "Current password is incorrect."
+    }
+  }
+}
