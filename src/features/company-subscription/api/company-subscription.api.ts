@@ -1,5 +1,6 @@
 import { baseApi } from "@/store/api/base-api";
 import type {
+  CheckoutSubscriptionResult,
   CompanySubscriptionCurrent,
   CompanySubscriptionDetail,
   CompanySubscriptionListItem,
@@ -75,14 +76,25 @@ export const companySubscriptionApi = baseApi.injectEndpoints({
       providesTags: ["Plan"],
     }),
 
-    /** `ChangeSubscriptionPlanDto` takes only `{planId, billingCycle}` — verified, nothing else sent. */
-    changeSubscriptionPlan: builder.mutation<unknown, { id: string; planId: string; billingCycle: BillingCycle }>({
+    /**
+     * `POST /subscriptions/:id/checkout` — the single system-generated entry point for first
+     * paid subscription, resubscribing after expiry, renewing the current plan early, and plan
+     * change. `CheckoutSubscriptionDto` takes only `{planId?, billingCycle?}` (verified) — omit
+     * both to pay for the current plan, provide both to change plan. Returns the (possibly
+     * reused) Invoice, which the caller hands straight to the existing pay flow
+     * (`useCreateCompanyPaymentMutation` / `PayInvoiceDialog`) — this endpoint never itself
+     * charges anything.
+     */
+    checkoutSubscription: builder.mutation<
+      CheckoutSubscriptionResult,
+      { id: string; planId?: string; billingCycle?: BillingCycle }
+    >({
       query: ({ id, planId, billingCycle }) => ({
-        url: `/subscriptions/${id}/plan`,
-        method: "PATCH",
+        url: `/subscriptions/${id}/checkout`,
+        method: "POST",
         body: { planId, billingCycle },
       }),
-      invalidatesTags: ["Subscription"],
+      invalidatesTags: ["Subscription", "Invoice"],
     }),
   }),
 });
@@ -95,5 +107,5 @@ export const {
   useCancelCompanySubscriptionMutation,
   useReactivateCompanySubscriptionMutation,
   useListEligiblePlansQuery,
-  useChangeSubscriptionPlanMutation,
+  useCheckoutSubscriptionMutation,
 } = companySubscriptionApi;

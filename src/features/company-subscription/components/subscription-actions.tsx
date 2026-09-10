@@ -10,9 +10,11 @@ import { ActionConfirmDialog } from "@/components/shared/action-confirm-dialog";
 import { ChangePlanDialog } from "@/features/company-subscription/components/change-plan-dialog";
 import {
   useCancelCompanySubscriptionMutation,
+  useCheckoutSubscriptionMutation,
   useReactivateCompanySubscriptionMutation,
   useUpdateSubscriptionAutoRenewMutation,
 } from "@/features/company-subscription/api/company-subscription.api";
+import { useCreateCompanyPaymentMutation } from "@/features/company-payment/api/company-payment.api";
 import { COMPANY_PERMISSIONS } from "@/constants/permissions";
 import { normalizeApiError } from "@/lib/api-error";
 import type { CompanySubscriptionBase } from "@/types/company-subscription";
@@ -27,10 +29,37 @@ export function SubscriptionActions({ subscription }: { subscription: CompanySub
   const [updateAutoRenew, { isLoading: isTogglingAutoRenew }] = useUpdateSubscriptionAutoRenewMutation();
   const [cancel, { isLoading: isCancelling }] = useCancelCompanySubscriptionMutation();
   const [reactivate, { isLoading: isReactivating }] = useReactivateCompanySubscriptionMutation();
+  const [checkoutSubscription, { isLoading: isCheckingOut }] = useCheckoutSubscriptionMutation();
+  const [createPayment, { isLoading: isInitiatingPayment }] = useCreateCompanyPaymentMutation();
+  const isSubscribing = isCheckingOut || isInitiatingPayment;
 
   const canChangeLifecycle = subscription.status !== "CANCELLED" && subscription.status !== "EXPIRED";
   const canReactivate =
     subscription.status === "CANCELLED" && new Date(subscription.currentPeriodEnd) > new Date();
+  const canSubscribe = subscription.status === "TRIALING" || subscription.status === "EXPIRED";
+
+  /**
+   * Covers first paid subscription (TRIALING) and resubscribing after expiry (EXPIRED) —
+   * same checkout→pay chain ChangePlanDialog uses, with no plan override (pays for the
+   * current plan). The new period starts from the payment-success date, never backdated.
+   */
+  async function handleSubscribe() {
+    const checkoutResult = await checkoutSubscription({ id: subscription.id });
+
+    if ("error" in checkoutResult) {
+      toast.error(normalizeApiError(checkoutResult.error).message);
+      return;
+    }
+
+    const paymentResult = await createPayment({ invoiceId: checkoutResult.data.invoice.id });
+
+    if ("error" in paymentResult) {
+      toast.error(normalizeApiError(paymentResult.error).message);
+      return;
+    }
+
+    window.location.href = paymentResult.data.gatewayPageUrl;
+  }
 
   async function handleToggleAutoRenew() {
     const result = await updateAutoRenew({ id: subscription.id, autoRenew: !subscription.autoRenew });
@@ -64,6 +93,14 @@ export function SubscriptionActions({ subscription }: { subscription: CompanySub
 
   return (
     <div className="flex flex-wrap items-center gap-2">
+      {canSubscribe && (
+        <CompanyPermissionGate permission={COMPANY_PERMISSIONS.SUBSCRIPTION_CHANGE_PLAN}>
+          <Button size="sm" onClick={handleSubscribe} disabled={isSubscribing}>
+            {t("actions.subscribe")}
+          </Button>
+        </CompanyPermissionGate>
+      )}
+
       {canChangeLifecycle && <ChangePlanDialog subscription={subscription} />}
 
       {canChangeLifecycle && (

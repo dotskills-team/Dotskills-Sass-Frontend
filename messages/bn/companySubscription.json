@@ -32,7 +32,8 @@
       "reactivate": "Reactivate করুন",
       "reactivateTitle": "সাবস্ক্রিপশন Reactivate করুন",
       "reactivateDescription": "আপনার সাবস্ক্রিপশন reactivate করে auto-renew আবার চালু করবেন?",
-      "reactivateSuccess": "সাবস্ক্রিপশন reactivate হয়েছে।"
+      "reactivateSuccess": "সাবস্ক্রিপশন reactivate হয়েছে।",
+      "subscribe": "সাবস্ক্রাইব / এখন পে করুন"
     },
     "history": {
       "title": "সাবস্ক্রিপশন History",
@@ -56,11 +57,11 @@
     "changePlan": {
       "trigger": "প্ল্যান পরিবর্তন করুন",
       "title": "প্ল্যান পরিবর্তন করুন",
-      "description": "নতুন প্ল্যান এবং বিলিং সাইকেল নির্বাচন করুন। এটা সাথে সাথে কার্যকর হবে।",
+      "description": "নতুন প্ল্যান এবং বিলিং সাইকেল নির্বাচন করুন। পেমেন্ট পেজে নিয়ে যাওয়া হবে, এবং পেমেন্ট সফল হলে নতুন প্ল্যান কার্যকর হবে।",
       "empty": "আপনার অ্যাকাউন্টের জন্য এখন কোনো প্ল্যান উপলব্ধ নেই।",
       "currentPlan": "বর্তমান প্ল্যান",
       "currentPrice": "বর্তমান",
-      "confirm": "পরিবর্তন নিশ্চিত করুন",
+      "confirm": "পেমেন্টে যান",
       "success": "প্ল্যান পরিবর্তন হয়েছে।"
     }
   }

@@ -87,3 +87,21 @@ export interface EligiblePlan {
   trialDays: number;
   prices: EligiblePlanPrice[];
 }
+
+/**
+ * `POST /subscriptions/:id/checkout` response — raw `{billing, invoice}`
+ * (verified `SubscriptionRenewalService.requestSubscriptionCheckout`), no
+ * envelope. The Invoice fields are exactly what `PayInvoiceDialog`'s props
+ * already need, so a checkout response feeds straight into the existing
+ * pay flow.
+ */
+export interface CheckoutSubscriptionResult {
+  billing: { id: string };
+  invoice: {
+    id: string;
+    invoiceNumber: string;
+    status: string;
+    totalAmount: string;
+    currencyCode: string;
+  };
+}

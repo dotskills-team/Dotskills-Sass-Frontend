@@ -117,6 +117,25 @@ export const subscriptionApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["Subscription", "Billing", "Invoice"],
     }),
+
+    /**
+     * Platform Owner's "Record Manual Payment" — the manual counterpart to a company's own
+     * checkout→pay flow (`useCheckoutSubscriptionMutation` + `useCreateCompanyPaymentMutation`).
+     * One call: the backend generates/reuses the Billing/Invoice and settles the Payment through
+     * the exact same chain online payment uses (`RecordManualPaymentDto`, verified backend) — no
+     * separate checkout/pay step here since there is no gateway redirect to wait on.
+     */
+    recordManualPayment: builder.mutation<
+      unknown,
+      { id: string; note?: string }
+    >({
+      query: ({ id, note }) => ({
+        url: `/platform/subscriptions/${id}/manual-payment`,
+        method: "POST",
+        body: { note: note || undefined },
+      }),
+      invalidatesTags: ["Subscription", "Billing", "Invoice", "Payment"],
+    }),
   }),
 });
 
@@ -130,4 +149,5 @@ export const {
   useExpireSubscriptionMutation,
   useRenewSubscriptionMutation,
   useUpdatePlatformSubscriptionAutoRenewMutation,
+  useRecordManualPaymentMutation,
 } = subscriptionApi;

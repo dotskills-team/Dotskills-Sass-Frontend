@@ -32,7 +32,8 @@
       "reactivate": "Reactivate",
       "reactivateTitle": "Reactivate subscription",
       "reactivateDescription": "Reactivate your subscription and resume auto-renew?",
-      "reactivateSuccess": "Subscription reactivated."
+      "reactivateSuccess": "Subscription reactivated.",
+      "subscribe": "Subscribe / Pay now"
     },
     "history": {
       "title": "Subscription history",
@@ -56,11 +57,11 @@
     "changePlan": {
       "trigger": "Change plan",
       "title": "Change plan",
-      "description": "Choose a new plan and billing cycle. This takes effect immediately.",
+      "description": "Choose a new plan and billing cycle. You'll be taken to payment, and the new plan takes effect once payment succeeds.",
       "empty": "No plans are currently available for your account.",
       "currentPlan": "Current plan",
       "currentPrice": "current",
-      "confirm": "Confirm change",
+      "confirm": "Continue to payment",
       "success": "Plan changed."
     }
   }

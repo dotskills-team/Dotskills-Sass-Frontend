@@ -22,11 +22,20 @@ import {
   useCancelSubscriptionMutation,
   useExpireSubscriptionMutation,
   useRenewSubscriptionMutation,
+  useRecordManualPaymentMutation,
   useUpdatePlatformSubscriptionAutoRenewMutation,
 } from "@/features/subscription/api/subscription.api";
 import type { PlatformSubscription } from "@/types/platform";
 
-type ActiveAction = "suspend" | "reactivate" | "cancel" | "expire" | "renew" | "auto-renew" | null;
+type ActiveAction =
+  | "suspend"
+  | "reactivate"
+  | "cancel"
+  | "expire"
+  | "renew"
+  | "auto-renew"
+  | "manual-payment"
+  | null;
 
 /** Industry-এ established reusable action pattern-এর reuse — Subscription module। */
 export function SubscriptionRowActions({ subscription }: { subscription: PlatformSubscription }) {
@@ -40,6 +49,7 @@ export function SubscriptionRowActions({ subscription }: { subscription: Platfor
   const [expire, { isLoading: isExpiring }] = useExpireSubscriptionMutation();
   const [renew, { isLoading: isRenewing }] = useRenewSubscriptionMutation();
   const [updateAutoRenew, { isLoading: isTogglingAutoRenew }] = useUpdatePlatformSubscriptionAutoRenewMutation();
+  const [recordManualPayment, { isLoading: isRecordingManualPayment }] = useRecordManualPaymentMutation();
 
   const reasonField: ActionFieldConfig = {
     name: "reason",
@@ -105,6 +115,21 @@ export function SubscriptionRowActions({ subscription }: { subscription: Platfor
     setActiveAction(null);
   }
 
+  /**
+   * The Platform Owner only initiates the action — the system still auto-generates the
+   * Billing/Invoice and settles the Payment through the same chain online payment uses
+   * (see PaymentService.recordManualPayment()). Note is optional, kept for audit/reference.
+   */
+  async function handleRecordManualPayment(values: Record<string, string>) {
+    const result = await recordManualPayment({ id: subscription.id, note: values.note });
+    if ("error" in result) {
+      toast.error(normalizeApiError(result.error).message);
+      return;
+    }
+    toast.success(t("actions.manualPaymentSuccess"));
+    setActiveAction(null);
+  }
+
   async function handleToggleAutoRenew() {
     const result = await updateAutoRenew({ id: subscription.id, autoRenew: !subscription.autoRenew });
     if ("error" in result) {
@@ -129,6 +154,11 @@ export function SubscriptionRowActions({ subscription }: { subscription: Platfor
           <PlatformPermissionGate permission={PLATFORM_PERMISSIONS.SUBSCRIPTION_RENEW}>
             <DropdownMenuItem onSelect={() => setActiveAction("renew")}>
               {t("actions.renew")}
+            </DropdownMenuItem>
+          </PlatformPermissionGate>
+          <PlatformPermissionGate permission={PLATFORM_PERMISSIONS.SUBSCRIPTION_RENEW}>
+            <DropdownMenuItem onSelect={() => setActiveAction("manual-payment")}>
+              {t("actions.manualPayment")}
             </DropdownMenuItem>
           </PlatformPermissionGate>
           <PlatformPermissionGate permission={PLATFORM_PERMISSIONS.SUBSCRIPTION_AUTO_RENEW}>
@@ -169,6 +199,25 @@ export function SubscriptionRowActions({ subscription }: { subscription: Platfor
         isLoading={isRenewing}
         fields={[]}
         onConfirm={handleRenew}
+      />
+
+      <ActionConfirmDialog
+        open={activeAction === "manual-payment"}
+        onOpenChange={(open) => !open && setActiveAction(null)}
+        title={t("actions.manualPaymentTitle")}
+        description={t("actions.manualPaymentDescription", { plan: planName })}
+        confirmLabel={tCommon("confirm")}
+        cancelLabel={tCommon("cancel")}
+        isLoading={isRecordingManualPayment}
+        fields={[
+          {
+            name: "note",
+            label: t("actions.manualPaymentNoteLabel"),
+            type: "textarea",
+            placeholder: t("actions.manualPaymentNotePlaceholder"),
+          },
+        ]}
+        onConfirm={handleRecordManualPayment}
       />
 
       <ActionConfirmDialog

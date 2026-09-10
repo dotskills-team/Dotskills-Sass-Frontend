@@ -25,9 +25,10 @@ import { formatCurrency } from "@/lib/formatters/currency";
 import { normalizeApiError } from "@/lib/api-error";
 import { COMPANY_PERMISSIONS } from "@/constants/permissions";
 import {
-  useChangeSubscriptionPlanMutation,
+  useCheckoutSubscriptionMutation,
   useListEligiblePlansQuery,
 } from "@/features/company-subscription/api/company-subscription.api";
+import { useCreateCompanyPaymentMutation } from "@/features/company-payment/api/company-payment.api";
 import type { CompanySubscriptionBase } from "@/types/company-subscription";
 import type { BillingCycle } from "@/types/platform";
 
@@ -48,23 +49,37 @@ export function ChangePlanDialog({ subscription }: { subscription: CompanySubscr
   const [selected, setSelected] = useState<SelectedPrice | null>(null);
 
   const { data: plans, isLoading, error, refetch } = useListEligiblePlansQuery(undefined, { skip: !open });
-  const [changePlan, { isLoading: isSubmitting }] = useChangeSubscriptionPlanMutation();
+  const [checkoutSubscription, { isLoading: isCheckingOut }] = useCheckoutSubscriptionMutation();
+  const [createPayment, { isLoading: isInitiatingPayment }] = useCreateCompanyPaymentMutation();
+  const isSubmitting = isCheckingOut || isInitiatingPayment;
 
   const isCurrentSelection =
     selected?.planId === subscription.planId && selected.billingCycle === subscription.billingCycle;
 
+  /**
+   * Plan change always goes through payment now — no instant mutation. Checkout
+   * generates/reuses the Invoice for the new plan, then this hands straight into the
+   * same `PayInvoiceDialog` flow uses: full navigate to the gateway's hosted page. The
+   * new plan only takes effect once the backend confirms payment (never here).
+   */
   async function handleConfirm() {
     if (!selected || isCurrentSelection) return;
 
-    const result = await changePlan({ id: subscription.id, ...selected });
+    const checkoutResult = await checkoutSubscription({ id: subscription.id, ...selected });
 
-    if ("error" in result) {
-      toast.error(normalizeApiError(result.error).message);
+    if ("error" in checkoutResult) {
+      toast.error(normalizeApiError(checkoutResult.error).message);
       return;
     }
 
-    toast.success(t("changePlan.success"));
-    handleOpenChange(false);
+    const paymentResult = await createPayment({ invoiceId: checkoutResult.data.invoice.id });
+
+    if ("error" in paymentResult) {
+      toast.error(normalizeApiError(paymentResult.error).message);
+      return;
+    }
+
+    window.location.href = paymentResult.data.gatewayPageUrl;
   }
 
   function handleOpenChange(next: boolean) {
