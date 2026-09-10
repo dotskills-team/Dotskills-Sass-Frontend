@@ -53,6 +53,24 @@ async function performRefresh(
 }
 
 /**
+ * "FETCH_ERROR" (network-level fetch failure) বা 500 — staging backend-এর
+ * পরিচিত cold-start/Neon-wake-up চরিত্রের সাথে মেলে (Vercel serverless +
+ * Neon free-tier auto-suspend, দেখুন memory: vercel-neon-deployment.md)।
+ * শুধু read-only query-তে (mutation না — একটা POST duplicate side-effect
+ * তৈরি করতে পারে, তাই কখনো silently retry করা হয় না) একবার ~1.5s পর
+ * transparently retry করা হয়, যাতে ব্যবহারকারী সেই এক-মুহূর্তের cold
+ * start মোটেও দেখতে না পায়।
+ */
+function isTransientFailure(error: FetchBaseQueryError | undefined): boolean {
+  if (!error) return false;
+  return error.status === "FETCH_ERROR" || error.status === 500;
+}
+
+function delay(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+/**
  * প্রতিটি backend call এই দিয়ে যায়। 401 পেলে (এবং সেই call টা refresh
  * endpoint নিজে না হলে) একবার silently refresh করে original request
  * exactly once retry করে — retry নিজে আবার এই wrapper দিয়ে না গিয়ে সরাসরি
@@ -80,6 +98,11 @@ export const baseQueryWithReauth: BaseQueryFn<
     } else {
       api.dispatch(loggedOut());
     }
+  }
+
+  if (api.type === "query" && isTransientFailure(result.error)) {
+    await delay(1500);
+    result = await rawBaseQuery(args, api, extraOptions);
   }
 
   return result;
