@@ -137,7 +137,3 @@ export default function SaleReceiptPage() {
     </CompanyPermissionGate>
   );
 }
-
-
-
-postgresql://neondb_owner:npg_1yTdZ4wXxKic@ep-misty-union-axy0scq6-pooler.c-4.us-east-2.aws.neon.tech/neondb?sslmode=require&channel_binding=require
