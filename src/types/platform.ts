@@ -12,8 +12,8 @@ export type SubscriptionStatus =
   | "SUSPENDED"
   | "CANCELLED"
   | "EXPIRED";
-export type BillingStatus = "PENDING" | "PROCESSING" | "SUCCEEDED" | "FAILED" | "CANCELLED" | "SKIPPED";
-export type InvoiceStatus = "DRAFT" | "ISSUED" | "PAID" | "CANCELLED" | "VOID";
+export type BillingStatus = "PENDING" | "PROCESSING" | "SUCCEEDED" | "FAILED";
+export type InvoiceStatus = "DRAFT" | "ISSUED" | "PAID" | "VOID";
 export type PaymentStatus = "PENDING" | "PROCESSING" | "SUCCEEDED" | "FAILED" | "CANCELLED";
 export type FeatureStatus = "ACTIVE" | "INACTIVE" | "ARCHIVED";
 export type TenantStatus = "DRAFT" | "TRIAL" | "ACTIVE" | "SUSPENDED" | "CANCELLED";
@@ -101,6 +101,29 @@ export interface PlatformSubscription {
   priceSnapshot: { amount?: string; currencyCode?: string; planName?: string } | null;
   createdAt: string;
   plan: { id: string; code: string; name: string };
+  company?: CompanySummary | null;
+}
+
+/**
+ * Shared Company + primary-owner projection returned alongside every
+ * Platform Billing/Invoice/Payment row (verified `companyWithOwnerSelect`,
+ * backend `src/common/prisma/company-with-owner.select.ts`) — `null` only
+ * for the rare row whose Company has since been deleted (`companyId` is
+ * nullable on all three models). `ownerships` is always 0 or 1 entries
+ * (the current primary owner).
+ */
+export interface CompanySummary {
+  id: string;
+  legalName: string;
+  tradeName: string | null;
+  ownerships: { companyMember: { user: { fullName: string; email: string | null } } }[];
+}
+
+/** Minimal Plan reference attached to Subscription includes across Billing/Invoice/Payment. */
+export interface PlanSummary {
+  id: string;
+  name: string;
+  code: string;
 }
 
 export interface PlatformBilling {
@@ -117,6 +140,13 @@ export interface PlatformBilling {
   dueAt: string;
   attemptCount: number;
   createdAt: string;
+  company: CompanySummary | null;
+  subscription: {
+    id: string;
+    status: SubscriptionStatus;
+    billingCycle: BillingCycle;
+    plan: PlanSummary;
+  };
 }
 
 export interface PlatformInvoice {
@@ -133,6 +163,9 @@ export interface PlatformInvoice {
   dueAt: string;
   paidAt: string | null;
   createdAt: string;
+  company: CompanySummary | null;
+  billing: { id: string; status: BillingStatus; billingCycle: BillingCycle; periodStart: string; periodEnd: string };
+  subscription: { id: string; status: SubscriptionStatus; plan: PlanSummary };
 }
 
 export type FeatureConfigFieldType = "NUMBER" | "BOOLEAN" | "STRING" | "SELECT" | "MULTI_SELECT";
@@ -229,6 +262,11 @@ export interface PlatformPayment {
   currencyCode: string;
   amount: string;
   providerTransactionId: string;
+  gatewayReference: string | null;
   failureReason: string | null;
+  succeededAt: string | null;
   createdAt: string;
+  company: CompanySummary | null;
+  invoice: { id: string; invoiceNumber: string; status: InvoiceStatus };
+  subscription: { id: string; billingCycle: BillingCycle; plan: PlanSummary };
 }

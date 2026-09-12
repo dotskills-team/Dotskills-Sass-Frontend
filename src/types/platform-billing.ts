@@ -1,4 +1,4 @@
-import type { BillingCycle, BillingStatus, Plan, SubscriptionStatus } from "@/types/platform";
+import type { BillingCycle, BillingStatus, CompanySummary, Plan, SubscriptionStatus } from "@/types/platform";
 
 export type BillingAttemptStatus = "STARTED" | "SUCCEEDED" | "FAILED";
 
@@ -32,6 +32,7 @@ export interface PlatformBillingDetail {
   attemptCount: number;
   nextAttemptAt: string | null;
   createdAt: string;
+  company: CompanySummary | null;
   subscription: {
     id: string;
     status: SubscriptionStatus;

@@ -18,24 +18,25 @@ import { PLATFORM_PERMISSIONS } from "@/constants/permissions";
 import { normalizeApiError } from "@/lib/api-error";
 import {
   useIssueInvoiceMutation,
-  useCancelInvoiceMutation,
   useVoidInvoiceMutation,
-  useMarkInvoicePaidMutation,
 } from "@/features/invoice/api/invoice.api";
 import type { PlatformInvoice } from "@/types/platform";
 
-type ActiveAction = "issue" | "cancel" | "void" | "markPaid" | null;
+type ActiveAction = "issue" | "void" | null;
 
-/** Industry-এ established reusable action pattern-এর reuse — Invoice module। */
+/**
+ * Invoice is system-generated only — no manual create/cancel/mark-paid
+ * actions exist any more. `issue`/`void` remain as Platform Admin
+ * correction tools for an Invoice the system already generated (via
+ * checkout/renewal/manual payment).
+ */
 export function InvoiceRowActions({ invoice }: { invoice: PlatformInvoice }) {
   const t = useTranslations("invoices");
   const tCommon = useTranslations("common");
   const [activeAction, setActiveAction] = useState<ActiveAction>(null);
 
   const [issue, { isLoading: isIssuing }] = useIssueInvoiceMutation();
-  const [cancel, { isLoading: isCancelling }] = useCancelInvoiceMutation();
   const [voidInvoice, { isLoading: isVoiding }] = useVoidInvoiceMutation();
-  const [markPaid, { isLoading: isMarkingPaid }] = useMarkInvoicePaidMutation();
 
   async function handleIssue() {
     const result = await issue(invoice.id);
@@ -47,16 +48,6 @@ export function InvoiceRowActions({ invoice }: { invoice: PlatformInvoice }) {
     setActiveAction(null);
   }
 
-  async function handleCancel() {
-    const result = await cancel(invoice.id);
-    if ("error" in result) {
-      toast.error(normalizeApiError(result.error).message);
-      return;
-    }
-    toast.success(t("actions.cancelSuccess"));
-    setActiveAction(null);
-  }
-
   async function handleVoid() {
     const result = await voidInvoice(invoice.id);
     if ("error" in result) {
@@ -64,16 +55,6 @@ export function InvoiceRowActions({ invoice }: { invoice: PlatformInvoice }) {
       return;
     }
     toast.success(t("actions.voidSuccess"));
-    setActiveAction(null);
-  }
-
-  async function handleMarkPaid() {
-    const result = await markPaid(invoice.id);
-    if ("error" in result) {
-      toast.error(normalizeApiError(result.error).message);
-      return;
-    }
-    toast.success(t("actions.markPaidSuccess"));
     setActiveAction(null);
   }
 
@@ -89,16 +70,6 @@ export function InvoiceRowActions({ invoice }: { invoice: PlatformInvoice }) {
           <PlatformPermissionGate permission={PLATFORM_PERMISSIONS.INVOICE_ISSUE}>
             <DropdownMenuItem onSelect={() => setActiveAction("issue")}>
               {t("actions.issue")}
-            </DropdownMenuItem>
-          </PlatformPermissionGate>
-          <PlatformPermissionGate permission={PLATFORM_PERMISSIONS.INVOICE_MARK_PAID}>
-            <DropdownMenuItem onSelect={() => setActiveAction("markPaid")}>
-              {t("actions.markPaid")}
-            </DropdownMenuItem>
-          </PlatformPermissionGate>
-          <PlatformPermissionGate permission={PLATFORM_PERMISSIONS.INVOICE_CANCEL}>
-            <DropdownMenuItem variant="destructive" onSelect={() => setActiveAction("cancel")}>
-              {t("actions.cancel")}
             </DropdownMenuItem>
           </PlatformPermissionGate>
           <PlatformPermissionGate permission={PLATFORM_PERMISSIONS.INVOICE_VOID}>
@@ -118,29 +89,6 @@ export function InvoiceRowActions({ invoice }: { invoice: PlatformInvoice }) {
         cancelLabel={tCommon("cancel")}
         isLoading={isIssuing}
         onConfirm={handleIssue}
-      />
-
-      <ActionConfirmDialog
-        open={activeAction === "markPaid"}
-        onOpenChange={(open) => !open && setActiveAction(null)}
-        title={t("actions.markPaidTitle")}
-        description={t("actions.markPaidDescription")}
-        confirmLabel={tCommon("confirm")}
-        cancelLabel={tCommon("cancel")}
-        isLoading={isMarkingPaid}
-        onConfirm={handleMarkPaid}
-      />
-
-      <ActionConfirmDialog
-        open={activeAction === "cancel"}
-        onOpenChange={(open) => !open && setActiveAction(null)}
-        title={t("actions.cancelTitle")}
-        description={t("actions.cancelDescription")}
-        confirmLabel={tCommon("confirm")}
-        cancelLabel={tCommon("cancel")}
-        destructive
-        isLoading={isCancelling}
-        onConfirm={handleCancel}
       />
 
       <ActionConfirmDialog

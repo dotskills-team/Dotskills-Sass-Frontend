@@ -49,11 +49,10 @@ export function EditTenantDialog({ tenant, open, onOpenChange }: EditTenantDialo
           <DialogDescription>{t("form.editDescription", { name: tenant.name })}</DialogDescription>
         </DialogHeader>
         <TenantForm
-          defaultValues={{ code: tenant.code, name: tenant.name, slug: tenant.slug }}
+          defaultValues={{ name: tenant.name }}
           isSubmitting={isLoading}
           submitLabel={tCommon("update")}
           cancelLabel={tCommon("cancel")}
-          codeReadOnly
           onCancel={() => onOpenChange(false)}
           onSubmit={handleSubmit}
         />

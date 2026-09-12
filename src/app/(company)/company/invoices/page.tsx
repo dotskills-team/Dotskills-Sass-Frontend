@@ -17,7 +17,7 @@ import { COMPANY_PERMISSIONS } from "@/constants/permissions";
 import { useDebouncedValue } from "@/hooks/use-debounced-value";
 import type { InvoiceStatus } from "@/types/platform";
 
-const INVOICE_STATUSES: InvoiceStatus[] = ["DRAFT", "ISSUED", "PAID", "CANCELLED", "VOID"];
+const INVOICE_STATUSES: InvoiceStatus[] = ["DRAFT", "ISSUED", "PAID", "VOID"];
 
 /** Read-only — Invoice lifecycle সম্পূর্ণ Platform-controlled, company user শুধু নিজের invoice দেখতে পারে (verified)। */
 export default function CompanyInvoicesPage() {

@@ -198,8 +198,8 @@ const branches = [
 
 export default function CompanyDashboardPage() {
   return (
-    <div className="min-h-screen bg-muted/30 p-4 sm:p-6 lg:p-8">
-      <div className="mx-auto max-w-[1600px] space-y-6">
+    <div className="min-h-screen p-4 sm:p-6 lg:p-8">
+      <div className="max-w-[1600px] space-y-6">
         {/* ---------------------------------------------------------------- */}
         {/* HEADER                                                            */}
         {/* ---------------------------------------------------------------- */}
@@ -220,11 +220,11 @@ export default function CompanyDashboardPage() {
           </div>
 
           <div className="flex flex-wrap gap-2">
-            <button className="rounded-lg border bg-background px-4 py-2 text-sm font-medium shadow-sm transition hover:bg-muted">
+            <button className="rounded-lg border bg-card px-4 py-2 text-sm font-medium shadow-sm transition hover:bg-muted">
               📅 Today
             </button>
 
-            <button className="rounded-lg border bg-background px-4 py-2 text-sm font-medium shadow-sm transition hover:bg-muted">
+            <button className="rounded-lg border bg-card px-4 py-2 text-sm font-medium shadow-sm transition hover:bg-muted">
               Main Branch
             </button>
 
@@ -244,7 +244,7 @@ export default function CompanyDashboardPage() {
           {summaryCards.map((card) => (
             <div
               key={card.title}
-              className="rounded-xl border bg-background p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
+              className="rounded-xl border bg-card p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
             >
               <div className="flex items-start justify-between">
                 <div>
@@ -288,7 +288,7 @@ export default function CompanyDashboardPage() {
         <section className="grid gap-6 xl:grid-cols-[1.8fr_1fr]">
           {/* Sales Performance */}
 
-          <div className="rounded-xl border bg-background p-5 shadow-sm">
+          <div className="rounded-xl border bg-card p-5 shadow-sm">
             <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
               <div>
                 <h2 className="text-lg font-semibold">Sales Performance</h2>
@@ -298,7 +298,7 @@ export default function CompanyDashboardPage() {
               </div>
 
               <div className="flex rounded-lg border bg-muted/30 p-1 text-xs">
-                <button className="rounded-md bg-background px-3 py-1.5 font-medium shadow-sm">
+                <button className="rounded-md bg-card px-3 py-1.5 font-medium shadow-sm">
                   7 Days
                 </button>
                 <button className="px-3 py-1.5 text-muted-foreground">
@@ -341,7 +341,7 @@ export default function CompanyDashboardPage() {
 
           {/* Profit Overview */}
 
-          <div className="rounded-xl border bg-background p-5 shadow-sm">
+          <div className="rounded-xl border bg-card p-5 shadow-sm">
             <div className="mb-5">
               <h2 className="text-lg font-semibold">Profit Overview</h2>
               <p className="text-sm text-muted-foreground">
@@ -422,7 +422,7 @@ export default function CompanyDashboardPage() {
         <section className="grid gap-6 lg:grid-cols-2">
           {/* Inventory */}
 
-          <div className="rounded-xl border bg-background p-5 shadow-sm">
+          <div className="rounded-xl border bg-card p-5 shadow-sm">
             <div className="mb-5 flex items-center justify-between">
               <div>
                 <h2 className="text-lg font-semibold">Inventory Overview</h2>
@@ -467,7 +467,7 @@ export default function CompanyDashboardPage() {
 
           {/* Alerts */}
 
-          <div className="rounded-xl border bg-background p-5 shadow-sm">
+          <div className="rounded-xl border bg-card p-5 shadow-sm">
             <div className="mb-5 flex items-center justify-between">
               <div>
                 <h2 className="text-lg font-semibold">Important Alerts</h2>
@@ -516,7 +516,7 @@ export default function CompanyDashboardPage() {
         <section className="grid gap-6 xl:grid-cols-2">
           {/* Low Stock */}
 
-          <div className="rounded-xl border bg-background p-5 shadow-sm">
+          <div className="rounded-xl border bg-card p-5 shadow-sm">
             <div className="mb-5 flex items-center justify-between">
               <div>
                 <h2 className="text-lg font-semibold">Low Stock Products</h2>
@@ -570,7 +570,7 @@ export default function CompanyDashboardPage() {
 
           {/* Top Products */}
 
-          <div className="rounded-xl border bg-background p-5 shadow-sm">
+          <div className="rounded-xl border bg-card p-5 shadow-sm">
             <div className="mb-5">
               <h2 className="text-lg font-semibold">
                 Top Selling Products
@@ -648,7 +648,7 @@ export default function CompanyDashboardPage() {
         {/* BRANCH PERFORMANCE                                                */}
         {/* ---------------------------------------------------------------- */}
 
-        <section className="rounded-xl border bg-background p-5 shadow-sm">
+        <section className="rounded-xl border bg-card p-5 shadow-sm">
           <div className="mb-5">
             <h2 className="text-lg font-semibold">Branch Performance</h2>
 
@@ -693,7 +693,7 @@ export default function CompanyDashboardPage() {
         {/* RECENT TRANSACTIONS                                               */}
         {/* ---------------------------------------------------------------- */}
 
-        <section className="rounded-xl border bg-background p-5 shadow-sm">
+        <section className="rounded-xl border bg-card p-5 shadow-sm">
           <div className="mb-5 flex items-center justify-between">
             <div>
               <h2 className="text-lg font-semibold">
@@ -821,7 +821,7 @@ function SummaryMiniCard({
   icon: string;
 }) {
   return (
-    <div className="rounded-xl border bg-background p-5 shadow-sm">
+    <div className="rounded-xl border bg-card p-5 shadow-sm">
       <div className="flex items-center justify-between">
         <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
           {icon}

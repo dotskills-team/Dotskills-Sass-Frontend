@@ -5,14 +5,13 @@ import { Menu } from "lucide-react";
 
 import { AuthGate } from "@/features/auth/components/auth-gate";
 import { ScopeGuard } from "@/features/auth/components/scope-guard";
-import { LogoutButton } from "@/features/auth/components/logout-button";
 import { LanguageSwitcher } from "@/components/layout/language-switcher";
 import { AppSidebar } from "@/components/layout/app-sidebar";
 import { CompanySelector } from "@/features/company/components/company-selector";
 import { CompanyContextGate } from "@/features/company/components/company-context-gate";
 import { CashDrawerStatusIndicator } from "@/features/cash-drawer/components/cash-drawer-status-indicator";
 import { NotificationBell } from "@/features/notification/components/notification-bell";
-import { ProfileAvatarLink } from "@/components/layout/profile-avatar-link";
+import { ProfileMenu } from "@/components/layout/profile-menu";
 import { useCurrentCompany } from "@/features/company/hooks/use-current-company";
 import { CompanyBrandMark } from "@/components/layout/company-brand-mark";
 import { Button } from "@/components/ui/button";
@@ -64,8 +63,7 @@ export default function CompanyLayout({ children }: { children: React.ReactNode 
                 <NotificationBell companyId={company?.companyId} />
                 <CashDrawerStatusIndicator companyId={company?.companyId} />
                 <LanguageSwitcher />
-                <ProfileAvatarLink href="/company/profile" />
-                <LogoutButton />
+                <ProfileMenu href="/company/profile" />
               </div>
             </header>
             <main className="min-w-0 flex-1">

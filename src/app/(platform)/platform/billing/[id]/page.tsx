@@ -18,12 +18,14 @@ import { BillingRowActions } from "@/features/billing/components/billing-actions
 import { PLATFORM_PERMISSIONS } from "@/constants/permissions";
 import { formatCurrency } from "@/lib/formatters/currency";
 import { formatDate } from "@/lib/formatters/date";
+import { getCompanyDisplayName, getCompanyOwner } from "@/lib/company-summary";
 
 export default function PlatformBillingDetailsPage() {
   const params = useParams<{ id: string }>();
   const router = useRouter();
   const t = useTranslations("billing");
   const { data: billing, isLoading, error, refetch } = useGetBillingQuery(params.id);
+  const ownerInfo = billing ? getCompanyOwner(billing.company) : null;
 
   return (
     <PlatformPermissionGate permission={PLATFORM_PERMISSIONS.BILLING_READ} fallback={<PermissionDenied />}>
@@ -55,8 +57,29 @@ export default function PlatformBillingDetailsPage() {
               </div>
               <dl className="grid grid-cols-2 gap-4 text-sm sm:grid-cols-4">
                 <div>
+                  <dt className="text-muted-foreground">{t("details.company")}</dt>
+                  <dd className="text-foreground">{getCompanyDisplayName(billing.company)}</dd>
+                </div>
+                <div>
+                  <dt className="text-muted-foreground">{t("details.owner")}</dt>
+                  <dd className="text-foreground">
+                    {ownerInfo ? (
+                      <>
+                        {ownerInfo.name}
+                        <span className="block text-xs text-muted-foreground">{ownerInfo.email}</span>
+                      </>
+                    ) : (
+                      "—"
+                    )}
+                  </dd>
+                </div>
+                <div>
                   <dt className="text-muted-foreground">{t("details.plan")}</dt>
                   <dd className="text-foreground">{billing.subscription.plan.name}</dd>
+                </div>
+                <div>
+                  <dt className="text-muted-foreground">{t("details.billingCycle")}</dt>
+                  <dd className="text-foreground">{billing.billingCycle}</dd>
                 </div>
                 <div>
                   <dt className="text-muted-foreground">{t("details.period")}</dt>

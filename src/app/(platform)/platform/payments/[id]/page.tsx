@@ -1,8 +1,9 @@
 "use client";
 
+import { useRef, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Download, Loader2 } from "lucide-react";
 
 import { PageHeader } from "@/components/shared/page-header";
 import { PermissionDenied } from "@/components/shared/permission-denied";
@@ -19,6 +20,10 @@ import { PaymentRowActions } from "@/features/payment/components/payment-actions
 import { PLATFORM_PERMISSIONS } from "@/constants/permissions";
 import { formatCurrency } from "@/lib/formatters/currency";
 import { formatDate } from "@/lib/formatters/date";
+import { getCompanyDisplayName, getCompanyOwner } from "@/lib/company-summary";
+import { getPaymentMethodLabel, getReceiptNumber } from "@/lib/receipt";
+import { downloadElementAsPdf } from "@/lib/pdf-download";
+import { ReceiptDocument } from "@/components/receipt/receipt-document";
 
 /**
  * Payment-এর প্রকৃত final state সবসময় backend-এর gateway-verification থেকে আসে — এই page
@@ -31,6 +36,25 @@ export default function PlatformPaymentDetailsPage() {
   const router = useRouter();
   const t = useTranslations("payments");
   const { data: payment, isLoading, error, refetch } = useGetPaymentQuery(params.id);
+  const ownerInfo = payment ? getCompanyOwner(payment.company) : null;
+  const hiddenReceiptRef = useRef<HTMLDivElement>(null);
+  const [isDownloading, setIsDownloading] = useState(false);
+
+  /**
+   * True single-click PDF download — `payment` already carries every field
+   * the receipt needs (same enriched shape `PaymentService.getReceipt()`
+   * returns), so this captures the off-screen `ReceiptDocument` directly,
+   * no extra API call and no intermediate page.
+   */
+  async function handleDownloadReceipt() {
+    if (!hiddenReceiptRef.current || !payment) return;
+    setIsDownloading(true);
+    try {
+      await downloadElementAsPdf(hiddenReceiptRef.current, `${getReceiptNumber(payment.invoice.invoiceNumber)}.pdf`);
+    } finally {
+      setIsDownloading(false);
+    }
+  }
 
   return (
     <PlatformPermissionGate permission={PLATFORM_PERMISSIONS.PAYMENT_READ} fallback={<PermissionDenied />}>
@@ -61,16 +85,52 @@ export default function PlatformPaymentDetailsPage() {
                 <h2 className="font-heading text-base font-medium text-foreground">
                   {formatCurrency(payment.amount, payment.currencyCode)}
                 </h2>
-                <StatusBadge status={payment.status} />
+                <div className="flex items-center gap-2">
+                  {payment.status === "SUCCEEDED" && (
+                    <Button variant="outline" size="sm" onClick={handleDownloadReceipt} disabled={isDownloading}>
+                      {isDownloading ? (
+                        <Loader2 className="animate-spin" aria-hidden="true" />
+                      ) : (
+                        <Download aria-hidden="true" />
+                      )}
+                      {t("details.downloadReceipt")}
+                    </Button>
+                  )}
+                  <StatusBadge status={payment.status} />
+                </div>
               </div>
-              <dl className="grid grid-cols-2 gap-4 text-sm sm:grid-cols-3">
+              <dl className="grid grid-cols-2 gap-4 text-sm sm:grid-cols-4">
+                <div>
+                  <dt className="text-muted-foreground">{t("details.company")}</dt>
+                  <dd className="text-foreground">{getCompanyDisplayName(payment.company)}</dd>
+                </div>
+                <div>
+                  <dt className="text-muted-foreground">{t("details.owner")}</dt>
+                  <dd className="text-foreground">
+                    {ownerInfo ? (
+                      <>
+                        {ownerInfo.name}
+                        <span className="block text-xs text-muted-foreground">{ownerInfo.email}</span>
+                      </>
+                    ) : (
+                      "—"
+                    )}
+                  </dd>
+                </div>
+                <div>
+                  <dt className="text-muted-foreground">{t("details.plan")}</dt>
+                  <dd className="text-foreground">
+                    {payment.subscription.plan.name}
+                    <span className="block text-xs text-muted-foreground">{payment.subscription.billingCycle}</span>
+                  </dd>
+                </div>
                 <div>
                   <dt className="text-muted-foreground">{t("details.invoice")}</dt>
                   <dd className="font-mono text-foreground">{payment.invoice.invoiceNumber}</dd>
                 </div>
                 <div>
                   <dt className="text-muted-foreground">{t("details.provider")}</dt>
-                  <dd className="text-foreground">{payment.provider}</dd>
+                  <dd className="text-foreground">{getPaymentMethodLabel(payment.provider, payment.metadata)}</dd>
                 </div>
                 <div>
                   <dt className="text-muted-foreground">{t("details.transactionId")}</dt>
@@ -96,6 +156,12 @@ export default function PlatformPaymentDetailsPage() {
                 <PaymentRowActions payment={payment} />
               </div>
             </section>
+
+            <div className="fixed left-[-9999px] top-0" aria-hidden="true">
+              <div ref={hiddenReceiptRef}>
+                <ReceiptDocument payment={payment} />
+              </div>
+            </div>
           </>
         )}
       </div>

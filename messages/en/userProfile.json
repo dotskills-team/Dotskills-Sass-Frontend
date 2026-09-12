@@ -8,7 +8,17 @@
       "help": "PNG or JPG, up to 2MB.",
       "invalidType": "Photo must be a PNG or JPG image.",
       "tooLarge": "Photo must be 2MB or smaller.",
-      "uploadSuccess": "Profile photo updated."
+      "uploadSuccess": "Profile photo updated.",
+      "changePhoto": "Change photo"
+    },
+    "email": "Email address",
+    "name": {
+      "title": "Full name",
+      "label": "Full name",
+      "nameRequired": "Full name is required.",
+      "nameLength": "Full name must be 2–160 characters.",
+      "submit": "Save changes",
+      "success": "Name updated."
     },
     "password": {
       "title": "Change password",

@@ -1,5 +1,10 @@
 import { baseApi } from "@/store/api/base-api";
-import type { CompanyPayment, CompanyPaymentDetail, CreateCompanyPaymentResult } from "@/types/company-payment";
+import type {
+  CompanyPayment,
+  CompanyPaymentDetail,
+  CompanyPaymentReceipt,
+  CreateCompanyPaymentResult,
+} from "@/types/company-payment";
 import { normalizeItemsEnvelope, type ListResult } from "@/types/list-result";
 
 export interface ListCompanyPaymentsParams {
@@ -34,6 +39,12 @@ export const companyPaymentApi = baseApi.injectEndpoints({
       providesTags: ["Payment"],
     }),
 
+    /** Only ever resolves for a SUCCEEDED payment — backend throws BadRequestException otherwise (verified `PaymentService.getReceipt`). */
+    getCompanyPaymentReceipt: builder.query<CompanyPaymentReceipt, string>({
+      query: (id) => `/payments/${id}/receipt`,
+      providesTags: ["Payment"],
+    }),
+
     /** `CreatePaymentDto` শুধু `invoiceId` নেয় — amount/currency সবসময় backend Invoice থেকে derive করে (verified)। */
     createCompanyPayment: builder.mutation<CreateCompanyPaymentResult, { invoiceId: string }>({
       query: (body) => ({ url: "/payments", method: "POST", body }),
@@ -42,5 +53,9 @@ export const companyPaymentApi = baseApi.injectEndpoints({
   }),
 });
 
-export const { useListCompanyPaymentsQuery, useGetCompanyPaymentQuery, useCreateCompanyPaymentMutation } =
-  companyPaymentApi;
+export const {
+  useListCompanyPaymentsQuery,
+  useGetCompanyPaymentQuery,
+  useGetCompanyPaymentReceiptQuery,
+  useCreateCompanyPaymentMutation,
+} = companyPaymentApi;

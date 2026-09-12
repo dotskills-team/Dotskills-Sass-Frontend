@@ -5,9 +5,11 @@ import { useTranslations } from "next-intl";
 import { PageHeader } from "@/components/shared/page-header";
 import { ErrorState } from "@/components/shared/error-state";
 import { Skeleton } from "@/components/ui/skeleton";
+import { Card, CardContent } from "@/components/ui/card";
 
 import { useGetMyProfileQuery } from "@/features/user-profile/api/user-profile.api";
 import { ProfileImageUpload } from "@/features/user-profile/components/profile-image-upload";
+import { ChangeNameForm } from "@/features/user-profile/components/change-name-form";
 import { ChangePasswordForm } from "@/features/user-profile/components/change-password-form";
 
 /**
@@ -31,7 +33,16 @@ export default function PlatformProfilePage() {
           <ErrorState error={error} onRetry={refetch} />
         ) : profile ? (
           <>
-            <ProfileImageUpload profileImageUrl={profile.profileImageUrl} fullName={profile.fullName} />
+            <Card>
+              <CardContent>
+                <ProfileImageUpload
+                  profileImageUrl={profile.profileImageUrl}
+                  fullName={profile.fullName}
+                  email={profile.email}
+                />
+              </CardContent>
+            </Card>
+            <ChangeNameForm fullName={profile.fullName} />
             <ChangePasswordForm />
           </>
         ) : null}

@@ -24,6 +24,12 @@ export const paymentApi = baseApi.injectEndpoints({
       providesTags: ["Payment"],
     }),
 
+    /** Only ever resolves for a SUCCEEDED payment — backend throws BadRequestException otherwise (verified `PaymentService.getReceipt`). */
+    getPaymentReceipt: builder.query<CompanyPaymentDetail, string>({
+      query: (id) => `/platform/payments/${id}/receipt`,
+      providesTags: ["Payment"],
+    }),
+
     verifyPayment: builder.mutation<unknown, { id: string; valId: string }>({
       query: ({ id, valId }) => ({
         url: `/platform/payments/${id}/verify`,
@@ -43,6 +49,7 @@ export const paymentApi = baseApi.injectEndpoints({
 export const {
   useListPaymentsQuery,
   useGetPaymentQuery,
+  useGetPaymentReceiptQuery,
   useVerifyPaymentMutation,
   useCancelPaymentMutation,
 } = paymentApi;

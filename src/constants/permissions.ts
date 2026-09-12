@@ -74,21 +74,13 @@ export const PLATFORM_PERMISSIONS = {
   FEATURE_DEACTIVATE: "platform.feature.deactivate",
   FEATURE_ARCHIVE: "platform.feature.archive",
 
-  BILLING_CREATE: "billing.create",
   BILLING_READ: "billing.read",
   BILLING_PROCESS: "billing.process",
   BILLING_RETRY: "billing.retry",
-  BILLING_CANCEL: "billing.cancel",
-  BILLING_SKIP: "billing.skip",
-  BILLING_MARK_SUCCEEDED: "billing.mark_succeeded",
-  BILLING_MARK_FAILED: "billing.mark_failed",
 
-  INVOICE_CREATE: "invoice.create",
   INVOICE_READ: "invoice.read",
   INVOICE_ISSUE: "invoice.issue",
-  INVOICE_CANCEL: "invoice.cancel",
   INVOICE_VOID: "invoice.void",
-  INVOICE_MARK_PAID: "invoice.mark_paid",
 
   PAYMENT_READ: "payment.read",
   PAYMENT_VERIFY: "payment.verify",
@@ -104,6 +96,9 @@ export const PLATFORM_PERMISSIONS = {
   PLAN_FEATURE_ASSIGN: "platform.plan.feature.assign",
   PLAN_FEATURE_UPDATE: "platform.plan.feature.update",
   PLAN_FEATURE_REMOVE: "platform.plan.feature.remove",
+
+  SETTINGS_READ: "platform.settings.read",
+  SETTINGS_UPDATE: "platform.settings.update",
 } as const;
 
 export const COMPANY_PERMISSIONS = {

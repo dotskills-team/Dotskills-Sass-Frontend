@@ -13,19 +13,11 @@ import { Input } from "@/components/ui/input";
 
 import { useListBillingsQuery } from "@/features/billing/api/billing.api";
 import { billingsColumns } from "@/features/billing/components/billings-columns";
-import { CreateBillingDialog } from "@/features/billing/components/create-billing-dialog";
 import { PLATFORM_PERMISSIONS } from "@/constants/permissions";
 import { useDebouncedValue } from "@/hooks/use-debounced-value";
 import type { BillingStatus } from "@/types/platform";
 
-const BILLING_STATUSES: BillingStatus[] = [
-  "PENDING",
-  "PROCESSING",
-  "SUCCEEDED",
-  "FAILED",
-  "CANCELLED",
-  "SKIPPED",
-];
+const BILLING_STATUSES: BillingStatus[] = ["PENDING", "PROCESSING", "SUCCEEDED", "FAILED"];
 
 export default function BillingPage() {
   const t = useTranslations("billing");
@@ -64,9 +56,6 @@ export default function BillingPage() {
               setPage(1);
             }}
           />
-          <div className="ml-auto">
-            <CreateBillingDialog />
-          </div>
         </div>
 
         <DataTable

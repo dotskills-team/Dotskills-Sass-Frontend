@@ -13,12 +13,11 @@ import { Input } from "@/components/ui/input";
 
 import { useListInvoicesQuery } from "@/features/invoice/api/invoice.api";
 import { invoicesColumns } from "@/features/invoice/components/invoices-columns";
-import { CreateInvoiceDialog } from "@/features/invoice/components/create-invoice-dialog";
 import { PLATFORM_PERMISSIONS } from "@/constants/permissions";
 import { useDebouncedValue } from "@/hooks/use-debounced-value";
 import type { InvoiceStatus } from "@/types/platform";
 
-const INVOICE_STATUSES: InvoiceStatus[] = ["DRAFT", "ISSUED", "PAID", "CANCELLED", "VOID"];
+const INVOICE_STATUSES: InvoiceStatus[] = ["DRAFT", "ISSUED", "PAID", "VOID"];
 
 export default function InvoicesPage() {
   const t = useTranslations("invoices");
@@ -57,9 +56,6 @@ export default function InvoicesPage() {
               setPage(1);
             }}
           />
-          <div className="ml-auto">
-            <CreateInvoiceDialog />
-          </div>
         </div>
 
         <DataTable

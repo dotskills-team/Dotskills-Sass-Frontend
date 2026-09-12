@@ -69,7 +69,7 @@
  * `text-foreground` with no per-component change needed.
  */
 :root {
-  --background: oklch(1 0 0);
+  --background: oklch(0.975 0.003 259.815);
   --foreground: oklch(25.7% 0.09 281.288);
   --card: oklch(1 0 0);
   --card-foreground: oklch(25.7% 0.09 281.288);
@@ -100,12 +100,12 @@
   --chart-5: oklch(0.269 0 0);
   --radius: 0.625rem;
   /**
-   * Sidebar: neutral white/near-white base, NOT a solid indigo fill
-   * (explicit direction this pass) — indigo is reserved for the active
-   * item only, with a light indigo tint on hover. Normal-state text/icon
-   * stay neutral.
+   * Sidebar/navbar: plain white (matches --card, not the tinted --background)
+   * — user feedback: no color on sidebar/navbar, keep it white; the subtle
+   * tint instead lives on the page body so cards/sidebar/navbar read as
+   * a clean white surface against a soft off-white page.
    */
-  --sidebar: oklch(0.97 0 0);
+  --sidebar: oklch(1 0 0);
   --sidebar-foreground: oklch(25.7% 0.09 281.288 / 82%);
   --sidebar-primary: oklch(62.3% 0.214 259.815);
   --sidebar-primary-foreground: oklch(0.985 0 0);

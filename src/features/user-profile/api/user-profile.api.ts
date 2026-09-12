@@ -25,6 +25,16 @@ export const userProfileApi = baseApi.injectEndpoints({
       invalidatesTags: ["UserProfile"],
     }),
 
+    updateName: builder.mutation<UserProfile, { fullName: string }>({
+      query: (body) => ({
+        url: `/users/me/name`,
+        method: "PATCH",
+        body,
+      }),
+      transformResponse: (response: { data: UserProfile }) => response.data,
+      invalidatesTags: ["UserProfile"],
+    }),
+
     changePassword: builder.mutation<
       { success: boolean; message: string; otherSessionsRevoked: number },
       { currentPassword: string; newPassword: string }
@@ -41,5 +51,6 @@ export const userProfileApi = baseApi.injectEndpoints({
 export const {
   useGetMyProfileQuery,
   useUploadProfileImageMutation,
+  useUpdateNameMutation,
   useChangePasswordMutation,
 } = userProfileApi;

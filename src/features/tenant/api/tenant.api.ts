@@ -23,12 +23,12 @@ export const tenantApi = baseApi.injectEndpoints({
       providesTags: ["Tenant"],
     }),
 
-    createTenant: builder.mutation<unknown, { code: string; name: string; slug: string }>({
+    createTenant: builder.mutation<unknown, { name: string }>({
       query: (body) => ({ url: "/platform/tenants", method: "POST", body }),
       invalidatesTags: ["Tenant"],
     }),
 
-    updateTenant: builder.mutation<unknown, { id: string; name?: string; slug?: string }>({
+    updateTenant: builder.mutation<unknown, { id: string; name?: string }>({
       query: ({ id, ...body }) => ({
         url: `/platform/tenants/${id}`,
         method: "PATCH",

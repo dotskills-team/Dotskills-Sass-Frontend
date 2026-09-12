@@ -14,7 +14,8 @@
       "due": "Due তারিখ",
       "issued": "ইস্যু হয়েছে",
       "paid": "পরিশোধিত",
-      "billingPeriod": "বিলিং পিরিয়ড"
+      "billingPeriod": "বিলিং পিরিয়ড",
+      "billingCycle": "বিলিং সাইকেল"
     }
   }
 }

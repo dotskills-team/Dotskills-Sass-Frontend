@@ -14,7 +14,8 @@
       "due": "Due date",
       "issued": "Issued",
       "paid": "Paid",
-      "billingPeriod": "Billing period"
+      "billingPeriod": "Billing period",
+      "billingCycle": "Billing cycle"
     }
   }
 }

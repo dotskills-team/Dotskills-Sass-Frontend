@@ -26,29 +26,13 @@ export const invoiceApi = baseApi.injectEndpoints({
       providesTags: ["Invoice"],
     }),
 
-    /** `CreateInvoiceDto` — শুধু `{billingId}`; amount/number/subtotal সব backend derive করে (verified)। */
-    createInvoice: builder.mutation<unknown, { billingId: string }>({
-      query: (body) => ({ url: "/platform/invoices", method: "POST", body }),
-      invalidatesTags: ["Invoice"],
-    }),
-
     issueInvoice: builder.mutation<unknown, string>({
       query: (id) => ({ url: `/platform/invoices/${id}/issue`, method: "POST" }),
       invalidatesTags: ["Invoice"],
     }),
 
-    cancelInvoice: builder.mutation<unknown, string>({
-      query: (id) => ({ url: `/platform/invoices/${id}/cancel`, method: "POST" }),
-      invalidatesTags: ["Invoice"],
-    }),
-
     voidInvoice: builder.mutation<unknown, string>({
       query: (id) => ({ url: `/platform/invoices/${id}/void`, method: "POST" }),
-      invalidatesTags: ["Invoice"],
-    }),
-
-    markInvoicePaid: builder.mutation<unknown, string>({
-      query: (id) => ({ url: `/platform/invoices/${id}/mark-paid`, method: "POST" }),
       invalidatesTags: ["Invoice"],
     }),
   }),
@@ -57,9 +41,6 @@ export const invoiceApi = baseApi.injectEndpoints({
 export const {
   useListInvoicesQuery,
   useGetInvoiceQuery,
-  useCreateInvoiceMutation,
   useIssueInvoiceMutation,
-  useCancelInvoiceMutation,
   useVoidInvoiceMutation,
-  useMarkInvoicePaidMutation,
 } = invoiceApi;

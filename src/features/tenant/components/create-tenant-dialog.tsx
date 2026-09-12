@@ -22,7 +22,7 @@ import { PLATFORM_PERMISSIONS } from "@/constants/permissions";
 import { normalizeApiError } from "@/lib/api-error";
 import type { TenantFormValues } from "@/features/tenant/schemas/tenant.schema";
 
-const EMPTY_VALUES: TenantFormValues = { code: "", name: "", slug: "" };
+const EMPTY_VALUES: TenantFormValues = { name: "" };
 
 /** Create flow — Industry-এর established pattern reuse। */
 export function CreateTenantDialog() {

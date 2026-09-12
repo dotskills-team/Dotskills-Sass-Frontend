@@ -1,4 +1,4 @@
-import type { BillingStatus, InvoiceStatus, SubscriptionStatus } from "@/types/platform";
+import type { BillingCycle, BillingStatus, CompanySummary, InvoiceStatus, PlanSummary, SubscriptionStatus } from "@/types/platform";
 
 /** `GET /invoices` (company-scoped) list item — verified invoice.service.ts `findAll` include block. */
 export interface CompanyInvoice {
@@ -15,8 +15,9 @@ export interface CompanyInvoice {
   dueAt: string;
   paidAt: string | null;
   createdAt: string;
-  billing: { id: string; status: BillingStatus; periodStart: string; periodEnd: string };
-  subscription: { id: string; status: SubscriptionStatus; planId: string };
+  company: CompanySummary | null;
+  billing: { id: string; status: BillingStatus; billingCycle: BillingCycle; periodStart: string; periodEnd: string };
+  subscription: { id: string; status: SubscriptionStatus; plan: PlanSummary };
 }
 
 /** `GET /invoices/:id` (company-scoped) — raw full row, no `{success,data}` envelope (verified `findOne`). */
@@ -40,10 +41,11 @@ export interface CompanyInvoiceDetail {
   cancelledAt: string | null;
   voidedAt: string | null;
   createdAt: string;
+  company: CompanySummary | null;
   billing: {
     id: string;
     status: BillingStatus;
-    billingCycle: string;
+    billingCycle: BillingCycle;
     periodStart: string;
     periodEnd: string;
   };

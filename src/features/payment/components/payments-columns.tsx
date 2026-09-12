@@ -6,6 +6,7 @@ import Link from "next/link";
 import { StatusBadge } from "@/components/shared/status-badge";
 import { formatCurrency } from "@/lib/formatters/currency";
 import { formatDateTime } from "@/lib/formatters/date";
+import { getCompanyDisplayName } from "@/lib/company-summary";
 import type { AppTableFeatures } from "@/components/data-table/table-features";
 import type { PlatformPayment } from "@/types/platform";
 import { PaymentRowActions } from "@/features/payment/components/payment-actions";
@@ -20,6 +21,16 @@ export const paymentsColumns: ColumnDef<AppTableFeatures, PlatformPayment, unkno
         <p className="text-xs text-muted-foreground">{row.original.provider}</p>
       </Link>
     ),
+  },
+  {
+    accessorKey: "company",
+    header: "Company",
+    cell: ({ row }) => getCompanyDisplayName(row.original.company),
+  },
+  {
+    id: "invoice",
+    header: "Invoice #",
+    cell: ({ row }) => <span className="font-mono text-xs">{row.original.invoice.invoiceNumber}</span>,
   },
   {
     accessorKey: "amount",

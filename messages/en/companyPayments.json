@@ -13,6 +13,8 @@
       "overview": "Overview",
       "notFound": "Payment not found.",
       "refresh": "Refresh status",
+      "downloadReceipt": "Download Receipt",
+      "plan": "Plan",
       "invoice": "Invoice",
       "amount": "Amount",
       "provider": "Provider",

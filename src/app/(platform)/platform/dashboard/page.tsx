@@ -312,14 +312,14 @@ function formatRevenue(value: number) {
 
 export default function PlatformDashboardPage() {
   return (
-    <div className="min-h-screen bg-muted/30">
+    <div className="min-h-screen">
       <PageHeader
         title="Platform Dashboard"
         description="Monitor your DotSkills SaaS platform"
       />
 
       <div className="p-4 sm:p-6 lg:p-8">
-        <div className="mx-auto max-w-[1600px] space-y-6">
+        <div className="max-w-[1600px] space-y-6">
           {/* Header */}
 
           <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
@@ -332,11 +332,11 @@ export default function PlatformDashboardPage() {
             </div>
 
             <div className="flex flex-wrap gap-2">
-              <button className="rounded-lg border bg-background px-4 py-2 text-sm font-medium shadow-sm hover:bg-muted">
+              <button className="rounded-lg border bg-card px-4 py-2 text-sm font-medium shadow-sm hover:bg-muted">
                 Today
               </button>
 
-              <button className="rounded-lg border bg-background px-4 py-2 text-sm font-medium shadow-sm hover:bg-muted">
+              <button className="rounded-lg border bg-card px-4 py-2 text-sm font-medium shadow-sm hover:bg-muted">
                 All Companies
               </button>
 
@@ -355,7 +355,7 @@ export default function PlatformDashboardPage() {
               return (
                 <div
                   key={card.label}
-                  className="rounded-xl border bg-background p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
+                  className="rounded-xl border bg-card p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
                 >
                   <div className="flex items-center justify-between">
                     <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
@@ -384,7 +384,7 @@ export default function PlatformDashboardPage() {
           <div className="grid gap-6 xl:grid-cols-[1.7fr_1fr]">
             {/* Revenue */}
 
-            <div className="rounded-xl border bg-background p-5 shadow-sm">
+            <div className="rounded-xl border bg-card p-5 shadow-sm">
               <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                 <div>
                   <h2 className="text-lg font-semibold">
@@ -397,7 +397,7 @@ export default function PlatformDashboardPage() {
                 </div>
 
                 <div className="flex rounded-lg border bg-muted/30 p-1 text-xs">
-                  <button className="rounded-md bg-background px-3 py-1.5 font-medium shadow-sm">
+                  <button className="rounded-md bg-card px-3 py-1.5 font-medium shadow-sm">
                     7M
                   </button>
 
@@ -452,7 +452,7 @@ export default function PlatformDashboardPage() {
 
             {/* Company Growth */}
 
-            <div className="rounded-xl border bg-background p-5 shadow-sm">
+            <div className="rounded-xl border bg-card p-5 shadow-sm">
               <div className="mb-6">
                 <h2 className="text-lg font-semibold">
                   Company Growth
@@ -516,7 +516,7 @@ export default function PlatformDashboardPage() {
           <div className="grid gap-6 lg:grid-cols-2">
             {/* Subscription */}
 
-            <div className="rounded-xl border bg-background p-5 shadow-sm">
+            <div className="rounded-xl border bg-card p-5 shadow-sm">
               <div className="mb-5">
                 <h2 className="text-lg font-semibold">
                   Subscription Overview
@@ -551,7 +551,7 @@ export default function PlatformDashboardPage() {
 
             {/* Industry */}
 
-            <div className="rounded-xl border bg-background p-5 shadow-sm">
+            <div className="rounded-xl border bg-card p-5 shadow-sm">
               <div className="mb-5">
                 <h2 className="text-lg font-semibold">
                   Industry Distribution
@@ -587,7 +587,7 @@ export default function PlatformDashboardPage() {
 
           {/* Alerts */}
 
-          <div className="rounded-xl border bg-background p-5 shadow-sm">
+          <div className="rounded-xl border bg-card p-5 shadow-sm">
             <div className="mb-5 flex items-center justify-between">
               <div>
                 <h2 className="text-lg font-semibold">
@@ -632,7 +632,7 @@ export default function PlatformDashboardPage() {
 
           {/* Plans */}
 
-          <div className="rounded-xl border bg-background p-5 shadow-sm">
+          <div className="rounded-xl border bg-card p-5 shadow-sm">
             <div className="mb-5">
               <h2 className="text-lg font-semibold">
                 Plan Performance
@@ -686,7 +686,7 @@ export default function PlatformDashboardPage() {
           <div className="grid gap-6 lg:grid-cols-2">
             {/* Companies */}
 
-            <div className="rounded-xl border bg-background p-5 shadow-sm">
+            <div className="rounded-xl border bg-card p-5 shadow-sm">
               <div className="mb-5 flex items-center justify-between">
                 <div>
                   <h2 className="text-lg font-semibold">
@@ -739,7 +739,7 @@ export default function PlatformDashboardPage() {
 
             {/* Invoices */}
 
-            <div className="rounded-xl border bg-background p-5 shadow-sm">
+            <div className="rounded-xl border bg-card p-5 shadow-sm">
               <div className="mb-5 flex items-center justify-between">
                 <div>
                   <h2 className="text-lg font-semibold">
@@ -799,7 +799,7 @@ export default function PlatformDashboardPage() {
 
           {/* Payment Health */}
 
-          <div className="rounded-xl border bg-background p-5 shadow-sm">
+          <div className="rounded-xl border bg-card p-5 shadow-sm">
             <div className="mb-5">
               <h2 className="text-lg font-semibold">
                 Payment & Billing Health
@@ -846,7 +846,7 @@ export default function PlatformDashboardPage() {
           <div className="grid gap-6 lg:grid-cols-2">
             {/* Activity */}
 
-            <div className="rounded-xl border bg-background p-5 shadow-sm">
+            <div className="rounded-xl border bg-card p-5 shadow-sm">
               <div className="mb-5">
                 <h2 className="text-lg font-semibold">
                   Recent Platform Activity
@@ -887,7 +887,7 @@ export default function PlatformDashboardPage() {
 
             {/* Module Usage */}
 
-            <div className="rounded-xl border bg-background p-5 shadow-sm">
+            <div className="rounded-xl border bg-card p-5 shadow-sm">
               <div className="mb-5">
                 <h2 className="text-lg font-semibold">
                   Feature & Module Usage
@@ -931,7 +931,7 @@ export default function PlatformDashboardPage() {
 
           {/* System Health */}
 
-          <div className="rounded-xl border bg-background p-5 shadow-sm">
+          <div className="rounded-xl border bg-card p-5 shadow-sm">
             <div className="mb-5">
               <h2 className="text-lg font-semibold">
                 System Health

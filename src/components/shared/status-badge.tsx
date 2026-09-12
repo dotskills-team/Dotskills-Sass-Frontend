@@ -35,7 +35,6 @@ const STATUS_TONE: Record<string, Tone> = {
   PROCESSING: "info",
   SUCCEEDED: "success",
   FAILED: "destructive",
-  SKIPPED: "muted",
   // Invoice
   ISSUED: "info",
   PAID: "success",

@@ -99,6 +99,10 @@ export default function CompanyInvoiceDetailsPage() {
                   {formatDate(invoice.billing.periodStart)} – {formatDate(invoice.billing.periodEnd)}
                 </dd>
               </div>
+              <div>
+                <dt className="text-muted-foreground">{t("details.billingCycle")}</dt>
+                <dd className="text-foreground">{invoice.billing.billingCycle}</dd>
+              </div>
             </dl>
           </section>
         )}

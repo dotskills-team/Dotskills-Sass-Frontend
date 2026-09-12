@@ -166,6 +166,7 @@ export const baseApi = createApi({
     "Notification",
     "CustomerPayment",
     "UserProfile",
+    "PlatformSettings",
   ],
   endpoints: () => ({}),
 });

@@ -5,12 +5,13 @@ import { Menu } from "lucide-react";
 
 import { AuthGate } from "@/features/auth/components/auth-gate";
 import { ScopeGuard } from "@/features/auth/components/scope-guard";
-import { LogoutButton } from "@/features/auth/components/logout-button";
 import { LanguageSwitcher } from "@/components/layout/language-switcher";
 import { AppSidebar } from "@/components/layout/app-sidebar";
-import { ProfileAvatarLink } from "@/components/layout/profile-avatar-link";
+import { ProfileMenu } from "@/components/layout/profile-menu";
+import { CompanyBrandMark } from "@/components/layout/company-brand-mark";
 import { Button } from "@/components/ui/button";
 
+import { useGetPlatformSettingsQuery } from "@/features/platform-settings/api/platform-settings.api";
 import { platformNavItems } from "./nav-items";
 
 /**
@@ -32,6 +33,13 @@ import { platformNavItems } from "./nav-items";
  */
 export default function PlatformLayout({ children }: { children: React.ReactNode }) {
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
+  const { data: platformSettings } = useGetPlatformSettingsQuery();
+  // Only override the default "D / DotSkills Platform" mark once a real
+  // logo has actually been uploaded — otherwise keep the original wordmark
+  // rather than switching to CompanyBrandMark's circular-letter fallback.
+  const brand = platformSettings?.logoUrl
+    ? { logoUrl: platformSettings.logoUrl, name: "DotSkills Platform" }
+    : undefined;
 
   return (
     <AuthGate>
@@ -42,6 +50,7 @@ export default function PlatformLayout({ children }: { children: React.ReactNode
               items={platformNavItems}
               mobileOpen={mobileNavOpen}
               onMobileClose={() => setMobileNavOpen(false)}
+              brand={brand}
             />
           </div>
           <div className="flex min-h-screen flex-col md:pl-64">
@@ -56,17 +65,22 @@ export default function PlatformLayout({ children }: { children: React.ReactNode
                 >
                   <Menu className="size-5" aria-hidden="true" />
                 </Button>
-                <div className="flex items-center gap-2 md:hidden">
-                  <span className="flex size-7 items-center justify-center rounded-md bg-primary text-xs font-bold text-primary-foreground">
-                    D
-                  </span>
-                  <span className="font-semibold tracking-tight text-foreground">DotSkills Platform</span>
+                <div className="flex h-7 items-center gap-2 md:hidden">
+                  {brand ? (
+                    <CompanyBrandMark logoUrl={brand.logoUrl} name={brand.name} />
+                  ) : (
+                    <>
+                      <span className="flex size-7 items-center justify-center rounded-md bg-primary text-xs font-bold text-primary-foreground">
+                        D
+                      </span>
+                      <span className="font-semibold tracking-tight text-foreground">DotSkills Platform</span>
+                    </>
+                  )}
                 </div>
               </div>
               <div className="flex items-center gap-2">
                 <LanguageSwitcher />
-                <ProfileAvatarLink href="/platform/profile" />
-                <LogoutButton />
+                <ProfileMenu href="/platform/profile" />
               </div>
             </header>
             <main className="min-w-0 flex-1">

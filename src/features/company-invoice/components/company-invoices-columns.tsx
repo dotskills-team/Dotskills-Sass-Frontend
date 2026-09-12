@@ -20,6 +20,11 @@ export const companyInvoicesColumns: ColumnDef<AppTableFeatures, CompanyInvoice,
     ),
   },
   {
+    id: "plan",
+    header: "Plan",
+    cell: ({ row }) => row.original.subscription.plan.name,
+  },
+  {
     accessorKey: "totalAmount",
     header: "Amount",
     cell: ({ row }) => formatCurrency(row.original.totalAmount, row.original.currencyCode),

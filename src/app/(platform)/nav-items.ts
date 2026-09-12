@@ -12,6 +12,7 @@ import {
   UserCog,
   ShieldCheck,
   KeyRound,
+  Settings,
 } from "lucide-react";
 
 import type { NavItem } from "@/components/layout/app-sidebar";
@@ -101,5 +102,10 @@ export const platformNavItems: NavItem[] = [
     icon: Wallet,
     platformPermission: PLATFORM_PERMISSIONS.PAYMENT_READ,
   },
- 
+  {
+    labelKey: "settings",
+    href: "/platform/settings",
+    icon: Settings,
+    platformPermission: PLATFORM_PERMISSIONS.SETTINGS_READ,
+  },
 ];

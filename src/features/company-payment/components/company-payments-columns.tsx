@@ -20,13 +20,18 @@ export const companyPaymentsColumns: ColumnDef<AppTableFeatures, CompanyPayment,
     ),
   },
   {
+    id: "plan",
+    header: "Plan",
+    cell: ({ row }) => row.original.subscription.plan.name,
+  },
+  {
     accessorKey: "amount",
     header: "Amount",
     cell: ({ row }) => formatCurrency(row.original.amount, row.original.currencyCode),
   },
   {
     accessorKey: "provider",
-    header: "Provider",
+    header: "Method",
     cell: ({ row }) => row.original.provider,
   },
   {

@@ -8,15 +8,7 @@ import { Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { DialogFooter } from "@/components/ui/dialog";
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 
 import { createTenantSchema, type TenantFormValues } from "@/features/tenant/schemas/tenant.schema";
 
@@ -25,33 +17,28 @@ interface TenantFormProps {
   isSubmitting: boolean;
   submitLabel: string;
   cancelLabel: string;
-  /** Edit-এ `UpdateTenantDto` code field সমর্থন করে না (verified) — তাই code input disable থাকে। */
-  codeReadOnly?: boolean;
   onCancel: () => void;
   onSubmit: (values: TenantFormValues) => void;
 }
 
-/** Industry-এর established RHF+Zod+shadcn `Form` pattern reuse — Create ও Edit দুটোই এই একই component ব্যবহার করে। */
+/**
+ * Industry-এর established RHF+Zod+shadcn `Form` pattern reuse — Create ও Edit দুটোই এই
+ * একই component ব্যবহার করে। `code`/`slug` কোনো input field নেই — backend সবসময় `name`
+ * থেকে system-generate করে, user কখনো সেট/edit করতে পারে না।
+ */
 export function TenantForm({
   defaultValues,
   isSubmitting,
   submitLabel,
   cancelLabel,
-  codeReadOnly,
   onCancel,
   onSubmit,
 }: TenantFormProps) {
   const t = useTranslations("tenants");
 
   const schema = createTenantSchema({
-    codeRequired: t("form.codeRequired"),
-    codeLength: t("form.codeLength"),
-    codePattern: t("form.codePattern"),
     nameRequired: t("form.nameRequired"),
     nameLength: t("form.nameLength"),
-    slugRequired: t("form.slugRequired"),
-    slugLength: t("form.slugLength"),
-    slugPattern: t("form.slugPattern"),
   });
 
   const form = useForm<TenantFormValues>({
@@ -64,30 +51,6 @@ export function TenantForm({
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4" noValidate>
         <FormField
           control={form.control}
-          name="code"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>
-                {t("form.code")} <span className="text-destructive">*</span>
-              </FormLabel>
-              <FormControl>
-                <Input
-                  {...field}
-                  disabled={codeReadOnly}
-                  placeholder={t("form.codePlaceholder")}
-                  onChange={(event) => field.onChange(event.target.value.toUpperCase())}
-                />
-              </FormControl>
-              <FormDescription>
-                {codeReadOnly ? t("form.codeImmutable") : t("form.codeDescription")}
-              </FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-
-        <FormField
-          control={form.control}
           name="name"
           render={({ field }) => (
             <FormItem>
@@ -97,27 +60,6 @@ export function TenantForm({
               <FormControl>
                 <Input {...field} placeholder={t("form.namePlaceholder")} />
               </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-
-        <FormField
-          control={form.control}
-          name="slug"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>
-                {t("form.slug")} <span className="text-destructive">*</span>
-              </FormLabel>
-              <FormControl>
-                <Input
-                  {...field}
-                  placeholder={t("form.slugPlaceholder")}
-                  onChange={(event) => field.onChange(event.target.value.toLowerCase())}
-                />
-              </FormControl>
-              <FormDescription>{t("form.slugDescription")}</FormDescription>
               <FormMessage />
             </FormItem>
           )}

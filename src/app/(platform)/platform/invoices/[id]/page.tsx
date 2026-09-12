@@ -18,12 +18,14 @@ import { InvoiceRowActions } from "@/features/invoice/components/invoice-actions
 import { PLATFORM_PERMISSIONS } from "@/constants/permissions";
 import { formatCurrency } from "@/lib/formatters/currency";
 import { formatDate } from "@/lib/formatters/date";
+import { getCompanyDisplayName, getCompanyOwner } from "@/lib/company-summary";
 
 export default function PlatformInvoiceDetailsPage() {
   const params = useParams<{ id: string }>();
   const router = useRouter();
   const t = useTranslations("invoices");
   const { data: invoice, isLoading, error, refetch } = useGetInvoiceQuery(params.id);
+  const ownerInfo = invoice ? getCompanyOwner(invoice.company) : null;
 
   return (
     <PlatformPermissionGate permission={PLATFORM_PERMISSIONS.INVOICE_READ} fallback={<PermissionDenied />}>
@@ -48,6 +50,23 @@ export default function PlatformInvoiceDetailsPage() {
               <StatusBadge status={invoice.status} />
             </div>
             <dl className="grid grid-cols-2 gap-4 text-sm sm:grid-cols-3">
+              <div>
+                <dt className="text-muted-foreground">{t("details.company")}</dt>
+                <dd className="text-foreground">{getCompanyDisplayName(invoice.company)}</dd>
+              </div>
+              <div>
+                <dt className="text-muted-foreground">{t("details.owner")}</dt>
+                <dd className="text-foreground">
+                  {ownerInfo ? (
+                    <>
+                      {ownerInfo.name}
+                      <span className="block text-xs text-muted-foreground">{ownerInfo.email}</span>
+                    </>
+                  ) : (
+                    "—"
+                  )}
+                </dd>
+              </div>
               <div>
                 <dt className="text-muted-foreground">{t("details.plan")}</dt>
                 <dd className="text-foreground">{invoice.subscription.plan.name}</dd>
@@ -87,6 +106,10 @@ export default function PlatformInvoiceDetailsPage() {
                 <dd className="text-foreground">
                   {formatDate(invoice.billing.periodStart)} – {formatDate(invoice.billing.periodEnd)}
                 </dd>
+              </div>
+              <div>
+                <dt className="text-muted-foreground">{t("details.billingCycle")}</dt>
+                <dd className="text-foreground">{invoice.billing.billingCycle}</dd>
               </div>
             </dl>
 
