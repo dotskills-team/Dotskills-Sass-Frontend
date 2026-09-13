@@ -2,10 +2,6 @@
   "setupWizard": {
     "title": "আপনার দোকান সেটআপ করুন",
     "description": "বিক্রি শুরু করার আগে কয়েকটা সহজ ধাপ।",
-    "bannerTitle": "আপনার দোকানের সেটআপ শেষ করুন",
-    "bannerDescription": "আপনি এখনো কোনো শাখা বা গুদাম যোগ করেননি। কয়েকটা সহজ ধাপে আপনি বিক্রির জন্য প্রস্তুত হয়ে যাবেন।",
-    "bannerCta": "সেটআপ চালিয়ে যান",
-    "bannerDismiss": "বন্ধ করুন",
     "stepOf": "ধাপ {step} / {total}",
     "skip": "এখন বাদ দিন",
     "next": "পরবর্তী",
@@ -16,23 +12,60 @@
       "title": "আপনার প্রথম লোকেশন যোগ করুন",
       "description": "একটা শাখা বা গুদাম যেখানে আপনি বিক্রি করবেন এবং স্টক রাখবেন।",
       "alreadyHaveTitle": "আপনার ইতিমধ্যে {count}টা লোকেশন আছে",
-      "alreadyHaveDescription": "Locations পেজ থেকে আপনি যেকোনো সময় আরও যোগ করতে পারবেন।"
+      "alreadyHaveDescription": "Locations পেজ থেকে আপনি যেকোনো সময় আরও যোগ করতে পারবেন।",
+      "noPermissionTitle": "লোকেশন যোগ করার permission আপনার নেই",
+      "noPermissionDescription": "প্রথম লোকেশনটি যোগ করতে আপনার Company Owner বা Admin-কে বলুন, তারপর আবার এখানে ফিরে আসুন।"
     },
     "step2": {
       "title": "আপনার দোকান কীভাবে চলবে তা বেছে নিন",
       "description": "শুধু যা দরকার তা চালু রাখুন — যেকোনো সময় এটা পরিবর্তন করতে পারবেন।"
     },
     "step3": {
-      "title": "আপনার পণ্য যোগ করুন",
+      "title": "ইউনিট ও পণ্য যোগ করুন",
       "description": "একটা একটা করে পণ্য যোগ করুন, বা স্প্রেডশিট থেকে একসাথে অনেকগুলো ইমপোর্ট করুন।",
       "needUnitTitle": "প্রথমে একটা পরিমাপ ইউনিট যোগ করুন",
-      "needUnitDescription": "পণ্য যোগ করার আগে একটা ইউনিট (যেমন পিস বা কেজি) দরকার।",
+      "needUnitDescription": "পণ্য যোগ করার আগে একটা ইউনিট (যেমন পিস বা কেজি) দরকার — নিচে একটা যোগ করুন।",
+      "noUnitPermissionDescription": "পণ্য যোগ করার আগে একটা ইউনিট যোগ করতে আপনার Company Owner বা Admin-কে বলুন।",
+      "noProductPermissionDescription": "আপনার প্রথম পণ্যটি যোগ করতে Company Owner বা Admin-কে বলুন।",
       "addUnit": "একটা ইউনিট যোগ করুন",
       "haveUnitsNotice": "আপনার {count}টা ইউনিট সেট করা আছে।"
     },
     "complete": {
       "title": "আপনি প্রস্তুত",
       "description": "আপনার দোকান প্রস্তুত। সাইডবার থেকে যেকোনো সময় সবকিছু ঠিকঠাক করে নিতে পারবেন।"
+    },
+    "progress": {
+      "title": "সেটআপ অগ্রগতি",
+      "description": "আপনার দোকান পুরোপুরি প্রস্তুত করতে এই ধাপগুলো সম্পন্ন করুন।",
+      "allDoneDescription": "আপনার দোকান সম্পূর্ণ প্রস্তুত।",
+      "businessReadyTitle": "ব্যবসা শুরু করার জন্য প্রস্তুত",
+      "startBusiness": "আপনার ব্যবসা শুরু করুন",
+      "completedOf": "{completed}/{total} সম্পন্ন",
+      "platformPendingBadge": "Platform Admin-এর অপেক্ষায়",
+      "actionButton": "এই ধাপ সম্পন্ন করুন",
+      "retry": "আবার চেষ্টা করুন",
+      "items": {
+        "SUBSCRIPTION": {
+          "label": "Subscription সক্রিয়",
+          "description": "আপনার Platform Admin-কে আপনার subscription activate করতে হবে।"
+        },
+        "RBAC": {
+          "label": "Owner permission সেট করা হয়েছে",
+          "description": "আপনার Platform Admin-কে আপনার account access সেটআপ শেষ করতে হবে।"
+        },
+        "LOCATION": {
+          "label": "একটা location যোগ করুন",
+          "description": "অন্তত একটা শাখা বা গুদাম যোগ করুন।"
+        },
+        "UNIT": {
+          "label": "একটা unit যোগ করুন",
+          "description": "অন্তত একটা পরিমাপ ইউনিট (যেমন পিস বা কেজি) যোগ করুন।"
+        },
+        "PRODUCT": {
+          "label": "একটা product যোগ করুন",
+          "description": "বিক্রি শুরু করতে অন্তত একটা পণ্য যোগ করুন।"
+        }
+      }
     }
   }
 }

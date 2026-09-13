@@ -24,7 +24,7 @@ export const customerPaymentApi = baseApi.injectEndpoints({
         body,
       }),
       transformResponse: (response: { data: CustomerDueLedgerEntry }) => response.data,
-      invalidatesTags: ["CustomerPayment", "Customer"],
+      invalidatesTags: ["CustomerPayment", "Customer", "Dashboard"],
     }),
   }),
 });

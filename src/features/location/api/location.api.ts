@@ -17,7 +17,7 @@ export const locationApi = baseApi.injectEndpoints({
         method: "POST",
         body,
       }),
-      invalidatesTags: ["Location"],
+      invalidatesTags: ["Location", "SetupStatus"],
     }),
 
     updateLocation: builder.mutation<

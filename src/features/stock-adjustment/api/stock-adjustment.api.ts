@@ -60,7 +60,7 @@ export const stockAdjustmentApi = baseApi.injectEndpoints({
         body: { items },
       }),
       transformResponse: (response: { data: CreateStockAdjustmentResult }) => response.data,
-      invalidatesTags: ["StockAdjustment"],
+      invalidatesTags: ["StockAdjustment", "Dashboard"],
     }),
   }),
 });

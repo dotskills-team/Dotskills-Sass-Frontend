@@ -18,7 +18,7 @@ export const bulkImportApi = baseApi.injectEndpoints({
         method: "POST",
         body: { rows },
       }),
-      invalidatesTags: ["Product", "Category"],
+      invalidatesTags: ["Product", "Category", "SetupStatus"],
     }),
   }),
 });

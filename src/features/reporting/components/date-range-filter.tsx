@@ -1,5 +1,7 @@
 "use client";
 
+import { CalendarDays, MapPin } from "lucide-react";
+
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
@@ -14,6 +16,9 @@ import type { Location } from "@/types/location";
 
 export const ALL_LOCATIONS = "__all__";
 
+/** Only `id`/`name` are ever rendered — a minimal shape so callers with a lighter location list (e.g. the Dashboard's scope) don't need the full `Location` type. */
+type SelectableLocation = Pick<Location, "id" | "name">;
+
 interface DateRangeFilterProps {
   dateFrom: string;
   dateTo: string;
@@ -21,7 +26,9 @@ interface DateRangeFilterProps {
   onDateToChange: (value: string) => void;
   locationId: string;
   onLocationChange: (value: string) => void;
-  locations: Location[];
+  locations: SelectableLocation[];
+  /** Defaults to true (every existing call site keeps showing it) — pass false to hide the location Select entirely when a company has no locations at all. */
+  showLocationFilter?: boolean;
   labels: {
     dateFrom: string;
     dateTo: string;
@@ -47,45 +54,60 @@ export function DateRangeFilter({
   locationId,
   onLocationChange,
   locations,
+  showLocationFilter = true,
   labels,
 }: DateRangeFilterProps) {
   return (
     <div className="flex flex-wrap items-end gap-3">
       <div className="flex flex-col gap-1.5">
-        <Label htmlFor="report-date-from">{labels.dateFrom}</Label>
+        <Label htmlFor="report-date-from" className="flex items-center gap-1.5 text-primary">
+          <CalendarDays className="size-3.5" aria-hidden="true" />
+          {labels.dateFrom}
+        </Label>
         <Input
           id="report-date-from"
           type="date"
           value={dateFrom}
           max={dateTo || undefined}
           onChange={(event) => onDateFromChange(event.target.value)}
-          className="w-40"
+          className="w-40 border-primary/25 bg-primary/5 focus-visible:border-primary focus-visible:ring-primary/30"
         />
       </div>
       <div className="flex flex-col gap-1.5">
-        <Label htmlFor="report-date-to">{labels.dateTo}</Label>
+        <Label htmlFor="report-date-to" className="flex items-center gap-1.5 text-primary">
+          <CalendarDays className="size-3.5" aria-hidden="true" />
+          {labels.dateTo}
+        </Label>
         <Input
           id="report-date-to"
           type="date"
           value={dateTo}
           min={dateFrom || undefined}
           onChange={(event) => onDateToChange(event.target.value)}
-          className="w-40"
+          className="w-40 border-primary/25 bg-primary/5 focus-visible:border-primary focus-visible:ring-primary/30"
         />
       </div>
-      <Select value={locationId} onValueChange={onLocationChange}>
-        <SelectTrigger className="w-56">
-          <SelectValue placeholder={labels.locationPlaceholder} />
-        </SelectTrigger>
-        <SelectContent>
-          <SelectItem value={ALL_LOCATIONS}>{labels.allLocations}</SelectItem>
-          {locations.map((location) => (
-            <SelectItem key={location.id} value={location.id}>
-              {location.name}
-            </SelectItem>
-          ))}
-        </SelectContent>
-      </Select>
+      {showLocationFilter && (
+        <div className="flex flex-col gap-1.5">
+          <Label className="flex items-center gap-1.5 text-info">
+            <MapPin className="size-3.5" aria-hidden="true" />
+            {labels.locationPlaceholder}
+          </Label>
+          <Select value={locationId} onValueChange={onLocationChange}>
+            <SelectTrigger className="w-56 border-info/25 bg-info/5 focus-visible:border-info focus-visible:ring-info/30">
+              <SelectValue placeholder={labels.locationPlaceholder} />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value={ALL_LOCATIONS}>{labels.allLocations}</SelectItem>
+              {locations.map((location) => (
+                <SelectItem key={location.id} value={location.id}>
+                  {location.name}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
+      )}
     </div>
   );
 }

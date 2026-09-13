@@ -81,7 +81,7 @@ export const purchaseOrderApi = baseApi.injectEndpoints({
         body,
       }),
       transformResponse: (response: { data: { order: PurchaseOrder; receipt: GoodsReceipt } }) => response.data,
-      invalidatesTags: ["PurchaseOrder", "Product", "SupplierPayment"],
+      invalidatesTags: ["PurchaseOrder", "Product", "SupplierPayment", "Dashboard"],
     }),
 
     createPurchaseReturn: builder.mutation<
@@ -94,7 +94,7 @@ export const purchaseOrderApi = baseApi.injectEndpoints({
         body,
       }),
       transformResponse: (response: { data: PurchaseReturn }) => response.data,
-      invalidatesTags: ["PurchaseOrder", "PurchaseReturn", "Product", "SupplierPayment"],
+      invalidatesTags: ["PurchaseOrder", "PurchaseReturn", "Product", "SupplierPayment", "Dashboard"],
     }),
 
     listPurchaseReturns: builder.query<PurchaseReturn[], { companyId: string; purchaseOrderId?: string }>({

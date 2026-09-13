@@ -1,0 +1,90 @@
+{
+  "companyDashboard": {
+    "title": "Dashboard",
+    "description": "Your business at a glance.",
+    "refresh": "Refresh",
+    "datePreset": {
+      "label": "Date range",
+      "today": "Today",
+      "yesterday": "Yesterday",
+      "last7Days": "Last 7 Days",
+      "thisMonth": "This Month",
+      "lastMonth": "Last Month",
+      "thisYear": "This Year",
+      "custom": "Custom Range"
+    },
+    "dateFrom": "From",
+    "dateTo": "To",
+    "allBranches": "All Branches",
+    "locationPlaceholder": "Branch",
+    "kpi": {
+      "sales": "Sales",
+      "orders": "Orders",
+      "grossProfit": "Gross Profit",
+      "grossMargin": "Gross Margin",
+      "receivable": "Receivable",
+      "payable": "Payable",
+      "dueCustomers": "{count} customers due",
+      "dueSuppliers": "{count} suppliers due"
+    },
+    "salesPerformance": {
+      "title": "Sales Performance",
+      "description": "Sales and gross profit over the selected range.",
+      "empty": "No sales data yet",
+      "emptyDescription": "Sales performance will appear here after your first sale."
+    },
+    "inventoryHealth": {
+      "title": "Inventory Health",
+      "value": "Inventory Value",
+      "products": "Products",
+      "lowStock": "Low Stock",
+      "outOfStock": "Out of Stock"
+    },
+    "topProducts": {
+      "title": "Top Products",
+      "description": "Best-selling products in the selected range.",
+      "empty": "No product sales yet",
+      "unitsSold": "{count} sold"
+    },
+    "purchaseOverview": {
+      "title": "Purchase Overview",
+      "totalPurchases": "Purchases",
+      "orderCount": "{count} purchase orders"
+    },
+    "receivable": {
+      "title": "Customer Receivable",
+      "viewAll": "View due customers"
+    },
+    "payable": {
+      "title": "Supplier Payable",
+      "viewAll": "View due suppliers"
+    },
+    "cashPosition": {
+      "title": "Cash Position",
+      "openSessions": "{count} open cash drawer(s)",
+      "openingFloat": "Combined opening float",
+      "empty": "No cash drawer is open right now"
+    },
+    "recentTransactions": {
+      "title": "Recent Transactions",
+      "empty": "No transactions yet",
+      "sale": "Sale",
+      "purchase": "Purchase"
+    },
+    "actionRequired": {
+      "title": "Action Required",
+      "empty": "Nothing needs your attention right now",
+      "viewAll": "View all notifications"
+    },
+    "branchPerformance": {
+      "title": "Branch Performance",
+      "branch": "Branch",
+      "sales": "Sales",
+      "orders": "Orders",
+      "profit": "Profit"
+    },
+    "noBranchAccess": "You don't have access to any location yet.",
+    "sectionError": "Unable to load this section.",
+    "retry": "Retry"
+  }
+}

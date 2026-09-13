@@ -24,7 +24,7 @@ export const supplierPaymentApi = baseApi.injectEndpoints({
         body,
       }),
       transformResponse: (response: { data: SupplierPayableLedgerEntry }) => response.data,
-      invalidatesTags: ["SupplierPayment", "Supplier"],
+      invalidatesTags: ["SupplierPayment", "Supplier", "Dashboard"],
     }),
   }),
 });

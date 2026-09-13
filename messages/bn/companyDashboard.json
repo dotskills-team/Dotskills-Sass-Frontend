@@ -1,0 +1,90 @@
+{
+  "companyDashboard": {
+    "title": "ড্যাশবোর্ড",
+    "description": "আপনার ব্যবসা এক নজরে।",
+    "refresh": "রিফ্রেশ",
+    "datePreset": {
+      "label": "তারিখের পরিসর",
+      "today": "আজ",
+      "yesterday": "গতকাল",
+      "last7Days": "গত ৭ দিন",
+      "thisMonth": "এই মাস",
+      "lastMonth": "গত মাস",
+      "thisYear": "এই বছর",
+      "custom": "নিজস্ব পরিসর"
+    },
+    "dateFrom": "থেকে",
+    "dateTo": "পর্যন্ত",
+    "allBranches": "সব শাখা",
+    "locationPlaceholder": "শাখা",
+    "kpi": {
+      "sales": "বিক্রয়",
+      "orders": "অর্ডার",
+      "grossProfit": "মোট মুনাফা",
+      "grossMargin": "মুনাফার হার",
+      "receivable": "পাওনা (গ্রাহক)",
+      "payable": "দেনা (সরবরাহকারী)",
+      "dueCustomers": "{count} জন গ্রাহকের বকেয়া",
+      "dueSuppliers": "{count} জন সরবরাহকারীর বকেয়া"
+    },
+    "salesPerformance": {
+      "title": "বিক্রয় পারফরম্যান্স",
+      "description": "নির্বাচিত সময়ে বিক্রয় ও মোট মুনাফা।",
+      "empty": "এখনো কোনো বিক্রয় নেই",
+      "emptyDescription": "প্রথম বিক্রয়ের পর এখানে বিক্রয় পারফরম্যান্স দেখা যাবে।"
+    },
+    "inventoryHealth": {
+      "title": "ইনভেন্টরি অবস্থা",
+      "value": "ইনভেন্টরি মূল্য",
+      "products": "পণ্য",
+      "lowStock": "কম স্টক",
+      "outOfStock": "স্টক শেষ"
+    },
+    "topProducts": {
+      "title": "সেরা পণ্য",
+      "description": "নির্বাচিত সময়ে সবচেয়ে বেশি বিক্রি হওয়া পণ্য।",
+      "empty": "এখনো কোনো পণ্য বিক্রি হয়নি",
+      "unitsSold": "{count} বিক্রি হয়েছে"
+    },
+    "purchaseOverview": {
+      "title": "ক্রয় সারসংক্ষেপ",
+      "totalPurchases": "ক্রয়",
+      "orderCount": "{count}টা ক্রয় অর্ডার"
+    },
+    "receivable": {
+      "title": "গ্রাহক পাওনা",
+      "viewAll": "বকেয়া গ্রাহক দেখুন"
+    },
+    "payable": {
+      "title": "সরবরাহকারী দেনা",
+      "viewAll": "বকেয়া সরবরাহকারী দেখুন"
+    },
+    "cashPosition": {
+      "title": "নগদ অবস্থান",
+      "openSessions": "{count}টা ক্যাশ ড্রয়ার খোলা",
+      "openingFloat": "সম্মিলিত opening float",
+      "empty": "এই মুহূর্তে কোনো ক্যাশ ড্রয়ার খোলা নেই"
+    },
+    "recentTransactions": {
+      "title": "সাম্প্রতিক লেনদেন",
+      "empty": "এখনো কোনো লেনদেন নেই",
+      "sale": "বিক্রয়",
+      "purchase": "ক্রয়"
+    },
+    "actionRequired": {
+      "title": "মনোযোগ প্রয়োজন",
+      "empty": "এই মুহূর্তে কিছু নিয়ে চিন্তার নেই",
+      "viewAll": "সব নোটিফিকেশন দেখুন"
+    },
+    "branchPerformance": {
+      "title": "শাখার পারফরম্যান্স",
+      "branch": "শাখা",
+      "sales": "বিক্রয়",
+      "orders": "অর্ডার",
+      "profit": "মুনাফা"
+    },
+    "noBranchAccess": "আপনার এখনো কোনো location-এ access নেই।",
+    "sectionError": "এই অংশটি লোড করা যায়নি।",
+    "retry": "আবার চেষ্টা করুন"
+  }
+}

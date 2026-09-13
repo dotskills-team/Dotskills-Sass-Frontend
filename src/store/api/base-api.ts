@@ -167,6 +167,9 @@ export const baseApi = createApi({
     "CustomerPayment",
     "UserProfile",
     "PlatformSettings",
+    "SetupStatus",
+    "Dashboard",
+    "PlatformDashboard",
   ],
   endpoints: () => ({}),
 });

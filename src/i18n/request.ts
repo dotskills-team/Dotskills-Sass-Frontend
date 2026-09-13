@@ -18,6 +18,7 @@ const MESSAGE_NAMESPACES = [
   "company",
   "rbac",
   "dashboard",
+  "companyDashboard",
   "companies",
   "companyOwners",
   "companyRbac",

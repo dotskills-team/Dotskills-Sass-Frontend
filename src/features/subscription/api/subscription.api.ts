@@ -48,7 +48,7 @@ export const subscriptionApi = baseApi.injectEndpoints({
         headers: { "x-company-id": companyId },
         body: { companyId, planId, billingCycle },
       }),
-      invalidatesTags: ["Subscription"],
+      invalidatesTags: ["Subscription", "PlatformDashboard"],
     }),
 
     suspendSubscription: builder.mutation<unknown, AdminSubscriptionActionArgs>({
@@ -134,7 +134,7 @@ export const subscriptionApi = baseApi.injectEndpoints({
         method: "POST",
         body: { note: note || undefined },
       }),
-      invalidatesTags: ["Subscription", "Billing", "Invoice", "Payment"],
+      invalidatesTags: ["Subscription", "Billing", "Invoice", "Payment", "PlatformDashboard"],
     }),
   }),
 });

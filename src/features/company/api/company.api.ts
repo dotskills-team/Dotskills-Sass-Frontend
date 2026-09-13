@@ -53,7 +53,7 @@ export const companyApi = baseApi.injectEndpoints({
       }
     >({
       query: (body) => ({ url: "/platform/companies", method: "POST", body }),
-      invalidatesTags: ["Company"],
+      invalidatesTags: ["Company", "PlatformDashboard"],
     }),
 
     updateCompany: builder.mutation<

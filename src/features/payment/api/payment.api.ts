@@ -36,7 +36,7 @@ export const paymentApi = baseApi.injectEndpoints({
         method: "POST",
         body: { valId },
       }),
-      invalidatesTags: ["Payment"],
+      invalidatesTags: ["Payment", "PlatformDashboard"],
     }),
 
     cancelPayment: builder.mutation<unknown, string>({

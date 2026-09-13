@@ -9,6 +9,8 @@ import { CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
+import { CompanyPermissionGate } from "@/components/shared/permission-gate";
+import { COMPANY_PERMISSIONS } from "@/constants/permissions";
 
 import { useCurrentCompany } from "@/features/company/hooks/use-current-company";
 import { useListLocationsQuery, useCreateLocationMutation } from "@/features/location/api/location.api";
@@ -37,6 +39,13 @@ import { normalizeApiError } from "@/lib/api-error";
 const TOTAL_STEPS = 3;
 
 /**
+ * Purely presentational order indicator — makes the Location → Settings →
+ * Unit/Product dependency explicit without changing the step machine
+ * itself (each step's own gating logic, e.g. `!hasUnits`, is unchanged).
+ */
+const STEP_LABEL_KEYS = ["step1.title", "step2.title", "step3.title"] as const;
+
+/**
  * A brand-new, standalone flow (`/company/setup`) — not gated behind
  * `Company.status` (confirmed dead: ONBOARDING/READY are never actually
  * set anywhere in the backend). Every step reuses an already-built,
@@ -55,6 +64,31 @@ export function SetupWizard() {
   return (
     <div className="mx-auto max-w-2xl p-6">
       <p className="mb-2 text-sm font-medium text-muted-foreground">{t("stepOf", { step, total: TOTAL_STEPS })}</p>
+
+      <ol className="mb-4 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs">
+        {STEP_LABEL_KEYS.map((labelKey, index) => {
+          const stepNumber = index + 1;
+          const isActive = stepNumber === step;
+          const isDone = stepNumber < step;
+          return (
+            <li key={labelKey} className="flex items-center gap-2">
+              {index > 0 && <span className="text-muted-foreground">→</span>}
+              <span
+                className={
+                  isActive
+                    ? "font-medium text-foreground"
+                    : isDone
+                      ? "text-success"
+                      : "text-muted-foreground"
+                }
+              >
+                {isDone && <CheckCircle2 className="mr-1 inline size-3" aria-hidden="true" />}
+                {t(labelKey)}
+              </span>
+            </li>
+          );
+        })}
+      </ol>
 
       {!companyId ? (
         <Skeleton className="h-96 w-full" />
@@ -106,15 +140,28 @@ function LocationStep({ companyId, onNext }: { companyId: string; onNext: () => 
         <CardDescription>{t("step1.description")}</CardDescription>
       </CardHeader>
       <CardContent>
-        <LocationForm
-          defaultValues={{ name: "", locationType: "BRANCH", address: "", isSalesEnabled: true }}
-          isTypeEditable
-          isSubmitting={isSubmitting}
-          submitLabel={t("next")}
-          cancelLabel={t("skip")}
-          onCancel={onNext}
-          onSubmit={handleSubmit}
-        />
+        <CompanyPermissionGate
+          permission={COMPANY_PERMISSIONS.LOCATION_CREATE}
+          fallback={
+            <div className="rounded-lg border border-border bg-muted/40 p-4">
+              <p className="text-sm font-medium">{t("step1.noPermissionTitle")}</p>
+              <p className="mt-1 text-sm text-muted-foreground">{t("step1.noPermissionDescription")}</p>
+              <Button type="button" variant="outline" size="sm" className="mt-3" onClick={onNext}>
+                {t("skip")}
+              </Button>
+            </div>
+          }
+        >
+          <LocationForm
+            defaultValues={{ name: "", locationType: "BRANCH", address: "", isSalesEnabled: true }}
+            isTypeEditable
+            isSubmitting={isSubmitting}
+            submitLabel={t("next")}
+            cancelLabel={t("skip")}
+            onCancel={onNext}
+            onSubmit={handleSubmit}
+          />
+        </CompanyPermissionGate>
       </CardContent>
     </Card>
   );
@@ -175,7 +222,12 @@ function ProductsStep({ companyId, onFinish, onBack }: { companyId: string; onFi
             <div className="rounded-lg border border-border bg-muted/40 p-4">
               <p className="font-medium">{t("step3.needUnitTitle")}</p>
               <p className="mb-3 text-sm text-muted-foreground">{t("step3.needUnitDescription")}</p>
-              <CreateUnitDialog companyId={companyId} units={units ?? []} />
+              <CompanyPermissionGate
+                permission={COMPANY_PERMISSIONS.UNIT_CREATE}
+                fallback={<p className="text-sm text-muted-foreground">{t("step3.noUnitPermissionDescription")}</p>}
+              >
+                <CreateUnitDialog companyId={companyId} units={units ?? []} />
+              </CompanyPermissionGate>
             </div>
           ) : (
             <>
@@ -183,10 +235,16 @@ function ProductsStep({ companyId, onFinish, onBack }: { companyId: string; onFi
                 <CheckCircle2 className="size-4 text-success" aria-hidden="true" />
                 {t("step3.haveUnitsNotice", { count: units?.length ?? 0 })}
               </p>
-              <div className="flex flex-wrap gap-2">
-                <BulkImportDialog companyId={companyId} />
-                <CreateProductDialog companyId={companyId} categories={categories ?? []} units={units ?? []} />
-              </div>
+              <CompanyPermissionGate
+                permission={[COMPANY_PERMISSIONS.PRODUCT_CREATE, COMPANY_PERMISSIONS.PRODUCT_BULK_IMPORT]}
+                mode="any"
+                fallback={<p className="text-sm text-muted-foreground">{t("step3.noProductPermissionDescription")}</p>}
+              >
+                <div className="flex flex-wrap gap-2">
+                  <BulkImportDialog companyId={companyId} />
+                  <CreateProductDialog companyId={companyId} categories={categories ?? []} units={units ?? []} />
+                </div>
+              </CompanyPermissionGate>
             </>
           )}
         </CardContent>

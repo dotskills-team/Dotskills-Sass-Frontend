@@ -70,7 +70,7 @@ export const saleApi = baseApi.injectEndpoints({
         sale: response.data,
         warnings: response.warnings ?? [],
       }),
-      invalidatesTags: ["Sale", "Product"],
+      invalidatesTags: ["Sale", "Product", "Dashboard"],
     }),
 
     voidSale: builder.mutation<Sale, { companyId: string; id: string; body: { reason: string } }>({
@@ -80,7 +80,7 @@ export const saleApi = baseApi.injectEndpoints({
         body,
       }),
       transformResponse: (response: { data: Sale }) => response.data,
-      invalidatesTags: ["Sale", "Product"],
+      invalidatesTags: ["Sale", "Product", "Dashboard"],
     }),
 
     createSaleReturn: builder.mutation<SaleReturn, { companyId: string; id: string; body: CreateSaleReturnPayload }>({
@@ -90,7 +90,7 @@ export const saleApi = baseApi.injectEndpoints({
         body,
       }),
       transformResponse: (response: { data: SaleReturn }) => response.data,
-      invalidatesTags: ["Sale", "SaleReturn", "Product"],
+      invalidatesTags: ["Sale", "SaleReturn", "Product", "Dashboard"],
     }),
 
     listSaleReturns: builder.query<SaleReturn[], { companyId: string; saleId?: string }>({

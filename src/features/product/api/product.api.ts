@@ -30,7 +30,7 @@ export const productApi = baseApi.injectEndpoints({
         method: "POST",
         body,
       }),
-      invalidatesTags: ["Product"],
+      invalidatesTags: ["Product", "SetupStatus"],
     }),
 
     updateProduct: builder.mutation<

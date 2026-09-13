@@ -20,7 +20,7 @@ export const unitApi = baseApi.injectEndpoints({
         method: "POST",
         body,
       }),
-      invalidatesTags: ["Unit"],
+      invalidatesTags: ["Unit", "SetupStatus"],
     }),
 
     updateUnit: builder.mutation<
