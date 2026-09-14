@@ -1,6 +1,6 @@
 "use client";
 
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useTranslations } from "next-intl";
 import { Loader2 } from "lucide-react";
@@ -28,6 +28,7 @@ import {
   createStockTransferSchema,
   type StockTransferFormValues,
 } from "@/features/stock-transfer/schemas/stock-transfer.schema";
+import { VariantPickerField } from "@/features/product/components/variant-picker-field";
 import type { Location } from "@/types/location";
 import type { Product } from "@/types/product";
 
@@ -35,10 +36,12 @@ const EMPTY_VALUES: StockTransferFormValues = {
   fromLocationId: "",
   toLocationId: "",
   productId: "",
+  variantId: "",
   quantity: "",
 };
 
 interface StockTransferFormProps {
+  companyId: string;
   locations: Location[];
   products: Product[];
   isSubmitting: boolean;
@@ -50,6 +53,7 @@ interface StockTransferFormProps {
 
 /** Products list capped at the backend's own max page size (200), same bound already established for Purchase Order's item picker. */
 export function StockTransferForm({
+  companyId,
   locations,
   products,
   isSubmitting,
@@ -72,6 +76,9 @@ export function StockTransferForm({
     resolver: zodResolver(schema),
     defaultValues: EMPTY_VALUES,
   });
+
+  const selectedProductId = useWatch({ control: form.control, name: "productId" });
+  const selectedProduct = products.find((p) => p.id === selectedProductId);
 
   return (
     <Form {...form}>
@@ -156,6 +163,29 @@ export function StockTransferForm({
             </FormItem>
           )}
         />
+
+        {selectedProduct?.hasVariants && (
+          <FormField
+            control={form.control}
+            name="variantId"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>
+                  {t("form.variant")} <span className="text-destructive">*</span>
+                </FormLabel>
+                <FormControl>
+                  <VariantPickerField
+                    companyId={companyId}
+                    product={selectedProduct}
+                    value={field.value ?? ""}
+                    onChange={field.onChange}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        )}
 
         <FormField
           control={form.control}

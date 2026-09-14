@@ -132,7 +132,7 @@ export function PlatformLogoUpload({ logoUrl }: { logoUrl: string | null }) {
                 <Camera className="size-4" aria-hidden="true" />
                 Upload logo
               </Button>
-              <p className="text-xs text-muted-foreground">PNG or JPG, up to 2MB.</p>
+              <p className="text-xs text-muted-foreground">PNG or JPG, up to 2MB bshgagg.</p>
             </PlatformPermissionGate>
           </div>
         </div>

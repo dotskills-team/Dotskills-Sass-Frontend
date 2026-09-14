@@ -12,8 +12,6 @@ export function createCompanySettingsSchema(messages: CompanySettingsFormMessage
     enableMultiUnit: z.boolean(),
     enableCustomerDue: z.boolean(),
     enableBarcode: z.boolean(),
-    enableProductVariant: z.boolean(),
-    enableComboOffer: z.boolean(),
     enableMultiLocation: z.boolean(),
     allowNegativeStock: z.boolean(),
     maxCustomerDueLimit: z

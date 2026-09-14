@@ -8,6 +8,11 @@
     "searchPlaceholder": "Search by name, SKU, or scan a barcode…",
     "scanNotFound": "No product found for the scanned code \"{code}\".",
     "cartEmpty": "Cart is empty. Search or scan a product to add it.",
+    "variantDialog": {
+      "title": "Select a variant — {name}",
+      "description": "This product has variants — pick the exact one to add to the cart.",
+      "empty": "This product has no variants yet."
+    },
     "cart": {
       "product": "Product",
       "quantity": "Quantity",

@@ -10,6 +10,8 @@
     "save": "Save",
     "create": "Create",
     "update": "Update",
+    "edit": "Edit",
+    "delete": "Delete",
     "cancel": "Cancel",
     "close": "Close",
     "confirm": "Confirm",

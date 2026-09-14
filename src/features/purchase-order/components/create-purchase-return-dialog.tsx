@@ -62,14 +62,21 @@ export function CreatePurchaseReturnDialog({ companyId, order, products }: { com
     defaultValues: {
       reason: "",
       refundAmount: "",
-      quantity: Object.fromEntries(receivedItems.map((item) => [item.productId, ""])),
+      // Keyed by the PurchaseOrderItem's own id, not productId — an order
+      // can have two separate lines for the same product in different
+      // variants, which would otherwise collide on a bare productId key.
+      quantity: Object.fromEntries(receivedItems.map((item) => [item.id, ""])),
     },
   });
 
   async function handleSubmit(values: ReturnFormValues) {
+    const itemsById = new Map(receivedItems.map((item) => [item.id, item]));
     const items = Object.entries(values.quantity)
       .filter(([, qty]) => qty && Number(qty) > 0)
-      .map(([productId, qty]) => ({ productId, quantity: Number(qty) }));
+      .map(([itemId, qty]) => {
+        const orderItem = itemsById.get(itemId)!;
+        return { productId: orderItem.productId, variantId: orderItem.variantId ?? undefined, quantity: Number(qty) };
+      });
 
     if (items.length === 0) return;
 
@@ -160,7 +167,7 @@ export function CreatePurchaseReturnDialog({ companyId, order, products }: { com
                           min="0"
                           max={item.receivedQty}
                           placeholder={t("returnDialog.quantityPlaceholder")}
-                          {...form.register(`quantity.${item.productId}`)}
+                          {...form.register(`quantity.${item.id}`)}
                         />
                       </TableCell>
                     </TableRow>

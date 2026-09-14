@@ -54,6 +54,7 @@ export default function ProductsPage() {
         salePrice: t("columns.salePrice"),
         reorderLevel: t("columns.reorderLevel"),
         status: t("columns.status"),
+        hasVariants: t("columns.hasVariants"),
       })
     : [];
 

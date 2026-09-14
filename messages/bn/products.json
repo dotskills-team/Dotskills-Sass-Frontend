@@ -9,7 +9,8 @@
       "unit": "ইউনিট",
       "salePrice": "বিক্রয় মূল্য",
       "reorderLevel": "রিঅর্ডার লেভেল",
-      "status": "স্ট্যাটাস"
+      "status": "স্ট্যাটাস",
+      "hasVariants": "ভ্যারিয়েন্ট আছে"
     },
     "actions": {
       "edit": "এডিট",
@@ -100,6 +101,32 @@
       "confirmPartialErrorNotice": "সমস্যার কারণে {errorCount}টা row বাদ দেওয়া হয়েছে।",
       "startOver": "অন্য একটা ফাইল বেছে নিন",
       "done": "সম্পন্ন"
+    },
+    "variants": {
+      "action": "ভ্যারিয়েন্ট ম্যানেজ করুন",
+      "title": "ভ্যারিয়েন্ট — {name}",
+      "description": "এই পণ্যের Size/Color-এর মতো attribute এবং প্রতিটা নির্দিষ্ট ভ্যারিয়েন্ট (নিজস্ব SKU ও দাম সহ) ম্যানেজ করুন।",
+      "attributesTitle": "Attribute",
+      "newAttribute": "নতুন attribute",
+      "attributeNamePlaceholder": "যেমন: Size",
+      "attributeValuesPlaceholder": "কমা দিয়ে আলাদা করা value, যেমন: S, M, L",
+      "attributeNameAndValuesRequired": "একটা attribute নাম এবং অন্তত একটা value দিন।",
+      "addValuePlaceholder": "+ value",
+      "saveAttribute": "Attribute যোগ করুন",
+      "noAttributesYet": "এখনো কোনো attribute নেই — ভ্যারিয়েন্ট বানানো শুরু করতে একটা যোগ করুন (যেমন Size, Color)।",
+      "selectValuePlaceholder": "{attribute} বেছে নিন",
+      "selectVariantPlaceholder": "একটা ভ্যারিয়েন্ট বেছে নিন",
+      "variantsTitle": "ভ্যারিয়েন্ট",
+      "addVariant": "ভ্যারিয়েন্ট যোগ করুন",
+      "sku": "SKU",
+      "skuPlaceholder": "যেমন: TSHIRT-RED-S",
+      "skuAndAttributesRequired": "একটা SKU দিন এবং প্রতিটা attribute-এর জন্য একটা value বেছে নিন।",
+      "createSuccess": "ভ্যারিয়েন্ট তৈরি হয়েছে।",
+      "updateSuccess": "ভ্যারিয়েন্ট আপডেট হয়েছে।",
+      "deleteSuccess": "ভ্যারিয়েন্ট মুছে ফেলা হয়েছে।",
+      "deleteTitle": "ভ্যারিয়েন্ট মুছুন",
+      "deleteDescription": "এই ভ্যারিয়েন্ট মুছবেন? এটা ফিরিয়ে আনা যাবে না, এবং শুধু তখনই কাজ করবে যদি এর কোনো স্টক/বিক্রি/ক্রয় ইতিহাস না থাকে।",
+      "empty": "এখনো কোনো ভ্যারিয়েন্ট নেই — উপরে একটা যোগ করুন।"
     }
   }
 }

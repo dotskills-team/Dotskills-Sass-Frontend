@@ -3,6 +3,7 @@
 import type { ColumnDef } from "@tanstack/react-table";
 
 import { StatusBadge } from "@/components/shared/status-badge";
+import { Badge } from "@/components/ui/badge";
 import type { AppTableFeatures } from "@/components/data-table/table-features";
 import type { Product } from "@/types/product";
 import type { Category } from "@/types/category";
@@ -19,7 +20,15 @@ export function buildProductsColumns(
   companyId: string,
   categories: Category[],
   units: Unit[],
-  labels: { product: string; category: string; unit: string; salePrice: string; reorderLevel: string; status: string },
+  labels: {
+    product: string;
+    category: string;
+    unit: string;
+    salePrice: string;
+    reorderLevel: string;
+    status: string;
+    hasVariants: string;
+  },
 ): ColumnDef<AppTableFeatures, Product, unknown>[] {
   return [
     {
@@ -27,7 +36,14 @@ export function buildProductsColumns(
       header: labels.product,
       cell: ({ row }) => (
         <div>
-          <p className="font-medium text-foreground">{row.original.name}</p>
+          <div className="flex items-center gap-2">
+            <p className="font-medium text-foreground">{row.original.name}</p>
+            {row.original.hasVariants && (
+              <Badge variant="secondary" className="text-xs">
+                {labels.hasVariants}
+              </Badge>
+            )}
+          </div>
           <p className="text-xs text-muted-foreground">{row.original.sku}</p>
         </div>
       ),

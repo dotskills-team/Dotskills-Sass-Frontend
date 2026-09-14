@@ -9,7 +9,8 @@
       "unit": "Unit",
       "salePrice": "Sale price",
       "reorderLevel": "Reorder level",
-      "status": "Status"
+      "status": "Status",
+      "hasVariants": "Has variants"
     },
     "actions": {
       "edit": "Edit",
@@ -100,6 +101,32 @@
       "confirmPartialErrorNotice": "{errorCount} rows were skipped due to errors.",
       "startOver": "Choose a different file",
       "done": "Done"
+    },
+    "variants": {
+      "action": "Manage variants",
+      "title": "Variants — {name}",
+      "description": "Manage the Size/Color-style attributes and the specific variants (each with its own SKU and price) for this product.",
+      "attributesTitle": "Attributes",
+      "newAttribute": "New attribute",
+      "attributeNamePlaceholder": "e.g. Size",
+      "attributeValuesPlaceholder": "Comma-separated values, e.g. S, M, L",
+      "attributeNameAndValuesRequired": "Enter an attribute name and at least one value.",
+      "addValuePlaceholder": "+ value",
+      "saveAttribute": "Add attribute",
+      "noAttributesYet": "No attributes yet — add one (e.g. Size, Color) to start building variants.",
+      "selectValuePlaceholder": "Select {attribute}",
+      "selectVariantPlaceholder": "Select a variant",
+      "variantsTitle": "Variants",
+      "addVariant": "Add variant",
+      "sku": "SKU",
+      "skuPlaceholder": "e.g. TSHIRT-RED-S",
+      "skuAndAttributesRequired": "Enter a SKU and select a value for every attribute.",
+      "createSuccess": "Variant created.",
+      "updateSuccess": "Variant updated.",
+      "deleteSuccess": "Variant deleted.",
+      "deleteTitle": "Delete variant",
+      "deleteDescription": "Delete this variant? This cannot be undone, and only works if it has no stock, sale, or purchase history.",
+      "empty": "No variants yet — add one above."
     }
   }
 }

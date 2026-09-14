@@ -5,7 +5,7 @@ export interface PurchaseOrderMutationPayload {
   locationId: string;
   orderDate?: string;
   note?: string;
-  items: { productId: string; orderedQty: number; unitCost: number }[];
+  items: { productId: string; variantId?: string; orderedQty: number; unitCost: number }[];
 }
 
 export function toPurchaseOrderPayload(values: PurchaseOrderFormValues): PurchaseOrderMutationPayload {
@@ -16,6 +16,7 @@ export function toPurchaseOrderPayload(values: PurchaseOrderFormValues): Purchas
     note: values.note?.trim() || undefined,
     items: values.items.map((item) => ({
       productId: item.productId,
+      variantId: item.variantId || undefined,
       orderedQty: Number(item.orderedQty),
       unitCost: Number(item.unitCost),
     })),

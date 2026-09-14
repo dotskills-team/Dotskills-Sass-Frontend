@@ -4,6 +4,7 @@ export interface StockTransferMutationPayload {
   fromLocationId: string;
   toLocationId: string;
   productId: string;
+  variantId?: string;
   quantity: number;
 }
 
@@ -12,6 +13,7 @@ export function toStockTransferPayload(values: StockTransferFormValues): StockTr
     fromLocationId: values.fromLocationId,
     toLocationId: values.toLocationId,
     productId: values.productId,
+    variantId: values.variantId || undefined,
     quantity: Number(values.quantity),
   };
 }

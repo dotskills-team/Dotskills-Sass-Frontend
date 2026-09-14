@@ -42,7 +42,10 @@ export function PosCart({ lines, onUpdateQuantity, onUpdateDiscount, onRemove }:
           return (
             <TableRow key={`${line.productId}-${index}`}>
               <TableCell>
-                <div className="font-medium text-foreground">{line.productName}</div>
+                <div className="font-medium text-foreground">
+                  {line.productName}
+                  {line.variantLabel && <span className="text-muted-foreground"> — {line.variantLabel}</span>}
+                </div>
                 <div className="text-xs text-muted-foreground">{line.sku}</div>
               </TableCell>
               <TableCell>

@@ -5,6 +5,7 @@ export type SalePaymentMethod = "CASH" | "CARD" | "BKASH" | "NAGAD" | "DUE";
 export interface SaleItem {
   id: string;
   productId: string;
+  variantId: string | null;
   productName: string;
   quantity: string;
   unitPrice: string;

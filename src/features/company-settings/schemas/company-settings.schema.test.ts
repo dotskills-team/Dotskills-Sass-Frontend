@@ -13,8 +13,6 @@ const baseValues = {
   enableMultiUnit: false,
   enableCustomerDue: false,
   enableBarcode: false,
-  enableProductVariant: false,
-  enableComboOffer: false,
   enableMultiLocation: false,
   allowNegativeStock: false,
   enableTax: false,

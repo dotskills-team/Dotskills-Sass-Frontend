@@ -12,6 +12,7 @@ export interface Product {
   salePrice: string;
   reorderLevel: string;
   sellByWeight: boolean;
+  hasVariants: boolean;
   status: ProductStatus;
   createdAt: string;
   updatedAt: string;

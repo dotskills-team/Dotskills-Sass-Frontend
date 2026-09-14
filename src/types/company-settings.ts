@@ -4,8 +4,6 @@ export interface CompanySettings {
   enableMultiUnit: boolean;
   enableCustomerDue: boolean;
   enableBarcode: boolean;
-  enableProductVariant: boolean;
-  enableComboOffer: boolean;
   enableMultiLocation: boolean;
   allowNegativeStock: boolean;
   maxCustomerDueLimit: string | null;

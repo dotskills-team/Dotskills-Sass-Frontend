@@ -15,6 +15,7 @@ export function createStockTransferSchema(messages: StockTransferFormMessages) {
       fromLocationId: z.string().min(1, { error: messages.fromLocationRequired }),
       toLocationId: z.string().min(1, { error: messages.toLocationRequired }),
       productId: z.string().min(1, { error: messages.productRequired }),
+      variantId: z.string().optional().or(z.literal("")),
       quantity: z
         .string()
         .min(1, { error: messages.quantityPositive })

@@ -4,6 +4,7 @@ export type PurchaseOrderStatus = "DRAFT" | "PARTIALLY_RECEIVED" | "FULLY_RECEIV
 export interface PurchaseOrderItem {
   id: string;
   productId: string;
+  variantId: string | null;
   orderedQty: string;
   receivedQty: string;
   unitCost: string;

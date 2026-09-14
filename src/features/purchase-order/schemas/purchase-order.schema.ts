@@ -20,6 +20,7 @@ export function createPurchaseOrderSchema(messages: PurchaseOrderFormMessages) {
       .array(
         z.object({
           productId: z.string({ error: messages.productRequired }).min(1, { error: messages.productRequired }),
+          variantId: z.string().optional().or(z.literal("")),
           orderedQty: z
             .string()
             .min(1, { error: messages.orderedQtyPositive })

@@ -44,3 +44,21 @@ export interface SessionResult {
   accessTokenExpiresIn: number;
   user?: CurrentUser;
 }
+
+/** POST /auth/forgot-password ও POST /auth/reset-password — দুটোই একই generic `{success,message}` shape ফেরত দেয় (verified backend `password-reset.service.ts`), কখনো user/email leak করে না। */
+export interface GenericAuthResult {
+  success: boolean;
+  message: string;
+}
+
+export interface ForgotPasswordPayload {
+  email: string;
+}
+
+/** POST /auth/reset-password body — backend `ResetPasswordDto`-র exact field set। */
+export interface ResetPasswordPayload {
+  email: string;
+  token: string;
+  password: string;
+  passwordConfirmation: string;
+}

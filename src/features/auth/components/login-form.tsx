@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useTranslations } from "next-intl";
 import { useRouter, useSearchParams } from "next/navigation";
+import Link from "next/link";
 import { Loader2 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -118,13 +119,18 @@ export function LoginForm() {
           )}
         />
 
-        <PasswordField
-          control={form.control}
-          name="password"
-          label={t("password")}
-          placeholder={t("passwordPlaceholder")}
-          autoComplete="current-password"
-        />
+        <div className="space-y-1.5">
+          <PasswordField
+            control={form.control}
+            name="password"
+            label={t("password")}
+            placeholder={t("passwordPlaceholder")}
+            autoComplete="current-password"
+          />
+          <Link href="/forgot-password" className="block text-right text-sm text-primary hover:underline">
+            {t("forgotPasswordLink")}
+          </Link>
+        </div>
 
         {formError && (
           <Alert variant="destructive">

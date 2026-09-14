@@ -29,6 +29,7 @@
       "product": "Product",
       "productPlaceholder": "Select a product",
       "productRequired": "Please select a product.",
+      "variant": "Variant",
       "quantity": "Quantity",
       "quantityPlaceholder": "0",
       "quantityPositive": "Quantity must be greater than 0."

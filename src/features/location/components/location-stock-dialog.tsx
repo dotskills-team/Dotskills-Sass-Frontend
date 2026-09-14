@@ -75,7 +75,7 @@ export function LocationStockDialog({
               <TableBody>
                 {items.map((item) => (
                   <TableRow key={item.id}>
-                    <TableCell>{item.product.name}</TableCell>
+                    <TableCell>{item.displayName}</TableCell>
                     <TableCell className="text-muted-foreground">{item.product.sku}</TableCell>
                     <TableCell className="text-right tabular-nums">
                       <span className="inline-flex items-center gap-2">

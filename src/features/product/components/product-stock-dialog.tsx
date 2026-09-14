@@ -42,6 +42,11 @@ export function ProductStockDialog({
   const total = data?.meta?.total ?? 0;
   const limit = data?.meta?.limit ?? 200;
   const isTruncated = total > limit;
+  // A variant product's rows are per (location, variant) — without a
+  // Variant column, two rows for the same Location (one per variant)
+  // would be indistinguishable. Only shown when actually needed, so a
+  // plain non-variant product's view stays exactly as it was.
+  const hasAnyVariantRow = items.some((item) => item.variantId);
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -68,6 +73,7 @@ export function ProductStockDialog({
               <TableHeader>
                 <TableRow>
                   <TableHead>{t("stock.columns.location")}</TableHead>
+                  {hasAnyVariantRow && <TableHead>{t("variants.variantsTitle")}</TableHead>}
                   <TableHead className="text-right">{t("stock.columns.quantity")}</TableHead>
                 </TableRow>
               </TableHeader>
@@ -75,6 +81,11 @@ export function ProductStockDialog({
                 {items.map((item) => (
                   <TableRow key={item.id}>
                     <TableCell>{item.location.name}</TableCell>
+                    {hasAnyVariantRow && (
+                      <TableCell className="text-muted-foreground">
+                        {item.variantId ? item.displayName.replace(`${product.name} — `, "") : "—"}
+                      </TableCell>
+                    )}
                     <TableCell className="text-right tabular-nums">
                       <span className="inline-flex items-center gap-2">
                         {Number(item.quantity).toLocaleString()}

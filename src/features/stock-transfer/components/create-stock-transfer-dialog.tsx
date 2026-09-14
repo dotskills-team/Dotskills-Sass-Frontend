@@ -71,6 +71,7 @@ export function CreateStockTransferDialog({
           <DialogDescription>{t("form.createDescription")}</DialogDescription>
         </DialogHeader>
         <StockTransferForm
+          companyId={companyId}
           locations={locations}
           products={products}
           isSubmitting={isLoading}

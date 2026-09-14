@@ -8,8 +8,6 @@ const settings: CompanySettings = {
   enableMultiUnit: true,
   enableCustomerDue: true,
   enableBarcode: false,
-  enableProductVariant: false,
-  enableComboOffer: false,
   enableMultiLocation: false,
   allowNegativeStock: false,
   maxCustomerDueLimit: "5000",

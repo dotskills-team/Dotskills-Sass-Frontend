@@ -11,6 +11,7 @@ export interface ListSalesParams {
 
 export interface SaleItemInput {
   productId: string;
+  variantId?: string;
   quantity: number;
   unitPrice?: number;
   discountAmount?: number;
@@ -38,7 +39,7 @@ export interface CreateSaleResult {
 export interface CreateSaleReturnPayload {
   reason: string;
   refundAmount?: number;
-  items: { productId: string; quantity: number }[];
+  items: { productId: string; variantId?: string; quantity: number }[];
 }
 
 /** `companies/:companyId/sales` — paginated (backend Frontend Phase 3 addition, mirrors PurchaseOrder/StockTransfer's shape). */

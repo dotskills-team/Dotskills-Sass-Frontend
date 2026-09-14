@@ -60,14 +60,26 @@ export function CreateSaleReturnDialog({ companyId, sale }: { companyId: string;
     defaultValues: {
       reason: "",
       refundAmount: "",
-      quantity: Object.fromEntries(sale.items.map((item) => [item.productId, ""])),
+      // Keyed by the SaleItem's own id, not productId — a sale can have two
+      // separate lines for the same product in different variants (e.g.
+      // Red/S and Blue/S of the same T-Shirt), which would otherwise
+      // collide on a bare productId key.
+      quantity: Object.fromEntries(sale.items.map((item) => [item.id, ""])),
     },
   });
 
   async function handleSubmit(values: ReturnFormValues) {
+    const itemsById = new Map(sale.items.map((item) => [item.id, item]));
     const items = Object.entries(values.quantity)
       .filter(([, qty]) => qty && Number(qty) > 0)
-      .map(([productId, qty]) => ({ productId, quantity: Number(qty) }));
+      .map(([saleItemId, qty]) => {
+        const saleItem = itemsById.get(saleItemId)!;
+        return {
+          productId: saleItem.productId,
+          variantId: saleItem.variantId ?? undefined,
+          quantity: Number(qty),
+        };
+      });
 
     if (items.length === 0) return;
 
@@ -154,7 +166,7 @@ export function CreateSaleReturnDialog({ companyId, sale }: { companyId: string;
                         min="0"
                         max={item.quantity}
                         placeholder={t("returnDialog.quantityPlaceholder")}
-                        {...form.register(`quantity.${item.productId}`)}
+                        {...form.register(`quantity.${item.id}`)}
                       />
                     </TableCell>
                   </TableRow>

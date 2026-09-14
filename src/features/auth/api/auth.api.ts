@@ -2,7 +2,14 @@ import { baseApi } from "@/store/api/base-api";
 import type {
   BackendErrorBody,
 } from "@/types/api-error";
-import type { CurrentUser, LoginCredentials, SessionResult } from "@/types/auth";
+import type {
+  CurrentUser,
+  ForgotPasswordPayload,
+  GenericAuthResult,
+  LoginCredentials,
+  ResetPasswordPayload,
+  SessionResult,
+} from "@/types/auth";
 
 /**
  * login/refresh/logout — এই তিনটা BFF route (app/api/auth/*), backend নয়,
@@ -71,6 +78,20 @@ export const authApi = baseApi.injectEndpoints({
     getMe: builder.query<{ success: boolean; user: CurrentUser }, void>({
       query: () => "/auth/me",
     }),
+
+    /** login/refresh/logout-এর মতো BFF/queryFn দরকার নেই — কোনো cookie/token touch করে না, সরাসরি backend-এ যায় (getMe-এর মতো)। */
+    forgotPassword: builder.mutation<GenericAuthResult, ForgotPasswordPayload>({
+      query: (body) => ({ url: "/auth/forgot-password", method: "POST", body }),
+    }),
+
+    /** Optional pre-check (backend `GET /auth/reset-password/:token`) — form দেখানোর আগে token আসলেই valid কিনা জানতে। */
+    validateResetToken: builder.query<{ valid: boolean }, string>({
+      query: (token) => `/auth/reset-password/${encodeURIComponent(token)}`,
+    }),
+
+    resetPassword: builder.mutation<GenericAuthResult, ResetPasswordPayload>({
+      query: (body) => ({ url: "/auth/reset-password", method: "POST", body }),
+    }),
   }),
 });
 
@@ -84,4 +105,7 @@ export const {
   useLogoutMutation,
   useGetMeQuery,
   useLazyGetMeQuery,
+  useForgotPasswordMutation,
+  useValidateResetTokenQuery,
+  useResetPasswordMutation,
 } = authApi;

@@ -19,7 +19,7 @@ export function buildStockReportColumns(labels: {
       header: labels.product,
       cell: ({ row }) => (
         <span className="flex items-center gap-2">
-          {row.original.product.name}
+          {row.original.displayName}
           {row.original.belowReorderLevel && (
             <Badge variant="outline" className="border-warning/30 bg-warning/15 text-warning">
               {labels.lowStock}

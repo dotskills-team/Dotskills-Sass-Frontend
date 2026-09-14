@@ -17,7 +17,7 @@ export interface ReceiveGoodsPayload {
 export interface CreatePurchaseReturnPayload {
   reason: string;
   refundAmount?: number;
-  items: { productId: string; quantity: number }[];
+  items: { productId: string; variantId?: string; quantity: number }[];
 }
 
 /** `companies/:companyId/purchase-orders` — paginated (backend Frontend Phase 2 addition, mirrors Product's shape). */

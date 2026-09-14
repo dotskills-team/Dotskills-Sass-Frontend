@@ -6,6 +6,7 @@ export interface StockTransfer {
   fromLocationId: string;
   toLocationId: string;
   productId: string;
+  variantId: string | null;
   quantity: string;
   status: StockTransferStatus;
   dispatchedAt: string | null;

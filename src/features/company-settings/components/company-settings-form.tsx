@@ -36,8 +36,6 @@ const TOGGLE_KEYS = [
   "enableMultiUnit",
   "enableCustomerDue",
   "enableBarcode",
-  "enableProductVariant",
-  "enableComboOffer",
   "enableMultiLocation",
   "allowNegativeStock",
   "enableTax",

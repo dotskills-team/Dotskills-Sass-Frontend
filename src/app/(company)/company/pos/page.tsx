@@ -30,7 +30,10 @@ import { useGetCompanySettingsQuery } from "@/features/company-settings/api/comp
 import { useCart } from "@/features/pos/hooks/use-cart";
 import { useTender } from "@/features/pos/hooks/use-tender";
 import { ProductSearchInput } from "@/features/pos/components/product-search-input";
+import { VariantSelectDialog } from "@/features/pos/components/variant-select-dialog";
 import { PosCart } from "@/features/pos/components/pos-cart";
+import type { Product } from "@/types/product";
+import type { ProductVariant } from "@/types/product-variant";
 import { TenderSection } from "@/features/pos/components/tender-section";
 import { useCreateSaleMutation } from "@/features/sale/api/sale.api";
 import { useMyOpenSession } from "@/features/cash-drawer/hooks/use-my-open-session";
@@ -68,6 +71,24 @@ export default function PosPage() {
   const { lines, addProduct, updateQuantity, updateDiscount, removeLine, clear: clearCart } = useCart();
   const tender = useTender();
 
+  // A hasVariants product never adds straight to the cart — it opens this
+  // dialog first (see VariantSelectDialog's own comment for why a flat
+  // list of real variants, not independent Size/Color chip pickers).
+  const [variantPickerProduct, setVariantPickerProduct] = useState<Product | null>(null);
+
+  function handleSelectProduct(product: Product) {
+    if (product.hasVariants) {
+      setVariantPickerProduct(product);
+      return;
+    }
+    addProduct(product);
+  }
+
+  function handleSelectVariant(variant: ProductVariant) {
+    if (variantPickerProduct) addProduct(variantPickerProduct, variant);
+    setVariantPickerProduct(null);
+  }
+
   const [pendingDueConfirm, setPendingDueConfirm] = useState(false);
   const [createSale, { isLoading }] = useCreateSaleMutation();
 
@@ -93,7 +114,12 @@ export default function PosPage() {
       body: {
         locationId,
         customerId: customerId === NO_CUSTOMER ? undefined : customerId,
-        items: lines.map((line) => ({ productId: line.productId, quantity: line.quantity, discountAmount: line.discountAmount || undefined })),
+        items: lines.map((line) => ({
+          productId: line.productId,
+          variantId: line.variantId,
+          quantity: line.quantity,
+          discountAmount: line.discountAmount || undefined,
+        })),
         saleDiscountAmount: saleDiscountAmount || undefined,
         payments: tender.lines.filter((line) => line.amount > 0).map((line) => ({ method: line.method, amount: line.amount })),
       },
@@ -171,7 +197,14 @@ export default function PosPage() {
             )}
           </div>
 
-          <ProductSearchInput companyId={companyId ?? ""} onSelectProduct={addProduct} />
+          <ProductSearchInput companyId={companyId ?? ""} onSelectProduct={handleSelectProduct} />
+
+          <VariantSelectDialog
+            companyId={companyId ?? ""}
+            product={variantPickerProduct}
+            onOpenChange={(open) => !open && setVariantPickerProduct(null)}
+            onSelectVariant={handleSelectVariant}
+          />
 
           <PosCart lines={lines} onUpdateQuantity={updateQuantity} onUpdateDiscount={updateDiscount} onRemove={removeLine} />
         </div>

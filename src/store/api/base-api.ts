@@ -152,6 +152,8 @@ export const baseApi = createApi({
     "Category",
     "Unit",
     "Product",
+    "VariantAttribute",
+    "ProductVariant",
     "Customer",
     "Supplier",
     "CompanySettings",

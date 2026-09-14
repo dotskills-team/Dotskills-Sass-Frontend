@@ -55,6 +55,7 @@ function StockReportPageContent() {
   const companyId = company?.companyId;
   const searchParams = useSearchParams();
   const productId = searchParams.get("productId") ?? undefined;
+  const variantId = searchParams.get("variantId") ?? undefined;
 
   const [page, setPage] = useState(1);
   const [locationId, setLocationId] = useState(() => searchParams.get("locationId") ?? ALL_LOCATIONS);
@@ -64,6 +65,7 @@ function StockReportPageContent() {
     {
       companyId: companyId ?? "",
       productId,
+      variantId,
       locationId: locationId === ALL_LOCATIONS ? undefined : locationId,
       belowReorderOnly: belowReorderOnly || undefined,
       page,
@@ -88,6 +90,7 @@ function StockReportPageContent() {
     const result = await triggerExport({
       companyId,
       productId,
+      variantId,
       locationId: locationId === ALL_LOCATIONS ? undefined : locationId,
       belowReorderOnly: belowReorderOnly || undefined,
     });

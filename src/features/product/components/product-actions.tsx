@@ -16,6 +16,7 @@ import { CompanyPermissionGate } from "@/components/shared/permission-gate";
 import { ActionConfirmDialog } from "@/components/shared/action-confirm-dialog";
 import { EditProductDialog } from "@/features/product/components/edit-product-dialog";
 import { ProductStockDialog } from "@/features/product/components/product-stock-dialog";
+import { ManageVariantsDialog } from "@/features/product/components/manage-variants-dialog";
 import { useUpdateProductMutation } from "@/features/product/api/product.api";
 import { COMPANY_PERMISSIONS } from "@/constants/permissions";
 import { normalizeApiError } from "@/lib/api-error";
@@ -23,7 +24,7 @@ import type { Product } from "@/types/product";
 import type { Category } from "@/types/category";
 import type { Unit } from "@/types/unit";
 
-type ActiveAction = "edit" | "activate" | "deactivate" | "viewStock" | null;
+type ActiveAction = "edit" | "activate" | "deactivate" | "viewStock" | "manageVariants" | null;
 
 export function ProductRowActions({
   companyId,
@@ -75,6 +76,11 @@ export function ProductRowActions({
           <CompanyPermissionGate permission={COMPANY_PERMISSIONS.REPORT_READ}>
             <DropdownMenuItem onSelect={() => setActiveAction("viewStock")}>{t("stock.action")}</DropdownMenuItem>
           </CompanyPermissionGate>
+          <CompanyPermissionGate permission={COMPANY_PERMISSIONS.PRODUCT_UPDATE}>
+            <DropdownMenuItem onSelect={() => setActiveAction("manageVariants")}>
+              {t("variants.action")}
+            </DropdownMenuItem>
+          </CompanyPermissionGate>
         </DropdownMenuContent>
       </DropdownMenu>
 
@@ -113,6 +119,13 @@ export function ProductRowActions({
         companyId={companyId}
         product={product}
         open={activeAction === "viewStock"}
+        onOpenChange={(open) => !open && setActiveAction(null)}
+      />
+
+      <ManageVariantsDialog
+        companyId={companyId}
+        product={product}
+        open={activeAction === "manageVariants"}
         onOpenChange={(open) => !open && setActiveAction(null)}
       />
     </>

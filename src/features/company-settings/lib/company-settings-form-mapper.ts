@@ -5,8 +5,6 @@ export interface CompanySettingsMutationPayload {
   enableMultiUnit: boolean;
   enableCustomerDue: boolean;
   enableBarcode: boolean;
-  enableProductVariant: boolean;
-  enableComboOffer: boolean;
   enableMultiLocation: boolean;
   allowNegativeStock: boolean;
   maxCustomerDueLimit?: number;
@@ -20,8 +18,6 @@ export function toCompanySettingsPayload(values: CompanySettingsFormValues): Com
     enableMultiUnit: values.enableMultiUnit,
     enableCustomerDue: values.enableCustomerDue,
     enableBarcode: values.enableBarcode,
-    enableProductVariant: values.enableProductVariant,
-    enableComboOffer: values.enableComboOffer,
     enableMultiLocation: values.enableMultiLocation,
     allowNegativeStock: values.allowNegativeStock,
     maxCustomerDueLimit: values.maxCustomerDueLimit ? Number(values.maxCustomerDueLimit) : undefined,
@@ -36,8 +32,6 @@ export function toCompanySettingsFormValues(settings: CompanySettings): CompanyS
     enableMultiUnit: settings.enableMultiUnit,
     enableCustomerDue: settings.enableCustomerDue,
     enableBarcode: settings.enableBarcode,
-    enableProductVariant: settings.enableProductVariant,
-    enableComboOffer: settings.enableComboOffer,
     enableMultiLocation: settings.enableMultiLocation,
     allowNegativeStock: settings.allowNegativeStock,
     maxCustomerDueLimit: settings.maxCustomerDueLimit ?? "",

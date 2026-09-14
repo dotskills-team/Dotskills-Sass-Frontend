@@ -68,6 +68,7 @@ export default function EditPurchaseOrderPage() {
           <ErrorState error={error} onRetry={refetch} />
         ) : order ? (
           <PurchaseOrderForm
+            companyId={companyId}
             defaultValues={{
               supplierId: order.supplierId,
               locationId: order.locationId,
@@ -75,6 +76,7 @@ export default function EditPurchaseOrderPage() {
               note: order.note ?? "",
               items: order.items.map((item) => ({
                 productId: item.productId,
+                variantId: item.variantId ?? "",
                 orderedQty: item.orderedQty,
                 unitCost: item.unitCost,
               })),
