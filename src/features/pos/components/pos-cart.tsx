@@ -5,19 +5,26 @@ import { Minus, Plus, Trash2 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { EmptyState } from "@/components/shared/empty-state";
 
 import type { CartLine } from "@/features/pos/hooks/use-cart";
+import type { Unit } from "@/types/unit";
+
+const BASE_UNIT_VALUE = "__base__";
 
 interface PosCartProps {
   lines: CartLine[];
+  units: Unit[];
   onUpdateQuantity: (index: number, quantity: number) => void;
   onUpdateDiscount: (index: number, discountAmount: number) => void;
+  onUpdateSerialNote: (index: number, serialNote: string) => void;
+  onUpdateUnit: (index: number, unit: { id: string; name: string; conversionFactor: number } | undefined) => void;
   onRemove: (index: number) => void;
 }
 
-export function PosCart({ lines, onUpdateQuantity, onUpdateDiscount, onRemove }: PosCartProps) {
+export function PosCart({ lines, units, onUpdateQuantity, onUpdateDiscount, onUpdateSerialNote, onUpdateUnit, onRemove }: PosCartProps) {
   const t = useTranslations("pos");
 
   if (lines.length === 0) {
@@ -39,6 +46,7 @@ export function PosCart({ lines, onUpdateQuantity, onUpdateDiscount, onRemove }:
       <TableBody>
         {lines.map((line, index) => {
           const subtotal = line.quantity * line.unitPrice - line.discountAmount;
+          const derivedUnits = units.filter((u) => u.baseUnitId === line.baseUnitId);
           return (
             <TableRow key={`${line.productId}-${index}`}>
               <TableCell>
@@ -47,6 +55,40 @@ export function PosCart({ lines, onUpdateQuantity, onUpdateDiscount, onRemove }:
                   {line.variantLabel && <span className="text-muted-foreground"> — {line.variantLabel}</span>}
                 </div>
                 <div className="text-xs text-muted-foreground">{line.sku}</div>
+                {derivedUnits.length > 0 && (
+                  <Select
+                    value={line.unitId ?? BASE_UNIT_VALUE}
+                    onValueChange={(value) =>
+                      onUpdateUnit(
+                        index,
+                        value === BASE_UNIT_VALUE
+                          ? undefined
+                          : (() => {
+                              const unit = derivedUnits.find((u) => u.id === value)!;
+                              return { id: unit.id, name: unit.name, conversionFactor: Number(unit.conversionFactor) };
+                            })(),
+                      )
+                    }
+                  >
+                    <SelectTrigger className="mt-1 h-7 w-full text-xs">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value={BASE_UNIT_VALUE}>{t("cart.baseUnitOption")}</SelectItem>
+                      {derivedUnits.map((unit) => (
+                        <SelectItem key={unit.id} value={unit.id}>
+                          {unit.name} ({unit.conversionFactor}x)
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                )}
+                <Input
+                  value={line.serialNote ?? ""}
+                  onChange={(event) => onUpdateSerialNote(index, event.target.value)}
+                  placeholder={t("cart.serialNotePlaceholder")}
+                  className="mt-1 h-7 text-xs"
+                />
               </TableCell>
               <TableCell>
                 {line.sellByWeight ? (

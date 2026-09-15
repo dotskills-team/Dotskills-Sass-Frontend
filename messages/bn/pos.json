@@ -21,7 +21,9 @@
       "subtotal": "সাবটোটাল",
       "decrease": "পরিমাণ কমান",
       "increase": "পরিমাণ বাড়ান",
-      "remove": "মুছে ফেলুন"
+      "remove": "মুছে ফেলুন",
+      "serialNotePlaceholder": "সিরিয়াল/IMEI (ঐচ্ছিক)",
+      "baseUnitOption": "বেস ইউনিট"
     },
     "summary": {
       "subtotal": "সাবটোটাল",

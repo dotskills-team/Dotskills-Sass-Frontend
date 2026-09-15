@@ -21,6 +21,7 @@ import { useCurrentCompany } from "@/features/company/hooks/use-current-company"
 import { useListSuppliersQuery } from "@/features/supplier/api/supplier.api";
 import { useListLocationsQuery } from "@/features/location/api/location.api";
 import { useListProductsQuery } from "@/features/product/api/product.api";
+import { useListUnitsQuery } from "@/features/unit/api/unit.api";
 import { useGetPurchaseOrderQuery, useListPurchaseReturnsQuery } from "@/features/purchase-order/api/purchase-order.api";
 import { CancelPurchaseOrderDialog } from "@/features/purchase-order/components/cancel-purchase-order-dialog";
 import { ReceiveGoodsDialog } from "@/features/purchase-order/components/receive-goods-dialog";
@@ -41,6 +42,7 @@ export default function PurchaseOrderDetailPage() {
   const { data: suppliers } = useListSuppliersQuery(companyId ?? "", { skip: !companyId });
   const { data: locations } = useListLocationsQuery(companyId ?? "", { skip: !companyId });
   const { data: products } = useListProductsQuery({ companyId: companyId ?? "", limit: 200 }, { skip: !companyId });
+  const { data: units } = useListUnitsQuery(companyId ?? "", { skip: !companyId });
   const { data: returns } = useListPurchaseReturnsQuery(
     { companyId: companyId ?? "", purchaseOrderId: params.id },
     { skip: !companyId },
@@ -136,9 +138,13 @@ export default function PurchaseOrderDetailPage() {
                   <TableBody>
                     {order.items.map((item) => {
                       const product = products?.items.find((p) => p.id === item.productId);
+                      const unit = item.unitId ? units?.find((u) => u.id === item.unitId) : undefined;
                       return (
                         <TableRow key={item.id}>
-                          <TableCell>{product?.name ?? item.productId}</TableCell>
+                          <TableCell>
+                            {product?.name ?? item.productId}
+                            {unit && <div className="text-xs text-muted-foreground">{t("detail.unitLabel", { unit: unit.name })}</div>}
+                          </TableCell>
                           <TableCell className="tabular-nums">
                             {t("detail.orderedVsReceived", { received: item.receivedQty, ordered: item.orderedQty })}
                           </TableCell>

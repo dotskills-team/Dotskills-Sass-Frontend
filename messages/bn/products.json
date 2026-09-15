@@ -116,6 +116,8 @@
       "noAttributesYet": "এখনো কোনো attribute নেই — ভ্যারিয়েন্ট বানানো শুরু করতে একটা যোগ করুন (যেমন Size, Color)।",
       "selectValuePlaceholder": "{attribute} বেছে নিন",
       "selectVariantPlaceholder": "একটা ভ্যারিয়েন্ট বেছে নিন",
+      "selectUnitPlaceholder": "ইউনিট",
+      "baseUnitOption": "বেস ইউনিট",
       "variantsTitle": "ভ্যারিয়েন্ট",
       "addVariant": "ভ্যারিয়েন্ট যোগ করুন",
       "sku": "SKU",

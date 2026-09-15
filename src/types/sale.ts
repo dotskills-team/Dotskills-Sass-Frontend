@@ -11,6 +11,7 @@ export interface SaleItem {
   unitPrice: string;
   unitCost: string;
   discountAmount: string;
+  serialNote: string | null;
   subtotal: string;
 }
 

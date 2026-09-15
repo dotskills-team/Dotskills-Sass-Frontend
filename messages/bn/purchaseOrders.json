@@ -21,6 +21,7 @@
     "detail": {
       "backToList": "পার্চেজ অর্ডার তালিকায় ফিরুন",
       "orderedVsReceived": "{ordered}-এর মধ্যে {received} এসেছে",
+      "unitLabel": "ইউনিট: {unit}",
       "itemsTitle": "লাইন আইটেম",
       "editTitle": "পার্চেজ অর্ডার এডিট করুন",
       "cancelAction": "অর্ডার বাতিল করুন",

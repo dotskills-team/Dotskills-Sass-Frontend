@@ -5,6 +5,7 @@ export interface PurchaseOrderItem {
   id: string;
   productId: string;
   variantId: string | null;
+  unitId: string | null;
   orderedQty: string;
   receivedQty: string;
   unitCost: string;

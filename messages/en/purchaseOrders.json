@@ -21,6 +21,7 @@
     "detail": {
       "backToList": "Back to purchase orders",
       "orderedVsReceived": "{received} of {ordered} received",
+      "unitLabel": "Unit: {unit}",
       "itemsTitle": "Line items",
       "editTitle": "Edit purchase order",
       "cancelAction": "Cancel order",

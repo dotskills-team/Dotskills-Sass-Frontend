@@ -21,7 +21,9 @@
       "subtotal": "Subtotal",
       "decrease": "Decrease quantity",
       "increase": "Increase quantity",
-      "remove": "Remove"
+      "remove": "Remove",
+      "serialNotePlaceholder": "Serial/IMEI (optional)",
+      "baseUnitOption": "Base unit"
     },
     "summary": {
       "subtotal": "Subtotal",

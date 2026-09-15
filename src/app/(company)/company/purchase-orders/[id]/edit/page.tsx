@@ -77,6 +77,7 @@ export default function EditPurchaseOrderPage() {
               items: order.items.map((item) => ({
                 productId: item.productId,
                 variantId: item.variantId ?? "",
+                unitId: item.unitId ?? "",
                 orderedQty: item.orderedQty,
                 unitCost: item.unitCost,
               })),

@@ -25,7 +25,7 @@ const EMPTY_VALUES: PurchaseOrderFormValues = {
   locationId: "",
   orderDate: "",
   note: "",
-  items: [{ productId: "", variantId: "", orderedQty: "", unitCost: "" }],
+  items: [{ productId: "", variantId: "", unitId: "", orderedQty: "", unitCost: "" }],
 };
 
 /** Full page, not a Dialog — a deliberate departure from every other entity's create flow (see Frontend Phase 2 plan) since a variable-length item list needs real vertical space. */

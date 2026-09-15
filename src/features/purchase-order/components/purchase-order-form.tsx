@@ -30,6 +30,7 @@ import {
   type PurchaseOrderFormValues,
 } from "@/features/purchase-order/schemas/purchase-order.schema";
 import { VariantPickerField } from "@/features/product/components/variant-picker-field";
+import { UnitPickerField } from "@/features/product/components/unit-picker-field";
 import type { Supplier } from "@/types/supplier";
 import type { Location } from "@/types/location";
 import type { Product } from "@/types/product";
@@ -48,7 +49,7 @@ interface PurchaseOrderFormProps {
   onSubmit: (values: PurchaseOrderFormValues) => void;
 }
 
-const EMPTY_ITEM = { productId: "", variantId: "", orderedQty: "", unitCost: "" };
+const EMPTY_ITEM = { productId: "", variantId: "", unitId: "", orderedQty: "", unitCost: "" };
 
 /**
  * This project's first `useFieldArray` form (no prior precedent — a Line
@@ -204,7 +205,7 @@ export function PurchaseOrderForm({
               <p className="text-sm text-destructive">{form.formState.errors.items.root.message}</p>
             )}
             {fields.map((field, index) => (
-              <div key={field.id} className="grid grid-cols-1 items-start gap-3 rounded-lg border border-border p-3 sm:grid-cols-[2fr_1.5fr_1fr_1fr_auto]">
+              <div key={field.id} className="grid grid-cols-1 items-start gap-3 rounded-lg border border-border p-3 sm:grid-cols-[2fr_1.3fr_1.3fr_1fr_1fr_auto]">
                 <FormField
                   control={form.control}
                   name={`items.${index}.productId`}
@@ -251,6 +252,29 @@ export function PurchaseOrderForm({
                 ) : (
                   <div />
                 )}
+
+                <FormField
+                  control={form.control}
+                  name={`items.${index}.unitId`}
+                  render={({ field: unitField }) => (
+                    // Not wrapped in FormControl — UnitPickerField
+                    // legitimately renders `null` for most products (no
+                    // derived units to pick from), and FormControl's
+                    // underlying Radix Slot requires exactly one real
+                    // element child, throwing on `null` (confirmed the
+                    // same failure mode already fixed once in this exact
+                    // file for VariantPickerField's own null case).
+                    <FormItem>
+                      <UnitPickerField
+                        companyId={companyId}
+                        product={products.find((p) => p.id === items[index]?.productId)}
+                        value={unitField.value ?? ""}
+                        onChange={unitField.onChange}
+                      />
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
 
                 <FormField
                   control={form.control}

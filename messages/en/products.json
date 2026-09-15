@@ -116,6 +116,8 @@
       "noAttributesYet": "No attributes yet — add one (e.g. Size, Color) to start building variants.",
       "selectValuePlaceholder": "Select {attribute}",
       "selectVariantPlaceholder": "Select a variant",
+      "selectUnitPlaceholder": "Unit",
+      "baseUnitOption": "Base unit",
       "variantsTitle": "Variants",
       "addVariant": "Add variant",
       "sku": "SKU",

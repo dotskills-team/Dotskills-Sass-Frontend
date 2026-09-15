@@ -140,7 +140,12 @@ export default function SaleDetailPage() {
                   <TableBody>
                     {sale.items.map((item) => (
                       <TableRow key={item.id}>
-                        <TableCell>{item.productName}</TableCell>
+                        <TableCell>
+                          {item.productName}
+                          {item.serialNote && (
+                            <div className="text-xs text-muted-foreground">SN: {item.serialNote}</div>
+                          )}
+                        </TableCell>
                         <TableCell className="tabular-nums">{item.quantity}</TableCell>
                         <TableCell className="tabular-nums">{Number(item.unitPrice).toLocaleString()}</TableCell>
                         <TableCell className="tabular-nums">{Number(item.subtotal).toLocaleString()}</TableCell>

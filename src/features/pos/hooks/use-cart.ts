@@ -9,12 +9,21 @@ export interface CartLine {
   productName: string;
   sku: string;
   sellByWeight: boolean;
+  /** The Product's own base unit (e.g. "Piece") — needed so `pos-cart.tsx` can look up which other Units this line is allowed to switch to (only ones that convert directly to this). */
+  baseUnitId: string;
+  /** salePrice per ONE of the Product's base unit, captured at add-time — the anchor `updateUnit` rescales from whenever the cashier switches this line's unit. Never itself shown to the cashier; `unitPrice` (below) is. */
+  baseSalePrice: number;
   unitPrice: number;
   quantity: number;
   discountAmount: number;
   variantId?: string;
   /** "Red / S" — undefined for a non-variant line, so `pos-cart.tsx` can decide whether to render the sub-label at all. */
   variantLabel?: string;
+  /** Undefined = the Product's own base unit (the common case, unchanged from before this feature). Set only when the cashier explicitly switches this line to a different Unit (e.g. "Carton"). */
+  unitId?: string;
+  unitLabel?: string;
+  /** Free-text serial/IMEI captured at sale time — a manual note only, never validated or checked for uniqueness. */
+  serialNote?: string;
 }
 
 /**
@@ -47,6 +56,7 @@ export function useCart() {
           return prev.map((line, index) => (index === existingIndex ? { ...line, quantity: line.quantity + 1 } : line));
         }
       }
+      const baseSalePrice = Number(variant?.salePrice ?? product.salePrice);
       return [
         ...prev,
         {
@@ -54,7 +64,9 @@ export function useCart() {
           productName: product.name,
           sku: variant?.sku ?? product.sku,
           sellByWeight: product.sellByWeight,
-          unitPrice: Number(variant?.salePrice ?? product.salePrice),
+          baseUnitId: product.baseUnitId,
+          baseSalePrice,
+          unitPrice: baseSalePrice,
           quantity: 1,
           discountAmount: 0,
           variantId: variant?.id,
@@ -72,6 +84,34 @@ export function useCart() {
     setLines((prev) => prev.map((line, i) => (i === index ? { ...line, discountAmount } : line)));
   }
 
+  function updateSerialNote(index: number, serialNote: string) {
+    setLines((prev) => prev.map((line, i) => (i === index ? { ...line, serialNote } : line)));
+  }
+
+  /**
+   * Switches a line to a different Unit (or back to the base unit when
+   * `unit` is undefined) — rescales `unitPrice` from the line's own
+   * `baseSalePrice` (never from whatever `unitPrice` currently shows, so
+   * repeated switches never compound rounding). `quantity` is left as-is
+   * deliberately: it now means "quantity in the newly selected unit", the
+   * same re-enter-if-needed behavior the Purchase Order form already has
+   * when its own unit picker changes.
+   */
+  function updateUnit(index: number, unit: { id: string; name: string; conversionFactor: number } | undefined) {
+    setLines((prev) =>
+      prev.map((line, i) =>
+        i === index
+          ? {
+              ...line,
+              unitId: unit?.id,
+              unitLabel: unit?.name,
+              unitPrice: unit ? line.baseSalePrice * unit.conversionFactor : line.baseSalePrice,
+            }
+          : line,
+      ),
+    );
+  }
+
   function removeLine(index: number) {
     setLines((prev) => prev.filter((_, i) => i !== index));
   }
@@ -80,5 +120,5 @@ export function useCart() {
     setLines([]);
   }
 
-  return { lines, addProduct, updateQuantity, updateDiscount, removeLine, clear };
+  return { lines, addProduct, updateQuantity, updateDiscount, updateSerialNote, updateUnit, removeLine, clear };
 }

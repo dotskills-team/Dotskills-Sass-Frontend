@@ -27,6 +27,7 @@ import { useCurrentCompany } from "@/features/company/hooks/use-current-company"
 import { useAssignedLocations } from "@/features/location/hooks/use-assigned-locations";
 import { useListCustomersQuery } from "@/features/customer/api/customer.api";
 import { useGetCompanySettingsQuery } from "@/features/company-settings/api/company-settings.api";
+import { useListUnitsQuery } from "@/features/unit/api/unit.api";
 import { useCart } from "@/features/pos/hooks/use-cart";
 import { useTender } from "@/features/pos/hooks/use-tender";
 import { ProductSearchInput } from "@/features/pos/components/product-search-input";
@@ -61,6 +62,7 @@ export default function PosPage() {
 
   const { data: customers } = useListCustomersQuery(companyId ?? "", { skip: !companyId });
   const { data: settings } = useGetCompanySettingsQuery(companyId ?? "", { skip: !companyId });
+  const { data: units } = useListUnitsQuery(companyId ?? "", { skip: !companyId });
 
   const [customerId, setCustomerId] = useState(NO_CUSTOMER);
   const customer = customers?.find((c) => c.id === customerId);
@@ -68,7 +70,7 @@ export default function PosPage() {
   const [saleDiscountInput, setSaleDiscountInput] = useState("");
   const saleDiscountAmount = Number(saleDiscountInput) || 0;
 
-  const { lines, addProduct, updateQuantity, updateDiscount, removeLine, clear: clearCart } = useCart();
+  const { lines, addProduct, updateQuantity, updateDiscount, updateSerialNote, updateUnit, removeLine, clear: clearCart } = useCart();
   const tender = useTender();
 
   // A hasVariants product never adds straight to the cart — it opens this
@@ -117,8 +119,10 @@ export default function PosPage() {
         items: lines.map((line) => ({
           productId: line.productId,
           variantId: line.variantId,
+          unitId: line.unitId,
           quantity: line.quantity,
           discountAmount: line.discountAmount || undefined,
+          serialNote: line.serialNote?.trim() || undefined,
         })),
         saleDiscountAmount: saleDiscountAmount || undefined,
         payments: tender.lines.filter((line) => line.amount > 0).map((line) => ({ method: line.method, amount: line.amount })),
@@ -206,7 +210,15 @@ export default function PosPage() {
             onSelectVariant={handleSelectVariant}
           />
 
-          <PosCart lines={lines} onUpdateQuantity={updateQuantity} onUpdateDiscount={updateDiscount} onRemove={removeLine} />
+          <PosCart
+            lines={lines}
+            units={units ?? []}
+            onUpdateQuantity={updateQuantity}
+            onUpdateDiscount={updateDiscount}
+            onUpdateSerialNote={updateSerialNote}
+            onUpdateUnit={updateUnit}
+            onRemove={removeLine}
+          />
         </div>
 
         <div className="space-y-4">

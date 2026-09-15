@@ -15,6 +15,7 @@ export interface SaleItemInput {
   quantity: number;
   unitPrice?: number;
   discountAmount?: number;
+  serialNote?: string;
 }
 
 export interface SalePaymentInput {
