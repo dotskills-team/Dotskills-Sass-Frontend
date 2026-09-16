@@ -1,4 +1,4 @@
-export type SaleStatus = "COMPLETED" | "VOIDED";
+export type SaleStatus = "COMPLETED" | "VOIDED" | "NEEDS_REVIEW";
 export type SalePaymentMethod = "CASH" | "CARD" | "BKASH" | "NAGAD" | "DUE";
 
 /** `Sale.items[]` (verified `SALE_SELECT` in sale.service.ts). */

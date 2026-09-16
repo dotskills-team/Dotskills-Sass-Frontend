@@ -1,7 +1,14 @@
 import { baseApi } from "@/store/api/base-api";
 import { normalizeItemsEnvelope, type ListResult } from "@/types/list-result";
 import type { Product, ProductStatus } from "@/types/product";
+import type { ProductVariant } from "@/types/product-variant";
 import type { ProductMutationPayload } from "@/features/product/lib/product-form-mapper";
+
+export interface BarcodeLookupResult {
+  product: Product;
+  /** Set when the scanned code matched a ProductVariant's own barcode (e.g. one per T-Shirt size/color) rather than the parent Product's. */
+  variant: ProductVariant | null;
+}
 
 export interface ListProductsParams {
   companyId: string;
@@ -22,6 +29,20 @@ export const productApi = baseApi.injectEndpoints({
       transformResponse: (response: { data: Product[]; pagination: ListResult<Product>["meta"] }) =>
         normalizeItemsEnvelope({ items: response.data, meta: response.pagination! }),
       providesTags: ["Product", "CompanyScoped"],
+    }),
+
+    /**
+     * POS barcode-scan lookup — an exact-match query hit directly on Enter
+     * (never the debounced `listProducts.search` above, which manual
+     * typing uses). Consumed via the lazy-query trigger so a scan fires
+     * this on demand instead of on every keystroke.
+     */
+    lookupProductByBarcode: builder.query<BarcodeLookupResult | null, { companyId: string; code: string }>({
+      query: ({ companyId, code }) => ({
+        url: `/companies/${companyId}/products/barcode-lookup`,
+        params: { code },
+      }),
+      transformResponse: (response: { data: BarcodeLookupResult | null }) => response.data,
     }),
 
     createProduct: builder.mutation<unknown, { companyId: string; body: ProductMutationPayload }>({
@@ -47,4 +68,9 @@ export const productApi = baseApi.injectEndpoints({
   }),
 });
 
-export const { useListProductsQuery, useCreateProductMutation, useUpdateProductMutation } = productApi;
+export const {
+  useListProductsQuery,
+  useLazyLookupProductByBarcodeQuery,
+  useCreateProductMutation,
+  useUpdateProductMutation,
+} = productApi;

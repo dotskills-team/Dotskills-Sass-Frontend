@@ -46,6 +46,22 @@
       "submit": "Create return",
       "success": "Return created."
     },
+    "needsReview": {
+      "title": "Needs review",
+      "description": "Sales made offline that couldn't be fully synced because stock ran short in the meantime — approve once stock is available, or reject.",
+      "columns": {
+        "actions": "Actions"
+      },
+      "approveAction": "Approve",
+      "approveSuccess": "Sale approved — stock updated.",
+      "rejectAction": "Reject",
+      "rejectTitle": "Reject sale",
+      "rejectDescription": "Reject sale \"{saleNumber}\"? It will be voided outright and any due balance reversed. This can't be undone.",
+      "rejectReasonLabel": "Reason",
+      "rejectReasonPlaceholder": "Why is this sale being rejected?",
+      "rejectReasonRequired": "A reason is required.",
+      "rejectSuccess": "Sale rejected."
+    },
     "receipt": {
       "confirmedTitle": "Sale completed",
       "confirmedDescription": "Sale #{saleNumber} was recorded successfully.",

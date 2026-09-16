@@ -46,6 +46,22 @@
       "submit": "রিটার্ন তৈরি করুন",
       "success": "রিটার্ন তৈরি হয়েছে।"
     },
+    "needsReview": {
+      "title": "পর্যালোচনা প্রয়োজন",
+      "description": "অফলাইনে করা বিক্রয় যেগুলো sync হওয়ার সময় স্টক অপর্যাপ্ত পাওয়া গেছে — স্টক থাকলে Approve করুন, নয়তো Reject করুন।",
+      "columns": {
+        "actions": "অ্যাকশন"
+      },
+      "approveAction": "Approve",
+      "approveSuccess": "বিক্রয় Approve হয়েছে — স্টক আপডেট হয়েছে।",
+      "rejectAction": "Reject",
+      "rejectTitle": "বিক্রয় Reject করুন",
+      "rejectDescription": "\"{saleNumber}\" বিক্রয়টা Reject করবেন? এটা সরাসরি Void হয়ে যাবে এবং বাকি থাকলে তা ফেরত যাবে। এটা আর ফেরানো যাবে না।",
+      "rejectReasonLabel": "কারণ",
+      "rejectReasonPlaceholder": "কেন এই বিক্রয় Reject করা হচ্ছে?",
+      "rejectReasonRequired": "একটা কারণ লেখা আবশ্যক।",
+      "rejectSuccess": "বিক্রয় Reject হয়েছে।"
+    },
     "receipt": {
       "confirmedTitle": "বিক্রয় সম্পন্ন হয়েছে",
       "confirmedDescription": "বিক্রয় #{saleNumber} সফলভাবে রেকর্ড হয়েছে।",

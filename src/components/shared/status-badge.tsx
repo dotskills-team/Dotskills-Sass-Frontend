@@ -47,6 +47,7 @@ const STATUS_TONE: Record<string, Tone> = {
   // Sale
   COMPLETED: "success",
   VOIDED: "destructive",
+  NEEDS_REVIEW: "warning",
 };
 
 export const TONE_CLASS: Record<Tone, string> = {

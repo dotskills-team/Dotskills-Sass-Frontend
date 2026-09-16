@@ -1,12 +1,13 @@
 import { baseApi } from "@/store/api/base-api";
 import { normalizeItemsEnvelope, type ListResult } from "@/types/list-result";
-import type { Sale, SaleReturn } from "@/types/sale";
+import type { Sale, SaleReturn, SaleStatus } from "@/types/sale";
 
 export interface ListSalesParams {
   companyId: string;
   page?: number;
   limit?: number;
   locationId?: string;
+  status?: SaleStatus;
 }
 
 export interface SaleItemInput {
@@ -30,6 +31,8 @@ export interface CreateSalePayload {
   saleDiscountAmount?: number;
   payments: SalePaymentInput[];
   note?: string;
+  /** Sent only when replaying a sale that was queued offline — omit for a normal, real-time sale. */
+  idempotencyKey?: string;
 }
 
 export interface CreateSaleResult {
@@ -47,9 +50,9 @@ export interface CreateSaleReturnPayload {
 export const saleApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     listSales: builder.query<ListResult<Sale>, ListSalesParams>({
-      query: ({ companyId, page, limit, locationId }) => ({
+      query: ({ companyId, page, limit, locationId, status }) => ({
         url: `/companies/${companyId}/sales`,
-        params: { page, limit, locationId },
+        params: { page, limit, locationId, status },
       }),
       transformResponse: (response: { data: Sale[]; pagination: ListResult<Sale>["meta"] }) =>
         normalizeItemsEnvelope({ items: response.data, meta: response.pagination! }),
@@ -85,6 +88,25 @@ export const saleApi = baseApi.injectEndpoints({
       invalidatesTags: ["Sale", "Product", "Dashboard"],
     }),
 
+    approveNeedsReviewSale: builder.mutation<Sale, { companyId: string; id: string }>({
+      query: ({ companyId, id }) => ({
+        url: `/companies/${companyId}/sales/${id}/approve`,
+        method: "POST",
+      }),
+      transformResponse: (response: { data: Sale }) => response.data,
+      invalidatesTags: ["Sale", "Product", "Dashboard"],
+    }),
+
+    rejectNeedsReviewSale: builder.mutation<Sale, { companyId: string; id: string; body: { reason: string } }>({
+      query: ({ companyId, id, body }) => ({
+        url: `/companies/${companyId}/sales/${id}/reject`,
+        method: "POST",
+        body,
+      }),
+      transformResponse: (response: { data: Sale }) => response.data,
+      invalidatesTags: ["Sale", "Customer", "Dashboard"],
+    }),
+
     createSaleReturn: builder.mutation<SaleReturn, { companyId: string; id: string; body: CreateSaleReturnPayload }>({
       query: ({ companyId, id, body }) => ({
         url: `/companies/${companyId}/sales/${id}/returns`,
@@ -111,6 +133,8 @@ export const {
   useGetSaleQuery,
   useCreateSaleMutation,
   useVoidSaleMutation,
+  useApproveNeedsReviewSaleMutation,
+  useRejectNeedsReviewSaleMutation,
   useCreateSaleReturnMutation,
   useListSaleReturnsQuery,
 } = saleApi;

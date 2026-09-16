@@ -39,6 +39,7 @@
     "inventory": "Inventory",
     "sales": "Sales",
     "salesHistory": "Sale History",
+    "needsReview": "Needs Review",
     "pos": "POS",
     "cashDrawer": "Cash Drawer",
     "reports": "Reports",

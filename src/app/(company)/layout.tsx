@@ -11,6 +11,7 @@ import { CompanySelector } from "@/features/company/components/company-selector"
 import { CompanyContextGate } from "@/features/company/components/company-context-gate";
 import { CashDrawerStatusIndicator } from "@/features/cash-drawer/components/cash-drawer-status-indicator";
 import { NotificationBell } from "@/features/notification/components/notification-bell";
+import { useOfflineSaleSync } from "@/features/pos/hooks/use-offline-sale-sync";
 import { ProfileMenu } from "@/components/layout/profile-menu";
 import { useCurrentCompany } from "@/features/company/hooks/use-current-company";
 import { CompanyBrandMark } from "@/components/layout/company-brand-mark";
@@ -26,9 +27,12 @@ import { companyNavItems } from "./nav-items";
  *
  * `mobileNavOpen` UI-presentational drawer toggle only — behavior অপরিবর্তিত।
  */
+
+
 export default function CompanyLayout({ children }: { children: React.ReactNode }) {
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const { company } = useCurrentCompany();
+  useOfflineSaleSync(company?.companyId);
 
   return (
     <AuthGate>

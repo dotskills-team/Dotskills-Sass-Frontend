@@ -30,6 +30,9 @@ import { useGetCompanySettingsQuery } from "@/features/company-settings/api/comp
 import { useListUnitsQuery } from "@/features/unit/api/unit.api";
 import { useCart } from "@/features/pos/hooks/use-cart";
 import { useTender } from "@/features/pos/hooks/use-tender";
+import { useOnlineStatus } from "@/features/pos/hooks/use-online-status";
+import { usePendingSalesCount } from "@/features/pos/hooks/use-pending-sales-count";
+import { queuePendingSale } from "@/features/pos/lib/offline-sale-queue";
 import { ProductSearchInput } from "@/features/pos/components/product-search-input";
 import { VariantSelectDialog } from "@/features/pos/components/variant-select-dialog";
 import { PosCart } from "@/features/pos/components/pos-cart";
@@ -54,6 +57,8 @@ export default function PosPage() {
   const companyId = company?.companyId;
 
   const { session: openCashDrawerSession } = useMyOpenSession(companyId);
+  const isOnline = useOnlineStatus();
+  const { count: pendingSalesCount, refresh: refreshPendingSalesCount } = usePendingSalesCount(companyId);
 
   const { locations } = useAssignedLocations(companyId);
   const salesLocations = locations.filter((location) => location.isSalesEnabled);
@@ -78,7 +83,15 @@ export default function PosPage() {
   // list of real variants, not independent Size/Color chip pickers).
   const [variantPickerProduct, setVariantPickerProduct] = useState<Product | null>(null);
 
-  function handleSelectProduct(product: Product) {
+  function handleSelectProduct(product: Product, variant?: ProductVariant) {
+    // A scanned barcode that matched a specific ProductVariant already
+    // resolved the exact variant server-side — add it straight to the
+    // cart, skipping the manual picker this same `hasVariants` product
+    // would otherwise need.
+    if (variant) {
+      addProduct(product, variant);
+      return;
+    }
     if (product.hasVariants) {
       setVariantPickerProduct(product);
       return;
@@ -110,28 +123,66 @@ export default function PosPage() {
     settings?.maxCustomerDueLimit != null &&
     Number(customer.dueBalance) + dueAmount > Number(settings.maxCustomerDueLimit);
 
+  function buildSalePayload() {
+    return {
+      locationId,
+      customerId: customerId === NO_CUSTOMER ? undefined : customerId,
+      items: lines.map((line) => ({
+        productId: line.productId,
+        variantId: line.variantId,
+        unitId: line.unitId,
+        quantity: line.quantity,
+        discountAmount: line.discountAmount || undefined,
+        serialNote: line.serialNote?.trim() || undefined,
+      })),
+      saleDiscountAmount: saleDiscountAmount || undefined,
+      payments: tender.lines.filter((line) => line.amount > 0).map((line) => ({ method: line.method, amount: line.amount })),
+    };
+  }
+
+  async function queueSaleOffline() {
+    const idempotencyKey = crypto.randomUUID();
+    await queuePendingSale({
+      idempotencyKey,
+      companyId: companyId!,
+      payload: { ...buildSalePayload(), idempotencyKey },
+      createdAt: new Date().toISOString(),
+    });
+    toast.success(t("offline.queuedMessage"));
+    clearCart();
+    tender.reset();
+    void refreshPendingSalesCount();
+  }
+
   async function submitSale() {
+    // Offline path — never touches the network. `navigator.onLine` is the
+    // fast, proactive signal (skips the request entirely when already
+    // known offline), but it's not the ground truth: some browsers/DevTools
+    // network-throttling configurations block requests without ever
+    // flipping it, and on a real device a flaky connection can report
+    // "online" right up until the request itself fails. So the reactive
+    // check below (a FETCH_ERROR/TIMEOUT_ERROR from the actual attempt) is
+    // the real fallback that guarantees a sale is never silently lost —
+    // it queues instead of just showing an error toast. A genuine business
+    // rejection (insufficient stock, validation, etc.) still surfaces
+    // normally, unchanged from before.
+    if (!isOnline) {
+      await queueSaleOffline();
+      return;
+    }
+
     const result = await createSale({
       companyId: companyId!,
-      body: {
-        locationId,
-        customerId: customerId === NO_CUSTOMER ? undefined : customerId,
-        items: lines.map((line) => ({
-          productId: line.productId,
-          variantId: line.variantId,
-          unitId: line.unitId,
-          quantity: line.quantity,
-          discountAmount: line.discountAmount || undefined,
-          serialNote: line.serialNote?.trim() || undefined,
-        })),
-        saleDiscountAmount: saleDiscountAmount || undefined,
-        payments: tender.lines.filter((line) => line.amount > 0).map((line) => ({ method: line.method, amount: line.amount })),
-      },
+      body: buildSalePayload(),
     });
 
     if ("error" in result) {
-      const message = normalizeApiError(result.error).message;
-      toast.error(resolveBusinessErrorMessage(message, locale));
+      const normalized = normalizeApiError(result.error);
+      if (normalized.status === "FETCH_ERROR" || normalized.status === "TIMEOUT_ERROR") {
+        await queueSaleOffline();
+        return;
+      }
+      toast.error(resolveBusinessErrorMessage(normalized.message, locale));
       return;
     }
 
@@ -170,6 +221,18 @@ export default function PosPage() {
 
       <div className="grid gap-6 p-6 lg:grid-cols-[2fr_1fr]">
         <div className="space-y-4">
+          {!isOnline && (
+            <Alert variant="destructive">
+              <AlertTitle>{t("offline.badge")}</AlertTitle>
+              <AlertDescription>{t("offline.description")}</AlertDescription>
+            </Alert>
+          )}
+          {pendingSalesCount > 0 && (
+            <Alert>
+              <AlertTitle>{t("offline.pendingTitle")}</AlertTitle>
+              <AlertDescription>{t("offline.pendingCount", { count: pendingSalesCount })}</AlertDescription>
+            </Alert>
+          )}
           {!openCashDrawerSession && (
             <Alert>
               <AlertTitle>{tCashDrawer("posNudge.title")}</AlertTitle>
@@ -201,7 +264,11 @@ export default function PosPage() {
             )}
           </div>
 
-          <ProductSearchInput companyId={companyId ?? ""} onSelectProduct={handleSelectProduct} />
+          <ProductSearchInput
+            companyId={companyId ?? ""}
+            onSelectProduct={handleSelectProduct}
+            barcodeEnabled={settings?.enableBarcode ?? true}
+          />
 
           <VariantSelectDialog
             companyId={companyId ?? ""}

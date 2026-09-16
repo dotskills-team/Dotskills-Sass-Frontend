@@ -7,6 +7,7 @@
     "noSalesLocations": "No location is enabled for sales yet. Enable one from Locations first.",
     "searchPlaceholder": "Search by name, SKU, or scan a barcode…",
     "scanNotFound": "No product found for the scanned code \"{code}\".",
+    "scanInactive": "The product for code \"{code}\" is inactive and can't be sold.",
     "cartEmpty": "Cart is empty. Search or scan a product to add it.",
     "variantDialog": {
       "title": "Select a variant — {name}",
@@ -64,6 +65,14 @@
       "paymentMismatch": "Payments must add up to exactly the total before you can complete this sale.",
       "customerRequiredForDue": "Select a customer before using the Due payment method.",
       "success": "Sale completed."
+    },
+    "offline": {
+      "badge": "Offline",
+      "description": "No internet connection — this sale will be saved on this device and sync automatically once you're back online.",
+      "queuedMessage": "Offline — this sale will sync later.",
+      "pendingTitle": "Waiting to sync",
+      "pendingCount": "{count} sale(s) saved on this device, waiting to sync.",
+      "syncSuccess": "{count} sale(s) synced successfully."
     }
   }
 }
