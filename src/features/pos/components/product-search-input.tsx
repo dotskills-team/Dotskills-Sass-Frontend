@@ -18,6 +18,8 @@ const SEARCH_RESULT_LIMIT = 20;
 
 interface ProductSearchInputProps {
   companyId: string;
+    barcodeEnabled?: boolean;
+
   /** `variant` is set only when a scanned barcode matched a specific ProductVariant's own barcode — the caller can add it straight to the cart without the manual variant-picker dialog. */
   onSelectProduct: (product: Product, variant?: ProductVariant) => void;
 }

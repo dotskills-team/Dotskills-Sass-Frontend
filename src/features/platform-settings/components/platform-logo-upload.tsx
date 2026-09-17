@@ -113,7 +113,6 @@ export function PlatformLogoUpload({ logoUrl }: { logoUrl: string | null }) {
               />
             </div>
           </PlatformPermissionGate>
-
           <div className="min-w-0 flex-1 space-y-1 text-center sm:text-left">
             <p className="font-medium text-foreground">Platform branding</p>
             <p className="text-sm text-muted-foreground">
