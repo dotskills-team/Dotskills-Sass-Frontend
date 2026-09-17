@@ -60,6 +60,18 @@ export const companyNavItems: NavItem[] = [
         companyPermission: COMPANY_PERMISSIONS.SUPPLIER_READ,
       },
       {
+        labelKey: "categories",
+        href: "/company/categories",
+        icon: Tags,
+        companyPermission: COMPANY_PERMISSIONS.CATEGORY_READ,
+      },
+      {
+        labelKey: "units",
+        href: "/company/units",
+        icon: Ruler,
+        companyPermission: COMPANY_PERMISSIONS.UNIT_READ,
+      },
+      {
         labelKey: "companySettings",
         href: "/company/settings",
         icon: SlidersHorizontal,
@@ -99,18 +111,7 @@ export const companyNavItems: NavItem[] = [
         icon: Package,
         companyPermission: COMPANY_PERMISSIONS.PRODUCT_READ,
       },
-      {
-        labelKey: "categories",
-        href: "/company/categories",
-        icon: Tags,
-        companyPermission: COMPANY_PERMISSIONS.CATEGORY_READ,
-      },
-      {
-        labelKey: "units",
-        href: "/company/units",
-        icon: Ruler,
-        companyPermission: COMPANY_PERMISSIONS.UNIT_READ,
-      },
+      
       {
         labelKey: "stockAdjustments",
         href: "/company/stock-adjustments",

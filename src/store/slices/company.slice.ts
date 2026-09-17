@@ -22,12 +22,13 @@ const companySlice = createSlice({
     companySelected(state, action: PayloadAction<string>) {
       state.currentCompanyId = action.payload;
     },
+
     companyCleared(state) {
       state.currentCompanyId = null;
     },
+    
   },
 });
 
 export const { companySelected, companyCleared } = companySlice.actions;
-
 export const companyReducer = companySlice.reducer;

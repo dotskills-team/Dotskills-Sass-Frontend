@@ -16,7 +16,7 @@ export type BillingStatus = "PENDING" | "PROCESSING" | "SUCCEEDED" | "FAILED";
 export type InvoiceStatus = "DRAFT" | "ISSUED" | "PAID" | "VOID";
 export type PaymentStatus = "PENDING" | "PROCESSING" | "SUCCEEDED" | "FAILED" | "CANCELLED";
 export type FeatureStatus = "ACTIVE" | "INACTIVE" | "ARCHIVED";
-export type TenantStatus = "DRAFT" | "TRIAL" | "ACTIVE" | "SUSPENDED" | "CANCELLED";
+export type TenantStatus =   "DRAFT" | "TRIAL" | "ACTIVE" | "SUSPENDED" | "CANCELLED";
 
 export interface Industry {
   id: string;

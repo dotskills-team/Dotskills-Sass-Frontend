@@ -22,6 +22,8 @@ import { useGetCashDrawerSessionQuery } from "@/features/cash-drawer/api/cash-dr
 import { getSessionStatusToneClass } from "@/features/cash-drawer/lib/session-status-tone";
 import { COMPANY_PERMISSIONS } from "@/constants/permissions";
 
+
+
 /**
  * Cash Drawer Variance notification's redirect target — no dedicated
  * detail page existed before (the History table only lists sessions), and
@@ -30,6 +32,8 @@ import { COMPANY_PERMISSIONS } from "@/constants/permissions";
  * location checks already apply — this page shows nothing more than what
  * that call itself is willing to return).
  */
+
+
 export default function CashDrawerSessionDetailPage() {
   const t = useTranslations("cashDrawer");
   const params = useParams<{ id: string }>();
@@ -45,7 +49,7 @@ export default function CashDrawerSessionDetailPage() {
   const { data: members } = useListCompanyMembersQuery(companyId ?? "", {
     skip: !companyId || !canReadMembers,
   });
-
+   
   const locationName = locations?.find((location) => location.id === session?.locationId)?.name;
   const cashierName = members?.find((member) => member.user.id === session?.cashierId)?.user.fullName;
 
@@ -124,3 +128,7 @@ function formatVariance(variance: string | null): string {
   if (value < 0) return `-${formatted}`;
   return formatted;
 }
+ 
+
+
+
