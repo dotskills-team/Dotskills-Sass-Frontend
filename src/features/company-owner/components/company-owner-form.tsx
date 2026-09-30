@@ -22,7 +22,8 @@ import {
   createCompanyOwnerSchema,
   type CompanyOwnerFormValues,
 } from "@/features/company-owner/schemas/company-owner.schema";
-
+import { useState } from "react";
+import { Eye, EyeOff } from "lucide-react";
 interface CompanyOwnerFormProps {
   defaultValues: CompanyOwnerFormValues;
   isSubmitting: boolean;
@@ -45,7 +46,7 @@ export function CompanyOwnerForm({
   onSubmit,
 }: CompanyOwnerFormProps) {
   const t = useTranslations("companyOwners");
-
+const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const schema = createCompanyOwnerSchema(
     {
       emailRequired: t("form.emailRequired"),
@@ -115,7 +116,7 @@ export function CompanyOwnerForm({
           )}
         />
 
-        {showPassword && (
+        {/* {showPassword && (
           <FormField
             control={form.control}
             name="password"
@@ -125,15 +126,90 @@ export function CompanyOwnerForm({
                   {t("form.password")} <span className="text-destructive">*</span>
                 </FormLabel>
                 <FormControl>
-                  <Input {...field} type="password" placeholder={t("form.passwordPlaceholder")} />
+                  <FormControl>
+                    <div className="relative">
+                      <Input
+                        {...field}
+                        type={showPassword ? "text" : "password"}
+                        placeholder={t("form.passwordPlaceholder")}
+                        className="pr-10"
+                      />
+
+                      <Button
+                        type="button"
+                        variant="ghost"
+                        size="icon"
+                        className="absolute right-1 top-1/2 size-8 -translate-y-1/2"
+                        onClick={() => setShowPassword((prev) => !prev)}
+                        aria-label={showPassword ? "Hide password" : "Show password"}
+                      >
+                        {showPassword ? (
+                          <EyeOff className="size-4" />
+                        ) : (
+                          <Eye className="size-4" />
+                        )}
+                      </Button>
+                    </div>
+                  </FormControl>
                 </FormControl>
                 <FormDescription>{t("form.passwordDescription")}</FormDescription>
                 <FormMessage />
               </FormItem>
             )}
           />
-        )}
+        )} */}
+{showPassword && (
+  <FormField
+    control={form.control}
+    name="password"
+    render={({ field }) => (
+      <FormItem>
+        <FormLabel>
+          {t("form.password")}{" "}
+          <span className="text-destructive">*</span>
+        </FormLabel>
 
+        <FormControl>
+          <div className="relative">
+            <Input
+              {...field}
+              type={isPasswordVisible ? "text" : "password"}
+              placeholder={t("form.passwordPlaceholder")}
+              className="pr-10"
+            />
+
+            <Button
+              type="button"
+              variant="ghost"
+              size="icon"
+              className="absolute right-1 top-1/2 size-8 -translate-y-1/2"
+              onClick={() =>
+                setIsPasswordVisible((prev) => !prev)
+              }
+              aria-label={
+                isPasswordVisible
+                  ? "Hide password"
+                  : "Show password"
+              }
+            >
+              {isPasswordVisible ? (
+                <EyeOff className="size-4" />
+              ) : (
+                <Eye className="size-4" />
+              )}
+            </Button>
+          </div>
+        </FormControl>
+
+        <FormDescription>
+          {t("form.passwordDescription")}
+        </FormDescription>
+
+        <FormMessage />
+      </FormItem>
+    )}
+  />
+)}
         <FormField
           control={form.control}
           name="designation"

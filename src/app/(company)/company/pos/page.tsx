@@ -306,7 +306,7 @@ export default function PosPage() {
                 <span className="text-muted-foreground">{t("summary.saleDiscount")}</span>
                 <Input
                   type="number"
-                  step="0.01"
+                  step="1"
                   min="0"
                   value={saleDiscountInput}
                   onChange={(event) => setSaleDiscountInput(event.target.value)}

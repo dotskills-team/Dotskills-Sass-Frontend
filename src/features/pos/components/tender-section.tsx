@@ -52,9 +52,14 @@ export function TenderSection({
 
       <div className="space-y-2">
         {lines.map((line) => (
-          <div key={line.id} className="flex items-center gap-2">
+          // <div key={line.id} className="flex items-center gap-2">
+            <div
+  key={line.id}
+  className="grid grid-cols-1 gap-2 sm:grid-cols-[minmax(110px,128px)_minmax(120px,1fr)_auto_auto] sm:items-center"
+>
             <Select value={line.method} onValueChange={(value) => onUpdateMethod(line.id, value as SalePaymentMethod)}>
-              <SelectTrigger className="w-32">
+              {/* <SelectTrigger className="w-32"> */}
+              <SelectTrigger className="w-full">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
@@ -71,12 +76,14 @@ export function TenderSection({
               min="0"
               value={line.amount}
               onChange={(event) => onUpdateAmount(line.id, Number(event.target.value))}
-              className="flex-1"
+              // className="flex-1"
+              className="w-full min-w-0"
             />
             <Button
               type="button"
               variant="outline"
               size="sm"
+                className="w-full sm:w-auto whitespace-nowrap"
               onClick={() => onUpdateAmount(line.id, Math.max(0, remaining + line.amount))}
             >
               {t("tender.fillRemaining")}
@@ -85,6 +92,7 @@ export function TenderSection({
               type="button"
               variant="ghost"
               size="icon-sm"
+                className="justify-self-end sm:justify-self-auto"
               onClick={() => onRemoveLine(line.id)}
               disabled={lines.length <= 1}
               aria-label={t("tender.remove")}

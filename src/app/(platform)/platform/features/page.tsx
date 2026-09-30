@@ -26,6 +26,7 @@ const FEATURE_STATUSES: FeatureStatus[] = ["ACTIVE", "INACTIVE", "ARCHIVED"];
  * নয়)। search/status filter genuinely কাজ করে (backend `where` clause-এ
  * প্রয়োগ হয়), তাই সেগুলো রাখা হয়েছে।
  */
+
 export default function FeaturesPage() {
   const t = useTranslations("features");
   const tCommon = useTranslations("common");
@@ -41,7 +42,6 @@ export default function FeaturesPage() {
   return (
     <PlatformPermissionGate permission={PLATFORM_PERMISSIONS.FEATURE_READ} fallback={<PermissionDenied />}>
       <PageHeader title={t("title")} description={t("description")} />
-
       <div className="p-6">
         <div className="mb-4 flex items-center justify-between gap-3">
           <div className="flex gap-3">

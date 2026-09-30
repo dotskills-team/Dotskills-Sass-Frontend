@@ -166,8 +166,8 @@ function DashboardOverviewContent() {
       </div>
 
       {/* KPI row */}
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
-        <KpiCard icon={Wallet} label={t("kpi.sales")} value={money(data.kpis.sales)} tone="primary" />
+<div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3 2xl:grid-cols-6">
+          <KpiCard icon={Wallet} label={t("kpi.sales")} value={money(data.kpis.sales)} tone="primary" />
         <KpiCard icon={ShoppingCart} label={t("kpi.orders")} value={String(data.kpis.orders)} tone="info" />
         <KpiCard icon={TrendingUp} label={t("kpi.grossProfit")} value={money(data.kpis.grossProfit)} tone="success" />
         <KpiCard
@@ -511,7 +511,7 @@ function SummaryCard({
           </span>
           <p className="text-sm font-medium text-muted-foreground">{title}</p>
         </div>
-        <p className={cn("mt-3 text-2xl font-bold tracking-tight", TONE_TEXT_CLASS[tone])}>{value}</p>
+        <p className={cn("mt-3 text-xl font-bold tracking-tight", TONE_TEXT_CLASS[tone])}>{value}</p>
         {helperText && (
           <p className={cn("mt-1 text-xs", href ? "font-medium text-primary" : "text-muted-foreground")}>
             {helperText}

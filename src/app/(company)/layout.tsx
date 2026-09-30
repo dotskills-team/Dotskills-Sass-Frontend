@@ -61,7 +61,7 @@ export default function CompanyLayout({ children }: { children: React.ReactNode 
                 <div className="flex items-center md:hidden">
                   <CompanyBrandMark logoUrl={company?.logoUrl ?? null} name={company?.companyName ?? "DotSkills"} />
                 </div>
-                <CompanySelector />
+                {/* <CompanySelector /> */}
               </div>
               <div className="flex items-center gap-2">
                 <NotificationBell companyId={company?.companyId} />

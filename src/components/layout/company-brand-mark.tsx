@@ -29,11 +29,18 @@ export function CompanyBrandMark({
   className?: string;
 }) {
   return (
-    <AvatarPrimitive.Root className={cn("flex h-full w-auto shrink-0 select-none items-center", className)}>
+    // <AvatarPrimitive.Root className={cn("flex h-full w-auto shrink-0 select-none items-center", className)}>
+    <AvatarPrimitive.Root
+  className={cn(
+    "flex h-8 max-w-[150px] shrink-0 select-none items-center sm:h-9 sm:max-w-[170px] lg:h-10 lg:max-w-[200px]",
+    className
+  )}
+>
       <AvatarPrimitive.Image
         src={logoUrl ?? undefined}
         alt={name}
-        className="h-full w-auto  object-contain"
+        // className="h-full w-auto  object-contain"
+        className="block h-full w-auto max-w-full object-contain"
       />
       <AvatarPrimitive.Fallback className="flex size-6 shrink-0 items-center justify-center rounded-full bg-muted text-xs text-muted-foreground">
         {(name.trim()[0] ?? "?").toUpperCase()}

@@ -101,7 +101,8 @@ export function CreateCompanyRoleDialog({ companyId }: { companyId: string }) {
         </DialogTrigger>
       </CompanyPermissionGate>
 
-      <DialogContent className="sm:max-w-xl">
+      <DialogContent className="w-[calc(100%-1rem)] p-0 sm:max-w-xl">
+  <div className="max-h-[90vh] overflow-y-auto p-6">
         <DialogHeader>
           <DialogTitle>{t("roles.form.createTitle")}</DialogTitle>
           <DialogDescription>{t("roles.form.createDescription")}</DialogDescription>
@@ -190,6 +191,7 @@ export function CreateCompanyRoleDialog({ companyId }: { companyId: string }) {
             </DialogFooter>
           </form>
         </Form>
+        </div>
       </DialogContent>
     </Dialog>
   );
