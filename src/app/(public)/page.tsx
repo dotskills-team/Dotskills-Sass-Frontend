@@ -3,13 +3,14 @@ import { getTranslations } from "next-intl/server";
 
 import { Button } from "@/components/ui/button";
 import { LanguageSwitcher } from "@/components/layout/language-switcher";
+import LoginPage from "./login/page";
 
 export default async function Home() {
   const t = await getTranslations();
 
   return (
     <main className="min-h-screen bg-background text-foreground">
-      <div className="mx-auto flex min-h-screen max-w-6xl flex-col px-6 py-8 lg:px-8">
+      {/* <div className="mx-auto flex min-h-screen max-w-6xl flex-col px-6 py-8 lg:px-8">
         <header className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary font-bold text-lg text-primary-foreground">
@@ -21,7 +22,15 @@ export default async function Home() {
             </div>
           </div>
 
-          <LanguageSwitcher />
+          <div className="flex items-center justify-center">
+            <LanguageSwitcher />
+          <div className=" flex flex-wrap items-center justify-center gap-3">
+              <Button size="lg" asChild>
+                <Link href="/login">Login</Link>
+              </Button>
+              
+            </div>
+          </div>
         </header>
 
         <section className="flex flex-1 items-center justify-center py-20">
@@ -54,30 +63,24 @@ export default async function Home() {
               />
             </div>
 
-            <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
-              <Button size="lg" asChild>
-                <Link href="/login">Access Platform</Link>
-              </Button>
-              <Button size="lg" variant="outline" asChild>
-                <Link href="/login">Super Admin Login</Link>
-              </Button>
-            </div>
+            
           </div>
         </section>
 
         <footer className="border-t border-border pt-6 text-center text-sm text-muted-foreground">
           © {new Date().getFullYear()} DotSkills. All rights reserved.
         </footer>
-      </div>
+      </div> */}
+      <LoginPage/>
     </main>
   );
 }
 
-function FeatureCard({ title, description }: { title: string; description: string }) {
-  return (
-    <div className="rounded-2xl border border-border bg-card p-5 text-left transition hover:border-foreground/20">
-      <h3 className="font-semibold text-card-foreground">{title}</h3>
-      <p className="mt-2 text-sm leading-6 text-muted-foreground">{description}</p>
-    </div>
-  );
-}
+// function FeatureCard({ title, description }: { title: string; description: string }) {
+//   return (
+//     <div className="rounded-2xl border border-border bg-card p-5 text-left transition hover:border-foreground/20">
+//       <h3 className="font-semibold text-card-foreground">{title}</h3>
+//       <p className="mt-2 text-sm leading-6 text-muted-foreground">{description}</p>
+//     </div>
+//   );
+// }

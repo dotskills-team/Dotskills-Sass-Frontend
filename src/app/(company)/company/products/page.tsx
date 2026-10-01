@@ -57,7 +57,7 @@ export default function ProductsPage() {
         hasVariants: t("columns.hasVariants"),
       })
     : [];
-console.log(data,"data----")
+// console.log(data,"data----")
   return (
     <CompanyPermissionGate permission={COMPANY_PERMISSIONS.PRODUCT_READ} fallback={<PermissionDenied />}>
       <PageHeader title={t("title")} description={t("description")} />

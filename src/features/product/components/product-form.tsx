@@ -3,8 +3,8 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useTranslations } from "next-intl";
-import { Loader2 } from "lucide-react";
-
+// import { Loader2 } from "lucide-react";
+import { Barcode as BarcodeIcon, Loader2, RefreshCw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -29,6 +29,7 @@ import {
 import { createProductSchema, type ProductFormValues } from "@/features/product/schemas/product.schema";
 import type { Category } from "@/types/category";
 import type { Unit } from "@/types/unit";
+import { useEffect } from "react";
 
 interface ProductFormProps {
   defaultValues: ProductFormValues;
@@ -71,6 +72,37 @@ export function ProductForm({
     defaultValues,
   });
 
+useEffect(() => {
+  if (!isSkuEditable) return; // edit mode-এ কখনো নয়
+  if (!form.getValues("barcode")?.trim()) {
+    form.setValue("barcode", generateInternalBarcode());
+  }
+}, [form, isSkuEditable]);
+
+
+//   function generateInternalBarcode(): string {
+//   const bytes = new Uint8Array(6);
+//   crypto.getRandomValues(bytes);
+//   const random = Array.from(bytes, (b) => b.toString(16).padStart(2, "0"))
+//     .join("")
+//     .toUpperCase();
+//   return `DS${random}`;
+// }
+function generateInternalBarcode(): string {
+  const range = 900_000_000_000; // 100000000000 – 999999999999, সবসময় ঠিক ১২ digit
+  const space = 2 ** 48; // 48-bit random, Number-এ নিরাপদ (2^53-এর নিচে)
+  const max = Math.floor(space / range) * range;
+  const buf = new Uint32Array(2);
+
+  let value: number;
+  // modulo bias এড়াতে বাইরের মান বাদ দেওয়া হয়
+  do {
+    crypto.getRandomValues(buf);
+    value = (buf[0] & 0xffff) * 2 ** 32 + buf[1];
+  } while (value >= max);
+
+  return String(100_000_000_000 + (value % range));
+}
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4" noValidate>
@@ -92,7 +124,7 @@ export function ProductForm({
             )}
           />
 
-          <FormField
+          {/* <FormField
             control={form.control}
             name="barcode"
             render={({ field }) => (
@@ -101,6 +133,53 @@ export function ProductForm({
                 <FormControl>
                   <Input {...field} placeholder={t("form.barcodePlaceholder")} />
                 </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          /> */}
+          <FormField
+            control={form.control}
+            name="barcode"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>{t("form.barcode")}</FormLabel>
+
+                <div className="flex gap-2">
+                  <FormControl>
+                    <div className="relative flex-1">
+                      <BarcodeIcon
+                        className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground"
+                        aria-hidden="true"
+                      />
+
+                      <Input
+                        {...field}
+                        value={field.value ?? ""}
+                        className="pl-9 font-mono"
+                        placeholder={t("form.barcodePlaceholder")}
+                      />
+                    </div>
+                  </FormControl>
+
+                  <Button
+                    type="button"
+                    variant="outline"
+                    size="icon"
+                    onClick={() =>
+                      field.onChange(generateInternalBarcode())
+                    }
+                    disabled={isSubmitting}
+                    title="Generate barcode"
+                    aria-label="Generate barcode"
+                  >
+                    <RefreshCw className="size-4" aria-hidden="true" />
+                  </Button>
+                </div>
+
+                <FormDescription>
+                  Leave empty to generate automatically, or generate a new barcode.
+                </FormDescription>
+
                 <FormMessage />
               </FormItem>
             )}

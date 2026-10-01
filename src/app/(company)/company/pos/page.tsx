@@ -296,11 +296,17 @@ export default function PosPage() {
             <CardContent className="space-y-2 text-sm">
               <div className="flex justify-between">
                 <span className="text-muted-foreground">{t("summary.subtotal")}</span>
-                <span className="tabular-nums">{subtotal.toLocaleString()}</span>
+                {/* <span className="tabular-nums">{subtotal.toLocaleString()}</span> */}
+                <span className="tabular-nums">
+                  ৳ {subtotal.toLocaleString("en-BD")}
+                </span>
               </div>
               <div className="flex justify-between">
                 <span className="text-muted-foreground">{t("summary.itemDiscount")}</span>
-                <span className="tabular-nums">{itemDiscountTotal.toLocaleString()}</span>
+                {/* <span className="tabular-nums">{itemDiscountTotal.toLocaleString()}</span> */}
+                <span className="tabular-nums">
+                  ৳ {itemDiscountTotal.toLocaleString("en-BD")}
+                </span>
               </div>
               <div className="flex items-center justify-between gap-2">
                 <span className="text-muted-foreground">{t("summary.saleDiscount")}</span>
@@ -317,12 +323,18 @@ export default function PosPage() {
               {settings?.enableTax && (
                 <div className="flex justify-between">
                   <span className="text-muted-foreground">{t("summary.tax")}</span>
-                  <span className="tabular-nums">{taxAmount.toLocaleString()}</span>
+                  {/* <span className="tabular-nums">{taxAmount.toLocaleString()}</span> */}
+                  <span className="tabular-nums">
+                    ৳ {taxAmount.toLocaleString("en-BD")}
+                  </span>
                 </div>
               )}
               <div className="flex justify-between border-t border-border pt-2 text-base font-semibold">
                 <span>{t("summary.total")}</span>
-                <span className="tabular-nums">{totalAmount.toLocaleString()}</span>
+                {/* <span className="tabular-nums">{totalAmount.toLocaleString()}</span> */}
+                <span className="tabular-nums">
+                  ৳ {totalAmount.toLocaleString("en-BD")}
+                </span>
               </div>
 
               <div className="pt-2">
@@ -342,9 +354,13 @@ export default function PosPage() {
                 </Select>
                 {customer && (
                   <p className="mt-1 text-xs text-muted-foreground">
-                    {t("customer.dueBalance", { balance: Number(customer.dueBalance).toLocaleString() })}
+                    {/* {t("customer.dueBalance", { balance: Number(customer.dueBalance).toLocaleString() })} */}
+                    {t("customer.dueBalance", {
+                      balance: `৳ ${Number(customer.dueBalance).toLocaleString("en-BD")}`,
+                    })}
                   </p>
                 )}
+
               </div>
             </CardContent>
           </Card>

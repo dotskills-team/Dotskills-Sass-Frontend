@@ -53,10 +53,10 @@ export function TenderSection({
       <div className="space-y-2">
         {lines.map((line) => (
           // <div key={line.id} className="flex items-center gap-2">
-            <div
-  key={line.id}
-  className="grid grid-cols-1 gap-2 sm:grid-cols-[minmax(110px,128px)_minmax(120px,1fr)_auto_auto] sm:items-center"
->
+          <div
+            key={line.id}
+            className="grid grid-cols-1 gap-2 sm:grid-cols-[minmax(110px,128px)_minmax(120px,1fr)_auto_auto] sm:items-center"
+          >
             <Select value={line.method} onValueChange={(value) => onUpdateMethod(line.id, value as SalePaymentMethod)}>
               {/* <SelectTrigger className="w-32"> */}
               <SelectTrigger className="w-full">
@@ -70,7 +70,7 @@ export function TenderSection({
                 ))}
               </SelectContent>
             </Select>
-            <Input
+            {/* <Input
               type="number"
               step="0.01"
               min="0"
@@ -78,12 +78,26 @@ export function TenderSection({
               onChange={(event) => onUpdateAmount(line.id, Number(event.target.value))}
               // className="flex-1"
               className="w-full min-w-0"
-            />
+            /> */}
+            <div className="relative w-full min-w-0">
+              <span className="absolute left-2 top-1/2 -translate-y-1/2 text-sm text-muted-foreground">
+                ৳
+              </span>
+
+              <Input
+                type="number"
+                step="0.01"
+                min="0"
+                value={line.amount}
+                onChange={(event) => onUpdateAmount(line.id, Number(event.target.value))}
+                className="w-full min-w-0 pl-7"
+              />
+            </div>
             <Button
               type="button"
               variant="outline"
               size="sm"
-                className="w-full sm:w-auto whitespace-nowrap"
+              className="w-full sm:w-auto whitespace-nowrap"
               onClick={() => onUpdateAmount(line.id, Math.max(0, remaining + line.amount))}
             >
               {t("tender.fillRemaining")}
@@ -92,7 +106,7 @@ export function TenderSection({
               type="button"
               variant="ghost"
               size="icon-sm"
-                className="justify-self-end sm:justify-self-auto"
+              className="justify-self-end sm:justify-self-auto"
               onClick={() => onRemoveLine(line.id)}
               disabled={lines.length <= 1}
               aria-label={t("tender.remove")}
@@ -106,16 +120,22 @@ export function TenderSection({
       <div className="space-y-1 border-t border-border pt-2 text-sm">
         <div className="flex justify-between">
           <span className="text-muted-foreground">{t("tender.total")}</span>
-          <span className="tabular-nums">{total.toLocaleString()}</span>
+          {/* <span className="tabular-nums">{total.toLocaleString()}</span> */}
+          <span className="tabular-nums">
+            ৳ {total.toLocaleString("en-BD")}
+          </span>
         </div>
         <div className="flex justify-between">
           <span className="text-muted-foreground">{t("tender.entered")}</span>
-          <span className="tabular-nums">{entered.toLocaleString()}</span>
+          {/* <span className="tabular-nums">{entered.toLocaleString()}</span> */}
+          <span className="tabular-nums">
+  ৳ {entered.toLocaleString("en-BD")}
+</span>
         </div>
         <div className="flex justify-between font-medium">
           <span>{t("tender.remaining")}</span>
           <span className={`tabular-nums ${Math.abs(remaining) < 0.01 ? "text-success" : "text-warning"}`}>
-            {remaining.toLocaleString()}
+            ৳ {remaining.toLocaleString()}
           </span>
         </div>
       </div>

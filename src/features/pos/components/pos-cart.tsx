@@ -64,9 +64,9 @@ export function PosCart({ lines, units, onUpdateQuantity, onUpdateDiscount, onUp
                         value === BASE_UNIT_VALUE
                           ? undefined
                           : (() => {
-                              const unit = derivedUnits.find((u) => u.id === value)!;
-                              return { id: unit.id, name: unit.name, conversionFactor: Number(unit.conversionFactor) };
-                            })(),
+                            const unit = derivedUnits.find((u) => u.id === value)!;
+                            return { id: unit.id, name: unit.name, conversionFactor: Number(unit.conversionFactor) };
+                          })(),
                       )
                     }
                   >
@@ -94,7 +94,7 @@ export function PosCart({ lines, units, onUpdateQuantity, onUpdateDiscount, onUp
                 {line.sellByWeight ? (
                   <Input
                     type="number"
-                    step="0.001"
+                    step="1"
                     min="0"
                     value={line.quantity}
                     onChange={(event) => onUpdateQuantity(index, Number(event.target.value))}
@@ -131,8 +131,12 @@ export function PosCart({ lines, units, onUpdateQuantity, onUpdateDiscount, onUp
                   </div>
                 )}
               </TableCell>
-              <TableCell className="text-right tabular-nums">{line.unitPrice.toLocaleString()}</TableCell>
+              {/* <TableCell className="text-right tabular-nums">{line.unitPrice.toLocaleString()}</TableCell> */}
+              <TableCell className="text-right tabular-nums">
+                ৳ {line.unitPrice.toLocaleString("en-BD")}
+              </TableCell>
               <TableCell>
+
                 <Input
                   type="number"
                   step="0.01"
@@ -142,7 +146,10 @@ export function PosCart({ lines, units, onUpdateQuantity, onUpdateDiscount, onUp
                   className="w-24"
                 />
               </TableCell>
-              <TableCell className="text-right tabular-nums font-medium">{subtotal.toLocaleString()}</TableCell>
+              {/* <TableCell className="text-right tabular-nums font-medium">{subtotal.toLocaleString()}</TableCell> */}
+              <TableCell className="text-right tabular-nums font-medium">
+                ৳ {subtotal.toLocaleString("en-BD")}
+              </TableCell>
               <TableCell>
                 <Button
                   type="button"

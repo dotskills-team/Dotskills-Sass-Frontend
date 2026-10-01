@@ -223,7 +223,7 @@ function DashboardOverviewContent() {
           <CardHeader>
             <CardTitle>{t("inventoryHealth.title")}</CardTitle>
           </CardHeader>
-          <CardContent className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+          <CardContent className="grid grid-cols-2 gap-3 sm:grid-cols-2">
             <MiniStat
               icon={Wallet}
               label={t("inventoryHealth.value")}
