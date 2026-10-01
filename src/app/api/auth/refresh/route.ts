@@ -51,11 +51,19 @@ export async function POST() {
 
   const data = await backendResponse.json();
 
+  // if (!backendResponse.ok) {
+  //   const response = NextResponse.json(data, { status: backendResponse.status });
+  //   clearRefreshTokenCookie(response);
+  //   return response;
+  // }
   if (!backendResponse.ok) {
-    const response = NextResponse.json(data, { status: backendResponse.status });
+  const response = NextResponse.json(data, { status: backendResponse.status });
+  const reused = String(data?.message ?? "").includes("already used");
+  if (!reused) {
     clearRefreshTokenCookie(response);
-    return response;
   }
+  return response;
+}
 
   const { refreshToken: newRefreshToken, refreshTokenExpiresIn, ...clientSafeData } = data;
 

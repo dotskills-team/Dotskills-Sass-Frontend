@@ -77,26 +77,69 @@ function delay(ms: number): Promise<void> {
  * rawBaseQuery কল করে, তাই infinite loop সম্ভব না। Refresh ব্যর্থ হলে
  * auth state clear করে দেয়া হয়।
  */
+// export const baseQueryWithReauth: BaseQueryFn<
+//   string | FetchArgs,
+//   unknown,
+//   FetchBaseQueryError
+// > = async (args, api, extraOptions) => {
+//   let result = await rawBaseQuery(args, api, extraOptions);
+
+//   if (result.error && result.error.status === 401) {
+//     if (!refreshPromise) {
+//       refreshPromise = performRefresh(api.dispatch).finally(() => {
+//         refreshPromise = null;
+//       });
+//     }
+
+//     const newAccessToken = await refreshPromise;
+
+//     if (newAccessToken) {
+//       result = await rawBaseQuery(args, api, extraOptions);
+//     } else {
+//       api.dispatch(loggedOut());
+//     }
+//   }
+
+//   if (api.type === "query" && isTransientFailure(result.error)) {
+//     await delay(1500);
+//     result = await rawBaseQuery(args, api, extraOptions);
+//   }
+
+//   return result;
+// };
+
+
+export function refreshAccessToken(
+  dispatch: (action: unknown) => void,
+): Promise<string | null> {
+  if (!refreshPromise) {
+    refreshPromise = performRefresh(dispatch).finally(() => {
+      refreshPromise = null;
+    });
+  }
+  return refreshPromise;
+}
+
 export const baseQueryWithReauth: BaseQueryFn<
   string | FetchArgs,
   unknown,
   FetchBaseQueryError
 > = async (args, api, extraOptions) => {
+  const tokenAtStart = (api.getState() as RootState).auth.accessToken;
   let result = await rawBaseQuery(args, api, extraOptions);
 
-  if (result.error && result.error.status === 401) {
-    if (!refreshPromise) {
-      refreshPromise = performRefresh(api.dispatch).finally(() => {
-        refreshPromise = null;
-      });
-    }
+  if (result.error?.status === 401) {
+    const state = (api.getState() as RootState).auth;
 
-    const newAccessToken = await refreshPromise;
-
-    if (newAccessToken) {
+    if (state.accessToken && state.accessToken !== tokenAtStart) {
       result = await rawBaseQuery(args, api, extraOptions);
     } else {
-      api.dispatch(loggedOut());
+      const newToken = await refreshAccessToken(api.dispatch);
+      if (newToken) {
+        result = await rawBaseQuery(args, api, extraOptions);
+      } else if ((api.getState() as RootState).auth.status === "authenticated") {
+        api.dispatch(loggedOut());
+      }
     }
   }
 
@@ -107,7 +150,6 @@ export const baseQueryWithReauth: BaseQueryFn<
 
   return result;
 };
-
 /**
  * একটাই central RTK Query instance — feature module-গুলো
  * `baseApi.injectEndpoints(...)` দিয়ে নিজের endpoint যোগ করবে
