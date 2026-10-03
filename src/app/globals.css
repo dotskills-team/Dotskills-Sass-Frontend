@@ -1,4 +1,4 @@
-@import "tailwindcss";
+ @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
@@ -54,20 +54,7 @@
   --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-/**
- * UI-polish pass — brand tokens only, no component logic touched.
- * `--primary` (oklch(62.3% 0.214 259.815)) and the "dark/secondary" tone
- * (oklch(25.7% 0.09 281.288)) are the two colors given for this pass.
- * Every shadcn/ui primitive already reads its color from these CSS
- * variables (button, badge, input focus ring, sidebar, etc.), so setting
- * them here cascades the brand identity everywhere without editing
- * individual component files. Neutrals (background/card/border/muted)
- * are intentionally left as neutral grayscale, per the "don't overuse
- * color" instruction — only `--foreground` picks up a subtle cool-navy
- * tint (same family as the dark/secondary brand color) instead of flat
- * black, since nearly every heading/strong-text element already inherits
- * `text-foreground` with no per-component change needed.
- */
+
 :root {
   --background: oklch(0.975 0.003 259.815);
   --foreground: oklch(25.7% 0.09 281.288);
@@ -99,12 +86,7 @@
   --chart-4: oklch(0.371 0 0);
   --chart-5: oklch(0.269 0 0);
   --radius: 0.625rem;
-  /**
-   * Sidebar/navbar: plain white (matches --card, not the tinted --background)
-   * — user feedback: no color on sidebar/navbar, keep it white; the subtle
-   * tint instead lives on the page body so cards/sidebar/navbar read as
-   * a clean white surface against a soft off-white page.
-   */
+ 
   --sidebar: oklch(1 0 0);
   --sidebar-foreground: oklch(25.7% 0.09 281.288 / 82%);
   --sidebar-primary: oklch(62.3% 0.214 259.815);
@@ -145,7 +127,6 @@
   --chart-3: oklch(0.439 0 0);
   --chart-4: oklch(0.371 0 0);
   --chart-5: oklch(0.269 0 0);
-  /** Dark theme: sidebar uses the same neutral-base-plus-indigo-accent logic, just on dark neutrals. */
   --sidebar: oklch(0.205 0 0);
   --sidebar-foreground: oklch(0.985 0 0 / 80%);
   --sidebar-primary: oklch(62.3% 0.214 259.815);
@@ -168,13 +149,7 @@
   }
 }
 
-/**
- * "Print just one element" pattern (no existing convention in this
- * codebase — first use, generically named so it's reusable beyond the
- * Sale Receipt screen). Wrap the printable content in `.print-area`;
- * everything else is hidden for the duration of the print, not removed
- * from the DOM.
- */
+
 @media print {
   body * {
     visibility: hidden;
@@ -188,4 +163,7 @@
     inset: 0;
     width: 100%;
   }
-}
+} 
+
+
+

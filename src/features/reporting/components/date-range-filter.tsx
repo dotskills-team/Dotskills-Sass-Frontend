@@ -37,6 +37,13 @@ interface DateRangeFilterProps {
   };
 }
 
+/* UI ONLY — console look: quiet slate labels with blue icons, white controls, blue focus */
+const FIELD = "flex w-full flex-col gap-1.5 sm:w-auto";
+const LABEL_CLASS = "flex items-center gap-1.5 text-xs font-medium text-slate-600 dark:text-muted-foreground";
+const ICON_CLASS = "size-3.5 text-blue-600";
+const CONTROL_BASE =
+  "h-9 rounded-lg border-slate-200 bg-white text-sm shadow-xs transition-[border-color,box-shadow] duration-200 hover:border-slate-300 focus-visible:border-blue-600 focus-visible:ring-blue-600/20 motion-reduce:transition-none dark:border-input dark:bg-background";
+
 /**
  * No date-range-picker library/component exists anywhere in this codebase
  * (confirmed) — the established convention, set by Purchase Order's
@@ -59,9 +66,9 @@ export function DateRangeFilter({
 }: DateRangeFilterProps) {
   return (
     <div className="flex flex-wrap items-end gap-3">
-      <div className="flex flex-col gap-1.5">
-        <Label htmlFor="report-date-from" className="flex items-center gap-1.5 text-primary">
-          <CalendarDays className="size-3.5" aria-hidden="true" />
+      <div className={FIELD}>
+        <Label htmlFor="report-date-from" className={LABEL_CLASS}>
+          <CalendarDays className={ICON_CLASS} aria-hidden="true" />
           {labels.dateFrom}
         </Label>
         <Input
@@ -69,13 +76,16 @@ export function DateRangeFilter({
           type="date"
           value={dateFrom}
           max={dateTo || undefined}
-          onChange={(event) => onDateFromChange(event.target.value)}
-          className="w-40 border-primary/25 bg-primary/5 focus-visible:border-primary focus-visible:ring-primary/30"
+          onChange={(event) => {
+            // Calendar "Clear" gives "" — the API requires a valid ISO date, so keep the current one.
+            if (event.target.value) onDateFromChange(event.target.value);
+          }}
+          className={`${CONTROL_BASE} w-full tabular-nums sm:w-40`}
         />
       </div>
-      <div className="flex flex-col gap-1.5">
-        <Label htmlFor="report-date-to" className="flex items-center gap-1.5 text-primary">
-          <CalendarDays className="size-3.5" aria-hidden="true" />
+      <div className={FIELD}>
+        <Label htmlFor="report-date-to" className={LABEL_CLASS}>
+          <CalendarDays className={ICON_CLASS} aria-hidden="true" />
           {labels.dateTo}
         </Label>
         <Input
@@ -83,18 +93,21 @@ export function DateRangeFilter({
           type="date"
           value={dateTo}
           min={dateFrom || undefined}
-          onChange={(event) => onDateToChange(event.target.value)}
-          className="w-40 border-primary/25 bg-primary/5 focus-visible:border-primary focus-visible:ring-primary/30"
+          onChange={(event) => {
+            // Calendar "Clear" gives "" — the API requires a valid ISO date, so keep the current one.
+            if (event.target.value) onDateToChange(event.target.value);
+          }}
+          className={`${CONTROL_BASE} w-full tabular-nums sm:w-40`}
         />
       </div>
       {showLocationFilter && (
-        <div className="flex flex-col gap-1.5">
-          <Label className="flex items-center gap-1.5 text-info">
-            <MapPin className="size-3.5" aria-hidden="true" />
+        <div className={FIELD}>
+          <Label className={LABEL_CLASS}>
+            <MapPin className={ICON_CLASS} aria-hidden="true" />
             {labels.locationPlaceholder}
           </Label>
           <Select value={locationId} onValueChange={onLocationChange}>
-            <SelectTrigger className="w-56 border-info/25 bg-info/5 focus-visible:border-info focus-visible:ring-info/30">
+            <SelectTrigger className={`${CONTROL_BASE} w-full sm:w-56`}>
               <SelectValue placeholder={labels.locationPlaceholder} />
             </SelectTrigger>
             <SelectContent>
