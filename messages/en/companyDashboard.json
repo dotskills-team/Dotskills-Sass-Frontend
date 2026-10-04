@@ -33,13 +33,15 @@
       "empty": "No sales data yet",
       "emptyDescription": "Sales performance will appear here after your first sale."
     },
+   
     "inventoryHealth": {
-      "title": "Inventory Health",
-      "value": "Inventory Value",
-      "products": "Products",
-      "lowStock": "Low Stock",
-      "outOfStock": "Out of Stock"
-    },
+  "title": "Inventory Health",
+  "value": "Inventory Value",
+  "products": "Products",
+  "inStock": "In Stock",
+  "lowStock": "Low Stock",
+  "outOfStock": "Out of Stock"
+},
     "topProducts": {
       "title": "Top Products",
       "description": "Best-selling products in the selected range.",

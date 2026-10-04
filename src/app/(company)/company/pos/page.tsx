@@ -217,9 +217,9 @@ export default function PosPage() {
 
   return (
     <CompanyPermissionGate permission={COMPANY_PERMISSIONS.SALE_CREATE} fallback={<PermissionDenied />}>
-      <PageHeader title={t("title")} description={t("description")} />
+      {/* <PageHeader title={t("title")} description={t("description")} /> */}
 
-      <div className="grid gap-6 p-6 lg:grid-cols-[2fr_1fr]">
+      <div className="grid gap-6 px-4 py-2 lg:grid-cols-[2fr_1fr]">
         <div className="space-y-4">
           {!isOnline && (
             <Alert variant="destructive">

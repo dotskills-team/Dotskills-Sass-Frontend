@@ -167,3 +167,30 @@
 
 
 
+/* Sidebar scrollbar: thin, rounded, primary-colored */
+.sidebar-scroll {
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: var(--primary) transparent;
+}
+.sidebar-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+.sidebar-scroll::-webkit-scrollbar-track {
+  background: transparent;
+  margin: 8px 0;
+}
+.sidebar-scroll::-webkit-scrollbar-thumb {
+  border-radius: 9999px;
+  background: linear-gradient(
+    180deg,
+    color-mix(in oklab, var(--primary) 85%, white),
+    var(--primary)
+  );
+  border: 1px solid transparent;
+  background-clip: padding-box;
+  transition: background 0.2s;
+}
+.sidebar-scroll::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+  background-clip: padding-box;
+}

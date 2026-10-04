@@ -24,7 +24,7 @@ import type { Product } from "@/types/product";
 import type { Category } from "@/types/category";
 import type { Unit } from "@/types/unit";
 
-type ActiveAction = "edit" | "activate" | "deactivate" | "viewStock" | "manageVariants" | null;
+type ActiveAction = "edit" | "activate" | "deactivate" | "viewDetails" | "manageVariants" | null;
 
 export function ProductRowActions({
   companyId,
@@ -51,7 +51,7 @@ export function ProductRowActions({
     toast.success(status === "ACTIVE" ? t("actions.activateSuccess") : t("actions.deactivateSuccess"));
     setActiveAction(null);
   }
-
+//  console.log(product,"product----")
   return (
     <>
       <DropdownMenu>
@@ -74,7 +74,7 @@ export function ProductRowActions({
             )}
           </CompanyPermissionGate>
           <CompanyPermissionGate permission={COMPANY_PERMISSIONS.REPORT_READ}>
-            <DropdownMenuItem onSelect={() => setActiveAction("viewStock")}>{t("stock.action")}</DropdownMenuItem>
+            <DropdownMenuItem onSelect={() => setActiveAction("viewDetails")}>{t("stock.action")}</DropdownMenuItem>
           </CompanyPermissionGate>
           <CompanyPermissionGate permission={COMPANY_PERMISSIONS.PRODUCT_UPDATE}>
             <DropdownMenuItem onSelect={() => setActiveAction("manageVariants")}>
@@ -118,7 +118,7 @@ export function ProductRowActions({
       <ProductStockDialog
         companyId={companyId}
         product={product}
-        open={activeAction === "viewStock"}
+        open={activeAction === "viewDetails"}
         onOpenChange={(open) => !open && setActiveAction(null)}
       />
 

@@ -8,6 +8,7 @@ import type { AppTableFeatures } from "@/components/data-table/table-features";
 import type { SaleRegisterEntry } from "@/types/sale-register";
 import type { Location } from "@/types/location";
 import type { Customer } from "@/types/customer";
+import Link from "next/link";
 
 export function buildSaleRegisterColumns(
   locations: Location[],
@@ -25,7 +26,19 @@ export function buildSaleRegisterColumns(
   },
 ): ColumnDef<AppTableFeatures, SaleRegisterEntry, unknown>[] {
   return [
-    { accessorKey: "saleNumber", header: labels.saleNumber },
+    // { accessorKey: "saleNumber", header: labels.saleNumber },
+
+{
+      accessorKey: "saleNumber",
+      header: labels.saleNumber,
+      cell: ({ row }) => (
+        <Link href={`/company/sales/${row.original.id}`} className="font-medium text-primary hover:underline">
+          {row.original.saleNumber}
+        </Link>
+      ),
+    },
+
+
     {
       accessorKey: "saleDate",
       header: labels.date,

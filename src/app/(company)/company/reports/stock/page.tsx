@@ -1,3 +1,297 @@
+// // "use client";
+
+// // import { Suspense, useState } from "react";
+// // import { useSearchParams } from "next/navigation";
+// // import { useTranslations } from "next-intl";
+// // import { Loader2 } from "lucide-react";
+// // import { toast } from "sonner";
+
+// // import { PageHeader } from "@/components/shared/page-header";
+// // import { PermissionDenied } from "@/components/shared/permission-denied";
+// // import { CompanyPermissionGate } from "@/components/shared/permission-gate";
+// // import { Button } from "@/components/ui/button";
+// // import { Label } from "@/components/ui/label";
+// // import { Switch } from "@/components/ui/switch";
+// // import {
+// //   Select,
+// //   SelectContent,
+// //   SelectItem,
+// //   SelectTrigger,
+// //   SelectValue,
+// // } from "@/components/ui/select";
+// // import { DataTable } from "@/components/data-table/data-table";
+// // import { DataTablePagination } from "@/components/data-table/data-table-pagination";
+
+// // import { useCurrentCompany } from "@/features/company/hooks/use-current-company";
+// // import { useAssignedLocations } from "@/features/location/hooks/use-assigned-locations";
+// // import { useListStockReportQuery, useLazyExportStockReportQuery } from "@/features/stock-report/api/stock-report.api";
+// // import { buildStockReportColumns } from "@/features/reporting/components/stock-report-columns";
+// // import { ALL_LOCATIONS } from "@/features/reporting/components/date-range-filter";
+// // import { downloadBlob } from "@/lib/download-blob";
+// // import { COMPANY_PERMISSIONS } from "@/constants/permissions";
+// // import { Input } from "@/components/ui/input";
+
+// // /**
+// //  * Full, paginated Stock Report — reuses the exact `useListStockReportQuery`
+// //  * the Location-wise Stock Visibility micro-chunk built, just without its
+// //  * 200-row quick-view cap. The Product→Locations / Location→Products
+// //  * dialogs from that micro-chunk are untouched — this screen is additive.
+// //  *
+// //  * Wrapped in Suspense — Next.js's own requirement for any component using
+// //  * `useSearchParams()` (the first use of that hook in this codebase, added
+// //  * so the Out-of-Stock/Low-Stock notification bell can deep-link straight
+// //  * to the affected product/location: `?productId=&locationId=`).
+// //  */
+// // export default function StockReportPage() {
+// //   return (
+// //     <Suspense fallback={null}>
+// //       <StockReportPageContent />
+// //     </Suspense>
+// //   );
+// // }
+
+// // function StockReportPageContent() {
+// //   const t = useTranslations("reports");
+// //   const { company } = useCurrentCompany();
+// //   const companyId = company?.companyId;
+// //   const searchParams = useSearchParams();
+// //   const productId = searchParams.get("productId") ?? undefined;
+// //   const variantId = searchParams.get("variantId") ?? undefined;
+
+// //   const [page, setPage] = useState(1);
+// //   const [locationId, setLocationId] = useState(() => searchParams.get("locationId") ?? ALL_LOCATIONS);
+// //   const [belowReorderOnly, setBelowReorderOnly] = useState(false);
+// //     const [dateFrom, setDateFrom] = useState("");
+// //   const [dateTo, setDateTo] = useState("");
+
+// //   // Backend needs both dates together and max 366 days. If invalid, send neither.
+// //   const rangeDays =
+// //     dateFrom && dateTo ? (new Date(dateTo).getTime() - new Date(dateFrom).getTime()) / 86_400_000 : -1;
+// //   const rangeValid = rangeDays >= 0 && rangeDays <= 366;
+// //   const salesRange = rangeValid ? { dateFrom, dateTo } : {};
+
+// //   const { data, isLoading, isFetching, error, refetch } = useListStockReportQuery(
+// //     {
+// //       companyId: companyId ?? "",
+// //       productId,
+// //       variantId,
+// //       locationId: locationId === ALL_LOCATIONS ? undefined : locationId,
+// //       belowReorderOnly: belowReorderOnly || undefined,
+// //       ...salesRange,
+// //       page,
+// //       limit: 50,
+// //     },
+// //     { skip: !companyId },
+// //   );
+// // //   const [dateFrom, setDateFrom] = useState("");
+// // //   const [dateTo, setDateTo] = useState("");
+// // // const salesRange = rangeValid ? { dateFrom, dateTo } : {};
+// // //   // Backend dui ta date ekshathe chay, ar max 366 din. Invalid hole kono date-i pathabo na.
+// // //   // const rangeDays =
+// // //   //   dateFrom && dateTo ? (new Date(dateTo).getTime() - new Date(dateFrom).getTime()) / 86_400_000 : -1;
+// // //   // Backend needs both dates together and max 366 days. If invalid, send neither.
+// // //   const rangeDays =
+// // //     dateFrom && dateTo ? (new Date(dateTo).getTime() - new Date(dateFrom).getTime()) / 86_400_000 : -1;
+
+
+// // //   const rangeValid = rangeDays >= 0 && rangeDays <= 366;
+// // //   const salesRange = rangeValid ? { dateFrom, dateTo } :  {
+// // //       companyId: companyId ?? "",
+// // //       productId,
+// // //       variantId,
+// // //       locationId: locationId === ALL_LOCATIONS ? undefined : locationId,
+// // //       belowReorderOnly: belowReorderOnly || undefined,
+// // //       ...salesRange,
+// // //       page,
+// // //       limit: 50,
+// // //     };
+// //   // const salesRange = rangeValid ? { dateFrom, dateTo } : {};
+// //   // const { data, isLoading, isFetching, error, refetch } = useListStockReportQuery(
+// //   //   {
+// //   //     companyId: companyId ?? "",
+// //   //     productId,
+// //   //     variantId,
+// //   //     locationId: locationId === ALL_LOCATIONS ? undefined : locationId,
+// //   //     belowReorderOnly: belowReorderOnly || undefined,
+// //   //     page,
+// //   //     limit: 50,
+// //   //   },
+// //   //   { skip: !companyId },
+// //   // );
+// //   //   const { data, isLoading, isFetching, error, refetch } = useListStockReportQuery(
+// //   //   {
+// //   //     companyId: companyId ?? "",
+// //   //     productId,
+// //   //     variantId,
+// //   //     locationId: locationId === ALL_LOCATIONS ? undefined : locationId,
+// //   //     belowReorderOnly: belowReorderOnly || undefined,
+// //   //     ...salesRange,
+// //   //     page,
+// //   //     limit: 50,
+// //   //   },
+// //   //   { skip: !companyId },
+// //   // );
+// //   const { locations } = useAssignedLocations(companyId);
+
+// //   const [triggerExport, { isFetching: isExporting }] = useLazyExportStockReportQuery();
+
+// //   // const columns = buildStockReportColumns({
+// //   //   product: t("stockReport.columns.product"),
+// //   //   sku: t("stockReport.columns.sku"),
+// //   //   location: t("stockReport.columns.location"),
+// //   //   quantity: t("stockReport.columns.quantity"),
+// //   //   lowStock: t("stockReport.lowStock"),
+// //   // });
+// //   const columns = buildStockReportColumns({
+// //     product: t("stockReport.columns.product"),
+// //     sku: t("stockReport.columns.sku"),
+// //     location: t("stockReport.columns.location"),
+// //     quantity: t("stockReport.columns.quantity"),
+// //     lowStock: t("stockReport.lowStock"),
+// //     sales: rangeValid
+// //       ? {
+// //           soldQuantity: t("stockReport.columns.soldQuantity"),
+// //           soldAmount: t("stockReport.columns.soldAmount"),
+// //           saleCount: t("stockReport.columns.saleCount"),
+// //           avgPrice: t("stockReport.columns.avgPrice"),
+// //         }
+// //       : undefined,
+// //   });
+// //   async function handleExport() {
+// //     if (!companyId) return;
+// //     // const result = await triggerExport({
+// //     //   companyId,
+// //     //   productId,
+// //     //   variantId,
+// //     //   locationId: locationId === ALL_LOCATIONS ? undefined : locationId,
+// //     //   belowReorderOnly: belowReorderOnly || undefined,
+// //     // });
+// //     const result = await triggerExport({
+// //       companyId,
+// //       productId,
+// //       variantId,
+// //       locationId: locationId === ALL_LOCATIONS ? undefined : locationId,
+// //       belowReorderOnly: belowReorderOnly || undefined,
+// //       ...salesRange,
+// //     });
+// //     if (result.error || !result.data) {
+// //       toast.error(t("exportFailed"));
+// //       return;
+// //     }
+
+// //     downloadBlob(result.data, "stock-report.csv");
+// //   }
+
+// //   return (
+// //     <CompanyPermissionGate permission={COMPANY_PERMISSIONS.REPORT_READ} fallback={<PermissionDenied />}>
+// //       <PageHeader title={t("stockReport.title")} description={t("stockReport.description")} />
+
+// //       <div className="space-y-6 p-6">
+// //         <div className="flex flex-wrap items-end justify-between gap-4">
+// //           <div className="flex flex-wrap items-end gap-4">
+// //             <Select
+// //               value={locationId}
+// //               onValueChange={(value) => {
+// //                 setLocationId(value);
+// //                 setPage(1);
+// //               }}
+// //             >
+// //               <SelectTrigger className="w-56">
+// //                 <SelectValue placeholder={t("locationFilterPlaceholder")} />
+// //               </SelectTrigger>
+// //               <SelectContent>
+// //                 <SelectItem value={ALL_LOCATIONS}>{t("allLocations")}</SelectItem>
+// //                 {locations.map((location) => (
+// //                   <SelectItem key={location.id} value={location.id}>
+// //                     {location.name}
+// //                   </SelectItem>
+// //                 ))}
+// //               </SelectContent>
+// //             </Select>
+// //             <div className="flex items-end gap-2">
+// //               <div className="space-y-1">
+// //                 <Label htmlFor="sales-from">{t("stockReport.salesFrom")}</Label>
+// //                 <Input
+// //                   id="sales-from"
+// //                   type="date"
+// //                   value={dateFrom}
+// //                   max={dateTo || undefined}
+// //                   onChange={(e) => {
+// //                     setDateFrom(e.target.value);
+// //                     setPage(1);
+// //                   }}
+// //                 />
+// //               </div>
+// //               <div className="space-y-1">
+// //                 <Label htmlFor="sales-to">{t("stockReport.salesTo")}</Label>
+// //                 <Input
+// //                   id="sales-to"
+// //                   type="date"
+// //                   value={dateTo}
+// //                   min={dateFrom || undefined}
+// //                   onChange={(e) => {
+// //                     setDateTo(e.target.value);
+// //                     setPage(1);
+// //                   }}
+// //                 />
+// //               </div>
+// //               {(dateFrom || dateTo) && (
+// //                 <Button
+// //                   variant="ghost"
+// //                   onClick={() => {
+// //                     setDateFrom("");
+// //                     setDateTo("");
+// //                     setPage(1);
+// //                   }}
+// //                 >
+// //                   {t("stockReport.clearDates")}
+// //                 </Button>
+// //               )}
+// //             </div>
+// //             {(dateFrom || dateTo) && !rangeValid && (
+// //               <p className="text-sm text-muted-foreground">{t("stockReport.salesRangeHint")}</p>
+// //             )}
+// //             <div className="flex items-center gap-2">
+// //               <Switch
+// //                 id="below-reorder-only"
+// //                 checked={belowReorderOnly}
+// //                 onCheckedChange={(checked) => {
+// //                   setBelowReorderOnly(checked);
+// //                   setPage(1);
+// //                 }}
+// //               />
+// //               <Label htmlFor="below-reorder-only">{t("stockReport.belowReorderOnly")}</Label>
+// //             </div>
+// //           </div>
+
+// //           <Button variant="outline" onClick={handleExport} disabled={!companyId || isExporting}>
+// //             {isExporting && <Loader2 className="size-4 animate-spin" aria-hidden="true" />}
+// //             {isExporting ? t("exporting") : t("exportButton")}
+// //           </Button>
+// //         </div>
+
+// //         <DataTable
+// //           columns={columns}
+// //           data={data?.items ?? []}
+// //           isLoading={!companyId || isLoading || isFetching}
+// //           error={error}
+// //           onRetry={refetch}
+// //           pagination={data?.meta ?? undefined}
+// //         />
+
+// //         {data?.meta && data.meta.totalPages > 1 && (
+// //           <DataTablePagination
+// //             page={data.meta.page}
+// //             totalPages={data.meta.totalPages}
+// //             total={data.meta.total}
+// //             onPageChange={setPage}
+// //           />
+// //         )}
+// //       </div>
+// //     </CompanyPermissionGate>
+// //   );
+// // }
+
 "use client";
 
 import { Suspense, useState } from "react";
@@ -12,13 +306,6 @@ import { CompanyPermissionGate } from "@/components/shared/permission-gate";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { DataTable } from "@/components/data-table/data-table";
 import { DataTablePagination } from "@/components/data-table/data-table-pagination";
 
@@ -26,15 +313,34 @@ import { useCurrentCompany } from "@/features/company/hooks/use-current-company"
 import { useAssignedLocations } from "@/features/location/hooks/use-assigned-locations";
 import { useListStockReportQuery, useLazyExportStockReportQuery } from "@/features/stock-report/api/stock-report.api";
 import { buildStockReportColumns } from "@/features/reporting/components/stock-report-columns";
-import { ALL_LOCATIONS } from "@/features/reporting/components/date-range-filter";
+import { DateRangeFilter, ALL_LOCATIONS } from "@/features/reporting/components/date-range-filter";
 import { downloadBlob } from "@/lib/download-blob";
 import { COMPANY_PERMISSIONS } from "@/constants/permissions";
+
+function toDateInputValue(d: Date) {
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, "0");
+  const day = String(d.getDate()).padStart(2, "0");
+  return `${y}-${m}-${day}`;
+}
+
+/** Default sales window: last 1 month, today included. */
+function defaultSalesRange() {
+  const to = new Date();
+  const from = new Date();
+  from.setMonth(from.getMonth() - 1);
+  return { dateFrom: toDateInputValue(from), dateTo: toDateInputValue(to) };
+}
 
 /**
  * Full, paginated Stock Report — reuses the exact `useListStockReportQuery`
  * the Location-wise Stock Visibility micro-chunk built, just without its
  * 200-row quick-view cap. The Product→Locations / Location→Products
  * dialogs from that micro-chunk are untouched — this screen is additive.
+ *
+ * Sales columns (sold qty/amount, no. of sales, avg price) are always shown
+ * for the selected date range, which defaults to the last month. Filters use
+ * the shared `DateRangeFilter`, same as the Purchase Register report.
  *
  * Wrapped in Suspense — Next.js's own requirement for any component using
  * `useSearchParams()` (the first use of that hook in this codebase, added
@@ -61,6 +367,15 @@ function StockReportPageContent() {
   const [locationId, setLocationId] = useState(() => searchParams.get("locationId") ?? ALL_LOCATIONS);
   const [belowReorderOnly, setBelowReorderOnly] = useState(false);
 
+  const [defaultRange] = useState(defaultSalesRange);
+  const [{ dateFrom, dateTo }, setDateRange] = useState(defaultRange);
+
+  // Backend needs both dates together and max 366 days. If invalid, send neither.
+  const rangeDays =
+    dateFrom && dateTo ? (new Date(dateTo).getTime() - new Date(dateFrom).getTime()) / 86_400_000 : -1;
+  const rangeValid = rangeDays >= 0 && rangeDays <= 366;
+  const salesRange = rangeValid ? { dateFrom, dateTo } : {};
+
   const { data, isLoading, isFetching, error, refetch } = useListStockReportQuery(
     {
       companyId: companyId ?? "",
@@ -68,6 +383,7 @@ function StockReportPageContent() {
       variantId,
       locationId: locationId === ALL_LOCATIONS ? undefined : locationId,
       belowReorderOnly: belowReorderOnly || undefined,
+      ...salesRange,
       page,
       limit: 50,
     },
@@ -83,6 +399,14 @@ function StockReportPageContent() {
     location: t("stockReport.columns.location"),
     quantity: t("stockReport.columns.quantity"),
     lowStock: t("stockReport.lowStock"),
+    sales: rangeValid
+      ? {
+          soldQuantity: t("stockReport.columns.soldQuantity"),
+          soldAmount: t("stockReport.columns.soldAmount"),
+          saleCount: t("stockReport.columns.saleCount"),
+          avgPrice: t("stockReport.columns.avgPrice"),
+        }
+      : undefined,
   });
 
   async function handleExport() {
@@ -93,6 +417,7 @@ function StockReportPageContent() {
       variantId,
       locationId: locationId === ALL_LOCATIONS ? undefined : locationId,
       belowReorderOnly: belowReorderOnly || undefined,
+      ...salesRange,
     });
 
     if (result.error || !result.data) {
@@ -110,27 +435,34 @@ function StockReportPageContent() {
       <div className="space-y-6 p-6">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div className="flex flex-wrap items-end gap-4">
-            <Select
-              value={locationId}
-              onValueChange={(value) => {
+            <DateRangeFilter
+              dateFrom={dateFrom}
+              dateTo={dateTo}
+              onDateFromChange={(value) => {
+                setDateRange((prev) => ({ ...prev, dateFrom: value }));
+                setPage(1);
+              }}
+              onDateToChange={(value) => {
+                setDateRange((prev) => ({ ...prev, dateTo: value }));
+                setPage(1);
+              }}
+              locationId={locationId}
+              onLocationChange={(value) => {
                 setLocationId(value);
                 setPage(1);
               }}
-            >
-              <SelectTrigger className="w-56">
-                <SelectValue placeholder={t("locationFilterPlaceholder")} />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value={ALL_LOCATIONS}>{t("allLocations")}</SelectItem>
-                {locations.map((location) => (
-                  <SelectItem key={location.id} value={location.id}>
-                    {location.name}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
+              locations={locations}
+              labels={{
+                dateFrom: t("stockReport.salesFrom"),
+                dateTo: t("stockReport.salesTo"),
+                locationPlaceholder: t("locationFilterPlaceholder"),
+                allLocations: t("allLocations"),
+              }}
+            />
 
-            <div className="flex items-center gap-2">
+            {!rangeValid && <p className="text-sm text-muted-foreground">{t("stockReport.salesRangeHint")}</p>}
+
+            {/* <div className="flex items-center gap-2">
               <Switch
                 id="below-reorder-only"
                 checked={belowReorderOnly}
@@ -140,7 +472,7 @@ function StockReportPageContent() {
                 }}
               />
               <Label htmlFor="below-reorder-only">{t("stockReport.belowReorderOnly")}</Label>
-            </div>
+            </div> */}
           </div>
 
           <Button variant="outline" onClick={handleExport} disabled={!companyId || isExporting}>

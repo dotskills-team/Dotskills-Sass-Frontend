@@ -62,16 +62,24 @@
         "grossProfit": "Gross profit"
       }
     },
-    "stockReport": {
+      "stockReport": {
       "title": "Stock Report",
       "description": "Current stock for every product across every location.",
       "belowReorderOnly": "Below reorder level only",
       "lowStock": "Low stock",
+      "salesFrom": "Sales from",
+      "salesTo": "Sales to",
+      "clearDates": "Clear",
+      "salesRangeHint": "Select both dates (max 366 days) to see sales data.",
       "columns": {
         "product": "Product",
         "sku": "SKU",
         "location": "Location",
-        "quantity": "Quantity"
+        "quantity": "Quantity",
+        "soldQuantity": "Sold Qty",
+        "soldAmount": "Sold Amount",
+        "saleCount": "No. of Sales",
+        "avgPrice": "Avg Price"
       }
     },
     "duePayableLedger": {

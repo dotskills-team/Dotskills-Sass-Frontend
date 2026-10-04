@@ -117,7 +117,7 @@ function DashboardOverviewContent() {
   return (
     <div className="space-y-4 p-3 sm:space-y-5 sm:p-5 xl:p-6">
       {/* Header */}
-      <div className="flex justify-end">
+      <div className="flex justify-start">
         <div className="flex w-full flex-wrap items-end justify-start gap-3 rounded-xl border border-slate-200/80 bg-white p-3 shadow-sm sm:w-fit dark:border-white/10 dark:bg-card">
           <div className="flex flex-col gap-1.5">
             <span className="flex items-center gap-1.5 text-xs font-medium text-blue-600">
@@ -174,41 +174,79 @@ function DashboardOverviewContent() {
       </div>
 
       {/* KPI row — 1 col mobile, 2 tablet, 3 laptop, 6 on very wide screens */}
-      <section className="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-3 xl:gap-4 2xl:grid-cols-6">
-        <StatCard icon={Wallet} tone="primary" label={t("kpi.sales")} value={money(data.kpis.sales)} />
-        <StatCard icon={ShoppingCart} tone="info" label={t("kpi.orders")} value={String(data.kpis.orders)} />
-        <StatCard icon={TrendingUp} tone="success" label={t("kpi.grossProfit")} value={money(data.kpis.grossProfit)} />
-        <StatCard
-          icon={Percent}
-          tone="success"
-          label={t("kpi.grossMargin")}
-          value={data.kpis.grossMarginPercent === null ? "—" : `${data.kpis.grossMarginPercent}%`}
-        />
-        <StatCard
-          icon={CreditCard}
-          tone="warning"
-          label={t("kpi.receivable")}
-          value={money(data.kpis.receivable.total)}
-          helperText={
-            data.kpis.receivable.customerCount > 0
-              ? t("kpi.dueCustomers", { count: data.kpis.receivable.customerCount })
-              : undefined
-          }
-          onClick={() => (window.location.href = "/company/reports/due-payable")}
-        />
-        <StatCard
-          icon={TrendingDown}
-          tone="destructive"
-          label={t("kpi.payable")}
-          value={money(data.kpis.payable.total)}
-          helperText={
-            data.kpis.payable.supplierCount > 0
-              ? t("kpi.dueSuppliers", { count: data.kpis.payable.supplierCount })
-              : undefined
-          }
-          onClick={() => (window.location.href = "/company/reports/due-payable")}
-        />
-      </section>
+      <section className="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-4 xl:gap-4 2xl:grid-cols-5">
+  <StatCard icon={Wallet} tone="blue" label={t("kpi.sales")} value={money(data.kpis.sales)} />
+  <StatCard icon={ShoppingCart} tone="violet" label={t("kpi.orders")} value={String(data.kpis.orders)} />
+  <StatCard icon={TrendingUp} tone="emerald" label={t("kpi.grossProfit")} value={money(data.kpis.grossProfit)} />
+  <StatCard
+    icon={Percent}
+    tone="teal"
+    label={t("kpi.grossMargin")}
+    value={data.kpis.grossMarginPercent === null ? "—" : `${data.kpis.grossMarginPercent}%`}
+  />
+  <StatCard
+    icon={CreditCard}
+    tone="amber"
+    label={t("kpi.receivable")}
+    value={money(data.kpis.receivable.total)}
+    helperText={
+      data.kpis.receivable.customerCount > 0
+        ? t("kpi.dueCustomers", { count: data.kpis.receivable.customerCount })
+        : undefined
+    }
+    href="/company/reports/due-payable"
+  />
+  <StatCard
+    icon={TrendingDown}
+    tone="rose"
+    label={t("kpi.payable")}
+    value={money(data.kpis.payable.total)}
+    helperText={
+      data.kpis.payable.supplierCount > 0
+        ? t("kpi.dueSuppliers", { count: data.kpis.payable.supplierCount })
+        : undefined
+    }
+    href="/company/reports/due-payable"
+  />
+
+  {/* Purchases / receivable / payable / cash */}
+  <StatCard
+    icon={Package}
+    tone="indigo"
+    label={t("purchaseOverview.title")}
+    value={money(data.purchaseOverview.totalPurchases)}
+    helperText={t("purchaseOverview.orderCount", { count: data.purchaseOverview.purchaseOrderCount })}
+  />
+  <StatCard
+    icon={CreditCard}
+    tone="amber"
+    label={t("receivable.title")}
+    value={money(data.kpis.receivable.total)}
+    helperText={t("receivable.viewAll")}
+    href="/company/reports/due-payable"
+  />
+  <StatCard
+    icon={TrendingDown}
+    tone="rose"
+    label={t("payable.title")}
+    value={money(data.kpis.payable.total)}
+    helperText={t("payable.viewAll")}
+    href="/company/reports/due-payable"
+  />
+  <StatCard
+    icon={Banknote}
+    tone="cyan"
+    label={t("cashPosition.title")}
+    value={
+      data.cashPosition.openSessionCount === 0 ? t("cashPosition.empty") : money(data.cashPosition.totalOpeningFloat)
+    }
+    helperText={
+      data.cashPosition.openSessionCount === 0
+        ? undefined
+        : t("cashPosition.openSessions", { count: data.cashPosition.openSessionCount })
+    }
+  />
+</section>
 
       {/* Sales chart + Top products + Inventory donut */}
       <section className="grid grid-cols-1 gap-4 lg:grid-cols-2 xl:grid-cols-12 xl:gap-5">
@@ -332,45 +370,7 @@ function DashboardOverviewContent() {
         </div>
       </section>
 
-      {/* Purchases / receivable / payable / cash */}
-      <section className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4 xl:gap-4">
-        <StatCard
-          icon={Package}
-          tone="info"
-          label={t("purchaseOverview.title")}
-          value={money(data.purchaseOverview.totalPurchases)}
-          helperText={t("purchaseOverview.orderCount", { count: data.purchaseOverview.purchaseOrderCount })}
-        />
-        <StatCard
-          icon={CreditCard}
-          tone="warning"
-          label={t("receivable.title")}
-          value={money(data.kpis.receivable.total)}
-          helperText={t("receivable.viewAll")}
-          href="/company/reports/due-payable"
-        />
-        <StatCard
-          icon={TrendingDown}
-          tone="destructive"
-          label={t("payable.title")}
-          value={money(data.kpis.payable.total)}
-          helperText={t("payable.viewAll")}
-          href="/company/reports/due-payable"
-        />
-        <StatCard
-          icon={Banknote}
-          tone="success"
-          label={t("cashPosition.title")}
-          value={
-            data.cashPosition.openSessionCount === 0 ? t("cashPosition.empty") : money(data.cashPosition.totalOpeningFloat)
-          }
-          helperText={
-            data.cashPosition.openSessionCount === 0
-              ? undefined
-              : t("cashPosition.openSessions", { count: data.cashPosition.openSessionCount })
-          }
-        />
-      </section>
+    
 
       {data.branchPerformance && data.branchPerformance.length > 0 && (
         <section className={PANEL}>
@@ -555,35 +555,68 @@ function EmptyFrame({ children }: { children: ReactNode }) {
 //   );
 // }
 /* Icon color per tone (tile itself stays neutral) */
-const TONE_ICON_TEXT: Record<KpiTone, string> = {
-  primary: "text-blue-600 dark:text-blue-300",
-  success: "text-emerald-600 dark:text-emerald-300",
-  warning: "text-amber-600 dark:text-amber-300",
-  destructive: "text-red-600 dark:text-red-300",
-  info: "text-sky-600 dark:text-sky-300",
-};
+type CardTone = "blue" | "violet" | "emerald" | "teal" | "amber" | "rose" | "indigo" | "cyan";
 
-/* Soft glow under the tile */
-const TONE_GLOW: Record<KpiTone, string> = {
-  primary: "bg-blue-500/40",
-  success: "bg-emerald-500/40",
-  warning: "bg-amber-500/40",
-  destructive: "bg-red-500/40",
-  info: "bg-sky-500/40",
-};
-
-/* Icon tile background (tone-wise soft gradient) */
-const TONE_ICON_BG: Record<KpiTone, string> = {
-  primary:
-    "bg-gradient-to-b from-blue-50 to-blue-100 border-blue-200/80 dark:from-blue-400/20 dark:to-blue-500/10 dark:border-blue-300/20",
-  success:
-    "bg-gradient-to-b from-emerald-50 to-emerald-100 border-emerald-200/80 dark:from-emerald-400/20 dark:to-emerald-500/10 dark:border-emerald-300/20",
-  warning:
-    "bg-gradient-to-b from-amber-50 to-amber-100 border-amber-200/80 dark:from-amber-400/20 dark:to-amber-500/10 dark:border-amber-300/20",
-  destructive:
-    "bg-gradient-to-b from-red-50 to-red-100 border-red-200/80 dark:from-red-400/20 dark:to-red-500/10 dark:border-red-300/20",
-  info:
-    "bg-gradient-to-b from-sky-50 to-sky-100 border-sky-200/80 dark:from-sky-400/20 dark:to-sky-500/10 dark:border-sky-300/20",
+/* Every tone follows the same recipe; only the hue changes.
+   bar: top accent · wash: soft gradient bg · glow: corner circle
+   tile: gradient icon chip · helper: link/helper text color */
+const CARD_TONES: Record<CardTone, { bar: string; wash: string; glow: string; tile: string; helper: string }> = {
+  blue: {
+    bar: "from-blue-500 to-blue-600",
+    wash: "from-blue-50/80 dark:from-blue-500/10",
+    glow: "bg-blue-500/10",
+    tile: "from-blue-500 to-blue-600 shadow-blue-500/30",
+    helper: "text-blue-700 dark:text-blue-300",
+  },
+  violet: {
+    bar: "from-violet-500 to-violet-600",
+    wash: "from-violet-50/80 dark:from-violet-500/10",
+    glow: "bg-violet-500/10",
+    tile: "from-violet-500 to-violet-600 shadow-violet-500/30",
+    helper: "text-violet-700 dark:text-violet-300",
+  },
+  emerald: {
+    bar: "from-emerald-500 to-emerald-600",
+    wash: "from-emerald-50/80 dark:from-emerald-500/10",
+    glow: "bg-emerald-500/10",
+    tile: "from-emerald-500 to-emerald-600 shadow-emerald-500/30",
+    helper: "text-emerald-700 dark:text-emerald-300",
+  },
+  teal: {
+    bar: "from-teal-500 to-teal-600",
+    wash: "from-teal-50/80 dark:from-teal-500/10",
+    glow: "bg-teal-500/10",
+    tile: "from-teal-500 to-teal-600 shadow-teal-500/30",
+    helper: "text-teal-700 dark:text-teal-300",
+  },
+  amber: {
+    bar: "from-amber-400 to-orange-500",
+    wash: "from-amber-50/80 dark:from-amber-500/10",
+    glow: "bg-amber-500/10",
+    tile: "from-amber-400 to-orange-500 shadow-amber-500/30",
+    helper: "text-amber-700 dark:text-amber-300",
+  },
+  rose: {
+    bar: "from-rose-500 to-rose-600",
+    wash: "from-rose-50/80 dark:from-rose-500/10",
+    glow: "bg-rose-500/10",
+    tile: "from-rose-500 to-rose-600 shadow-rose-500/30",
+    helper: "text-rose-700 dark:text-rose-300",
+  },
+  indigo: {
+    bar: "from-indigo-500 to-indigo-600",
+    wash: "from-indigo-50/80 dark:from-indigo-500/10",
+    glow: "bg-indigo-500/10",
+    tile: "from-indigo-500 to-indigo-600 shadow-indigo-500/30",
+    helper: "text-indigo-700 dark:text-indigo-300",
+  },
+  cyan: {
+    bar: "from-cyan-500 to-sky-600",
+    wash: "from-cyan-50/80 dark:from-cyan-500/10",
+    glow: "bg-cyan-500/10",
+    tile: "from-cyan-500 to-sky-600 shadow-cyan-500/30",
+    helper: "text-cyan-700 dark:text-cyan-300",
+  },
 };
 
 function StatCard({
@@ -596,67 +629,73 @@ function StatCard({
   href,
 }: {
   icon: LucideIcon;
-  tone: KpiTone;
+  tone: CardTone;
   label: string;
   value: string;
   helperText?: string;
   onClick?: () => void;
   href?: string;
 }) {
+  const s = CARD_TONES[tone];
   const interactive = Boolean(onClick || href);
+
   const body = (
     <div
       className={cn(
-        PANEL,
-        "group h-full",
+        "group relative h-full overflow-hidden rounded-2xl border border-slate-200/80 bg-gradient-to-br to-white p-4 shadow-sm",
+        "dark:border-white/10 dark:to-card",
+        s.wash,
         interactive &&
-          "cursor-pointer transition duration-200 hover:-translate-y-0.5 hover:border-blue-300 hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 motion-reduce:transition-none motion-reduce:hover:translate-y-0",
+          cn(
+            "cursor-pointer transition duration-200 hover:-translate-y-0.5 hover:shadow-lg",
+            "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600",
+            "motion-reduce:transition-none motion-reduce:hover:translate-y-0",
+          ),
       )}
       onClick={onClick}
+      onKeyDown={
+        onClick
+          ? (e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                onClick();
+              }
+            }
+          : undefined
+      }
       role={onClick ? "button" : undefined}
       tabIndex={onClick ? 0 : undefined}
     >
-      <div className="flex items-start justify-between gap-3">
-        <p className="pt-1 text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">
-          {label}
-        </p>
+      {/* top accent bar */}
+      <span aria-hidden="true" className={cn("absolute inset-x-0 top-0 h-1 bg-gradient-to-r", s.bar)} />
+      {/* corner glow */}
+      <span
+        aria-hidden="true"
+        className={cn(
+          "pointer-events-none absolute -right-6 -top-6 size-24 rounded-full blur-xl transition-transform duration-300 group-hover:scale-125 motion-reduce:transition-none",
+          s.glow,
+        )}
+      />
 
-        {/* Raised glass tile + colored glow */}
-        <span className="relative size-10 shrink-0">
-          {/* glow */}
-          <span
-            aria-hidden="true"
-            className={cn(
-              "absolute inset-x-1.5 -bottom-1 h-3 rounded-full opacity-60 blur-md transition-opacity duration-300 group-hover:opacity-100 motion-reduce:transition-none",
-              TONE_GLOW[tone],
-            )}
-          />
-          {/* tile with bg */}
-          <span
-            className={cn(
-              "relative flex size-10 items-center justify-center rounded-xl border",
-              "shadow-[inset_0_1px_0_rgb(255_255_255/0.9),0_1px_2px_rgb(15_23_42/0.08)]",
-              "transition-transform duration-200 group-hover:-translate-y-px motion-reduce:transition-none",
-              "dark:shadow-[inset_0_1px_0_rgb(255_255_255/0.08)]",
-              TONE_ICON_BG[tone],
-              TONE_ICON_TEXT[tone],
-            )}
-          >
-            <Icon className="size-[18px]" strokeWidth={1.75} aria-hidden="true" />
-          </span>
+      <div className="relative flex items-start justify-between gap-3">
+        <p className="pt-1 text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">{label}</p>
+        <span
+          className={cn(
+            "flex size-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br text-white shadow-md",
+            "transition-transform duration-200 group-hover:scale-105 motion-reduce:transition-none",
+            s.tile,
+          )}
+        >
+          <Icon className="size-[18px]" strokeWidth={2} aria-hidden="true" />
         </span>
       </div>
 
-      <p className="mt-3 break-words text-2xl font-bold leading-tight tracking-tight tabular-nums text-foreground xl:text-[26px]">
+      <p className="relative mt-3 break-words text-2xl font-bold leading-tight tracking-tight tabular-nums text-foreground 2xl:text-[22px]">
         {value}
       </p>
+
       {helperText && (
-        <p
-          className={cn(
-            "mt-2 text-xs",
-            href ? "font-medium text-blue-600" : "text-muted-foreground",
-          )}
-        >
+        <p className={cn("relative mt-2 text-xs", href ? cn("font-medium", s.helper) : "text-muted-foreground")}>
           {helperText}
         </p>
       )}
@@ -664,7 +703,7 @@ function StatCard({
   );
 
   return href ? (
-    <Link href={href} className="block rounded-xl">
+    <Link href={href} className="block rounded-2xl">
       {body}
     </Link>
   ) : (

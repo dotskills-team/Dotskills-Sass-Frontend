@@ -62,16 +62,24 @@
         "grossProfit": "নিট মুনাফা"
       }
     },
-    "stockReport": {
+     "stockReport": {
       "title": "স্টক রিপোর্ট",
       "description": "প্রতিটা লোকেশনে প্রতিটা পণ্যের বর্তমান স্টক।",
       "belowReorderOnly": "শুধু রিঅর্ডার লেভেলের নিচে",
       "lowStock": "কম স্টক",
+      "salesFrom": "বিক্রয় শুরু",
+      "salesTo": "বিক্রয় শেষ",
+      "clearDates": "মুছুন",
+      "salesRangeHint": "বিক্রয়ের তথ্য দেখতে দুটি তারিখই নির্বাচন করুন (সর্বোচ্চ ৩৬৬ দিন)।",
       "columns": {
         "product": "পণ্য",
         "sku": "SKU",
         "location": "লোকেশন",
-        "quantity": "পরিমাণ"
+        "quantity": "পরিমাণ",
+        "soldQuantity": "বিক্রীত পরিমাণ",
+        "soldAmount": "বিক্রয় মূল্য",
+        "saleCount": "বিক্রয় সংখ্যা",
+        "avgPrice": "গড় মূল্য"
       }
     },
     "duePayableLedger": {

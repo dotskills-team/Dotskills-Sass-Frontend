@@ -51,13 +51,13 @@ export default function ProductsPage() {
         product: t("columns.product"),
         category: t("columns.category"),
         unit: t("columns.unit"),
+        costPrice: t("columns.costPrice"),
         salePrice: t("columns.salePrice"),
-        reorderLevel: t("columns.reorderLevel"),
         status: t("columns.status"),
         hasVariants: t("columns.hasVariants"),
       })
     : [];
-// console.log(data,"data----")
+console.log(data,"data----")
   return (
     <CompanyPermissionGate permission={COMPANY_PERMISSIONS.PRODUCT_READ} fallback={<PermissionDenied />}>
       <PageHeader title={t("title")} description={t("description")} />

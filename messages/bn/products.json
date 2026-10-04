@@ -7,6 +7,7 @@
       "product": "পণ্য",
       "category": "ক্যাটাগরি",
       "unit": "ইউনিট",
+      "costPrice": "ক্রয় মূল্য",
       "salePrice": "বিক্রয় মূল্য",
       "reorderLevel": "রিঅর্ডার লেভেল",
       "status": "স্ট্যাটাস",
@@ -24,7 +25,7 @@
       "deactivateSuccess": "পণ্য নিষ্ক্রিয় হয়েছে।"
     },
     "stock": {
-      "action": "স্টক",
+      "action": "বিস্তারিত দেখুন",
       "title": "লোকেশন-ভিত্তিক স্টক — {name}",
       "description": "এই পণ্যের এখন প্রতিটা লোকেশনে কত আছে।",
       "columns": {

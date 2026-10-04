@@ -8,6 +8,7 @@
       "category": "Category",
       "unit": "Unit",
       "salePrice": "Sale price",
+      "costPrice": "Cost price",
       "reorderLevel": "Reorder level",
       "status": "Status",
       "hasVariants": "Has variants"
@@ -24,7 +25,7 @@
       "deactivateSuccess": "Product deactivated."
     },
     "stock": {
-      "action": "Stock",
+      "action": "View Details",
       "title": "Stock by location — {name}",
       "description": "How much of this product is at each of your locations right now.",
       "columns": {
