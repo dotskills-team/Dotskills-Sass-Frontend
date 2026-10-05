@@ -9,6 +9,8 @@
       "unit": "ইউনিট",
       "costPrice": "ক্রয় মূল্য",
       "salePrice": "বিক্রয় মূল্য",
+          "stock": "স্টক",
+
       "reorderLevel": "রিঅর্ডার লেভেল",
       "status": "স্ট্যাটাস",
       "hasVariants": "ভ্যারিয়েন্ট আছে"

@@ -8,6 +8,7 @@
       "category": "Category",
       "unit": "Unit",
       "salePrice": "Sale price",
+      "stock": "Stock",
       "costPrice": "Cost price",
       "reorderLevel": "Reorder level",
       "status": "Status",

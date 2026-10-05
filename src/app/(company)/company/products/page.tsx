@@ -20,7 +20,6 @@ import { BulkImportDialog } from "@/features/bulk-import/components/bulk-import-
 import { useDebouncedValue } from "@/hooks/use-debounced-value";
 import { COMPANY_PERMISSIONS } from "@/constants/permissions";
 
-/** The one Master Data list that's paginated (backend Phase 6 pagination addition) — mirrors the Industries page's DataTable + DataTablePagination pattern exactly. */
 export default function ProductsPage() {
   const t = useTranslations("products");
   const { company } = useCurrentCompany();
@@ -30,9 +29,6 @@ export default function ProductsPage() {
   const debouncedSearch = useDebouncedValue(search, 400).trim();
 
   const [page, setPage] = useState(1);
-  // Reset to page 1 whenever the search term changes, without a
-  // setState-in-effect (React's "adjust state during render" escape
-  // hatch, same class of fix as the POS location auto-select).
   const [lastSearch, setLastSearch] = useState(debouncedSearch);
   if (debouncedSearch !== lastSearch) {
     setLastSearch(debouncedSearch);
@@ -51,13 +47,13 @@ export default function ProductsPage() {
         product: t("columns.product"),
         category: t("columns.category"),
         unit: t("columns.unit"),
-        costPrice: t("columns.costPrice"),
         salePrice: t("columns.salePrice"),
+        stock: t("columns.stock"),
         status: t("columns.status"),
         hasVariants: t("columns.hasVariants"),
       })
     : [];
-console.log(data,"data----")
+
   return (
     <CompanyPermissionGate permission={COMPANY_PERMISSIONS.PRODUCT_READ} fallback={<PermissionDenied />}>
       <PageHeader title={t("title")} description={t("description")} />
