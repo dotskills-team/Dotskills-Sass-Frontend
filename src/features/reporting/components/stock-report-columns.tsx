@@ -74,6 +74,7 @@ export function buildStockReportColumns(labels: {
   };
 }): ColumnDef<AppTableFeatures, StockReportEntry, unknown>[] {
   const columns: ColumnDef<AppTableFeatures, StockReportEntry, unknown>[] = [
+    
     {
       accessorKey: "product",
       header: labels.product,

@@ -394,105 +394,206 @@ function BarcodeCard({
     }
   }
 
-  function handlePrint() {
-    const svg = barcodeRef.current?.querySelector("svg");
-    if (!svg) {
-      toast.error(l.notReady);
-      return;
-    }
-
-    const ok = printInHiddenFrame(
-      buildLabelHtml({
-        name: product.name,
-        sku: product.sku,
-        barcode,
-        price: priceText,
-        svgMarkup: svg.outerHTML,
-        skuLabel: l.sku,
-        priceLabel: l.price,
-      }),
-    );
-
-    if (!ok) toast.error(l.printFail);
+ function handlePrint() {
+  const svg = barcodeRef.current?.querySelector("svg");
+  if (!svg) {
+    toast.error(l.notReady);
+    return;
   }
 
-  function handleDownloadPng() {
-    const svg = barcodeRef.current?.querySelector("svg");
-    if (!svg) {
-      toast.error(l.notReady);
-      return;
-    }
+  const ok = printInHiddenFrame(
+    buildLabelHtml({
+      barcode,
+      svgMarkup: svg.outerHTML,
+      name: "",
+      sku: "",
+      price: "",
+      skuLabel: "",
+      priceLabel: "",
+    }),
+  );
 
-    setIsDownloading(true);
+  if (!ok) toast.error(l.printFail);
+}
 
-    const clone = svg.cloneNode(true) as SVGSVGElement;
-    clone.setAttribute("xmlns", "http://www.w3.org/2000/svg");
-    const svgW = Number(svg.getAttribute("width")) || 300;
-    const svgH = Number(svg.getAttribute("height")) || 80;
-    clone.setAttribute("width", String(svgW));
-    clone.setAttribute("height", String(svgH));
+  // function handleDownloadPng() {
+  //   const svg = barcodeRef.current?.querySelector("svg");
+  //   if (!svg) {
+  //     toast.error(l.notReady);
+  //     return;
+  //   }
 
-    const svgUrl = URL.createObjectURL(
-      new Blob([new XMLSerializer().serializeToString(clone)], {
-        type: "image/svg+xml;charset=utf-8",
-      }),
-    );
+  //   setIsDownloading(true);
 
-    const fail = () => {
-      URL.revokeObjectURL(svgUrl);
-      setIsDownloading(false);
-      toast.error(l.pngFail);
-    };
+  //   const clone = svg.cloneNode(true) as SVGSVGElement;
+  //   clone.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+  //   const svgW = Number(svg.getAttribute("width")) || 300;
+  //   const svgH = Number(svg.getAttribute("height")) || 80;
+  //   clone.setAttribute("width", String(svgW));
+  //   clone.setAttribute("height", String(svgH));
 
-    const image = new Image();
-    image.onerror = fail;
-    image.onload = () => {
-      try {
-        const scale = 3;
-        const width = 800;
-        // const barcodeW = 640;
-        const barcodeW = 400
-        const barcodeH = Math.round((barcodeW * svgH) / svgW); // preserve aspect ratio
-        const height = 130 + barcodeH + 100;
+  //   const svgUrl = URL.createObjectURL(
+  //     new Blob([new XMLSerializer().serializeToString(clone)], {
+  //       type: "image/svg+xml;charset=utf-8",
+  //     }),
+  //   );
 
-        const canvas = document.createElement("canvas");
-        canvas.width = width * scale;
-        canvas.height = height * scale;
-        const ctx = canvas.getContext("2d");
-        if (!ctx) {
-          fail();
-          return;
-        }
+  //   const fail = () => {
+  //     URL.revokeObjectURL(svgUrl);
+  //     setIsDownloading(false);
+  //     toast.error(l.pngFail);
+  //   };
 
-        ctx.scale(scale, scale);
-        ctx.fillStyle = "#ffffff";
-        ctx.fillRect(0, 0, width, height);
-        ctx.textAlign = "center";
+  //   const image = new Image();
+  //   image.onerror = fail;
+  //   image.onload = () => {
+  //     try {
+  //       const scale = 3;
+  //       const width = 800;
+  //       // const barcodeW = 640;
+  //       const barcodeW = 400
+  //       const barcodeH = Math.round((barcodeW * svgH) / svgW); // preserve aspect ratio
+  //       const height = 130 + barcodeH + 100;
 
-        // Product name, shrunk until it fits.
-        ctx.fillStyle = "#000000";
-        let fontSize = 32;
-        ctx.font = `bold ${fontSize}px Arial, Helvetica, sans-serif`;
-        while (ctx.measureText(product.name).width > width - 80 && fontSize > 16) {
-          fontSize -= 2;
-          ctx.font = `bold ${fontSize}px Arial, Helvetica, sans-serif`;
-        }
-        ctx.fillText(product.name, width / 2, 52);
+  //       const canvas = document.createElement("canvas");
+  //       canvas.width = width * scale;
+  //       canvas.height = height * scale;
+  //       const ctx = canvas.getContext("2d");
+  //       if (!ctx) {
+  //         fail();
+  //         return;
+  //       }
 
-        ctx.fillStyle = "#444444";
-        ctx.font = "20px Arial, Helvetica, sans-serif";
-        ctx.fillText(`SKU: ${product.sku}`, width / 2, 86);
+  //       ctx.scale(scale, scale);
+  //       ctx.fillStyle = "#ffffff";
+  //       ctx.fillRect(0, 0, width, height);
+  //       ctx.textAlign = "center";
 
-        ctx.drawImage(image, (width - barcodeW) / 2, 110, barcodeW, barcodeH);
+  //       // Product name, shrunk until it fits.
+  //       ctx.fillStyle = "#000000";
+  //       let fontSize = 32;
+  //       ctx.font = `bold ${fontSize}px Arial, Helvetica, sans-serif`;
+  //       while (ctx.measureText(product.name).width > width - 80 && fontSize > 16) {
+  //         fontSize -= 2;
+  //         ctx.font = `bold ${fontSize}px Arial, Helvetica, sans-serif`;
+  //       }
+  //       ctx.fillText(product.name, width / 2, 52);
 
-        ctx.fillStyle = "#000000";
-        ctx.font = "600 24px Arial, Helvetica, sans-serif";
-        ctx.fillText(barcode, width / 2, 110 + barcodeH + 38);
-        ctx.font = "600 22px Arial, Helvetica, sans-serif";
-        ctx.fillText(`Price: ${priceText}`, width / 2, 110 + barcodeH + 74);
+  //       ctx.fillStyle = "#444444";
+  //       ctx.font = "20px Arial, Helvetica, sans-serif";
+  //       ctx.fillText(`SKU: ${product.sku}`, width / 2, 86);
 
-        canvas.toBlob((blob) => {
+  //       ctx.drawImage(image, (width - barcodeW) / 2, 110, barcodeW, barcodeH);
+
+  //       ctx.fillStyle = "#000000";
+  //       ctx.font = "600 24px Arial, Helvetica, sans-serif";
+  //       ctx.fillText(barcode, width / 2, 110 + barcodeH + 38);
+  //       ctx.font = "600 22px Arial, Helvetica, sans-serif";
+  //       ctx.fillText(`Price: ${priceText}`, width / 2, 110 + barcodeH + 74);
+
+  //       canvas.toBlob((blob) => {
+  //         URL.revokeObjectURL(svgUrl);
+  //         if (!blob) {
+  //           setIsDownloading(false);
+  //           toast.error(l.pngFail);
+  //           return;
+  //         }
+  //         const pngUrl = URL.createObjectURL(blob);
+  //         const link = document.createElement("a");
+  //         link.href = pngUrl;
+  //         link.download = `${toSafeFileName(product.name)}-${barcode}.png`;
+  //         document.body.appendChild(link);
+  //         link.click();
+  //         link.remove();
+  //         window.setTimeout(() => URL.revokeObjectURL(pngUrl), 5000);
+  //         setIsDownloading(false);
+  //         toast.success(l.pngSuccess);
+  //       }, "image/png");
+  //     } catch {
+  //       fail();
+  //     }
+  //   };
+  //   image.src = svgUrl;
+  // }
+function handleDownloadPng() {
+  const svg = barcodeRef.current?.querySelector("svg");
+  if (!svg) {
+    toast.error(l.notReady);
+    return;
+  }
+
+  setIsDownloading(true);
+
+  const clone = svg.cloneNode(true) as SVGSVGElement;
+  clone.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+
+  const svgW = Number(svg.getAttribute("width")) || 300;
+  const svgH = Number(svg.getAttribute("height")) || 80;
+
+  clone.setAttribute("width", String(svgW));
+  clone.setAttribute("height", String(svgH));
+
+  const svgUrl = URL.createObjectURL(
+    new Blob([new XMLSerializer().serializeToString(clone)], {
+      type: "image/svg+xml;charset=utf-8",
+    }),
+  );
+
+  const fail = () => {
+    URL.revokeObjectURL(svgUrl);
+    setIsDownloading(false);
+    toast.error(l.pngFail);
+  };
+
+  const image = new Image();
+  image.onerror = fail;
+
+  image.onload = () => {
+    try {
+      const scale = 3;
+      const width = 800;
+      const barcodeW = 400;
+      const barcodeH = Math.round((barcodeW * svgH) / svgW);
+
+      // Only barcode + barcode number
+      const height = barcodeH + 80;
+
+      const canvas = document.createElement("canvas");
+      canvas.width = width * scale;
+      canvas.height = height * scale;
+
+      const ctx = canvas.getContext("2d");
+
+      if (!ctx) {
+        fail();
+        return;
+      }
+
+      ctx.scale(scale, scale);
+
+      ctx.fillStyle = "#ffffff";
+      ctx.fillRect(0, 0, width, height);
+
+      ctx.textAlign = "center";
+
+      // Barcode only
+      ctx.drawImage(
+        image,
+        (width - barcodeW) / 2,
+        15,
+        barcodeW,
+        barcodeH,
+      );
+
+      // Barcode number only
+      ctx.fillStyle = "#000000";
+      ctx.font = "600 24px Arial, Helvetica, sans-serif";
+      ctx.fillText(barcode, width / 2, 15 + barcodeH + 38);
+
+      canvas.toBlob(
+        (blob) => {
           URL.revokeObjectURL(svgUrl);
+
           if (!blob) {
             setIsDownloading(false);
             toast.error(l.pngFail);
@@ -505,17 +606,21 @@ function BarcodeCard({
           document.body.appendChild(link);
           link.click();
           link.remove();
+
           window.setTimeout(() => URL.revokeObjectURL(pngUrl), 5000);
+
           setIsDownloading(false);
           toast.success(l.pngSuccess);
-        }, "image/png");
-      } catch {
-        fail();
-      }
-    };
-    image.src = svgUrl;
-  }
+        },
+        "image/png",
+      );
+    } catch {
+      fail();
+    }
+  };
 
+  image.src = svgUrl;
+}
   return (
     <div className="rounded-2xl border bg-background p-5 shadow-sm">
       <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
@@ -546,19 +651,19 @@ function BarcodeCard({
 
       {/* On-screen preview only; print and PNG build their own layout. */}
       <div className="overflow-auto rounded-xl border bg-muted/30 p-4">
-        <div className="mx-auto w-fit max-w-full rounded-md bg-white p-4 text-center text-black shadow-sm">
-          <p className="max-w-[260px] break-words text-sm font-bold leading-tight">{product.name}</p>
-          <p className="mb-2 text-xs text-gray-600">
+        <div className="mx-auto  max-w-full rounded-md bg-white p-4 text-center text-black shadow-sm">
+          {/* <p className="max-w-[260px] break-words text-sm font-bold leading-tight">{product.name}</p> */}
+          {/* <p className="mb-2 text-xs text-gray-600">
             {l.sku}: {product.sku}
-          </p>
+          </p> */}
           <div ref={barcodeRef} className="flex justify-center">
             {/* <Barcode value={barcode} format="CODE128" width={2} height={55} displayValue={false} margin={0} /> */}
             <Barcode value={barcode} format="CODE128" width={1} height={40} displayValue={false} margin={0} />
           </div>
           <p className="mt-1 text-xs font-semibold tracking-wide">{barcode}</p>
-          <p className="mt-1 text-xs text-gray-600">
+          {/* <p className="mt-1 text-xs text-gray-600">
             {l.price}: {priceText}
-          </p>
+          </p> */}
         </div>
       </div>
     </div>
